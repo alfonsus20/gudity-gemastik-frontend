@@ -7,6 +7,7 @@ module.exports = {
         blue: {
           primary: "#1854FF",
         },
+        violet: '#1D103D'
       },
     },
   },

@@ -14,7 +14,7 @@ const Navbar = () => {
     open: {
       maxWidth: "100%",
       padding: "0.5rem 1rem",
-      borderColor: "#fff",
+      borderColor: "rgba(256,256,256,0.5)",
       transition: {
         stiffness: 0,
       },
@@ -34,7 +34,7 @@ const Navbar = () => {
             initial="closed"
             placeholder="Masukkan kata kunci"
             animate={searchOpen ? "open" : "close"}
-            className="border-2 border-opacity-50 focus:border-opacity-100 rounded-lg bg-transparent text-white text-opacity-50 focus:text-opacity-100 text-xs outline-none"
+            className="border-2 border-white rounded-lg bg-transparent text-white text-opacity-50 focus:text-opacity-100 text-xs outline-none"
           />
           <button onClick={() => setSearchOpen(true)}>
             <svg

@@ -1,8 +1,7 @@
 import React from "react";
-import { ReactChild } from "react";
 
 type ButtonProps = {
-  children: ReactChild;
+  children: React.ReactNode | string;
   backgroundColor?: string;
   onClick(): void;
   fontSize?: number;
@@ -14,13 +13,13 @@ const Button = ({
   backgroundColor,
   onClick,
   fontSize,
-  disabled
+  disabled,
 }: ButtonProps) => {
   return (
     <button
       style={{ backgroundColor, fontSize }}
       onClick={onClick}
-      className="px-4 py-2"
+      className="px-4 py-2 flex flex-row"
       disabled={disabled}
     >
       {children}

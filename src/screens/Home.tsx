@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../components/Button";
+import QuickAccess from "../components/quick-access/QuickAccess";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
         loop
         className="w-full h-full object-cover absolute top-0 left-0 z-0"
       ></video>
+      <QuickAccess/>
       <div
         className="w-full min-h-screen relative z-10 pt-10 text-white flex items-center"
         style={{
@@ -25,7 +27,7 @@ const Home = () => {
               Sebagai Solusi UMKM Anda <br /> dalam Proses{" "}
               <span className="highlight">Analisis</span> dan{" "}
               <span className="highlight">Prediksi</span>
-              <br /> <span className="highlight">pada masa depan.</span>
+              <br /> pada <span className="highlight"> masa depan.</span>
             </h1>
           </div>
           <div className='mt-6'>
