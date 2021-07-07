@@ -4,13 +4,12 @@ import { QUICK_ACCESS_FEATURES } from "../../utils/constants";
 import QuickAccessCard from "./QuickAccessCard";
 
 const QuickAccess = () => {
-  const [isShown, setIsShown] = React.useState(false);
   const variants = {
-    open: {
+    shown: {
       maxHeight: "auto",
       top: 0,
     },
-    closed: {
+    hidden: {
       maxHeight: 0,
       top: "-100%",
     },
@@ -19,8 +18,8 @@ const QuickAccess = () => {
   return (
     <motion.div
       className="min-h-screen w-full absolute top-0 left-0 z-30 bg-gradient-to-b from-black to-violet text-white flex"
-      initial="closed"
-      animate={isShown ? "open" : "closed"}
+      initial="hidden"
+      animate={false ? "shown" : "hidden"}
       transition={{ stiffness: 0, duration: 1 }}
       variants={variants}
     >

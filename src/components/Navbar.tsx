@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
-  const [searchOpen, setSearchOpen] = React.useState(false);
+  const [searchOpen, setSearchOpen] = React.useState<boolean>(false);
 
   const searchInputVariants = {
     closed: {
