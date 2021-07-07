@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "react";
+import { QuickStartDispatchTypes } from "../store/constants/quickStartConstants";
 
 const Navbar = () => {
   const [searchOpen, setSearchOpen] = React.useState<boolean>(false);
+  const [isBackgroundBlack, setIsBackgroundBlack] =
+    React.useState<boolean>(false);
+  const dispatch: Dispatch<QuickStartDispatchTypes> = useDispatch();
 
   const searchInputVariants = {
     closed: {
@@ -15,15 +21,41 @@ const Navbar = () => {
       maxWidth: "100%",
       padding: "0.5rem 1rem",
       borderColor: "rgba(256,256,256,0.5)",
-      transition: {
-        stiffness: 0,
-      },
     },
   };
 
+  const backgroundVariants = {
+    shown: {
+      backgroundColor: "rgba(0,0,0,1)",
+    },
+    hidden: {
+      backgroundColor: "rgba(0,0,0,0)",
+    },
+  };
+
+  React.useEffect(() => {
+    const checkViewPort = () => {
+      if (window.scrollY > 80) {
+        setIsBackgroundBlack(true);
+      } else {
+        setIsBackgroundBlack(false);
+      }
+    };
+    window.addEventListener("scroll", checkViewPort);
+    return () => {
+      window.removeEventListener("scroll", checkViewPort);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-row fixed w-full z-20 px-12 py-8">
-      <div className="w-20 flex-shrink-0 text-white">LOGO</div>
+    <motion.div
+      className="flex flex-row fixed w-full z-20 px-12 py-8"
+      variants={backgroundVariants}
+      initial="hidden"
+      animate={isBackgroundBlack ? "shown" : "hidden"}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="w-20 flex-shrink-0 text-white my-auto">LOGO</div>
       <div className="flex-auto flex flex-row justify-end gap-x-4">
         <div className="flex flex-row gap-x-2 items-center justify-end">
           <motion.input
@@ -57,6 +89,7 @@ const Navbar = () => {
         <button
           className="flex flex-row text-white items-center gap-x-2 "
           id="quickAccessButton"
+          onClick={() => dispatch({ type: "SHOW_QUICKSTART" })}
         >
           <span className="text-xs neon-text">
             Akses
@@ -77,7 +110,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

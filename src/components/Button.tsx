@@ -6,6 +6,9 @@ type ButtonProps = {
   onClick(): void;
   fontSize?: number;
   disabled?: boolean;
+  border?: string;
+  color ?: string;
+  additional ?: string;
 };
 
 const Button = ({
@@ -14,12 +17,13 @@ const Button = ({
   onClick,
   fontSize,
   disabled,
+  additional
 }: ButtonProps) => {
   return (
     <button
       style={{ backgroundColor, fontSize }}
       onClick={onClick}
-      className="px-4 py-2 flex flex-row"
+      className={`px-4 py-2 flex flex-row ${additional}`}
       disabled={disabled}
     >
       {children}
@@ -31,6 +35,7 @@ Button.defaultProps = {
   backgroundColor: "#1854FF",
   fontSize: 16,
   disabled: false,
+  border : ''
 };
 
 export default Button;
