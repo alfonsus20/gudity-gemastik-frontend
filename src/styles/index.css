@@ -29,3 +29,17 @@ body {
 .highlight:focus {
   background-position: 0 60%;
 }
+
+.neon-image {
+  cursor: pointer;
+}
+
+.neon-image:hover {
+  filter: drop-shadow(0 0 10px rgba(256, 256, 256, 0.9));
+}
+
+#quickAccessButton:hover {
+  text-shadow: 0 0 4px rgba(256, 256, 256, 0.5),
+    0 0 10px rgba(256, 256, 256, 0.5), 0 0 16px rgba(256, 256, 256, 0.5);
+  filter: drop-shadow(0 0 10px rgba(256, 256, 256, 0.9));
+}

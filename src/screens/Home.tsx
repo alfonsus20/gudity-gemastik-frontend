@@ -5,9 +5,10 @@ const Home = () => {
   return (
     <div className="min-h-screen relative">
       <video
-        src="videos/video.mp4"
+        src="assets/videos/video.mp4"
         autoPlay
         muted
+        loop
         className="w-full h-full object-cover absolute top-0 left-0 z-0"
       ></video>
       <div
