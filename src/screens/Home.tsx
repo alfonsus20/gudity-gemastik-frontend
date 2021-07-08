@@ -54,7 +54,7 @@ const Home = () => {
                 Lihat Lebih Banyak
               </Button>
             </div>
-            <div className="grid grid-cols-2 gap-2 w-1/2">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-8 w-1/2">
               <NewsCard
                 title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
                 content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."

@@ -7,9 +7,9 @@ import InputField from "../components/InputField";
 const News = () => {
   return (
     <div>
-      <div className="min-h-screen relative">
+      <div className="min-h-screen ">
         <div
-          className="w-full min-h-screen relative z-10 pt-10 text-white flex items-center"
+          className="w-full min-h-screen  z-10 pt-10 text-white flex items-center"
           style={{
             background:
               "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(assets/backgrounds/berita.jpg)",
@@ -62,7 +62,7 @@ const News = () => {
               }
             />
           </div>
-          <div className="grid grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-6 mb-8">
+          <div className="grid grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-8">
             {[...Array(9)].map((_, i) => (
               <NewsCard
                 key={i}

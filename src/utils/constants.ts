@@ -1,4 +1,10 @@
-import { QuickAccessFeature } from "../../types";
+export type QuickAccessFeature = {
+  title: string;
+  image: string;
+  colspan: 1 | 2 | 3;
+  path : string;
+};
+
 
 export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
   {
@@ -23,12 +29,12 @@ export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
     title: "SARAN KOMODITAS",
     image: "komoditas",
     colspan: 2,
-    path: "umkm",
+    path: "komoditas",
   },
   {
     title: "INFORMASI TERKINI",
     image: "informasi",
     colspan: 2,
-    path: "umkm",
+    path: "berita",
   },
 ];

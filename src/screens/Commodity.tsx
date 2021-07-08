@@ -3,7 +3,7 @@ import Underline from "../components/Underline";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 
-const Umkm = () => {
+const Commodity = () => {
   return (
     <div>
       <div className="min-h-screen relative">
@@ -11,14 +11,14 @@ const Umkm = () => {
           className="w-full min-h-screen relative z-10 pt-10 text-white flex items-center"
           style={{
             background:
-              "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(assets/backgrounds/berita.jpg)",
+              "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(assets/backgrounds/komoditas.jpg)",
           }}
         >
           <div className="max-w-screen-xl mx-auto w-full px-8">
             <div className="font-semibold">
               <h1 className="text-5xl my-1 leading-snug">
                 Cari dan Temukan <br />
-                Berbagai Macam UMKM yang Tersedia.
+                Komoditas Terbaik Kami
               </h1>
             </div>
           </div>
@@ -28,7 +28,7 @@ const Umkm = () => {
         <div className="max-w-screen-xl mx-auto">
           <div className="mb-8">
             <h2 className="text-center text-4xl font-semibold mb-4">
-              Kumpulan Berita
+              Kumpulan Komoditas
             </h2>
             <Underline backgroundColor="#110828" center />
           </div>
@@ -61,7 +61,7 @@ const Umkm = () => {
               }
             />
           </div>
-        
+
           <div className="flex justify-center">
             <Button
               onClick={() => console.log("aa")}
@@ -78,4 +78,4 @@ const Umkm = () => {
   );
 };
 
-export default Umkm;
+export default Commodity;

@@ -58,7 +58,7 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
     >
       <QuickAccess showQuickAccess={showQuickAccess} shown={quickAccessShown} />
-      <div className="w-20 flex-shrink-0 text-white my-auto">LOGO</div>
+      <Link to='/' className="w-20 flex-shrink-0 text-white my-auto">LOGO</Link>
       <div className="flex-auto flex flex-row justify-end gap-x-4">
         <div className="flex flex-row gap-x-2 items-center justify-end">
           <motion.input

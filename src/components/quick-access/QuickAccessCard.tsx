@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { QuickAccessFeature } from "../../../types";
+import { QuickAccessFeature } from "../../utils/constants";
+import { QuickAccessProps } from "./QuickAccess";
 
 const QuickAccessCard = ({
   title,
   image,
   colspan,
   path,
-}: QuickAccessFeature) => {
+  showQuickAccess,
+}: QuickAccessFeature & QuickAccessProps) => {
   return (
     <div
       className={`overflow-hidden ${
@@ -34,6 +36,7 @@ const QuickAccessCard = ({
         <Link
           to={path}
           className="mt-2 border-2 border-white rounded-full p-1 transition transform duration-150 ease-in-out hover:scale-110"
+          onClick={() => showQuickAccess(false)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

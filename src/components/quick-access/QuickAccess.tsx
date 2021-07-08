@@ -11,7 +11,7 @@ import Underline from "../Underline";
 //   QuickStartDispatchTypes,
 // } from "../../store/constants/quickStartConstants";
 
-type QuickAccessProps = {
+export type QuickAccessProps = {
   shown: boolean;
   showQuickAccess: (shown: boolean) => void;
 };
@@ -24,7 +24,7 @@ const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
     shown: {
       maxHeight: "auto",
       top: 0,
-      overflow : 'auto'
+      overflow: "auto",
     },
     hidden: {
       maxHeight: 0,
@@ -51,7 +51,7 @@ const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
           </div>
           <button
             className="absolute right-0 top-0"
-            onClick={ () => showQuickAccess(false)}
+            onClick={() => showQuickAccess(false)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,12 @@ const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
         </div>
         <div className="grid grid-cols-6 gap-2 px-4">
           {QUICK_ACCESS_FEATURES.map((feature, i) => (
-            <QuickAccessCard key={i} {...feature} />
+            <QuickAccessCard
+              key={i}
+              {...feature}
+              shown={shown}
+              showQuickAccess={showQuickAccess}
+            />
           ))}
         </div>
       </div>

@@ -60,3 +60,11 @@ body {
 input::placeholder{
   text-align: center;
 } */
+/* 
+.card{
+  position: relative;
+}
+
+.card:hover{
+  position: absolute;
+} */
