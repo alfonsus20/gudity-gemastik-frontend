@@ -38,9 +38,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="bg-blue-secondary py-20">
-        <div className="max-w-screen-xl mx-auto flex flex-row items-center space-x-10">
-          <div className="text-white flex-1">
+      <div className="py-20">
+        <div className="max-w-screen-xl mx-auto flex flex-row items-center space-x-10 px-8">
+          <div className="text-black flex-1">
             <h2 className="font-semibold text-4xl mb-6">
               Kumpulan Berita Terkini
             </h2>
@@ -50,12 +50,12 @@ const Home = () => {
             <Button
               onClick={() => console.log("object")}
               backgroundColor="transparent"
-              additional="border-2 border-white"
+              border = "2px solid black"
             >
               Lihat Lebih Banyak
             </Button>
           </div>
-          <div className="grid grid-cols-2 gap-2" style={{ flex: "0 1 42rem" }}>
+          <div className="grid grid-cols-2 gap-2" style={{ flex: "0 1 35rem" }}>
             <NewsCard
               title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
               content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."

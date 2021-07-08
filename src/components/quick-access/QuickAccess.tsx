@@ -5,6 +5,7 @@ import { QUICK_ACCESS_FEATURES } from "../../utils/constants";
 import QuickAccessCard from "./QuickAccessCard";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
+import Underline from "../Underline";
 import {
   HIDE_QUICKSTART,
   QuickStartDispatchTypes,
@@ -22,7 +23,7 @@ const QuickAccess = () => {
     hidden: {
       maxHeight: 0,
       top: "-100%",
-      overflow : 'hidden'
+      overflow: "hidden",
     },
   };
 
@@ -36,9 +37,12 @@ const QuickAccess = () => {
     >
       <div className="relative my-auto w-full max-w-7xl mx-auto pb-12">
         <div className="relative">
-          <h2 className="text-4xl font-medium text-center mt-16 mb-8">
-            AKSES CEPAT
-          </h2>
+          <div className='mb-8'>
+            <h2 className="text-4xl font-medium text-center mt-16 mb-3">
+              AKSES CEPAT
+            </h2>
+            <Underline backgroundColor="#fff" width={60} height={2} />
+          </div>
           <button
             className="absolute right-0 top-0"
             onClick={() => dispatch({ type: HIDE_QUICKSTART })}
