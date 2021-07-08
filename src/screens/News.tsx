@@ -2,6 +2,7 @@ import React from "react";
 import Underline from "../components/Underline";
 import NewsCard from "../components/NewsCard";
 import Button from "../components/Button";
+import InputField from "../components/InputField";
 
 const News = () => {
   return (
@@ -32,9 +33,39 @@ const News = () => {
             </h2>
             <Underline backgroundColor="#110828" center />
           </div>
+          <div className="flex flex-row justify-center items-center space-x-4 mb-4">
+            <InputField
+              type="date"
+              onChange={() => console.log("object")}
+              value=""
+            />
+            <InputField
+              type="text"
+              onChange={() => console.log("object")}
+              value=""
+              placeholder='Cari Berita'
+              icon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              }
+            />
+          </div>
           <div className="grid grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-6 mb-8">
-            {[...Array(9)].map((_) => (
+            {[...Array(9)].map((_, i) => (
               <NewsCard
+                key={i}
                 title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
                 content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
                 colspan={1}

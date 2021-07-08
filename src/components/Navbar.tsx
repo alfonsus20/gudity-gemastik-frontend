@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { Dispatch } from "react";
-import { QuickStartDispatchTypes } from "../store/constants/quickStartConstants";
+// import { useDispatch } from "react-redux";
+// import { Dispatch } from "react";
+// import { QuickStartDispatchTypes } from "../store/constants/quickStartConstants";
+import QuickAccess from "./quick-access/QuickAccess";
 
 const Navbar = () => {
   const [searchOpen, setSearchOpen] = React.useState<boolean>(false);
   const [isBackgroundBlack, setIsBackgroundBlack] =
     React.useState<boolean>(false);
-  const dispatch: Dispatch<QuickStartDispatchTypes> = useDispatch();
+  const [quickAccessShown, showQuickAccess] = React.useState<boolean>(false);
+  // const dispatch: Dispatch<QuickStartDispatchTypes> = useDispatch();
 
   const searchInputVariants = {
     closed: {
@@ -49,12 +51,13 @@ const Navbar = () => {
 
   return (
     <motion.div
-      className="flex flex-row fixed w-full z-20 px-12 py-8"
+      className="flex flex-row fixed w-full z-20 px-12 py-6"
       variants={backgroundVariants}
       initial="hidden"
       animate={isBackgroundBlack ? "shown" : "hidden"}
       transition={{ duration: 0.5 }}
     >
+      <QuickAccess showQuickAccess={showQuickAccess} shown={quickAccessShown} />
       <div className="w-20 flex-shrink-0 text-white my-auto">LOGO</div>
       <div className="flex-auto flex flex-row justify-end gap-x-4">
         <div className="flex flex-row gap-x-2 items-center justify-end">
@@ -89,7 +92,7 @@ const Navbar = () => {
         <button
           className="flex flex-row text-white items-center gap-x-2 "
           id="quickAccessButton"
-          onClick={() => dispatch({ type: "SHOW_QUICKSTART" })}
+          onClick={() => showQuickAccess(true)}
         >
           <span className="text-xs neon-text">
             Akses

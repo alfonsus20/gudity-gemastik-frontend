@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { QuickAccessFeature } from "../../utils/types";
+import { QuickAccessFeature } from "../../../types";
 
 const QuickAccessCard = ({
   title,

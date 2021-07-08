@@ -1,4 +1,4 @@
-import { QuickAccessFeature } from "./types";
+import { QuickAccessFeature } from "../../types";
 
 export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
   {

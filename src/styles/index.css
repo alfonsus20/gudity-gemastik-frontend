@@ -1,9 +1,8 @@
 @import "./tailwind.css";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,600&display=swap");
 
-
-:root{
-  --blue-primary : '#1854FF'
+:root {
+  --blue-primary: "#1854FF";
 }
 
 * {
@@ -48,3 +47,16 @@ body {
     0 0 10px rgba(256, 256, 256, 0.5), 0 0 16px rgba(256, 256, 256, 0.5);
   filter: drop-shadow(0 0 10px rgba(256, 256, 256, 0.9));
 }
+
+.date::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: -1.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 1;
+  z-index : 20;
+}
+/* 
+input::placeholder{
+  text-align: center;
+} */

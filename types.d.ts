@@ -4,3 +4,6 @@ export type QuickAccessFeature = {
   colspan: 1 | 2 | 3;
   path : string;
 };
+
+
+declare module 'react-datepicker'

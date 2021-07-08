@@ -1,24 +1,30 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Dispatch } from "redux";
+// import { Dispatch } from "redux";
 import { QUICK_ACCESS_FEATURES } from "../../utils/constants";
 import QuickAccessCard from "./QuickAccessCard";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
+// import { useDispatch, useSelector } from "react-redux";
+// import { RootState } from "../../store";
 import Underline from "../Underline";
-import {
-  HIDE_QUICKSTART,
-  QuickStartDispatchTypes,
-} from "../../store/constants/quickStartConstants";
+// import {
+//   HIDE_QUICKSTART,
+//   QuickStartDispatchTypes,
+// } from "../../store/constants/quickStartConstants";
 
-const QuickAccess = () => {
-  const dispatch: Dispatch<QuickStartDispatchTypes> = useDispatch();
-  const { shown } = useSelector((state: RootState) => state.quickStart);
+type QuickAccessProps = {
+  shown: boolean;
+  showQuickAccess: (shown: boolean) => void;
+};
+
+const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
+  // const dispatch: Dispatch<QuickStartDispatchTypes> = useDispatch();
+  // const { shown } = useSelector((state: RootState) => state.quickStart);
 
   const variants = {
     shown: {
       maxHeight: "auto",
       top: 0,
+      overflow : 'auto'
     },
     hidden: {
       maxHeight: 0,
@@ -37,15 +43,15 @@ const QuickAccess = () => {
     >
       <div className="relative my-auto w-full max-w-7xl mx-auto pb-12">
         <div className="relative">
-          <div className='mb-8'>
+          <div className="mb-8">
             <h2 className="text-4xl font-medium text-center mt-16 mb-3">
               AKSES CEPAT
             </h2>
-            <Underline backgroundColor="#fff" width={60} height={2} center/>
+            <Underline backgroundColor="#fff" width={60} height={2} center />
           </div>
           <button
             className="absolute right-0 top-0"
-            onClick={() => dispatch({ type: HIDE_QUICKSTART })}
+            onClick={ () => showQuickAccess(false)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

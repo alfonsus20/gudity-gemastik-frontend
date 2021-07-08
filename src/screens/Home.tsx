@@ -1,12 +1,10 @@
 import React from "react";
 import Button from "../components/Button";
 import NewsCard from "../components/NewsCard";
-import QuickAccess from "../components/quick-access/QuickAccess";
 
 const Home = () => {
   return (
     <div>
-      <QuickAccess />
       <div className="min-h-screen relative">
         <video
           src="assets/videos/video.mp4"
