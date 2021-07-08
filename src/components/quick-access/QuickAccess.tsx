@@ -41,7 +41,7 @@ const QuickAccess = () => {
             <h2 className="text-4xl font-medium text-center mt-16 mb-3">
               AKSES CEPAT
             </h2>
-            <Underline backgroundColor="#fff" width={60} height={2} />
+            <Underline backgroundColor="#fff" width={60} height={2} center/>
           </div>
           <button
             className="absolute right-0 top-0"

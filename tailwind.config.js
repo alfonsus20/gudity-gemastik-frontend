@@ -6,9 +6,14 @@ module.exports = {
       colors: {
         blue: {
           primary: "#1854FF",
-          secondary : '#175F88'
+          secondary : '#175F88',
+          donker : '#15151F'
         },
-        violet: '#1D103D'
+        violet: '#1D103D',
+        gray : {
+          DEFAULT : '#21212B',
+          secondary : '#1D1D25'
+        }
       },
     },
   },
