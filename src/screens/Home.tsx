@@ -1,10 +1,15 @@
 import React from "react";
 import Button from "../components/Button";
 import NewsCard from "../components/NewsCard";
+import NewsModal from "../components/NewsModal";
 
 const Home = () => {
   return (
     <div>
+      <NewsModal
+        title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
+        content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
+      />
       <div className="min-h-screen relative">
         <video
           src="assets/videos/video.mp4"
@@ -37,7 +42,10 @@ const Home = () => {
         </div>
       </div>
       <div className="bg-black">
-        <div className="py-20 bg-white" style={{ borderBottomLeftRadius: "12rem" }}>
+        <div
+          className="py-28 bg-white"
+          style={{ borderBottomLeftRadius: "12rem" }}
+        >
           <div className="max-w-screen-xl mx-auto flex flex-row items-center space-x-10 px-2">
             <div className="text-black w-1/2 ">
               <h2 className="font-semibold text-4xl mb-6">

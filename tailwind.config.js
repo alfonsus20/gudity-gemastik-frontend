@@ -9,6 +9,7 @@ module.exports = {
           secondary: "#175F88",
           donker: "#15151F",
           marker: "#1D2D74",
+          dark : '#110828'
         },
         violet: "#1D103D",
         gray: {

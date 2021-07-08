@@ -20,20 +20,20 @@ const NewsCard = ({ title, content, colspan }: NewsProps) => {
     },
   };
 
-  const paragraphVariants = {
-    expand: {
-      maxHeight: "1000px",
-      backgroundColor: "#1854FF",
-      paddingTop: 16,
-      paddingBottom: 16,
-    },
-    collapse: {
-      maxHeight: "0px",
-      backgroundColor: "#fff",
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-  };
+  // const paragraphVariants = {
+  //   expand: {
+  //     maxHeight: "1000px",
+  //     backgroundColor: "#1854FF",
+  //     paddingTop: 16,
+  //     paddingBottom: 16,
+  //   },
+  //   collapse: {
+  //     maxHeight: "0px",
+  //     backgroundColor: "#fff",
+  //     paddingTop: 0,
+  //     paddingBottom: 0,
+  //   },
+  // };
 
   const transitions = {
     stiffness: 0,
@@ -42,7 +42,9 @@ const NewsCard = ({ title, content, colspan }: NewsProps) => {
 
   return (
     <div
-      className={`rounded-md pb-5 overflow-hidden flex flex-col cursor-pointer transition transform hover:text-white hover:scale-110 ${
+      className={` h-28 w-full pb-5 ${
+        expand ? "z-10" : "z-0"
+      } flex flex-col cursor-pointer transition transform hover:text-white hover:scale-110 ${
         colspan === 1
           ? "col-span-1"
           : colspan === 2
@@ -52,9 +54,9 @@ const NewsCard = ({ title, content, colspan }: NewsProps) => {
       onMouseEnter={() => setExpand(true)}
       onMouseLeave={() => setExpand(false)}
     >
-      <div className="shadow-lg bg-white">
+      <div className="shadow-lg absolute top-0 left-0 ">
         <motion.div
-          className="px-8 py-4"
+          className="px-8 py-4 rounded-md"
           variants={titleVariants}
           initial="expand"
           animate={expand ? "expand" : "collapse"}
@@ -62,7 +64,7 @@ const NewsCard = ({ title, content, colspan }: NewsProps) => {
           <Underline backgroundColor="#1854FF" width={50} height={5} />
           <motion.h3 className="mt-2 font-semibold">{title}</motion.h3>
         </motion.div>
-        <motion.p
+        {/* <motion.p
           className="overflow-hidden px-8 rounded-b-md text-sm"
           variants={paragraphVariants}
           initial="collapse"
@@ -70,7 +72,7 @@ const NewsCard = ({ title, content, colspan }: NewsProps) => {
           transition={transitions}
         >
           {content}
-        </motion.p>
+        </motion.p> */}
       </div>
     </div>
   );

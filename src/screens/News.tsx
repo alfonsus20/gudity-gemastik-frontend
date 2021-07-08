@@ -9,7 +9,7 @@ const News = () => {
     <div>
       <div className="min-h-screen ">
         <div
-          className="w-full min-h-screen  z-10 pt-10 text-white flex items-center"
+          className="w-full min-h-screen z-10 pt-10 text-white flex items-center"
           style={{
             background:
               "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(assets/backgrounds/berita.jpg)",
@@ -25,7 +25,7 @@ const News = () => {
           </div>
         </div>
       </div>
-      <div className="py-12">
+      <div className="py-20">
         <div className="max-w-screen-xl mx-auto">
           <div className="mb-8">
             <h2 className="text-center text-4xl font-semibold mb-4">
@@ -62,7 +62,7 @@ const News = () => {
               }
             />
           </div>
-          <div className="grid grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-8">
+          <div className="grid grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-12">
             {[...Array(9)].map((_, i) => (
               <NewsCard
                 key={i}

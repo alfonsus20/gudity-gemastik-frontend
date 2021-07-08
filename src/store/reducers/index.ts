@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import quickStartReducer from "./quickStartReducer";
+import { newsModalReducer } from "./newsReducer";
 
-const reducers = combineReducers({ quickStart: quickStartReducer });
+const reducers = combineReducers({ newsModal: newsModalReducer });
 
 export default reducers;
