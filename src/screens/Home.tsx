@@ -33,7 +33,7 @@ const Home = () => {
               </h1>
             </div>
             <div className="mt-6">
-              <Button onClick={() => console.log("aa")}>Lebih Lanjut</Button>
+              <Button onClick={() => console.log("aa")} className='text-white bg-blue-primary'>Lebih Lanjut</Button>
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@ const Home = () => {
             <div>
               <Button
                 onClick={() => console.log("a")}
-                style={{ color: "white" }}
+                className='text-white bg-blue-primary'
               >
                 Coba Sekarang
               </Button>

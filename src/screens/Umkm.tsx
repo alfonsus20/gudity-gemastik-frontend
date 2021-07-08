@@ -65,11 +65,7 @@ const Umkm = () => {
           <div className="flex justify-center">
             <Button
               onClick={() => console.log("aa")}
-              style={{
-                color: "black",
-                backgroundColor: "transparent",
-                border: "2px solid black",
-              }}
+              className="bg-transparent border-2 border-black"
             >
               Lihat Lebih Banyak
             </Button>
