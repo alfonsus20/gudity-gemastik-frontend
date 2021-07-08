@@ -11,19 +11,6 @@ type NewsProps = {
 const NewsCard = ({ title, content, colspan }: NewsProps) => {
   const [expand, setExpand] = React.useState<boolean>(false);
 
-  // const cardVariants = {
-  //   expand: {
-  //     left: "50%",
-  //     right: "50%",
-  //     translateX: "-50%",
-  //     translateY: "-50%",
-  //   },
-  //   collapse: {
-  //     left: "0%",
-  //     right: "0%",
-  //   },
-  // };
-
   const titleVariants = {
     expand: {
       backgroundColor: "#110828",
@@ -76,7 +63,7 @@ const NewsCard = ({ title, content, colspan }: NewsProps) => {
           <motion.h3 className="mt-2 font-semibold">{title}</motion.h3>
         </motion.div>
         <motion.p
-          className="overflow-hidden px-8 rounded-b-md"
+          className="overflow-hidden px-8 rounded-b-md text-sm"
           variants={paragraphVariants}
           initial="collapse"
           animate={expand ? "expand" : "collapse"}

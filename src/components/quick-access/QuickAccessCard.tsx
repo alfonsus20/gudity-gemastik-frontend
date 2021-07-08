@@ -27,7 +27,7 @@ const QuickAccessCard = ({
             : colspan === 2
             ? "col-span-2"
             : "col-span-3"
-        } text-center h-48 bg-cover bg-center flex flex-col items-center justify-center transition transform duration-150 ease-out hover:scale-110 `}
+        } text-center h-60 bg-cover bg-center flex flex-col items-center justify-center transition transform duration-150 ease-out hover:scale-110 `}
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(17, 8, 40, 0.4), rgba(17, 8, 40, 0.6) ),url(assets/pictures/${image}.jpg)`,
         }}

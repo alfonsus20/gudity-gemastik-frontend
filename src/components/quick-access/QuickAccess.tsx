@@ -41,7 +41,7 @@ const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
       transition={{ stiffness: 0, duration: 0.5 }}
       variants={variants}
     >
-      <div className="relative my-auto w-full max-w-7xl mx-auto pb-12">
+      <div className="relative my-auto w-full px-20 mx-auto pb-12">
         <div className="relative">
           <div className="mb-8">
             <h2 className="text-4xl font-medium text-center mt-16 mb-3">
