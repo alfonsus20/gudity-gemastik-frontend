@@ -24,7 +24,7 @@ const Button = ({
     <button
       style={{ backgroundColor, fontSize, border, color }}
       onClick={onClick}
-      className={`px-4 py-2 flex flex-row`}
+      className={`px-4 py-2 flex flex-row justify-center`}
       disabled={disabled}
     >
       {children}

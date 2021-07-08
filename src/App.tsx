@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 import Umkm from "./screens/Umkm";
 import ScrollToTop from "./components/ScrollToTop";
 import Commodity from "./screens/Commodity";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="/berita" component={News} />
         <Route path="/umkm" component={Umkm} />
         <Route path="/komoditas" component={Commodity} />
+        <Route path="/login" component={Login} />
+        <Route path="/daftar" component={Register} />
       </Switch>
       <Footer />
     </>
