@@ -16,7 +16,7 @@ const InputField = ({
   onChange,
 }: InputProps) => {
   return (
-    <div className="flex flex-row border-2 border-violet p-2 rounded-md relative">
+    <div className="flex flex-row border-2 border-blue-marker p-2 rounded-md relative">
       {icon && <span className="mr-2">{icon}</span>}
       <input
         type={type}

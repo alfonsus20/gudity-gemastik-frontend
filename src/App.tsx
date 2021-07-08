@@ -4,6 +4,7 @@ import Home from "./screens/Home";
 import Navbar from "./components/Navbar";
 import News from "./screens/News";
 import Footer from "./components/Footer";
+import Umkm from "./screens/Umkm";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/berita" component={News} />
+        <Route path="/umkm" component={Umkm} />
       </Switch>
       <Footer />
     </>
