@@ -6,10 +6,7 @@ import NewsModal from "../components/NewsModal";
 const Home = () => {
   return (
     <div>
-      <NewsModal
-        title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
-        content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
-      />
+      <NewsModal />
       <div className="min-h-screen relative">
         <video
           src="assets/videos/video.mp4"
@@ -69,14 +66,19 @@ const Home = () => {
                 colspan={1}
               />
               <NewsCard
-                title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
+                title="Test 2"
                 content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
                 colspan={1}
               />
               <NewsCard
-                title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
+                title="Test 3"
                 content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
-                colspan={2}
+                colspan={1}
+              />
+              <NewsCard
+                title="Test 4"
+                content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
+                colspan={1}
               />
             </div>
           </div>

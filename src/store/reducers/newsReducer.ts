@@ -18,7 +18,7 @@ export const newsModalReducer = (
     case SHOW_NEWS_MODAL:
       return { ...action.payload, shown: true };
     case HIDE_NEWS_MODAL:
-      return { ...state, shown: true };
+      return { title: "", content: "", shown: false };
     default:
       return state;
   }

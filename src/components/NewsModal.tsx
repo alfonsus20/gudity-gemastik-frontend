@@ -1,14 +1,30 @@
 import React from "react";
+import { Dispatch } from "redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  HIDE_NEWS_MODAL,
+  NewsModalDispatchTypes,
+} from "../store/constants/newsConstants";
 import Underline from "./Underline";
+import { RootState } from "../store";
 
 export type NewsModalProps = {
   title: string;
   content: string;
 };
 
-const NewsModal = ({ title, content }: NewsModalProps) => {
+const NewsModal = () => {
+  const dispatch: Dispatch<NewsModalDispatchTypes> = useDispatch();
+  const { shown, title, content } = useSelector(
+    (state: RootState) => state.newsModal
+  );
+
   return (
-    <div className="min-h-screen w-full flex justify-center items-center fixed bg-black bg-opacity-50 z-30 filter  text-white">
+    <div
+      className={`${
+        shown ? "block" : "hidden"
+      } min-h-screen w-full flex justify-center items-center fixed bg-black bg-opacity-50 z-30 filter  text-white`}
+    >
       <div className="flex flex-row rounded-lg" style={{ width: 800 }}>
         <div className="w-1/2 bg-blue-dark px-8 py-12">
           <Underline backgroundColor="#175F88" height={4} />
@@ -20,7 +36,7 @@ const NewsModal = ({ title, content }: NewsModalProps) => {
       </div>
       <button
         className="absolute right-10 top-10"
-        onClick={() => console.log("object")}
+        onClick={() => dispatch({ type: HIDE_NEWS_MODAL })}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
