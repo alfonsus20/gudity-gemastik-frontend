@@ -3,10 +3,12 @@ import Underline from "../components/Underline";
 import NewsCard from "../components/NewsCard";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
+import NewsModal from "../components/NewsModal";
 
 const News = () => {
   return (
     <div>
+      <NewsModal />
       <div className="min-h-screen ">
         <div
           className="w-full min-h-screen z-10 pt-10 text-white flex items-center"
@@ -38,12 +40,14 @@ const News = () => {
               type="date"
               onChange={() => console.log("object")}
               value=""
+              style={{ border: "2px solid #1D2D74" }}
             />
             <InputField
               type="text"
               onChange={() => console.log("object")}
               value=""
-              placeholder='Cari Berita'
+              placeholder="Cari Berita"
+              style={{ border: "2px solid #1D2D74" }}
               icon={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +79,7 @@ const News = () => {
           <div className="flex justify-center">
             <Button
               onClick={() => console.log("aa")}
-              color="black"
+              style={{ color: "black" }}
               backgroundColor="transparent"
               border="2px solid black"
             >

@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../components/Button";
 import Underline from "../components/Underline";
+import InputField from "../components/InputField";
 
 const Register = () => {
   return (
@@ -12,7 +13,7 @@ const Register = () => {
       }}
     >
       <div
-        className="px-8 py-14 mx-auto w-96 filter rounded-xl relative"
+        className="px-8 py-14 mx-auto w-100 filter rounded-xl relative"
         style={{
           boxShadow:
             "inset 0px 4px 18px rgba(154, 146, 210, 0.25), inset 0px 1px 0px rgba(227, 222, 255, 0.2)",
@@ -27,51 +28,74 @@ const Register = () => {
         <form
           action="
         "
-        className='flex flex-col'
+          className="flex flex-col"
         >
-          <input
-            type="text"
-            name=""
+          <InputField
+            type="nama"
+            value=""
+            onChange={() => console.log("object")}
+            rounded={false}
             placeholder="Nama"
-            id=""
-            className="border-b-2 outline-none bg-transparent w-full px-1 py-2 text-sm  text-white mb-4"
-            style={{ borderColor: "rgba(256,256,256,0.7)" }}
+            style={{
+              backgroundColor: "transparent",
+              borderBottom: "2px solid rgba(256,256,256,0.7)",
+              color: "white",
+            }}
           />
-          <input
+          <InputField
             type="email"
-            name=""
+            value=""
+            onChange={() => console.log("object")}
+            rounded={false}
             placeholder="Email"
-            id=""
-            className="border-b-2 outline-none bg-transparent w-full px-1 py-2 text-sm  text-white mb-4"
-            style={{ borderColor: "rgba(256,256,256,0.7)" }}
+            style={{
+              backgroundColor: "transparent",
+              borderBottom: "2px solid rgba(256,256,256,0.7)",
+              color: "white",
+            }}
           />
-          <input
-            type="text"
-            name=""
+          <InputField
+            type="number"
+            value=""
+            onChange={() => console.log("object")}
+            rounded={false}
             placeholder="NIK"
-            id=""
-            className="border-b-2 outline-none bg-transparent w-full px-1 py-2 text-sm  text-white mb-4"
-            style={{ borderColor: "rgba(256,256,256,0.7)" }}
+            style={{
+              backgroundColor: "transparent",
+              borderBottom: "2px solid rgba(256,256,256,0.7)",
+              color: "white",
+            }}
           />
           <div className="flex flex-row space-x-3 mb-6">
-            <input
+            <InputField
               type="password"
-              name=""
+              value=""
+              onChange={() => console.log("object")}
+              rounded={false}
               placeholder="Kata Sandi"
-              id=""
-              className="border-b-2 outline-none bg-transparent w-full p-2 text-sm text-white"
-              style={{ borderColor: "rgba(256,256,256,0.7)" }}
+              style={{
+                backgroundColor: "transparent",
+                borderBottom: "2px solid rgba(256,256,256,0.7)",
+                color: "white",
+              }}
             />
-            <input
+            <InputField
               type="password"
-              name=""
+              value=""
+              onChange={() => console.log("object")}
+              rounded={false}
               placeholder="Ulangi Kata Sandi"
-              id=""
-              className="border-b-2 outline-none bg-transparent w-full p-2 text-sm text-white"
-              style={{ borderColor: "rgba(256,256,256,0.7)" }}
+              style={{
+                backgroundColor: "transparent",
+                borderBottom: "2px solid rgba(256,256,256,0.7)",
+                color: "white",
+              }}
             />
           </div>
-          <Button onClick={() => console.log("object")} color="#fff">
+          <Button
+            onClick={() => console.log("object")}
+            style={{ color: "white" }}
+          >
             Daftar
           </Button>
         </form>

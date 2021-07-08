@@ -92,7 +92,10 @@ const Home = () => {
               Hal apa saja yang dibutuhkan untuk mengembangkan UMKM?{" "}
             </p>
             <div>
-              <Button onClick={() => console.log("a")} color="white">
+              <Button
+                onClick={() => console.log("a")}
+                style={{ color: "white" }}
+              >
                 Coba Sekarang
               </Button>
             </div>

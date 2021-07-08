@@ -23,7 +23,7 @@ const NewsModal = () => {
     <div
       className={`${
         shown ? "block" : "hidden"
-      } min-h-screen w-full flex justify-center items-center fixed bg-black bg-opacity-50 z-30 filter  text-white`}
+      } min-h-screen w-full flex justify-center items-center fixed bg-black bg-opacity-60 z-30 filter  text-white`}
     >
       <div className="flex flex-row rounded-lg" style={{ width: 800 }}>
         <div className="w-1/2 bg-blue-dark px-8 py-12">

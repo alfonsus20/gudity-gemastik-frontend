@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-// import { useDispatch } from "react-redux";
-// import { Dispatch } from "react";
-// import { QuickStartDispatchTypes } from "../store/constants/quickStartConstants";
 import QuickAccess from "./quick-access/QuickAccess";
 
 const Navbar = () => {
@@ -11,7 +8,6 @@ const Navbar = () => {
   const [isBackgroundBlack, setIsBackgroundBlack] =
     React.useState<boolean>(false);
   const [quickAccessShown, showQuickAccess] = React.useState<boolean>(false);
-  // const dispatch: Dispatch<QuickStartDispatchTypes> = useDispatch();
 
   const searchInputVariants = {
     closed: {
@@ -58,7 +54,9 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
     >
       <QuickAccess showQuickAccess={showQuickAccess} shown={quickAccessShown} />
-      <Link to='/' className="w-20 flex-shrink-0 text-white my-auto">LOGO</Link>
+      <Link to="/" className="w-20 flex-shrink-0 text-white my-auto">
+        LOGO
+      </Link>
       <div className="flex-auto flex flex-row justify-end gap-x-4">
         <div className="flex flex-row gap-x-2 items-center justify-end">
           <motion.input
@@ -106,7 +104,7 @@ const Navbar = () => {
         </button>
         <div className="flex items-center">
           <Link
-            to="/"
+            to="/login"
             className="border-4 border-blue-primary px-4 py-1 rounded-full hover:bg-blue-primary text-white "
           >
             Masuk

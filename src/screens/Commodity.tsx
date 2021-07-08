@@ -65,7 +65,7 @@ const Commodity = () => {
           <div className="flex justify-center">
             <Button
               onClick={() => console.log("aa")}
-              color="black"
+              style={{ color: "black" }}
               backgroundColor="transparent"
               border="2px solid black"
             >
