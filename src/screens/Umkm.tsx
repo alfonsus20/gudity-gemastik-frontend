@@ -9,9 +9,9 @@ import Dropdown from "../components/Dropdown";
 const Umkm = () => {
   return (
     <div>
-      <div className="min-h-screen relative">
+      <div className="min-h-screen relative ">
         <div
-          className="w-full min-h-screen relative z-10 pt-10 text-white flex items-center"
+          className="w-full min-h-screen relative z-10  pt-10 text-white flex items-center "
           style={{
             background:
               "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(assets/backgrounds/berita.jpg)",
@@ -19,7 +19,7 @@ const Umkm = () => {
         >
           <div className="max-w-screen-xl mx-auto w-full px-8">
             <div className="font-semibold">
-              <h1 className="text-5xl my-1 leading-snug">
+              <h1 className="text-4xl md:text-5xl my-1 leading-snug">
                 Cari dan Temukan <br />
                 Berbagai Macam UMKM yang Tersedia.
               </h1>
@@ -28,14 +28,14 @@ const Umkm = () => {
         </div>
       </div>
       <div className="py-12">
-        <div className="max-w-screen-2xl mx-auto">
+        <div className="max-w-screen-2xl px-8 mx-auto">
           <div className="mb-8">
             <h2 className="text-center text-4xl font-semibold mb-4">
               Kumpulan UMKM
             </h2>
             <Underline backgroundColor="#110828" center />
           </div>
-          <div className="flex flex-row justify-center items-center space-x-4 mb-4">
+          <div className="flex flex-col-reverse md:flex-row justify-center items-center  md:space-x-4 mb-4">
             <Dropdown
               name="bidang-umkm"
               options={[
@@ -49,7 +49,7 @@ const Umkm = () => {
               type="text"
               onChange={() => console.log("object")}
               value=""
-              className="border-2 border-blue-marker"
+              className="border-2 border-blue-marker mb-4 md:mb-0"
               placeholder="Cari UMKM"
               icon={
                 <svg
@@ -69,7 +69,7 @@ const Umkm = () => {
               }
             />
           </div>
-          <div className="grid grid-cols-3 max-w-screen-xl mx-auto gap-x-6 gap-y-11 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-screen-xl mx-auto gap-x-6 gap-y-11 mb-12">
             <UmkmCard
               title="Sumber Jaya UMKM"
               description="Menjual berbagai macam pernak pernik untuk oleh - oleh khas Jawa Timur dengan harga miring dengan kualitas OK!"

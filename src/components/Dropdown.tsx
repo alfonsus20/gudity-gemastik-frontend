@@ -36,7 +36,7 @@ const Dropdown = ({ id, name, options, className, rounded }: DropdownProps) => {
       className={`${className} ${
         rounded && "rounded-md"
       } flex flex-row items-center`}
-      style={{ paddingTop: 1, paddingBottom: 1 }}
+   
     >
       <CollectionIcon className="w-6 h-6" />
       <Select
