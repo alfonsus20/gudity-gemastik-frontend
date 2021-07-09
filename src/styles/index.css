@@ -57,18 +57,9 @@ body {
   opacity: 1;
   z-index: 20;
 }
-/* 
-input::placeholder{
-  text-align: center;
-} */
-/* 
-.card{
-  position: relative;
-}
 
-.card:hover{
-  position: absolute;
-} */
-#select > * {
-  border-color: transparent !important;
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 80%;
+  }
 }

@@ -28,7 +28,7 @@ const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
     },
     hidden: {
       maxHeight: 0,
-      top: "-100%",
+      top: "-200%",
       overflow: "hidden",
     },
   };

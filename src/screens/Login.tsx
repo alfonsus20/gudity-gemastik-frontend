@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import Underline from "../components/Underline";
@@ -29,14 +30,14 @@ const Login = () => {
           </h2>
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <InputField
             type="text"
             value=""
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="Email"
-            className="text-white"
+            className="text-white mb-4"
             style={{
               borderBottom: "2px solid rgba(256,256,256,0.7)",
             }}
@@ -47,30 +48,24 @@ const Login = () => {
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="Password"
-            className="text-white"
+            className="text-white mb-4"
             style={{
               borderBottom: "2px solid rgba(256,256,256,0.7)",
             }}
           />
           <Button
             onClick={() => console.log("object")}
-            className="text-white bg-blue-primary"
+            className="text-white bg-blue-primary mt-2 mb-4"
           >
             Masuk
           </Button>
-          <div className="text-xs flex flex-row justify-between mt-6 text-white">
-            <span className="flex flex-row items-center">
-              <input
-                type="checkbox"
-                className="mr-2"
-                name=""
-                id="remember-me"
-              />{" "}
-              <label htmlFor="remember-me">Ingat selalu email</label>
-            </span>
-            <span>Lupa Password?</span>
-          </div>
         </form>
+        <div className="text-sm text-center text-white">
+          <span className='mr-2'>Belum punya akun?</span>
+          <Link to="/daftar" className="font-semibold">
+            Daftar
+          </Link>
+        </div>
       </div>
     </div>
   );

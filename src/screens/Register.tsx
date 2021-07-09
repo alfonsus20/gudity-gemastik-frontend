@@ -2,9 +2,12 @@ import React from "react";
 import Button from "../components/Button";
 import Underline from "../components/Underline";
 import InputField from "../components/InputField";
+import { Link } from "react-router-dom";
 
 const Register = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {};
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   return (
     <div
@@ -27,14 +30,14 @@ const Register = () => {
           </h2>
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <InputField
             type="nama"
             value=""
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="Nama"
-            className='text-white'
+            className="text-white mb-4"
             style={{
               borderBottom: "2px solid rgba(256,256,256,0.7)",
             }}
@@ -45,7 +48,7 @@ const Register = () => {
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="Email"
-            className='text-white'
+            className="text-white mb-4"
             style={{
               borderBottom: "2px solid rgba(256,256,256,0.7)",
             }}
@@ -56,42 +59,46 @@ const Register = () => {
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="NIK"
-            className='text-white'
+            className="text-white mb-4"
             style={{
               borderBottom: "2px solid rgba(256,256,256,0.7)",
             }}
           />
-          <div className="flex flex-row space-x-3 mb-6">
-            <InputField
-              type="password"
-              value=""
-              onChange={() => console.log("object")}
-              rounded={false}
-              placeholder="Kata Sandi"
-              className='text-white'
-              style={{
-                borderBottom: "2px solid rgba(256,256,256,0.7)",
-              }}
-            />
-            <InputField
-              type="password"
-              value=""
-              onChange={() => console.log("object")}
-              rounded={false}
-              placeholder="Ulangi Kata Sandi"
-              className='text-white'
-              style={{
-                borderBottom: "2px solid rgba(256,256,256,0.7)",
-              }}
-            />
-          </div>
+          <InputField
+            type="password"
+            value=""
+            onChange={() => console.log("object")}
+            rounded={false}
+            placeholder="Kata Sandi"
+            className="text-white mb-4"
+            style={{
+              borderBottom: "2px solid rgba(256,256,256,0.7)",
+            }}
+          />
+          <InputField
+            type="password"
+            value=""
+            onChange={() => console.log("object")}
+            rounded={false}
+            placeholder="Ulangi Kata Sandi"
+            className="text-white mb-4"
+            style={{
+              borderBottom: "2px solid rgba(256,256,256,0.7)",
+            }}
+          />
           <Button
             onClick={() => console.log("object")}
-            className="text-white bg-blue-primary"
+            className="text-white mb-4 bg-blue-primary"
           >
             Daftar
           </Button>
         </form>
+        <div className="text-sm text-center text-white">
+          <span className="mr-2">Sudah punya akun?</span>
+          <Link to="/login" className="font-semibold">
+            Masuk
+          </Link>
+        </div>
       </div>
     </div>
   );
