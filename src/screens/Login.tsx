@@ -18,7 +18,7 @@ const Login = () => {
       }}
     >
       <div
-        className="px-8 py-14 mx-auto w-100 filter rounded-xl relative mt-20 sm:mt-0"
+        className="px-8 py-14 mx-auto w-100 filter rounded-xl relative mt-0"
         style={{
           boxShadow:
             "inset 0px 4px 18px rgba(154, 146, 210, 0.25), inset 0px 1px 0px rgba(227, 222, 255, 0.2)",
