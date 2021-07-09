@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import InputField from "../components/InputField";
 import UmkmCard from "../components/UmkmCard";
 import Features from "../components/Features";
+import Dropdown from "../components/Dropdown";
 
 const Umkm = () => {
   return (
@@ -35,11 +36,14 @@ const Umkm = () => {
             <Underline backgroundColor="#110828" center />
           </div>
           <div className="flex flex-row justify-center items-center space-x-4 mb-4">
-            <InputField
-              type="date"
-              onChange={() => console.log("object")}
-              value=""
-              className="border-2 border-blue-marker"
+            <Dropdown
+              name="bidang-umkm"
+              options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+              ]}
+              className="border-2 border-blue-marker w-60 px-2"
+              rounded
             />
             <InputField
               type="text"

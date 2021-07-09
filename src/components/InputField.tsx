@@ -25,7 +25,7 @@ const InputField = ({
 
   return (
     <div
-      className={`flex flex-row p-2 ${rounded && "rounded-md"} relative mb-4 ${className} `}
+      className={`flex flex-row p-2 ${rounded && "rounded-md"} relative  ${className} `}
       style={style}
     >
       {icon && <span className="mr-2">{icon}</span>}

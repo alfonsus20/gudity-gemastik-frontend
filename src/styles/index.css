@@ -55,7 +55,7 @@ body {
   width: 1.5rem;
   height: 1.5rem;
   opacity: 1;
-  z-index : 20;
+  z-index: 20;
 }
 /* 
 input::placeholder{
@@ -69,3 +69,6 @@ input::placeholder{
 .card:hover{
   position: absolute;
 } */
+#select > * {
+  border-color: transparent !important;
+}

@@ -15,7 +15,7 @@ const Register = () => {
       }}
     >
       <div
-        className="px-8 py-14 mx-auto w-100 filter rounded-xl relative"
+        className="px-8 py-14 mx-auto w-100 filter rounded-xl relative mt-20 sm:mt-0"
         style={{
           boxShadow:
             "inset 0px 4px 18px rgba(154, 146, 210, 0.25), inset 0px 1px 0px rgba(227, 222, 255, 0.2)",
@@ -27,17 +27,16 @@ const Register = () => {
           </h2>
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <InputField
             type="nama"
             value=""
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="Nama"
+            className='text-white'
             style={{
-              backgroundColor: "transparent",
               borderBottom: "2px solid rgba(256,256,256,0.7)",
-              color: "white",
             }}
           />
           <InputField
@@ -46,10 +45,9 @@ const Register = () => {
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="Email"
+            className='text-white'
             style={{
-              backgroundColor: "transparent",
               borderBottom: "2px solid rgba(256,256,256,0.7)",
-              color: "white",
             }}
           />
           <InputField
@@ -58,10 +56,9 @@ const Register = () => {
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="NIK"
+            className='text-white'
             style={{
-              backgroundColor: "transparent",
               borderBottom: "2px solid rgba(256,256,256,0.7)",
-              color: "white",
             }}
           />
           <div className="flex flex-row space-x-3 mb-6">
@@ -71,10 +68,9 @@ const Register = () => {
               onChange={() => console.log("object")}
               rounded={false}
               placeholder="Kata Sandi"
+              className='text-white'
               style={{
-                backgroundColor: "transparent",
                 borderBottom: "2px solid rgba(256,256,256,0.7)",
-                color: "white",
               }}
             />
             <InputField
@@ -83,10 +79,9 @@ const Register = () => {
               onChange={() => console.log("object")}
               rounded={false}
               placeholder="Ulangi Kata Sandi"
+              className='text-white'
               style={{
-                backgroundColor: "transparent",
                 borderBottom: "2px solid rgba(256,256,256,0.7)",
-                color: "white",
               }}
             />
           </div>

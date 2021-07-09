@@ -17,7 +17,7 @@ const Login = () => {
       }}
     >
       <div
-        className="px-8 py-14 mx-auto w-100 filter rounded-xl relative"
+        className="px-8 py-14 mx-auto w-100 filter rounded-xl relative mt-20 sm:mt-0"
         style={{
           boxShadow:
             "inset 0px 4px 18px rgba(154, 146, 210, 0.25), inset 0px 1px 0px rgba(227, 222, 255, 0.2)",
@@ -29,17 +29,16 @@ const Login = () => {
           </h2>
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <InputField
             type="text"
             value=""
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="Email"
+            className="text-white"
             style={{
-              backgroundColor: "transparent",
               borderBottom: "2px solid rgba(256,256,256,0.7)",
-              color: "white",
             }}
           />
           <InputField
@@ -48,15 +47,14 @@ const Login = () => {
             onChange={() => console.log("object")}
             rounded={false}
             placeholder="Password"
+            className="text-white"
             style={{
-              backgroundColor: "transparent",
               borderBottom: "2px solid rgba(256,256,256,0.7)",
-              color: "white",
             }}
           />
           <Button
             onClick={() => console.log("object")}
-            className="text-white bg-blue-primary mt-2"
+            className="text-white bg-blue-primary"
           >
             Masuk
           </Button>
