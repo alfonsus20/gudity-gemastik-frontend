@@ -26,7 +26,7 @@ const Home = () => {
           <div className="max-w-screen-xl mx-auto w-full px-2">
             <div className="font-semibold">
               <h2 className="text-3xl md:text-4xl">Kami hadir</h2>
-              <h1 className="text-4xl md:text-5xl my-1 leading-snug">
+              <h1 className="text-4xl md:text-5xl my-1 leading-snug md:leading-snug">
                 Sebagai Solusi UMKM Anda <br /> dalam Proses{" "}
                 <span className="highlight">Analisis</span> dan{" "}
                 <span className="highlight">Prediksi</span>

@@ -29,24 +29,26 @@ const News = () => {
         </div>
       </div>
       <div className="py-20">
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-screen-xl mx-auto px-8">
           <div className="mb-8">
             <h2 className="text-center text-4xl font-semibold mb-4">
               Kumpulan Berita
             </h2>
             <Underline backgroundColor="#110828" center />
           </div>
-          <div className="flex flex-row justify-center items-center space-x-4 mb-4">
+          <div className="flex flex-col-reverse md:flex-row justify-center items-center space-x-4 mb-4">
             <InputField
               type="date"
               onChange={() => console.log("object")}
-              value=""
+              value=''
+              className=""
               style={{ border: "2px solid #1D2D74" }}
             />
             <InputField
               type="text"
               onChange={() => console.log("object")}
               value=""
+              className='mb-4 md:mb-0'
               placeholder="Cari Berita"
               style={{ border: "2px solid #1D2D74" }}
               icon={
@@ -67,7 +69,7 @@ const News = () => {
               }
             />
           </div>
-          <div className="grid grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-12">
             {[...Array(9)].map((_, i) => (
               <NewsCard
                 key={i}
