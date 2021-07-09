@@ -3,6 +3,7 @@ import Underline from "../components/Underline";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import UmkmCard from "../components/UmkmCard";
+import Features from "../components/Features";
 
 const Umkm = () => {
   return (
@@ -38,13 +39,13 @@ const Umkm = () => {
               type="date"
               onChange={() => console.log("object")}
               value=""
-              className='border-2 border-blue-marker'
+              className="border-2 border-blue-marker"
             />
             <InputField
               type="text"
               onChange={() => console.log("object")}
               value=""
-              className='border-2 border-blue-marker'
+              className="border-2 border-blue-marker"
               placeholder="Cari UMKM"
               icon={
                 <svg
@@ -100,6 +101,7 @@ const Umkm = () => {
           </div>
         </div>
       </div>
+      <Features />
     </div>
   );
 };

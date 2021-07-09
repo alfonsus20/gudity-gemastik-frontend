@@ -4,6 +4,7 @@ import NewsCard from "../components/NewsCard";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import NewsModal from "../components/NewsModal";
+import Features from "../components/Features";
 
 const News = () => {
   return (
@@ -86,6 +87,7 @@ const News = () => {
           </div>
         </div>
       </div>
+      <Features />
     </div>
   );
 };

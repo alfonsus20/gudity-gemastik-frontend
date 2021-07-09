@@ -11,7 +11,7 @@ const Register = () => {
       className="relative min-h-screen flex items-center justify-center"
       style={{
         background:
-          "linear-gradient(102.72deg, rgba(0, 0, 0, 0.9) 42.77%, rgba(29, 16, 61, 0.9) 99.02%)",
+          "linear-gradient(102.72deg, rgba(0, 0, 0, 0.9) 42.77%, rgba(29, 16, 61, 0.9) 99.02%), url(assets/backgrounds/register.jpg)",
       }}
     >
       <div

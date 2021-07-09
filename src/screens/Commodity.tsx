@@ -2,6 +2,7 @@ import React from "react";
 import Underline from "../components/Underline";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
+import Features from "../components/Features";
 
 const Commodity = () => {
   return (
@@ -72,6 +73,7 @@ const Commodity = () => {
           </div>
         </div>
       </div>
+      <Features />
     </div>
   );
 };

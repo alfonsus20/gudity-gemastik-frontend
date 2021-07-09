@@ -32,7 +32,17 @@ const NewsCard = ({ title, content, colspan }: NewsProps) => {
       <div className="">
         <div className="px-8 py-4">
           <Underline backgroundColor="#1854FF" width={50} height={5} />
-          <h3 className="mt-2 font-semibold">{title}</h3>
+          <h3 className="my-2 font-semibold">{title}</h3>
+          <p
+            className="overflow-hidden text-sm text-justify"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 4,
+              WebkitBoxOrient: "vertical",
+            }}
+          >
+            {content}
+          </p>
         </div>
       </div>
     </div>
