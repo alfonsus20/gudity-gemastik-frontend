@@ -23,19 +23,19 @@ const NewsModal = () => {
     <div
       className={`${
         shown ? "block" : "hidden"
-      } min-h-screen w-full flex justify-center items-center fixed bg-black bg-opacity-60 z-30 filter  text-white`}
+      } min-h-screen w-full flex flex-col  md:flex-row justify-center items-center fixed bg-black bg-opacity-60 z-30 text-white`}
     >
-      <div className="flex flex-row rounded-lg" style={{ width: 800 }}>
-        <div className="w-1/2 bg-blue-dark px-8 py-12">
+      <div className="flex flex-col sm:flex-row rounded-lg mx-6 max-w-md sm:max-w-xl md:max-w-full" style={{ maxWidth: 800 }}>
+        <div className="w-full md:w-1/2 bg-blue-dark px-8 py-12">
           <Underline backgroundColor="#175F88" height={4} />
           <h2 className="mt-2 font-semibold text-2xl">{title}</h2>
         </div>
-        <div className="w-1/2 bg-blue-secondary text-lg px-8 py-12">
+        <div className="w-full md:w-1/2 bg-blue-secondary text-lg px-8 py-12">
           {content}
         </div>
       </div>
       <button
-        className="absolute right-10 top-10"
+        className="absolute right-2 top-6 md:right-10 md:top-10"
         onClick={() => dispatch({ type: HIDE_NEWS_MODAL })}
       >
         <svg
