@@ -10,7 +10,14 @@ type ButtonProps = {
   className?: string;
 };
 
-const Button = ({ children, onClick, style, disabled, type, className }: ButtonProps) => {
+const Button = ({
+  children,
+  onClick,
+  style,
+  disabled,
+  type,
+  className,
+}: ButtonProps) => {
   return (
     <button
       style={style}
@@ -25,10 +32,7 @@ const Button = ({ children, onClick, style, disabled, type, className }: ButtonP
 };
 
 Button.defaultProps = {
-  backgroundColor: "#1854FF",
-  fontSize: 16,
   disabled: false,
-  border: "",
   type: "button",
 };
 

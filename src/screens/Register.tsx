@@ -4,6 +4,8 @@ import Underline from "../components/Underline";
 import InputField from "../components/InputField";
 
 const Register = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {};
+
   return (
     <div
       className="relative min-h-screen flex items-center justify-center"
@@ -25,11 +27,7 @@ const Register = () => {
           </h2>
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
-        <form
-          action="
-        "
-          className="flex flex-col"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <InputField
             type="nama"
             value=""
@@ -94,7 +92,7 @@ const Register = () => {
           </div>
           <Button
             onClick={() => console.log("object")}
-            style={{ color: "white" }}
+            className="text-white bg-blue-primary"
           >
             Daftar
           </Button>

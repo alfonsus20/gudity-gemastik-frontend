@@ -33,7 +33,12 @@ const Home = () => {
               </h1>
             </div>
             <div className="mt-6">
-              <Button onClick={() => console.log("aa")} className='text-white bg-blue-primary'>Lebih Lanjut</Button>
+              <Button
+                onClick={() => console.log("aa")}
+                className="text-white bg-blue-primary"
+              >
+                Lebih Lanjut
+              </Button>
             </div>
           </div>
         </div>
@@ -53,8 +58,7 @@ const Home = () => {
               </p>
               <Button
                 onClick={() => console.log("object")}
-                backgroundColor="transparent"
-                border="2px solid black"
+                className="border-2 border-black"
               >
                 Lihat Lebih Banyak
               </Button>
@@ -94,7 +98,7 @@ const Home = () => {
             <div>
               <Button
                 onClick={() => console.log("a")}
-                className='text-white bg-blue-primary'
+                className="text-white bg-blue-primary"
               >
                 Coba Sekarang
               </Button>
