@@ -30,7 +30,7 @@ const QuickAccessCard = ({
             : "md:col-span-3"
         } text-center h-28 sm:h-40 md:h-60 bg-cover bg-center flex flex-col items-center justify-center transition transform duration-150 ease-out hover:scale-110 `}
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(17, 8, 40, 0.4), rgba(17, 8, 40, 0.6) ),url(assets/pictures/${image}.jpg)`,
+          backgroundImage: `linear-gradient(to bottom, rgba(17, 8, 40, 0.4), rgba(17, 8, 40, 0.6) ),url(/assets/pictures/${image}.jpg)`,
         }}
       >
         <h3 className="text-md md:text-xl font-medium">{title}</h3>

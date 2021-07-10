@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import QuickAccess from "./quick-access/QuickAccess";
 
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isBackgroundBlack, setIsBackgroundBlack] =
     React.useState<boolean>(false);
   const [quickAccessShown, showQuickAccess] = React.useState<boolean>(false);
+  const location = useLocation();
 
   const searchInputVariants = {
     closed: {
@@ -47,10 +48,14 @@ const Navbar = () => {
 
   return (
     <motion.div
-      className="flex flex-row fixed w-full z-20 px-12 py-6"
+      className="flex flex-row fixed w-full z-20 px-12 py-6 top-0"
       variants={backgroundVariants}
       initial="hidden"
-      animate={isBackgroundBlack ? "shown" : "hidden"}
+      animate={
+        isBackgroundBlack || location.pathname.includes("/komoditas/")
+          ? "shown"
+          : "hidden"
+      }
       transition={{ duration: 0.5 }}
     >
       <QuickAccess showQuickAccess={showQuickAccess} shown={quickAccessShown} />
@@ -97,7 +102,7 @@ const Navbar = () => {
             <br /> Cepat
           </span>
           <img
-            src="assets/icons/akses-cepat.svg"
+            src="/assets/icons/akses-cepat.svg"
             alt="Akses Cepat"
             className="w-7 h-7"
           />

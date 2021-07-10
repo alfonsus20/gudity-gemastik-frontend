@@ -23,6 +23,11 @@ module.exports = {
         88: "22rem",
         92: "23rem",
         100: "25rem",
+        104: "26rem",
+        108: "27rem",
+        112: "28rem",
+        116: "29rem",
+        120: "30rem",
       },
       boxShadow: {
         DEFAULT: "0px 4px 20px rgba(0, 0, 0, 0.08)",

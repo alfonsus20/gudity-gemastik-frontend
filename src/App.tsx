@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Umkm from "./screens/Umkm";
 import ScrollToTop from "./components/ScrollToTop";
 import Commodity from "./screens/Commodity";
+import CommodityDetail from "./screens/CommodityDetail";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 
@@ -19,7 +20,8 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/berita" component={News} />
         <Route path="/umkm" component={Umkm} />
-        <Route path="/komoditas" component={Commodity} />
+        <Route path="/komoditas" component={Commodity} exact/>
+        <Route path="/komoditas/:id" component={CommodityDetail} exact />
         <Route path="/login" component={Login} />
         <Route path="/daftar" component={Register} />
       </Switch>
