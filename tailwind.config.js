@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
@@ -25,6 +27,10 @@ module.exports = {
       boxShadow: {
         DEFAULT: "0px 4px 20px rgba(0, 0, 0, 0.08)",
       },
+    },
+    screens: {
+      xs: "476px",
+      ...defaultTheme.screens,
     },
   },
   variants: {

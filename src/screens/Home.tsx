@@ -1,8 +1,10 @@
 import React from "react";
 import Button from "../components/Button";
+import FeatureCard from "../components/FeatureCard";
 import Features from "../components/Features";
 import NewsCard from "../components/NewsCard";
 import NewsModal from "../components/NewsModal";
+import { FEATURES } from "../utils/constants";
 
 const Home = () => {
   return (
@@ -93,6 +95,21 @@ const Home = () => {
               Lihat Lebih Banyak
             </Button>
           </div>
+        </div>
+      </div>
+      <div className="bg-gray py-20 md:py-28">
+        <div className="max-w-screen-xl mx-auto px-8">
+          <div className="grid xs:grid-cols-2 md:grid-cols-4 gap-7 mb-12">
+            {FEATURES.map((feature, i) => (
+              <FeatureCard {...feature} key={i} />
+            ))}
+          </div>
+          <Button
+            onClick={() => console.log("")}
+            className="text-white border-2 border-blue-secondary w-40 mx-auto"
+          >
+            Lebih Lanjut
+          </Button>
         </div>
       </div>
       <Features />

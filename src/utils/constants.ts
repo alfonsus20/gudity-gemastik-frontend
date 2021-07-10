@@ -1,10 +1,11 @@
+import { FeatureCardProps } from "../components/FeatureCard";
+
 export type QuickAccessFeature = {
   title: string;
   image: string;
   colspan: 1 | 2 | 3;
-  path : string;
+  path: string;
 };
-
 
 export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
   {
@@ -36,5 +37,32 @@ export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
     image: "informasi",
     colspan: 2,
     path: "berita",
+  },
+];
+
+export const FEATURES: FeatureCardProps[] = [
+  {
+    image: "analisis",
+    title: "Analisis",
+    description:
+      "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
+  },
+  {
+    image: "prediksi",
+    title: "Prediksi",
+    description:
+      "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
+  },
+  {
+    image: "saran",
+    title: "Saran",
+    description:
+      "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
+  },
+  {
+    image: "informasi",
+    title: "Informasi",
+    description:
+      "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
   },
 ];
