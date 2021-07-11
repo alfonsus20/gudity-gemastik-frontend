@@ -1,7 +1,7 @@
 import React from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 
-type Image = {
+export type Image = {
   name: string;
   id: string;
 };

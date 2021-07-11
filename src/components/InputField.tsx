@@ -9,6 +9,7 @@ type InputProps = {
   style?: React.CSSProperties;
   rounded?: boolean;
   className?: string;
+  textCenter ?: boolean;
 };
 
 const InputField = ({
@@ -19,7 +20,8 @@ const InputField = ({
   onChange,
   rounded,
   style,
-  className
+  className,
+  textCenter
 }: InputProps) => {
   const [passwordShown, showPassword] = React.useState<boolean>(false);
 
@@ -34,7 +36,7 @@ const InputField = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={`outline-none flex-auto bg-transparent text-sm w-full ${
+        className={`outline-none flex-auto bg-transparent text-sm w-full ${textCenter ? 'text-center' : 'text-left'} ${
           type === "date" && "date pl-8"
         } `}
       />

@@ -10,6 +10,7 @@ import Commodity from "./screens/Commodity";
 import CommodityDetail from "./screens/CommodityDetail";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
+import Product from "./screens/Product";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/umkm" component={Umkm} exact />
         <Route path="/komoditas" component={Commodity} exact />
         <Route path="/komoditas/:id" component={CommodityDetail} exact />
+        <Route path="/produk/:id" component={Product} exact />
         <Route path="/login" component={Login} exact />
         <Route path="/daftar" component={Register} exact />
       </Switch>

@@ -9,14 +9,23 @@ type DropdownOption = {
 
 type DropdownProps = {
   id?: string;
-  name: string;
+  name?: string;
   options: DropdownOption[];
   className?: string;
   rounded?: boolean;
-  placeholder ?: string;
+  placeholder?: string;
+  icon?: React.ReactNode;
 };
 
-const Dropdown = ({ id, name, options, className, rounded, placeholder }: DropdownProps) => {
+const Dropdown = ({
+  id,
+  name,
+  options,
+  className,
+  rounded,
+  placeholder,
+  icon,
+}: DropdownProps) => {
   const customStyles = {
     option: (provided: object) => ({
       ...provided,
@@ -37,9 +46,8 @@ const Dropdown = ({ id, name, options, className, rounded, placeholder }: Dropdo
       className={`${className} ${
         rounded && "rounded-md"
       } flex flex-row items-center`}
-   
     >
-      <CollectionIcon className="w-6 h-6" />
+      {icon ? icon : <CollectionIcon className="w-6 h-6" />}
       <Select
         options={options}
         styles={customStyles}

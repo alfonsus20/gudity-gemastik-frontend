@@ -22,7 +22,7 @@ const Button = ({
     <button
       style={style}
       onClick={onClick}
-      className={`px-4 py-2 flex flex-row justify-center ${className}`}
+      className={`px-4 py-2 flex flex-row justify-center items-center ${className}`}
       disabled={disabled}
       type={type}
     >

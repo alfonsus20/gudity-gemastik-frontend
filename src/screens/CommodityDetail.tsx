@@ -26,7 +26,7 @@ const CommodityDetail = () => {
             { name: "informasi.jpg", id: "6" },
           ]}
         />
-        <div className="mt-4 sm:mt-0 sm:ml-6 flex-auto">
+        <div className="mt-4 sm:ml-6 flex-auto">
           <h2 className="font-semibold text-3xl mb-2">
             Komoditas Kopi Lalalala
           </h2>

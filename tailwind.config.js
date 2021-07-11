@@ -18,6 +18,9 @@ module.exports = {
           DEFAULT: "#21212B",
           secondary: "#1D1D25",
         },
+        orange: {
+          DEFAULT: "#FB8200",
+        },
       },
       spacing: {
         88: "22rem",
