@@ -13,9 +13,10 @@ type DropdownProps = {
   options: DropdownOption[];
   className?: string;
   rounded?: boolean;
+  placeholder ?: string;
 };
 
-const Dropdown = ({ id, name, options, className, rounded }: DropdownProps) => {
+const Dropdown = ({ id, name, options, className, rounded, placeholder }: DropdownProps) => {
   const customStyles = {
     option: (provided: object) => ({
       ...provided,
@@ -42,7 +43,7 @@ const Dropdown = ({ id, name, options, className, rounded }: DropdownProps) => {
       <Select
         options={options}
         styles={customStyles}
-        placeholder="Bidang UMKM"
+        placeholder={placeholder}
         isSearchable={false}
         className="flex-1"
       />

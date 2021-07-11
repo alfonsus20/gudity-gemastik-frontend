@@ -22,7 +22,7 @@ const Features = () => {
         <div className="w-full md:w-1/2 md:pl-8">
           <div className="flex flex-row items-center mb-6">
             <div style={{ flex: "0 0 6rem" }} className="px-1">
-              <img src="assets/icons/analisis.png" alt="" className="w-full" />
+              <img src="/assets/icons/analisis.png" alt="" className="w-full" />
             </div>
             <div className="px-6 border-l-2 ml-6">
               <h4 className="text-2xl font-medium">ANALISIS</h4>
@@ -34,7 +34,7 @@ const Features = () => {
           </div>
           <div className="flex flex-row items-center mb-6">
             <div style={{ flex: "0 0 6rem" }} className="px-1">
-              <img src="assets/icons/analisis.png" alt="" className="w-full" />
+              <img src="/assets/icons/analisis.png" alt="" className="w-full" />
             </div>
             <div className="px-6 border-l-2 ml-6">
               <h4 className="text-2xl font-medium">ANALISIS</h4>
@@ -46,7 +46,7 @@ const Features = () => {
           </div>
           <div className="flex flex-row items-center mb-6">
             <div style={{ flex: "0 0 6rem" }} className="px-1">
-              <img src="assets/icons/analisis.png" alt="" className="w-full" />
+              <img src="/assets/icons/analisis.png" alt="" className="w-full" />
             </div>
             <div className="px-6 border-l-2 ml-6">
               <h4 className="text-2xl font-medium">ANALISIS</h4>

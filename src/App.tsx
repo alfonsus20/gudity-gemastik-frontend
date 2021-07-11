@@ -17,13 +17,13 @@ const App = () => {
       <Navbar />
       <ScrollToTop />
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/berita" component={News} />
-        <Route path="/umkm" component={Umkm} />
-        <Route path="/komoditas" component={Commodity} exact/>
+        <Route path="/" component={Home} exact />
+        <Route path="/berita" component={News} exact />
+        <Route path="/umkm" component={Umkm} exact />
+        <Route path="/komoditas" component={Commodity} exact />
         <Route path="/komoditas/:id" component={CommodityDetail} exact />
-        <Route path="/login" component={Login} />
-        <Route path="/daftar" component={Register} />
+        <Route path="/login" component={Login} exact />
+        <Route path="/daftar" component={Register} exact />
       </Switch>
       <Footer />
     </>

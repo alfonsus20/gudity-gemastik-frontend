@@ -14,7 +14,7 @@ const Umkm = () => {
           className="w-full min-h-screen relative z-10  pt-10 text-white flex items-center "
           style={{
             background:
-              "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(assets/backgrounds/berita.jpg)",
+              "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(/assets/backgrounds/berita.jpg)",
           }}
         >
           <div className="max-w-screen-xl mx-auto w-full px-8">
@@ -43,6 +43,7 @@ const Umkm = () => {
                 { value: "2", label: "2" },
               ]}
               className="border-2 border-blue-marker w-60 px-2"
+              placeholder = 'Jenis Komoditas'
               rounded
             />
             <InputField

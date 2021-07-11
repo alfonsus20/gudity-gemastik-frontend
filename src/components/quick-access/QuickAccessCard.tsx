@@ -35,11 +35,11 @@ const QuickAccessCard = ({
       >
         <h3 className="text-md md:text-xl font-medium">{title}</h3>
         <Link
-          to={path}
+          to={`/${path}`}
           className="mt-2 border-2 border-white rounded-full p-1 transition transform duration-150 ease-in-out hover:scale-110"
           onClick={() => showQuickAccess(false)}
         >
-         <ArrowRightIcon className='h-4 w-4 md:h-6 md:w-6'/>
+          <ArrowRightIcon className="h-4 w-4 md:h-6 md:w-6" />
         </Link>
       </div>
     </div>

@@ -22,15 +22,16 @@ const Tab = ({ tabs, className }: TabProps) => {
             : tabs.length === 2
             ? "grid-cols-2"
             : "grid-cols-3"
-        }  border-t-2 border-gray border-opacity-20 mb-4`}
+        }  mb-4`}
       >
-        {tabs.map((tab) => (
+        {tabs.map((tab, i) => (
           <button
+            key={i}
             onClick={() => setCurrentTab(tab)}
             className={`${
               tab.title === currentTab.title
                 ? "border-b-4 border-blue-primary text-blue-primary font-medium"
-                : "border-b-2 border-gray border-opacity-20"
+                : "border-b-4 border-gray border-opacity-20"
             } py-2`}
           >
             {tab.title}

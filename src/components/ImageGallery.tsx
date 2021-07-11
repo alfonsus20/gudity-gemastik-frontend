@@ -19,12 +19,12 @@ const ImageGallery = ({ images, className }: ImageGalleryProps) => {
   const [endIndex, setEndIndex] = React.useState<number>(3);
 
   return (
-    <div className={`max-w-md ${className}`}>
+    <div className={`max-w-full sm:max-w-md ${className}`}>
       <div className="mb-4">
         <img
           src={`/assets/pictures/${highlightedImage.name}`}
           alt={highlightedImage.name}
-          className="rounded-md w-112 h-72 object-cover"
+          className="rounded-md sm:w-112 sm:h-72 object-cover"
         />
       </div>
       <div className="relative">
