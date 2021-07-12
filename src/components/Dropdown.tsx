@@ -39,6 +39,10 @@ const Dropdown = ({
         border: state.isFocused ? 0 : 0,
       },
     }),
+    valueContainer: (provided: object) => ({
+      ...provided,
+      overflow: "visible",
+    }),
   };
 
   return (

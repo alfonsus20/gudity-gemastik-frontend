@@ -28,11 +28,11 @@ const RatingCollection = ({ ratings }: RatingCollectionProps) => {
   return (
     <div className="flex flex-col sm:flex-row">
       <div className="sm:pr-10 mx-auto sm:mx-0 text-center sm:text-left">
-        <h3 className="text-3xl">
+        <h3 className="text-3xl mb-1">
           <span className="font-semibold">{getRatingAverage().toFixed(2)}</span>
           / 5
         </h3>
-        <div className="flex flex-row mb-1 items-center">
+        <div className="flex flex-row mb-1 items-center justify-center sm:justify-start">
           <Rating rating={getRatingAverage()} />
         </div>
         <p>{getTotalReviewers()} Penilai</p>

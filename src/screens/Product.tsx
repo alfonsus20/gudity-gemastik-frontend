@@ -28,7 +28,7 @@ const Product = () => {
 
   return (
     <div>
-      <div className="shadow-none sm:shadow max-w-screen-xl mx-auto px-8 py-12 mt-32 sm:mb-8">
+      <div className="shadow-none sm:shadow max-w-screen-xl mx-auto px-8 py-12 mt-20 sm:mt-32 sm:mb-8">
         <div className="flex flex-col sm:flex-row mb-8">
           <ImageGallery
             className="flex-shrink-0"
@@ -165,23 +165,23 @@ const Product = () => {
               <tbody>
                 <tr>
                   <td className="pr-4 pb-2 text-gray-500">Nama</td>
-                  <td className="pb-2">:&nbsp; Kopi Robusta</td>
+                  <td className="pb-2"> Kopi Robusta</td>
                 </tr>
                 <tr>
                   <td className="pr-4 pb-2 text-gray-500">Kuantitas</td>
-                  <td className="pb-2">:&nbsp; Premium</td>
+                  <td className="pb-2"> Premium</td>
                 </tr>
                 <tr>
                   <td className="pr-4 pb-2 text-gray-500">Ketersediaan</td>
                   <td className="pb-2">
-                    :&nbsp; Tersedia, selalu memproduksi setiap hari
+                    Tersedia, selalu memproduksi setiap hari
                   </td>
                 </tr>
                 <tr>
                   <td className="pr-4 pb-2 text-gray-500">Dikirim dari</td>
                   <td className="pb-2">
-                    :&nbsp; Lalalala, Kec. Lalala, Kabupaten Lalala, Jawa Timur,
-                    Kode Pos Lalala
+                    Lalalala, Kec. Lalala, Kabupaten Lalala, Jawa Timur, Kode
+                    Pos Lalala
                   </td>
                 </tr>
               </tbody>
@@ -221,7 +221,7 @@ const Product = () => {
             <Dropdown
               options={[]}
               name=""
-              className="w-32 text-xs"
+              className="w-48 text-xs"
               icon={<FilterIcon className="w-6 h-6 text-gray-500" />}
               placeholder="Saring : Semua bintang"
             />

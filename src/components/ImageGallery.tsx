@@ -24,14 +24,14 @@ const ImageGallery = ({ images, className }: ImageGalleryProps) => {
         <img
           src={`/assets/pictures/${highlightedImage.name}`}
           alt={highlightedImage.name}
-          className="rounded-md sm:w-112 sm:h-72 object-cover"
+          className="rounded-md w-full h-80 xs:h-88 sm:w-112 sm:h-72 object-cover"
         />
       </div>
       <div className="relative">
         <button
           className={`bg-black bg-opacity-70 hover:bg-opacity-90 ${
             (images.length <= 4 || startIndex === 0) && "hidden"
-          } absolute top-1/2 left-0 transform -translate-y-1/2`}
+          } absolute top-1/2 left-0 transform -translate-y-1/2 p-2`}
           onClick={() => {
             if (startIndex > 0) {
               setStartIndex((prevState) => prevState - 1);
@@ -55,7 +55,7 @@ const ImageGallery = ({ images, className }: ImageGalleryProps) => {
         <button
           className={`bg-black bg-opacity-70 hover:bg-opacity-90  ${
             (images.length <= 4 || endIndex === images.length - 1) && "hidden"
-          } absolute top-1/2 right-0 transform -translate-y-1/2`}
+          } absolute top-1/2 right-0 transform -translate-y-1/2 p-2`}
           onClick={() => {
             if (endIndex < images.length) {
               setStartIndex((prevState) => prevState + 1);
