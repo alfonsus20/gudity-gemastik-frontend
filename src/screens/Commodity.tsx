@@ -70,26 +70,26 @@ const Commodity = () => {
               image="kopi.jpg"
               name="Komoditas Kopi Lalalala"
               description="Kualitas terjamin, harga bersahabat, lalalalalalalalalalalala"
-              location='Lalalala, Kec. Lalala, Kabupaten Lalala, Jawa Timur, Kode Pos Lalala'
+              location="Lalalala, Kec. Lalala, Kabupaten Lalala, Jawa Timur, Kode Pos Lalala"
               establishedIn={2010}
-              relationship='10.000 pelanggan dan 3 perkebunan'
+              relationship="10.000 pelanggan dan 3 perkebunan"
             />
             <CommodityCard
               image="gula.jpg"
               name="Komoditas Gula Lalalala"
               description="Kualitas terjamin, harga bersahabat, lalalalalalalalalalalala"
-              location='Lalalala, Kec. Lalala, Kabupaten Lalala, Jawa Timur, Kode Pos Lalala'
+              location="Lalalala, Kec. Lalala, Kabupaten Lalala, Jawa Timur, Kode Pos Lalala"
               establishedIn={2010}
-              relationship='10.000 pelanggan dan 10 Pabrik'
+              relationship="10.000 pelanggan dan 10 Pabrik"
             />
           </div>
           <div className="flex justify-center">
             <Button
-              onClick={() => console.log("aa")}
-              className="bg-transparent border-2 border-black"
-            >
-              Lihat Lebih Banyak
-            </Button>
+              variant="tertiary"
+              className="border-black"
+              text="Lihat Lebih Banyak"
+              size="md"
+            />
           </div>
         </div>
       </div>

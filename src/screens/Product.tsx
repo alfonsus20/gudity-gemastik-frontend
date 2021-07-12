@@ -101,11 +101,11 @@ const Product = () => {
                     (item, i) => (
                       <Button
                         key={i}
-                        onClick={() => console.log("object")}
+                        variant="primary"
                         className="border-2 border-blue-primary text-blue-primary px-8 rounded-md text-sm"
-                      >
-                        {item}
-                      </Button>
+                        text={item}
+                        size="sm"
+                      />
                     )
                   )}
                 </div>
@@ -143,18 +143,17 @@ const Product = () => {
             </div>
             <div className="flex flex-row">
               <Button
-                onClick={() => console.log("object")}
                 className="text-blue-primary border-2 border-blue-primary text-sm mr-4"
-              >
-                <ShoppingCartIcon className="w-6 h-6" />
-                &nbsp;Masukkan Keranjang
-              </Button>
+                icon={<ShoppingCartIcon className="w-6 h-6" />}
+                text="Masukkan Keranjang"
+                variant="secondary"
+              />
               <Button
-                onClick={() => console.log("object")}
                 className="text-white border-2 border-blue-primary bg-blue-primary text-sm w-40"
-              >
-                Beli Sekarang
-              </Button>
+                text="Beli Sekarang"
+                size="lg"
+                variant="primary"
+              />
             </div>
           </div>
         </div>

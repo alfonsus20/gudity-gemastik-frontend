@@ -88,11 +88,11 @@ const CommodityDetail = () => {
             ]}
           />
           <Button
-            onClick={() => console.log("object")}
-            className="text-blue-primary border-2 border-blue-primary text-sm"
-          >
-            Chat Sekarang
-          </Button>
+            variant="secondary"
+            className="text-sm"
+            size="md"
+            text="Chat Sekarang"
+          />
         </div>
       </div>
       <div className="max-w-screen-xl mx-auto py-20 px-8">
@@ -117,15 +117,10 @@ const CommodityDetail = () => {
           ))}
         </div>
         <div className="flex justify-center">
-          <Button
-            onClick={() => console.log("aa")}
-            className="bg-transparent border-2 border-black"
-          >
-            Lihat Lebih Banyak
-          </Button>
+          <Button variant="tertiary" text="Lihat Lebih Banyak" size="lg" />
         </div>
       </div>
-      <Features/>
+      <Features />
     </div>
   );
 };

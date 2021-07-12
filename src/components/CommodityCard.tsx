@@ -44,18 +44,19 @@ const CommodityCard = ({
           </div>
           <div className="grid grid-cols-12 text-md mb-2">
             <ClockIcon className="h-6 w-6 col-span-1" />
-            <span className="ml-2 md:ml-0 col-span-11">Sejak {establishedIn}</span>
+            <span className="ml-2 md:ml-0 col-span-11">
+              Sejak {establishedIn}
+            </span>
           </div>
           <div className="grid grid-cols-12 text-md mb-4">
             <UserGroupIcon className="h-6 w-6 col-span-1" />
             <span className="ml-2 md:ml-0 col-span-11">{relationship}</span>
           </div>
           <Button
-            onClick={() => console.log("object")}
-            className="border-2 border-blue-primary text-blue-primary text-sm font-medium"
-          >
-            Lihat Selengkapnya
-          </Button>
+            variant="secondary"
+            className="border-2 text-sm font-medium"
+            text="Lihat Selengkapnya"
+          />
         </div>
       </div>
     </div>

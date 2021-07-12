@@ -36,12 +36,7 @@ const Home = () => {
               </h1>
             </div>
             <div className="mt-6">
-              <Button
-                onClick={() => console.log("aa")}
-                className="text-white bg-blue-primary"
-              >
-                Lebih Lanjut
-              </Button>
+              <Button variant="primary" text="Lebih Lanjut" size="md" />
             </div>
           </div>
         </div>
@@ -60,11 +55,11 @@ const Home = () => {
                 Baca cerita terbaru dari sekeliling kita.
               </p>
               <Button
-                onClick={() => console.log("object")}
-                className="border-2 border-black hidden md:block"
-              >
-                Lihat Lebih Banyak
-              </Button>
+                className="hidden md:block"
+                text="Lihat Lebih Banyak"
+                size="md"
+                variant="tertiary"
+              />
             </div>
             <div className="grid md:grid-cols-2 gap-x-4 gap-y-8 w-full md:w-1/2">
               <NewsCard
@@ -90,10 +85,11 @@ const Home = () => {
             </div>
             <Button
               onClick={() => console.log("object")}
-              className="border-2 mt-8 border-black md:hidden"
-            >
-              Lihat Lebih Banyak
-            </Button>
+              variant="tertiary"
+              text="Lihat Lebih Banyak"
+              size="md"
+              className="md:hidden mt-8"
+            />
           </div>
         </div>
       </div>
@@ -104,12 +100,14 @@ const Home = () => {
               <FeatureCard {...feature} key={i} />
             ))}
           </div>
-          <Button
-            onClick={() => console.log("")}
-            className="text-white border-2 border-blue-secondary w-40 mx-auto"
-          >
-            Lebih Lanjut
-          </Button>
+          <div className="flex">
+            <Button
+              variant="quaternary"
+              size="md"
+              className="mx-auto"
+              text="Lebih Lanjut"
+            />
+          </div>
         </div>
       </div>
       <Features />

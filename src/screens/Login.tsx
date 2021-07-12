@@ -5,7 +5,7 @@ import InputField from "../components/InputField";
 import Underline from "../components/Underline";
 
 const Login = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>):void => {
     e.preventDefault();
   };
 
@@ -53,15 +53,10 @@ const Login = () => {
               borderBottom: "2px solid rgba(256,256,256,0.7)",
             }}
           />
-          <Button
-            onClick={() => console.log("object")}
-            className="text-white bg-blue-primary mt-2 mb-4"
-          >
-            Masuk
-          </Button>
+          <Button className="mt-2 mb-4" text="Masuk" variant="primary" size='full'/>
         </form>
         <div className="text-sm text-center text-white">
-          <span className='mr-2'>Belum punya akun?</span>
+          <span className="mr-2">Belum punya akun?</span>
           <Link to="/daftar" className="font-semibold">
             Daftar
           </Link>

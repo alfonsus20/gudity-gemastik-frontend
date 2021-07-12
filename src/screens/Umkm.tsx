@@ -43,7 +43,7 @@ const Umkm = () => {
                 { value: "2", label: "2" },
               ]}
               className="border-2 border-blue-marker w-60 px-2"
-              placeholder = 'Jenis Komoditas'
+              placeholder="Jenis Komoditas"
               rounded
             />
             <InputField
@@ -97,12 +97,7 @@ const Umkm = () => {
             />
           </div>
           <div className="flex justify-center">
-            <Button
-              onClick={() => console.log("aa")}
-              className="bg-transparent border-2 border-black"
-            >
-              Lihat Lebih Banyak
-            </Button>
+            <Button variant="tertiary" text='Lihat Lebih Banyak'/>
           </div>
         </div>
       </div>

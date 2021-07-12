@@ -26,20 +26,16 @@ const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
 
   return (
     <motion.div
-      className="min-h-screen w-full fixed top-0 left-0 z-30 bg-gradient-to-b from-black to-violet text-white flex"
+      className="min-h-screen w-full fixed top-0 left-0 z-30 bg-gradient-to-b from-black to-violet text-white flex items-center justify-center"
       initial="hidden"
       animate={shown ? "shown" : "hidden"}
       transition={{ stiffness: 0, duration: 0.5 }}
       variants={variants}
     >
-      <div className="relative my-auto w-full px-20 mx-auto md:pb-12">
-        <div className="relative">
-          <div className="mb-8">
-            <h2 className="text-4xl font-medium text-center mt-16 mb-3">
-              AKSES CEPAT
-            </h2>
-            <Underline backgroundColor="#fff" width={60} height={2} center />
-          </div>
+      <div className="relative w-full max-w-screen-xl py-8">
+        <div className="mb-8">
+          <h2 className="text-4xl font-medium text-center mb-3">AKSES CEPAT</h2>
+          <Underline backgroundColor="#fff" width={60} height={2} center />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 px-4">
           {QUICK_ACCESS_FEATURES.map((feature, i) => (

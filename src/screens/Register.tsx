@@ -87,11 +87,11 @@ const Register = () => {
             }}
           />
           <Button
-            onClick={() => console.log("object")}
-            className="text-white mb-4 bg-blue-primary"
-          >
-            Daftar
-          </Button>
+            variant="primary"
+            className="mb-4"
+            text="Daftar"
+            size="full"
+          />
         </form>
         <div className="text-sm text-center text-white">
           <span className="mr-2">Sudah punya akun?</span>

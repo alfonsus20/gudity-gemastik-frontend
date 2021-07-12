@@ -40,7 +40,7 @@ const News = () => {
             <InputField
               type="date"
               onChange={() => console.log("object")}
-              value=''
+              value=""
               className=""
               style={{ border: "2px solid #1D2D74" }}
             />
@@ -48,7 +48,7 @@ const News = () => {
               type="text"
               onChange={() => console.log("object")}
               value=""
-              className='mb-4 md:mb-0'
+              className="mb-4 md:mb-0"
               placeholder="Cari Berita"
               style={{ border: "2px solid #1D2D74" }}
               icon={
@@ -80,12 +80,7 @@ const News = () => {
             ))}
           </div>
           <div className="flex justify-center">
-            <Button
-              onClick={() => console.log("aa")}
-              className="bg-transparent border-2 border-black"
-            >
-              Lihat Lebih Banyak
-            </Button>
+            <Button variant="tertiary" text="Lihat Lebih Banyak" size="lg" />
           </div>
         </div>
       </div>

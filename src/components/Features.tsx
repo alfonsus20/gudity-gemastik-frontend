@@ -13,10 +13,11 @@ const Features = () => {
           <div>
             <Button
               onClick={() => console.log("a")}
-              className="hidden md:block text-white bg-blue-primary "
-            >
-              Coba Sekarang
-            </Button>
+              className="hidden md:block"
+              variant="primary"
+              text="Coba Sekarang"
+              size="md"
+            />
           </div>
         </div>
         <div className="w-full md:w-1/2 md:pl-8">
@@ -58,11 +59,11 @@ const Features = () => {
           </div>
         </div>
         <Button
-          onClick={() => console.log("a")}
-          className="text-white bg-blue-primary mt-2 mx-auto md:hidden"
-        >
-          Coba Sekarang
-        </Button>
+          variant="primary"
+          className="text-white mt-2 mx-auto md:hidden"
+          text="Coba Sekarang"
+          size="md"
+        />
       </div>
     </div>
   );

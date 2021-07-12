@@ -64,11 +64,12 @@ const ProductCard = ({
         <div>
           {withOrderButton && (
             <Button
-              onClick={() => console.log("object")}
-              className="bg-blue-primary text-white text-xs rounded-md "
-            >
-              Pesan
-            </Button>
+              className="text-xs rounded-md "
+              variant="primary"
+              text="Pesan"
+              size='sm'
+              rounded
+            />
           )}
         </div>
       </div>
