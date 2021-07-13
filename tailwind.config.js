@@ -12,6 +12,7 @@ module.exports = {
           donker: "#15151F",
           marker: "#1D2D74",
           dark: "#110828",
+          light : '#186CFF'
         },
         violet: "#1D103D",
         gray: {

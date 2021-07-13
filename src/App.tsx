@@ -11,6 +11,7 @@ import CommodityDetail from "./screens/CommodityDetail";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Product from "./screens/Product";
+import Cart from "./screens/Cart";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/komoditas" component={Commodity} exact />
         <Route path="/komoditas/:id" component={CommodityDetail} exact />
         <Route path="/produk/:id" component={Product} exact />
+        <Route path="/keranjang" component={Cart} exact />
         <Route path="/login" component={Login} exact />
         <Route path="/daftar" component={Register} exact />
       </Switch>

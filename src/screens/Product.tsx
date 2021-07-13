@@ -101,7 +101,7 @@ const Product = () => {
                     (item, i) => (
                       <Button
                         key={i}
-                        variant="primary"
+                        variant="secondary"
                         className="border-2 border-blue-primary text-blue-primary px-8 rounded-md text-sm"
                         text={item}
                         size="sm"
@@ -151,7 +151,7 @@ const Product = () => {
               <Button
                 className="text-white border-2 border-blue-primary bg-blue-primary text-sm w-40"
                 text="Beli Sekarang"
-                size="lg"
+                size="md"
                 variant="primary"
               />
             </div>

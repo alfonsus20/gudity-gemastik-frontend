@@ -52,7 +52,10 @@ const Navbar = () => {
       variants={backgroundVariants}
       initial="hidden"
       animate={
-        isBackgroundBlack || location.pathname.includes("/komoditas/") || location.pathname.includes("/produk/")
+        isBackgroundBlack ||
+        location.pathname.includes("/komoditas/") ||
+        location.pathname.includes("/produk/") ||
+        location.pathname.includes("/keranjang")
           ? "shown"
           : "hidden"
       }

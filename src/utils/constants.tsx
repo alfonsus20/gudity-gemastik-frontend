@@ -1,4 +1,9 @@
 import { FeatureCardProps } from "../components/FeatureCard";
+import {
+  BellIcon,
+  ShoppingCartIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/solid";
 
 export type QuickAccessFeature = {
   title: string;
@@ -64,5 +69,28 @@ export const FEATURES: FeatureCardProps[] = [
     title: "Informasi",
     description:
       "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
+  },
+];
+
+type HeaderItem = {
+  icon: React.ReactNode;
+  text: string;
+  pathName?: string;
+};
+
+export const HEADER_ITEMS: HeaderItem[] = [
+  {
+    icon: <BellIcon  className='w-6 h-6'/>,
+    text: "Notifikasi",
+  },
+  {
+    icon: <ShoppingCartIcon className='w-6 h-6' />,
+    text: "Keranjang Belanja",
+    pathName: "keranjang",
+  },
+  {
+    icon: <QuestionMarkCircleIcon className='w-6 h-6' />,
+    text: "Bantuan",
+    pathName: "bantuan",
   },
 ];
