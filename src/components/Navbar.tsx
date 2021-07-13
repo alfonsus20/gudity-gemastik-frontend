@@ -57,7 +57,7 @@ const Navbar = () => {
         location.pathname.includes("/produk/") ||
         location.pathname.includes("/keranjang")
           ? "shown"
-          : "hidden"
+          : "shown"
       }
       transition={{ duration: 0.5 }}
     >

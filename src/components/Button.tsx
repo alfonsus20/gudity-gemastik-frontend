@@ -5,7 +5,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   icon?: React.ReactNode;
   size?: "sm" | "md" | "lg" | "full";
-  variant: "primary" | "secondary" | "tertiary" | "quaternary" | "plain";
+  variant:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "quaternary"
+    | "plain"
+    | "plain-blue";
   rounded?: boolean;
   pathName?: string;
 }
@@ -29,6 +35,8 @@ const Button = ({
         return "text-black bg-transparent border-black";
       case "quaternary":
         return "text-white bg-transparent border-blue-primary";
+      case "plain-blue":
+        return "text-blue-primary bg-transparent font-medium";
       default:
         return "";
     }
@@ -53,11 +61,11 @@ const Button = ({
     return (
       <Link
         to={`/${pathName}`}
-        className={`py-2 flex flex-row justify-center items-center ${
-          variant === "plain" ? "" : "border-2"
+        className={`flex flex-row justify-center items-center ${
+          variant === "plain" ? "py-0" : "py-2 border-2"
         } ${getButtonConfiguration()} ${getButtonSize()}`}
       >
-        {icon && <span className='mr-2'>{icon}</span>}
+        {icon && <span className="mr-2">{icon}</span>}
         {text}
       </Link>
     );
@@ -66,8 +74,8 @@ const Button = ({
   return (
     <button
       {...rest}
-      className={`py-2 flex flex-row justify-center items-center ${
-        variant === "plain" ? "" : "border-2"
+      className={`flex flex-row justify-center items-center ${
+        variant.includes("plain") ? "py-0" : "py-2 border-2"
       } ${getButtonConfiguration()} ${getButtonSize()} ${className}`}
     >
       {icon && <>{icon} &nbsp;</>}

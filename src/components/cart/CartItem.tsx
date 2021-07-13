@@ -1,5 +1,4 @@
 import React from "react";
-import InputField from "../InputField";
 import { TrashIcon } from "@heroicons/react/outline";
 
 export type CartItemProps = {

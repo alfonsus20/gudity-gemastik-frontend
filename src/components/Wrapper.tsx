@@ -9,11 +9,11 @@ const Wrapper = ({ children }: WrapperProps) => {
 };
 
 const WrapperLeft = ({ children }: WrapperProps) => {
-  return <div className="md:mr-8 flex-auto">{children}</div>;
+  return <div className="mr-0 slg:mr-8 flex-auto">{children}</div>;
 };
 
 const WrapperRight = ({ children }: WrapperProps) => {
-  return <div style={{ flex: "0 1 auto" }} className='slg:w-80'>{children}</div>;
+  return <div style={{ flex: "0 0 auto" }} className='slg:w-80'>{children}</div>;
 };
 
 Wrapper.Left = WrapperLeft;

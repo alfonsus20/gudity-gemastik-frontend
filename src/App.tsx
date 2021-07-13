@@ -12,6 +12,7 @@ import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Product from "./screens/Product";
 import Cart from "./screens/Cart";
+import Checkout from "./screens/Checkout";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/komoditas/:id" component={CommodityDetail} exact />
         <Route path="/produk/:id" component={Product} exact />
         <Route path="/keranjang" component={Cart} exact />
+        <Route path="/checkout" component={Checkout} exact />
         <Route path="/login" component={Login} exact />
         <Route path="/daftar" component={Register} exact />
       </Switch>
