@@ -48,7 +48,7 @@ const Navbar = () => {
 
   return (
     <motion.div
-      className="flex flex-row fixed w-full z-20 px-12 py-6 top-0"
+      className="flex flex-row fixed w-full z-30 px-12 py-6 top-0"
       variants={backgroundVariants}
       initial="hidden"
       animate={

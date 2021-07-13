@@ -10,7 +10,7 @@ const Header = ({ title }: HeaderProps) => {
   return (
     <div className="bg-blue-light bg-opacity-10">
       <div className="flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto px-8 py-6">
-        <h2 className="text-4xl font-semibold py-8 md:py-10">{title}</h2>
+        <h2 className="text-4xl font-semibold py-5">{title}</h2>
         <div className="grid grid-cols-3">
           {HEADER_ITEMS.map((item, i) => (
             <div className="flex items-center justify-center" key={i}>

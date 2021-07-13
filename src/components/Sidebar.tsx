@@ -10,8 +10,8 @@ type SidebarProps = {
   title: string;
   items: SidebarItem[];
   total: number;
-  buttonText: string;
-  buttonAction(): void;
+  buttonText?: string;
+  buttonAction ?(): void;
 };
 
 const Sidebar = ({
@@ -36,14 +36,16 @@ const Sidebar = ({
         <span>Total</span>
         <span className="text-blue-primary">Rp {total}</span>
       </div>
-      <div className=''>
-        <Button
-          text={buttonText}
-          onClick={buttonAction}
-          size="full"
-          variant="primary"
-        />
-      </div>
+      {buttonText && buttonAction && (
+        <div className="">
+          <Button
+            text={buttonText}
+            onClick={buttonAction}
+            size="full"
+            variant="primary"
+          />
+        </div>
+      )}
     </aside>
   );
 };

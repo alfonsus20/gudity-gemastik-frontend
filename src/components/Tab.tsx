@@ -38,7 +38,7 @@ const Tab = ({ tabs, className }: TabProps) => {
           </button>
         ))}
       </div>
-      <div>{currentTab.content}</div>
+      <div className='pb-6'>{currentTab.content}</div>
     </div>
   );
 };

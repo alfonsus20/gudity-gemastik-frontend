@@ -80,17 +80,51 @@ type HeaderItem = {
 
 export const HEADER_ITEMS: HeaderItem[] = [
   {
-    icon: <BellIcon  className='w-6 h-6 flex-shrink-0'/>,
+    icon: <BellIcon className="w-6 h-6 flex-shrink-0" />,
     text: "Notifikasi",
   },
   {
-    icon: <ShoppingCartIcon className='w-6 h-6 flex-shrink-0' />,
+    icon: <ShoppingCartIcon className="w-6 h-6 flex-shrink-0" />,
     text: "Keranjang Belanja",
     pathName: "keranjang",
   },
   {
-    icon: <QuestionMarkCircleIcon className='w-6 h-6 flex-shrink-0' />,
+    icon: <QuestionMarkCircleIcon className="w-6 h-6 flex-shrink-0" />,
     text: "Bantuan",
     pathName: "bantuan",
+  },
+];
+
+type TransactionPhase = {
+  name: string;
+  unfinishedImage: string;
+  finishedImage: string;
+};
+
+export const TRANSACTION_PHASES: TransactionPhase[] = [
+  {
+    name: "Pembayaran",
+    unfinishedImage: "payment-unfinished",
+    finishedImage: "payment-finished",
+  },
+  {
+    name: "Pesanan sedang Dikemas",
+    unfinishedImage: "packaging-unfinished",
+    finishedImage: "packaging-finished",
+  },
+  {
+    name: "Pesanan Siap Dikirim",
+    unfinishedImage: "unready-to-delivery",
+    finishedImage: "ready-to-delivery",
+  },
+  {
+    name: "Pesanan dalam Pengiriman",
+    unfinishedImage: "delivery-unfinished",
+    finishedImage: "delivery-finished",
+  },
+  {
+    name: "Pesanan sudah Terkirim",
+    unfinishedImage: "arrived-unfinished",
+    finishedImage: "arrived-finished",
   },
 ];

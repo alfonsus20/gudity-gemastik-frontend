@@ -26,7 +26,7 @@ const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
 
   return (
     <motion.div
-      className="min-h-screen w-full fixed top-0 left-0 z-30 bg-gradient-to-b from-black to-violet text-white flex items-center justify-center"
+      className="min-h-screen w-full fixed top-0 left-0 z-40 bg-gradient-to-b from-black to-violet text-white flex items-center justify-center"
       initial="hidden"
       animate={shown ? "shown" : "hidden"}
       transition={{ stiffness: 0, duration: 0.5 }}

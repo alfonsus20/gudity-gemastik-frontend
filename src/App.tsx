@@ -13,6 +13,9 @@ import Register from "./screens/Register";
 import Product from "./screens/Product";
 import Cart from "./screens/Cart";
 import Checkout from "./screens/Checkout";
+import Payment from "./screens/Payment";
+import OrderDetail from "./screens/Order/OrderDetail";
+import OrderList from "./screens/Order/OrderList";
 
 const App = () => {
   return (
@@ -28,6 +31,9 @@ const App = () => {
         <Route path="/produk/:id" component={Product} exact />
         <Route path="/keranjang" component={Cart} exact />
         <Route path="/checkout" component={Checkout} exact />
+        <Route path="/pembayaran" component={Payment} exact />
+        <Route path="/orders" component={OrderList} exact />
+        <Route path="/orders/:id" component={OrderDetail} exact />
         <Route path="/login" component={Login} exact />
         <Route path="/daftar" component={Register} exact />
       </Switch>
