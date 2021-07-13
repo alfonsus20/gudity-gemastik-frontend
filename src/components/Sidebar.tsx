@@ -22,7 +22,7 @@ const Sidebar = ({
   buttonAction,
 }: SidebarProps) => {
   return (
-    <aside className="shadow px-6 py-4 text-sm sticky top-24">
+    <aside className="shadow px-6 py-4 text-sm md:sticky top-24">
       <div className="py-4">{title}</div>
       <div className="py-3 border-b-2 border-t-2 border-gray-300">
         {items.map((item, i) => (

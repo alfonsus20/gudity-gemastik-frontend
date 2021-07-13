@@ -5,15 +5,15 @@ type WrapperProps = {
 };
 
 const Wrapper = ({ children }: WrapperProps) => {
-  return <div className="flex flex-row  max-w-screen-xl mx-auto px-8 py-12">{children}</div>;
+  return <div className="flex flex-col slg:flex-row  max-w-screen-xl mx-auto md:px-8 pt-0 pb-12 md:py-12">{children}</div>;
 };
 
 const WrapperLeft = ({ children }: WrapperProps) => {
-  return <div className="mr-8 flex-auto">{children}</div>;
+  return <div className="md:mr-8 flex-auto">{children}</div>;
 };
 
 const WrapperRight = ({ children }: WrapperProps) => {
-  return <div style={{ flex: "0 0 20rem" }}>{children}</div>;
+  return <div style={{ flex: "0 1 auto" }} className='slg:w-80'>{children}</div>;
 };
 
 Wrapper.Left = WrapperLeft;

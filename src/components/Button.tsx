@@ -57,7 +57,7 @@ const Button = ({
           variant === "plain" ? "" : "border-2"
         } ${getButtonConfiguration()} ${getButtonSize()}`}
       >
-        {icon && <>{icon} &nbsp;</>}
+        {icon && <span className='mr-2'>{icon}</span>}
         {text}
       </Link>
     );
