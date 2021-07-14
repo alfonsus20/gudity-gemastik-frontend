@@ -128,3 +128,12 @@ export const TRANSACTION_PHASES: TransactionPhase[] = [
     finishedImage: "arrived-finished",
   },
 ];
+
+export const ROUTES_WITHOUT_NAVBAR: string[] = [
+  "",
+  "login",
+  "daftar",
+  "berita",
+  "umkm",
+  "komoditas",
+];

@@ -2,26 +2,13 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import QuickAccess from "./quick-access/QuickAccess";
+import { ROUTES_WITHOUT_NAVBAR } from "../utils/constants";
 
 const Navbar = () => {
-  const [searchOpen, setSearchOpen] = React.useState<boolean>(false);
   const [isBackgroundBlack, setIsBackgroundBlack] =
     React.useState<boolean>(false);
   const [quickAccessShown, showQuickAccess] = React.useState<boolean>(false);
   const location = useLocation();
-
-  const searchInputVariants = {
-    closed: {
-      maxWidth: 0,
-      padding: 0,
-      borderColor: "transparent",
-    },
-    open: {
-      maxWidth: "100%",
-      padding: "0.5rem 1rem",
-      borderColor: "rgba(256,256,256,0.5)",
-    },
-  };
 
   const backgroundVariants = {
     shown: {
@@ -53,11 +40,9 @@ const Navbar = () => {
       initial="hidden"
       animate={
         isBackgroundBlack ||
-        location.pathname.includes("/komoditas/") ||
-        location.pathname.includes("/produk/") ||
-        location.pathname.includes("/keranjang")
+        !ROUTES_WITHOUT_NAVBAR.includes(location.pathname.replace("/", ""))
           ? "shown"
-          : "shown"
+          : "hidden"
       }
       transition={{ duration: 0.5 }}
     >
@@ -66,35 +51,6 @@ const Navbar = () => {
         LOGO
       </Link>
       <div className="flex-auto flex flex-row justify-end gap-x-4">
-        <div className="flex flex-row gap-x-2 items-center justify-end">
-          <motion.input
-            type="text"
-            name=""
-            id=""
-            variants={searchInputVariants}
-            initial="closed"
-            placeholder="Masukkan kata kunci"
-            animate={searchOpen ? "open" : "close"}
-            className="border-2 border-white rounded-lg bg-transparent text-white text-opacity-50 focus:text-opacity-100 text-xs outline-none"
-          />
-          <button onClick={() => setSearchOpen(true)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 transform rotate-90 neon-image"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                color="#fff"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
-        </div>
         <button
           className="flex flex-row text-white items-center gap-x-2 "
           id="quickAccessButton"
