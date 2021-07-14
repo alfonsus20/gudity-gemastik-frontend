@@ -1,49 +1,64 @@
 import React from "react";
 import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar";
-import Button from "../../components/Button";
 import Tab from "../../components/Tab";
+import OrderCard from "../../components/OrderCard";
 
 const OrderList = () => {
   return (
     <div className="mt-20">
       <Header title="Detail Pemesanan" />
-      <Tab
-        tabs={[
-          {
-            title: "ATM BNI",
-            content: (
-              <ol className="list-decimal pl-6">
-                <li>Masukkan Kartu Anda.</li>
-                <li>Pilih Bahasa.</li>
-                <li>Masukkan PIN ATM Anda.</li>
-                <li>Pilih “Menu Lainnya”.</li>
-                <li>Pilih “Transfer”.</li>
-                <li>
-                  Pilih Jenis rekening yang akan Anda gunakan (Contoh; “Dari
-                  Rekening Tabungan”).
-                </li>
-                <li>Pilih “Virtual Account Billing”</li>
-                <li>Masukkan nomor Virtual Account Anda (476420743909).</li>
-                <li>
-                  Tagihan yang harus dibayarkan akan muncul pada layar
-                  konfirmasi
-                </li>
-                <li>Konfirmasi, apabila telah sesuai, lanjutkan transaksi.</li>
-                <li>Transaksi Anda telah selesai.</li>{" "}
-              </ol>
-            ),
-          },
-          {
-            title: "Mobile Banking BNI",
-            content: <div className="space-y-2 mb-6"></div>,
-          },
-          {
-            title: "Internet Banking BNI",
-            content: <div className="space-y-2 mb-6"></div>,
-          },
-        ]}
-      />
+      <div className="max-w-screen-xl mx-auto px-8 py-8">
+        <h3 className="text-center text-2xl font-semibold mb-8">
+          Daftar Pesanan Anda
+        </h3>
+        <Tab
+          tabs={[
+            {
+              title: "Dalam Pemesanan",
+              content: (
+                <div className="space-y-2 mb-6">
+                  {[
+                    "waitingPayment" as const,
+                    "onDelivery" as const,
+                    "done" as const,
+                  ].map((item) => (
+                    <OrderCard
+                      type={item}
+                      orderId={20210709001}
+                      orderDate="9 Juli 2021, 22:18"
+                      paymentMethod="Bank BNI"
+                      paymentTotal={4999000}
+                      commodityName="Komoditas Kopi Lalala"
+                      products={[
+                        {
+                          name: "Kopi Robusta (Masak Pohon)",
+                          weight: 1000,
+                          price: 200000,
+                          image: "kopi.jpg",
+                        },
+                        {
+                          name: "Kopi Robusta (Masak Pohon)",
+                          weight: 1000,
+                          price: 200000,
+                          image: "kopi.jpg",
+                        },
+                      ]}
+                    />
+                  ))}
+                </div>
+              ),
+            },
+            {
+              title: "Dalam Pengiriman",
+              content: <div className="space-y-2 mb-6"></div>,
+            },
+            {
+              title: "Selesai",
+              content: <div className="space-y-2 mb-6"></div>,
+            },
+          ]}
+        />
+      </div>
     </div>
   );
 };
