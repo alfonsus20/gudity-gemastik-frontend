@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  HeartIcon as HeartOutline,
-  StarIcon as StarOutline,
-} from "@heroicons/react/outline";
-import {
-  HeartIcon as HeartSolid,
-  StarIcon as StarSolid,
-} from "@heroicons/react/solid";
+import { HeartIcon as HeartOutline } from "@heroicons/react/outline";
+/* eslint-disable */
+import { HeartIcon as HeartSolid } from "@heroicons/react/solid";
 import Button from "../Button";
+import Rating from "./Rating";
 
 type ProductCardProps = {
   image: string;
@@ -16,7 +12,6 @@ type ProductCardProps = {
   price: number;
   rating: number;
   sold: number;
-  discount?: number;
   className?: string;
   withOrderButton?: boolean;
 };
@@ -27,7 +22,6 @@ const ProductCard = ({
   description,
   price,
   rating,
-  discount,
   className,
   sold,
   withOrderButton,
@@ -51,14 +45,7 @@ const ProductCard = ({
       <p className="font-semibold mb-2">Rp {price}/gram</p>
       <div className="flex flex-col xs:flex-row justify-between">
         <div className="mb-2 xs:mb-0">
-          <div className="flex flex-row mb-1">
-            <StarSolid className="w-4 h-4 text-yellow-400" />
-            <StarSolid className="w-4 h-4 text-yellow-400" />
-            <StarSolid className="w-4 h-4 text-yellow-400" />
-            <StarSolid className="w-4 h-4 text-yellow-400" />
-            <StarOutline className="w-4 h-4 text-yellow-400" />
-            <span className="ml-2 text-xs">{rating}</span>
-          </div>
+          <Rating rating={rating} size="sm" />
           <p className="text-xs">Terjual {sold} kg</p>
         </div>
         <div>
@@ -67,7 +54,7 @@ const ProductCard = ({
               className="text-xs rounded-md "
               variant="primary"
               text="Pesan"
-              size='sm'
+              size="sm"
               rounded
             />
           )}

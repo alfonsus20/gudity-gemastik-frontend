@@ -3,22 +3,14 @@ import Button from "../components/Button";
 import ImageGallery from "../components/ImageGallery";
 import {
   HeartIcon as HeartOutline,
-  /* eslint-disable */
-  StarIcon as StarOutline,
   ShoppingCartIcon,
   SwitchVerticalIcon,
   FilterIcon,
 } from "@heroicons/react/outline";
-import {
-  /* eslint-disable */
-  StarIcon as StarSolid,
-  ShareIcon,
-  /* eslint-disable */
-  HeartIcon as HeartSolid,
-} from "@heroicons/react/solid";
+import { ShareIcon } from "@heroicons/react/solid";
 import Dropdown from "../components/Dropdown";
 import ProductCard from "../components/product/ProductCard";
-import InputField from "../components/InputField";
+import TextField from "../components/TextField";
 import Rating from "../components/product/Rating";
 import RatingCollection from "../components/product/RatingCollection";
 import Review from "../components/Review";
@@ -84,11 +76,11 @@ const Product = () => {
                     <div className="flex flex-col flex-auto">
                       <div className="flex flex-col sm:flex-row items-start sm:items-center">
                         <span className="w-36">Pengiriman ke</span>
-                        <Dropdown options={[]} name="" className="w-40" />
+                        <Dropdown options={[]} className="w-40 text-sm" />
                       </div>
                       <div className="flex flex-col sm:flex-row items-start sm:items-center">
                         <span className="w-36">Biaya Kirim</span>
-                        <Dropdown options={[]} name="" className="w-40" />
+                        <Dropdown options={[]} className="w-40 text-sm" />
                       </div>
                     </div>
                   </div>
@@ -96,47 +88,35 @@ const Product = () => {
               </div>
               <div className="flex flex-row mb-3">
                 <label className="w-32 flex-shrink-0">Satuan</label>
-                <div className="flex-auto flex flex-row flex-wrap gap-4">
-                  {["Gram", "Kilogram", "Ton", "Karung (10kg)"].map(
-                    (item, i) => (
-                      <Button
-                        key={i}
-                        variant="secondary"
-                        className="border-2 border-blue-primary text-blue-primary px-8 rounded-md text-sm"
-                        text={item}
-                        size="sm"
-                      />
-                    )
-                  )}
-                </div>
+                <p>Kilogram</p>
               </div>
               <div className="flex flex-row mb-3 items-center">
                 <label className="w-32 flex-shrink-0">Kuantitas</label>
-                <div className="flex flex-row w-40 mr-4">
-                  <button
-                    className="px-2"
+                <div className="flex flex-row w-40 mr-4 items-center">
+                  <Button
+                    className="px-4"
+                    variant="plain"
                     onClick={() =>
                       setQuantity((prevQuantity) => prevQuantity - 1)
                     }
                     disabled={quantity <= 0}
-                  >
-                    -
-                  </button>
-                  <InputField
+                    text="-"
+                  />
+                  <TextField
                     value={quantity}
                     type="text"
-                    onChange={() => console.log("object")}
-                    className="px-3 py-2 rounded-md border-2 border-gray-200 mx-4"
+                    rounded
                     textCenter
+                    variant="tertiary"
                   />
-                  <button
-                    className="px-2"
+                  <Button
+                    className="px-4"
+                    variant="plain"
                     onClick={() =>
                       setQuantity((prevQuantity) => prevQuantity + 1)
                     }
-                  >
-                    +
-                  </button>
+                    text="+"
+                  />
                 </div>
                 <span className="text-green-500 text-sm">Tersedia</span>
               </div>
@@ -212,14 +192,12 @@ const Product = () => {
           <div className="flex flex-row gap-2 mb-4">
             <Dropdown
               options={[]}
-              name=""
               className="w-48 text-xs"
               icon={<SwitchVerticalIcon className="w-6 h-6 text-gray-500 " />}
               placeholder="Urutkan : Produk"
             />
             <Dropdown
               options={[]}
-              name=""
               className="w-48 text-xs"
               icon={<FilterIcon className="w-6 h-6 text-gray-500" />}
               placeholder="Saring : Semua bintang"
@@ -256,7 +234,7 @@ const Product = () => {
           />
         </div>
       </div>
-      <div className="max-w-screen-xl mx-auto py-20 px-8 w-full overflow-x-auto flex flex-row gap-4">
+      <div className="max-w-screen-xl mx-auto py-8 my-12 px-8 w-full overflow-x-auto flex flex-row gap-4">
         {[...Array(10)].map((_, i) => (
           <ProductCard
             key={i}

@@ -1,6 +1,5 @@
 import React from "react";
 import Select from "react-select";
-import { CollectionIcon } from "@heroicons/react/solid";
 
 type DropdownOption = {
   value: any;
@@ -8,8 +7,6 @@ type DropdownOption = {
 };
 
 type DropdownProps = {
-  id?: string;
-  name?: string;
   options: DropdownOption[];
   className?: string;
   rounded?: boolean;
@@ -18,8 +15,6 @@ type DropdownProps = {
 };
 
 const Dropdown = ({
-  id,
-  name,
   options,
   className,
   rounded,
@@ -51,7 +46,7 @@ const Dropdown = ({
         rounded && "rounded-md"
       } flex flex-row items-center`}
     >
-      {icon ? icon : <CollectionIcon className="w-6 h-6" />}
+      {icon && icon}
       <Select
         options={options}
         styles={customStyles}

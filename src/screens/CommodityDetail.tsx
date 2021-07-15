@@ -99,7 +99,6 @@ const CommodityDetail = () => {
         <h2 className="text-4xl font-semibold mb-4">Produk</h2>
         <Dropdown
           options={[]}
-          name=""
           className="w-60 mb-6 border-2 border-violet rounded-md px-2"
           placeholder="Saring Menurut"
         />

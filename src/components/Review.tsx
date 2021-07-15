@@ -1,7 +1,6 @@
 import React from "react";
 import { Image } from "./ImageGallery";
 import Rating from "./product/Rating";
-import { ThumbUpIcon } from "@heroicons/react/solid";
 
 type ReviewProps = {
   reviewerName: string;
@@ -25,12 +24,7 @@ const Review = ({ reviewerName, review, images, rating }: ReviewProps) => {
           />
         ))}
       </div>
-      <div className="flex flex-row justify-between">
-        <Rating rating={rating} />
-        <button className="flex flex-row items-center">
-          <ThumbUpIcon className="w-6 h-6 text-blue-primary mr-2" /> 124
-        </button>
-      </div>
+      <Rating rating={rating} />
     </div>
   );
 };

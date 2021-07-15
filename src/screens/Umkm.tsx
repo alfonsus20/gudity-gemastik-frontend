@@ -1,7 +1,7 @@
 import React from "react";
 import Underline from "../components/Underline";
 import Button from "../components/Button";
-import InputField from "../components/InputField";
+import TextField from "../components/TextField";
 import UmkmCard from "../components/UmkmCard";
 import Features from "../components/Features";
 import Dropdown from "../components/Dropdown";
@@ -37,7 +37,6 @@ const Umkm = () => {
           </div>
           <div className="flex flex-col-reverse md:flex-row justify-center items-center  md:space-x-4 mb-4">
             <Dropdown
-              name="bidang-umkm"
               options={[
                 { value: "1", label: "1" },
                 { value: "2", label: "2" },
@@ -46,7 +45,7 @@ const Umkm = () => {
               placeholder="Jenis Komoditas"
               rounded
             />
-            <InputField
+            <TextField
               type="text"
               onChange={() => console.log("object")}
               value=""
@@ -97,7 +96,7 @@ const Umkm = () => {
             />
           </div>
           <div className="flex justify-center">
-            <Button variant="tertiary" text='Lihat Lebih Banyak'/>
+            <Button variant="tertiary" text="Lihat Lebih Banyak" />
           </div>
         </div>
       </div>

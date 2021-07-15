@@ -2,9 +2,10 @@ import React from "react";
 import Underline from "../components/Underline";
 import NewsCard from "../components/NewsCard";
 import Button from "../components/Button";
-import InputField from "../components/InputField";
+import TextField from "../components/TextField";
 import NewsModal from "../components/NewsModal";
 import Features from "../components/Features";
+import { SearchIcon } from "@heroicons/react/outline";
 
 const News = () => {
   return (
@@ -36,37 +37,15 @@ const News = () => {
             </h2>
             <Underline backgroundColor="#110828" center />
           </div>
-          <div className="flex flex-col-reverse md:flex-row justify-center items-center space-x-4 mb-4">
-            <InputField
-              type="date"
-              onChange={() => console.log("object")}
-              value=""
-              className=""
-              style={{ border: "2px solid #1D2D74" }}
-            />
-            <InputField
+          <div className="flex flex-col-reverse md:flex-row justify-center items-center md:space-x-4 mb-4">
+            <TextField type="date" value="" variant="secondary" rounded />
+            <TextField
               type="text"
-              onChange={() => console.log("object")}
               value=""
-              className="mb-4 md:mb-0"
               placeholder="Cari Berita"
-              style={{ border: "2px solid #1D2D74" }}
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              }
+              variant="secondary"
+              rounded
+              icon={<SearchIcon />}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-12">

@@ -23,6 +23,9 @@ module.exports = {
         orange: {
           DEFAULT: "#FB8200",
         },
+        purple : {
+          DEFAULT : '#1d2d74'
+        }
       },
       spacing: {
         88: "22rem",

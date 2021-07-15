@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../components/Button";
 import Underline from "../components/Underline";
-import InputField from "../components/InputField";
+import TextField from "../components/TextField";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -31,60 +31,29 @@ const Register = () => {
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <InputField
-            type="nama"
-            value=""
-            onChange={() => console.log("object")}
-            rounded={false}
-            placeholder="Nama"
-            className="text-white mb-4"
-            style={{
-              borderBottom: "2px solid rgba(256,256,256,0.7)",
-            }}
-          />
-          <InputField
+          <TextField value="" placeholder="Nama" />
+          <TextField
             type="email"
             value=""
-            onChange={() => console.log("object")}
-            rounded={false}
             placeholder="Email"
             className="text-white mb-4"
-            style={{
-              borderBottom: "2px solid rgba(256,256,256,0.7)",
-            }}
           />
-          <InputField
+          <TextField
             type="number"
-            value=""
             onChange={() => console.log("object")}
-            rounded={false}
             placeholder="NIK"
-            className="text-white mb-4"
-            style={{
-              borderBottom: "2px solid rgba(256,256,256,0.7)",
-            }}
           />
-          <InputField
+          <TextField
             type="password"
             value=""
             onChange={() => console.log("object")}
-            rounded={false}
             placeholder="Kata Sandi"
-            className="text-white mb-4"
-            style={{
-              borderBottom: "2px solid rgba(256,256,256,0.7)",
-            }}
           />
-          <InputField
+          <TextField
             type="password"
             value=""
-            onChange={() => console.log("object")}
             rounded={false}
             placeholder="Ulangi Kata Sandi"
-            className="text-white mb-4"
-            style={{
-              borderBottom: "2px solid rgba(256,256,256,0.7)",
-            }}
           />
           <Button
             variant="primary"

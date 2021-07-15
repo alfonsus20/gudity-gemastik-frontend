@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-import InputField from "../components/InputField";
+import TextField from "../components/TextField";
 import Underline from "../components/Underline";
 
 const Login = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>):void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
   };
 
@@ -31,29 +31,24 @@ const Login = () => {
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <InputField
+          <TextField
             type="text"
             value=""
-            onChange={() => console.log("object")}
-            rounded={false}
             placeholder="Email"
             className="text-white mb-4"
-            style={{
-              borderBottom: "2px solid rgba(256,256,256,0.7)",
-            }}
           />
-          <InputField
+          <TextField
             type="password"
             value=""
-            onChange={() => console.log("object")}
-            rounded={false}
             placeholder="Password"
             className="text-white mb-4"
-            style={{
-              borderBottom: "2px solid rgba(256,256,256,0.7)",
-            }}
           />
-          <Button className="mt-2 mb-4" text="Masuk" variant="primary" size='full'/>
+          <Button
+            className="mt-2 mb-4"
+            text="Masuk"
+            variant="primary"
+            size="full"
+          />
         </form>
         <div className="text-sm text-center text-white">
           <span className="mr-2">Belum punya akun?</span>
