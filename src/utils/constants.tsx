@@ -80,10 +80,6 @@ type HeaderItem = {
 
 export const HEADER_ITEMS: HeaderItem[] = [
   {
-    icon: <BellIcon className="w-6 h-6 flex-shrink-0" />,
-    text: "Notifikasi",
-  },
-  {
     icon: <ShoppingCartIcon className="w-6 h-6 flex-shrink-0" />,
     text: "Keranjang Belanja",
     pathName: "keranjang",

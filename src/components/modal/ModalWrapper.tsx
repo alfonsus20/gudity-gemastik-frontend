@@ -11,7 +11,7 @@ const ModalWrapper = ({ shown, children, onClose }: ModalWrapperProps) => {
     <div
       className={`${
         shown ? "block" : "hidden"
-      } min-h-screen w-full fixed top-0 z-30 flex items-center justify-center `}
+      } min-h-screen w-full fixed top-0 left-0 z-30 flex items-center justify-center `}
     >
       <div
         className="w-full h-screen absolute bg-black bg-opacity-60 text-white"

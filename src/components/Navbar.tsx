@@ -3,11 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import QuickAccess from "./quick-access/QuickAccess";
 import { ROUTES_WITHOUT_NAVBAR } from "../utils/constants";
+import LogoutModal from "./modal/LogoutModal";
 
 const Navbar = () => {
   const [isBackgroundBlack, setIsBackgroundBlack] =
     React.useState<boolean>(false);
   const [quickAccessShown, showQuickAccess] = React.useState<boolean>(false);
+  const [logoutModalShown, showLogoutModal] = React.useState<boolean>(false);
   const location = useLocation();
 
   const backgroundVariants = {
@@ -47,6 +49,10 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
     >
       <QuickAccess showQuickAccess={showQuickAccess} shown={quickAccessShown} />
+      <LogoutModal
+        shown={logoutModalShown}
+        onClose={() => showLogoutModal(false)}
+      />
       <Link to="/" className="w-20 flex-shrink-0 text-white my-auto">
         LOGO
       </Link>

@@ -9,7 +9,7 @@ import Dropdown from "../components/Dropdown";
 import AddressModal from "../components/modal/AddressModal";
 
 const Checkout = () => {
-  const [addressModalShown, showAddressModal] = React.useState<boolean>(true);
+  const [addressModalShown, showAddressModal] = React.useState<boolean>(false);
 
   return (
     <div className="mt-20">
