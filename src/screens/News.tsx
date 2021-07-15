@@ -3,7 +3,7 @@ import Underline from "../components/Underline";
 import NewsCard from "../components/NewsCard";
 import Button from "../components/Button";
 import TextField from "../components/TextField";
-import NewsModal from "../components/NewsModal";
+import NewsModal from "../components/modal/NewsModal";
 import Features from "../components/Features";
 import { SearchIcon } from "@heroicons/react/outline";
 

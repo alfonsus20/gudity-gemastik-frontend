@@ -1,4 +1,4 @@
-import { NewsModalProps } from "../../components/NewsModal";
+import { NewsModalProps } from "../../components/modal/NewsModal";
 
 export const SHOW_NEWS_MODAL = "SHOW_NEWS_MODAL";
 export const HIDE_NEWS_MODAL = "HIDE_NEWS_MODAL";

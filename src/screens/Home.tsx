@@ -3,12 +3,12 @@ import Button from "../components/Button";
 import FeatureCard from "../components/FeatureCard";
 import Features from "../components/Features";
 import NewsCard from "../components/NewsCard";
-import NewsModal from "../components/NewsModal";
+import NewsModal from "../components/modal/NewsModal";
 import { FEATURES } from "../utils/constants";
 
 const Home = () => {
   return (
-    <div>
+    <div className="relative">
       <NewsModal />
       <div className="min-h-screen relative">
         <video
