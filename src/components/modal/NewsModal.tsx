@@ -8,6 +8,7 @@ import {
 import Underline from "../Underline";
 import { RootState } from "../../store";
 import ModalWrapper from "./ModalWrapper";
+import CloseButton from "./CloseButton";
 
 export type NewsModalProps = {
   title: string;
@@ -26,7 +27,7 @@ const NewsModal = () => {
       onClose={() => dispatch({ type: HIDE_NEWS_MODAL })}
     >
       <div
-        className={`flex flex-col sm:flex-row rounded-lg mx-6 max-w-md sm:max-w-xl md:max-w-full text-white`}
+        className={`flex flex-col sm:flex-row rounded-lg text-white relative`}
       >
         <div className="w-full md:w-1/2 bg-blue-dark px-8 py-12">
           <Underline backgroundColor="#175F88" height={4} />
@@ -35,15 +36,12 @@ const NewsModal = () => {
         <div className="w-full md:w-1/2 bg-blue-secondary text-lg px-8 py-12">
           {content}
         </div>
+        <CloseButton
+          onClick={() => dispatch({ type: HIDE_NEWS_MODAL })}
+          color="white"
+        />
       </div>
     </ModalWrapper>
-    // <div
-    //   className={`${
-    //     shown ? "block" : "block"
-    //   } min-h-screen w-full flex flex-col  md:flex-row justify-center items-center fixed bg-black bg-opacity-60 z-30 text-white`}
-    // >
-
-    // </div>
   );
 };
 

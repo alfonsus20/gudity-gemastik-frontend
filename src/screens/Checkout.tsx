@@ -6,10 +6,17 @@ import Wrapper from "../components/Wrapper";
 import Button from "../components/Button";
 import { ChatAltIcon, ShoppingBagIcon } from "@heroicons/react/outline";
 import Dropdown from "../components/Dropdown";
+import AddressModal from "../components/modal/AddressModal";
 
 const Checkout = () => {
+  const [addressModalShown, showAddressModal] = React.useState<boolean>(true);
+
   return (
     <div className="mt-20">
+      <AddressModal
+        shown={addressModalShown}
+        onClose={() => showAddressModal(false)}
+      />
       <Header title="Rincian Pembayaran" />
       <Wrapper>
         <Wrapper.Left>
@@ -27,7 +34,11 @@ const Checkout = () => {
               </div>
             </div>
             <div className="flex justify-end">
-              <Button text="UBAH" variant="plain-blue" />
+              <Button
+                text="UBAH"
+                variant="plain-blue"
+                onClick={() => showAddressModal(true)}
+              />
             </div>
           </div>
           <div className="shadow px-8 py-6  rounded-md mb-6">
@@ -43,9 +54,15 @@ const Checkout = () => {
               <div className="col-span-3 font-semibold text-lg">
                 Produk Dipesan
               </div>
-              <div className="col-span-1 flex items-center justify-end">Harga Satuan</div>
-              <div className="col-span-1 flex items-center justify-end">Kuantitas</div>
-              <div className="col-span-1 flex items-center justify-end">Sub Total</div>
+              <div className="col-span-1 flex items-center justify-end">
+                Harga Satuan
+              </div>
+              <div className="col-span-1 flex items-center justify-end">
+                Kuantitas
+              </div>
+              <div className="col-span-1 flex items-center justify-end">
+                Sub Total
+              </div>
               <div className="col-span-3">
                 <div className="flex flex-row items-center">
                   <img
@@ -56,9 +73,15 @@ const Checkout = () => {
                   <p>Kopi Robusta (Masak Pohon)</p>
                 </div>
               </div>
-              <div className="col-span-1 flex items-center justify-end">Rp 3.725</div>
-              <div className="col-span-1 flex items-center justify-end">1000 gram</div>
-              <div className="col-span-1 flex items-center justify-end">Rp 3.725.000</div>
+              <div className="col-span-1 flex items-center justify-end">
+                Rp 3.725
+              </div>
+              <div className="col-span-1 flex items-center justify-end">
+                1000 gram
+              </div>
+              <div className="col-span-1 flex items-center justify-end">
+                Rp 3.725.000
+              </div>
               <div className="col-span-3">
                 <div className="flex flex-row items-center">
                   <img
@@ -69,21 +92,38 @@ const Checkout = () => {
                   <p>Kopi Robusta (Masak Pohon)</p>
                 </div>
               </div>
-              <div className="col-span-1 flex items-center justify-end">Rp 3.725</div>
-              <div className="col-span-1 flex items-center justify-end">1000 gram</div>
-              <div className="col-span-1 flex items-center justify-end">Rp 3.725.000</div>
+              <div className="col-span-1 flex items-center justify-end">
+                Rp 3.725
+              </div>
+              <div className="col-span-1 flex items-center justify-end">
+                1000 gram
+              </div>
+              <div className="col-span-1 flex items-center justify-end">
+                Rp 3.725.000
+              </div>
               <div className="col-span-6">
-                <div className="flex flex-row items-center">
-                  <p className="mr-2">Metode Pengiriman</p>
-                  <Button text="UBAH" variant="plain-blue" />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold">Reguler</p>
-                    <p className="text-sm">4 - 6 hari</p>
-                  </div>
-                  <p className="font-semibold">Rp 24.000</p>
-                </div>
+                <p className="mr-2 mb-2 text-lg">Metode Pengiriman</p>
+                {["Reguler", "Kilat"].map((item, i) => (
+                  <label
+                    htmlFor={item}
+                    className="flex items-center justify-between mb-4"
+                    key={i}
+                  >
+                    <div className="flex flex-row items-center">
+                      <input
+                        type="radio"
+                        name="transaction"
+                        id={item}
+                        className="flex-shrink-0 w-4 h-4 mr-4 md:mr-6"
+                      />
+                      <div>
+                        <p className="font-semibold">{item}</p>
+                        <p className="text-sm">4 - 6 hari</p>
+                      </div>
+                    </div>
+                    <p className="font-semibold">Rp 24.000</p>
+                  </label>
+                ))}
               </div>
               <label htmlFor="" className="col-span-1">
                 Pesan
@@ -100,38 +140,10 @@ const Checkout = () => {
           <div className="shadow px-8 py-6  rounded-md">
             <p className="py-2 text-lg font-semibold">Metode Pembayaran</p>
             <div className="flex flex-row mb-4">
-              <input type="radio" name="transaction" id="" className="flex-shrink-0 w-6 h-6 mr-4" />
               <div className="space-y-4">
                 <p className="font-semibold">
                   Transfer melalui virtual account
                 </p>
-                <div>
-                  <label htmlFor="">Pilih Bank</label>
-                  <Dropdown
-                    options={[]}
-                    className="border-2 border-violet w-auto px-2 rounded-md"
-                  />
-                </div>
-                <div>
-                  <p>Ketentuan:</p>
-                  <ul className="list-disc pl-6">
-                    <li>
-                      Pilih metode pembayaran ini untuk melakukan pembayaran
-                      dengan ATM BNI / Mobile Banking BNI / Internet Banking BNI
-                    </li>
-                    <li>
-                      Kamu diberikan waktu maksimal 1 jam untuk melakukan
-                      pembayaran, terhitung setelah kamu melakukan proses
-                      checkout.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <input type="radio" name="transaction" id="" className="flex-shrink-0 w-6 h-6 mr-4" />
-              <div className="space-y-4">
-                <p className="font-semibold">Kartu Kredit/ Debit</p>
                 <div>
                   <label htmlFor="">Pilih Bank</label>
                   <Dropdown

@@ -45,7 +45,7 @@ const News = () => {
               placeholder="Cari Berita"
               variant="secondary"
               rounded
-              icon={<SearchIcon />}
+              icon={<SearchIcon  className='w-6 h-6'/>}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-12">

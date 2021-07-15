@@ -49,7 +49,7 @@ const QuickAccess = ({ shown, showQuickAccess }: QuickAccessProps) => {
         </div>
       </div>
       <button
-        className="absolute right-8 top-8"
+        className="absolute right-4 top-4 md:right-8 md:top-8"
         onClick={() => showQuickAccess(false)}
       >
         <XIcon className="w-8 h-8 text-white" />
