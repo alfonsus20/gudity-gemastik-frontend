@@ -13,7 +13,8 @@ module.exports = {
           marker: "#1D2D74",
           dark: "#110828",
           light : '#186CFF',
-          progress : '#8BA9FF'
+          progress : '#8BA9FF',
+          admin : '#2E53DA'
         },
         violet: "#1D103D",
         gray: {

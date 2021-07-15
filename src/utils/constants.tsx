@@ -1,7 +1,13 @@
 import { FeatureCardProps } from "../components/FeatureCard";
 import {
+  ViewGridIcon,
+  ShoppingBagIcon,
   ShoppingCartIcon,
   QuestionMarkCircleIcon,
+  DocumentSearchIcon,
+  PresentationChartLineIcon,
+  ChartBarIcon,
+  MapIcon,
 } from "@heroicons/react/solid";
 
 export type QuickAccessFeature = {
@@ -131,4 +137,55 @@ export const ROUTES_WITHOUT_NAVBAR: string[] = [
   "berita",
   "umkm",
   "komoditas",
+];
+
+type SideBarItem = {
+  icon: React.ReactNode;
+  text: string;
+  pathName: string;
+};
+
+export const SIDEBAR_ITEMS: SideBarItem[] = [
+  {
+    icon: <ViewGridIcon className="w-7 h-7" />,
+    text: "Halaman Utama",
+    pathName: "/dashboard",
+  },
+  {
+    icon: <ShoppingBagIcon className="w-7 h-7" />,
+    text: "Komoditas Anda",
+    pathName: "/dashboard/komoditas",
+  },
+  {
+    icon: <DocumentSearchIcon className="w-7 h-7" />,
+    text: "Cari Komoditasmu",
+    pathName: "/dashboard/cari-komoditas",
+  },
+  {
+    icon: <PresentationChartLineIcon className="w-7 h-7" />,
+    text: "Analisis",
+    pathName: "/dashboard/analisis",
+  },
+  {
+    icon: <ChartBarIcon className="w-7 h-7" />,
+    text: "Prediksi",
+    pathName: "dashboard/prediksi",
+  },
+  {
+    icon: <MapIcon className="w-7 h-7" />,
+    text: "Peta Komoditas",
+    pathName: "dashboard/peta-komoditas",
+  },
+];
+
+type DashboardFeature = {
+  text: string;
+  backgroundColor: string;
+};
+
+export const DASHBOARD_FEATURES: DashboardFeature[] = [
+  { text: "Cari Jenis Komoditas dengan Gambar", backgroundColor: "bg-red-500" },
+  { text: "Analisis Harga Komoditas di Masa Lampau", backgroundColor: "bg-indigo-500" },
+  { text: "Prediksi Kesuksesan Usahamu dan Harga dimasa Depan", backgroundColor: "bg-yellow-500" },
+  { text: "Cari Sebaran Komoditas dengan Peta", backgroundColor: "bg-purple-400" },
 ];
