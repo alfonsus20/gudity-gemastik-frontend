@@ -1,6 +1,5 @@
 import { FeatureCardProps } from "../components/FeatureCard";
 import {
-  BellIcon,
   ShoppingCartIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/solid";
