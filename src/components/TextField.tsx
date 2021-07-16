@@ -4,7 +4,7 @@ import React from "react";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode;
   rounded?: boolean;
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: "primary" | "secondary" | "tertiary" | "dashboard";
   textCenter?: boolean;
 }
 
@@ -27,6 +27,8 @@ const TextField = ({
         return "text-black border-2 border-purple mb-4";
       case "tertiary":
         return "border-gray-200 border-2 ";
+      case "dashboard":
+        return "text-black border-2 border-black";
       default:
         return "";
     }

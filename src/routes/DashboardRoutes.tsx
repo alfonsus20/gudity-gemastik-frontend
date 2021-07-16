@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import { NavLink, Route, Switch, useRouteMatch } from "react-router-dom";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Home from "../screens/dashboard/Home";
+import Profile from "../screens/dashboard/Profile";
 import { SIDEBAR_ITEMS } from "../utils/constants";
 
 const DashboardRoutes = () => {
@@ -9,17 +10,19 @@ const DashboardRoutes = () => {
 
   return (
     <div className="flex flex-row min-h-screen bg-blue-admin relative">
-      <div className="flex-shrink-0 w-72 bg-blue-admin min-h-screen flex flex-col items-center ">
+      <div className="flex-shrink-0 w-72 bg-blue-admin h-screen overflow-y-auto flex flex-col items-center sticky top-0 left-0 ">
         <div className="text-white text-2xl font-semibold mt-12 mb-8">LOGO</div>
         <div className=" flex flex-col w-full px-4 space-y-2 mb-4">
           {SIDEBAR_ITEMS.slice(0, 3).map((item) => (
-            <Link
+            <NavLink
+              exact
+              activeStyle={{ backgroundColor: "white", color: "#2E53DA" }}
               to={item.pathName}
               className="flex flex-row items-center px-4 py-3 w-full text-white rounded-md hover:text-blue-admin hover:bg-white"
             >
               <span className="mr-2">{item.icon}</span>{" "}
               <span className="text-sm">{item.text}</span>
-            </Link>
+            </NavLink>
           ))}
         </div>
         <div className="w-full">
@@ -29,13 +32,15 @@ const DashboardRoutes = () => {
         </div>
         <div className=" flex flex-col w-full px-4 space-y-2">
           {SIDEBAR_ITEMS.slice(2, SIDEBAR_ITEMS.length).map((item) => (
-            <Link
+            <NavLink
+              activeStyle={{ backgroundColor: "white", color: "#2E53DA" }}
               to={item.pathName}
+              exact
               className="flex flex-row items-center px-4 py-3 w-full text-white rounded-md hover:text-blue-admin hover:bg-white"
             >
-              <span className="mr-2">{item.icon}</span>{" "}
+              <span className="mr-2">{item.icon}</span>
               <span className="text-sm">{item.text}</span>
-            </Link>
+            </NavLink>
           ))}
         </div>
       </div>
@@ -46,11 +51,7 @@ const DashboardRoutes = () => {
         <NavbarDashboard />
         <Switch>
           <Route path={path} exact component={Home} />
-          <Route
-            path={`${path}/profile`}
-            exact
-            component={() => <div className="mt-24">profil</div>}
-          />
+          <Route path={`${path}/profile`} exact component={Profile} />
           <div className="mt-24">profile</div>
         </Switch>
       </div>

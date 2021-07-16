@@ -45,11 +45,11 @@ const Button = ({
   const getButtonSize = (): string => {
     switch (size) {
       case "sm":
-        return "px-2 py-1 w-auto text-xs";
+        return "px-2 py-1 text-xs";
       case "md":
-        return "px-4 py-1 w-auto text-sm";
+        return "px-4 py-1 text-sm";
       case "lg":
-        return "px-6 py-3 w-auto text-md";
+        return "px-6 py-3 text-md";
       case "full":
         return "w-full text-md";
       default:
@@ -73,10 +73,10 @@ const Button = ({
 
   return (
     <button
-      {...rest}
       className={`flex flex-row justify-center items-center ${
         variant.includes("plain") ? "py-0" : "py-2 border-2"
       } ${getButtonConfiguration()} ${getButtonSize()} ${className}`}
+      {...rest}
     >
       {icon && <>{icon} &nbsp;</>}
       {text}
