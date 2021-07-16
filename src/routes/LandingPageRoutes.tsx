@@ -9,8 +9,8 @@ import CommodityDetail from "../screens/CommodityDetail";
 import Home from "../screens/Home";
 import Login from "../screens/Login";
 import News from "../screens/News";
-import OrderDetail from "../screens/order/OrderDetail";
-import OrderList from "../screens/order/OrderList";
+// import OrderDetail from "../screens/order/OrderDetail";
+// import OrderList from "../screens/order/OrderList";
 import Payment from "../screens/Payment";
 import Product from "../screens/Product";
 import Register from "../screens/Register";
@@ -30,8 +30,8 @@ const LandingPageRoutes = () => {
         <Route path="/keranjang" component={Cart} exact />
         <Route path="/checkout" component={Checkout} exact />
         <Route path="/pembayaran" component={Payment} exact />
-        <Route path="/orders" component={OrderList} exact />
-        <Route path="/orders/:id" component={OrderDetail} exact />
+        {/* <Route path="/orders" component={OrderList} exact /> */}
+        {/* <Route path="/orders/:id" component={OrderDetail} exact /> */}
         <Route path="/login" component={Login} exact />
         <Route path="/daftar" component={Register} exact />
       </Switch>
