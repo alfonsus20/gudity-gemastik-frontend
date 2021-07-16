@@ -11,7 +11,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     | "tertiary"
     | "quaternary"
     | "plain"
-    | "plain-blue";
+    | "plain-blue"
+    | "danger";
   rounded?: boolean;
   pathName?: string;
 }
@@ -37,6 +38,8 @@ const Button = ({
         return "text-white bg-transparent border-blue-primary";
       case "plain-blue":
         return "text-blue-primary bg-transparent font-medium";
+      case "danger":
+        return "text-white bg-red-500 border-red-500";
       default:
         return "";
     }
