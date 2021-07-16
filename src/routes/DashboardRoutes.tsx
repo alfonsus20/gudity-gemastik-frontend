@@ -1,4 +1,3 @@
-import { ViewGridIcon } from "@heroicons/react/solid";
 import React from "react";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 import NavbarDashboard from "../components/NavbarDashboard";
