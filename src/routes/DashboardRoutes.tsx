@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Route, Switch, useRouteMatch } from "react-router-dom";
 import NavbarDashboard from "../components/NavbarDashboard";
 import AddProduct from "../screens/dashboard/AddProduct";
+import Analysis from "../screens/dashboard/Analysis";
 import Commodity from "../screens/dashboard/Commodity";
 import CommodityProducts from "../screens/dashboard/CommodityProducts";
 import Home from "../screens/dashboard/Home";
@@ -17,8 +18,9 @@ const DashboardRoutes = () => {
       <div className="flex-shrink-0 w-72 bg-blue-admin h-screen overflow-y-auto flex flex-col items-center sticky top-0 left-0 ">
         <div className="text-white text-2xl font-semibold mt-12 mb-8">LOGO</div>
         <div className=" flex flex-col w-full px-4 space-y-2 mb-4">
-          {SIDEBAR_ITEMS.slice(0, 2).map((item) => (
+          {SIDEBAR_ITEMS.slice(0, 3).map((item, i) => (
             <NavLink
+              key={i}
               exact={item.pathName === "/dashboard" ? true : false}
               activeStyle={{ backgroundColor: "white", color: "#2E53DA" }}
               to={item.pathName}
@@ -35,8 +37,9 @@ const DashboardRoutes = () => {
           </p>
         </div>
         <div className=" flex flex-col w-full px-4 space-y-2">
-          {SIDEBAR_ITEMS.slice(2, SIDEBAR_ITEMS.length).map((item) => (
+          {SIDEBAR_ITEMS.slice(3, SIDEBAR_ITEMS.length).map((item, i) => (
             <NavLink
+              key={i}
               activeStyle={{ backgroundColor: "white", color: "#2E53DA" }}
               to={item.pathName}
               exact
@@ -72,6 +75,7 @@ const DashboardRoutes = () => {
             exact
             component={SearchCommodity}
           />
+          <Route path={`${path}/analisis`} exact component={Analysis} />
         </Switch>
       </div>
     </div>

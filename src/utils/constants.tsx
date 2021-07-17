@@ -8,6 +8,7 @@ import {
   PresentationChartLineIcon,
   ChartBarIcon,
   MapIcon,
+  OfficeBuildingIcon,
 } from "@heroicons/react/solid";
 
 export type QuickAccessFeature = {
@@ -156,6 +157,12 @@ export const SIDEBAR_ITEMS: SideBarItem[] = [
     text: "Komoditas Anda",
     pathName: "/dashboard/komoditas",
   },
+
+  {
+    icon: <OfficeBuildingIcon className="w-7 h-7" />,
+    text: "UMKM Anda",
+    pathName: "/dashboard/umkm",
+  },
   {
     icon: <DocumentSearchIcon className="w-7 h-7" />,
     text: "Cari Komoditasmu",
@@ -185,7 +192,16 @@ type DashboardFeature = {
 
 export const DASHBOARD_FEATURES: DashboardFeature[] = [
   { text: "Cari Jenis Komoditas dengan Gambar", backgroundColor: "bg-red-500" },
-  { text: "Analisis Harga Komoditas di Masa Lampau", backgroundColor: "bg-indigo-500" },
-  { text: "Prediksi Kesuksesan Usahamu dan Harga dimasa Depan", backgroundColor: "bg-yellow-500" },
-  { text: "Cari Sebaran Komoditas dengan Peta", backgroundColor: "bg-purple-400" },
+  {
+    text: "Analisis Harga Komoditas di Masa Lampau",
+    backgroundColor: "bg-indigo-500",
+  },
+  {
+    text: "Prediksi Kesuksesan Usahamu dan Harga dimasa Depan",
+    backgroundColor: "bg-yellow-500",
+  },
+  {
+    text: "Cari Sebaran Komoditas dengan Peta",
+    backgroundColor: "bg-purple-400",
+  },
 ];
