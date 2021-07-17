@@ -34,7 +34,7 @@ const TextArea = ({
     <textarea
       className={`outline-none flex-auto bg-transparent w-full text-sm ${
         textCenter ? "text-center" : "text-left"
-      } flex-row px-3 py-2 resize-none h-40 ${
+      } flex-row px-3 py-2 resize-none h-28 ${
         rounded && "rounded-md"
       } relative ${getTextAreaConfig()} ${className}`}
       {...rest}

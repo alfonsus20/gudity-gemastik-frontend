@@ -176,12 +176,12 @@ export const SIDEBAR_ITEMS: SideBarItem[] = [
   {
     icon: <ChartBarIcon className="w-7 h-7" />,
     text: "Prediksi",
-    pathName: "dashboard/prediksi",
+    pathName: "/dashboard/prediksi",
   },
   {
     icon: <MapIcon className="w-7 h-7" />,
     text: "Peta Komoditas",
-    pathName: "dashboard/peta-komoditas",
+    pathName: "/dashboard/peta-komoditas",
   },
 ];
 

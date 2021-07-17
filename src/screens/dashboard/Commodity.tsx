@@ -104,7 +104,7 @@ const Commodity = () => {
               Misi <span className="text-red-600">*</span>
             </label>
             <span>:</span>
-            <TextField variant="dashboard" type="file" className="flex-auto" />
+            <TextField variant="dashboard" type="text" className="flex-auto" />
           </div>
         </div>
       </div>
