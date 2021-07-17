@@ -6,6 +6,7 @@ import Commodity from "../screens/dashboard/Commodity";
 import CommodityProducts from "../screens/dashboard/CommodityProducts";
 import Home from "../screens/dashboard/Home";
 import Profile from "../screens/dashboard/Profile";
+import SearchCommodity from "../screens/dashboard/SearchCommodity";
 import { SIDEBAR_ITEMS } from "../utils/constants";
 
 const DashboardRoutes = () => {
@@ -65,6 +66,11 @@ const DashboardRoutes = () => {
             path={`${path}/komoditas/produk/tambah`}
             exact
             component={AddProduct}
+          />
+          <Route
+            path={`${path}/cari-komoditas`}
+            exact
+            component={SearchCommodity}
           />
         </Switch>
       </div>
