@@ -3,6 +3,11 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
+  variants: {
+    extend: {
+      border: ["focus"],
+    },
+  },
   theme: {
     extend: {
       colors: {
@@ -12,9 +17,9 @@ module.exports = {
           donker: "#15151F",
           marker: "#1D2D74",
           dark: "#110828",
-          light : '#186CFF',
-          progress : '#8BA9FF',
-          admin : '#2E53DA'
+          light: "#186CFF",
+          progress: "#8BA9FF",
+          admin: "#2E53DA",
         },
         violet: "#1D103D",
         gray: {
@@ -24,9 +29,9 @@ module.exports = {
         orange: {
           DEFAULT: "#FB8200",
         },
-        purple : {
-          DEFAULT : '#1d2d74'
-        }
+        purple: {
+          DEFAULT: "#1d2d74",
+        },
       },
       spacing: {
         88: "22rem",
@@ -50,7 +55,7 @@ module.exports = {
     },
     screens: {
       xs: "476px",
-      slg : "864px",
+      slg: "864px",
       ...defaultTheme.screens,
     },
   },

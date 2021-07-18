@@ -3,13 +3,14 @@ import { Switch, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import DashboardRoutes from "./routes/DashboardRoutes";
 import LandingPageRoutes from "./routes/LandingPageRoutes";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const App = () => {
   return (
     <>
       <ScrollToTop />
       <Switch>
-        <Route path="/dashboard" component={DashboardRoutes}/>
+        <PrivateRoute path="/dashboard" component={DashboardRoutes} />
         <Route path="/" component={LandingPageRoutes} />
       </Switch>
     </>

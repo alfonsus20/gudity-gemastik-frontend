@@ -15,6 +15,7 @@ import Payment from "../screens/Payment";
 import Product from "../screens/Product";
 import Register from "../screens/Register";
 import Umkm from "../screens/Umkm";
+import AuthRoute from "./AuthRoute";
 
 const LandingPageRoutes = () => {
   return (
@@ -32,8 +33,8 @@ const LandingPageRoutes = () => {
         <Route path="/pembayaran" component={Payment} exact />
         <Route path="/orders" component={OrderList} exact />
         <Route path="/orders/:id" component={OrderDetail} exact />
-        <Route path="/login" component={Login} exact />
-        <Route path="/daftar" component={Register} exact />
+        <AuthRoute path="/login" component={Login} exact />
+        <AuthRoute path="/daftar" component={Register} exact />
       </Switch>
       <Footer />
     </>

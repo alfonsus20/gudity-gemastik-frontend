@@ -30,13 +30,12 @@ const Register = () => {
           </h2>
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
           <TextField value="" placeholder="Nama" />
           <TextField
             type="email"
             value=""
             placeholder="Email"
-            className="text-white mb-4"
           />
           <TextField
             type="number"
@@ -48,12 +47,14 @@ const Register = () => {
             value=""
             onChange={() => console.log("object")}
             placeholder="Kata Sandi"
+            className='text-white'
           />
           <TextField
             type="password"
             value=""
             rounded={false}
             placeholder="Ulangi Kata Sandi"
+            className='text-white'
           />
           <Button
             variant="primary"

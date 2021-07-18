@@ -30,18 +30,18 @@ const Login = () => {
           </h2>
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
           <TextField
             type="text"
             value=""
             placeholder="Email"
-            className="text-white mb-4"
+            className="text-white"
           />
           <TextField
             type="password"
             value=""
             placeholder="Password"
-            className="text-white mb-4"
+            className="text-white"
           />
           <Button
             className="mt-2 mb-4"
