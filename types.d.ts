@@ -6,3 +6,4 @@
 // };
 
 declare module "react-select";
+declare module "conversational-form"

@@ -1,0 +1,31 @@
+:root {
+  --cf-color-blue: #2e53da;
+}
+
+#conversational-form {
+  font-size: 1rem;
+  font-family: "Poppins";
+}
+
+cf-input-button,
+.bar,
+.cf-button:hover,
+cf-chat-response.user text > p {
+  background-color: var(--cf-color-blue) !important;
+}
+
+.cf-button,
+cf-radio {
+  border-color: var(--cf-color-blue) !important;
+  color: var(--cf-color-blue) !important;
+}
+
+.cf-button:hover {
+  color: #fff !important;
+}
+
+thumb {
+  background-size: cover;
+  background-repeat: no-repeat!important;
+  background-position: center;
+}

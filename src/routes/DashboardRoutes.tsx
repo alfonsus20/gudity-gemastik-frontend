@@ -11,6 +11,7 @@ import Profile from "../screens/dashboard/Profile";
 import SearchCommodity from "../screens/dashboard/SearchCommodity";
 import { SIDEBAR_ITEMS } from "../utils/constants";
 import SuccessRatePrediction from "../screens/dashboard/SuccessRatePrediction";
+import CommodityRatePrediction from "../screens/dashboard/CommodityRatePrediction";
 import CommodityMap from "../screens/dashboard/CommodityMap";
 import Umkm from "../screens/dashboard/Umkm";
 
@@ -79,6 +80,7 @@ const DashboardRoutes = () => {
           />
           <Route path="/dashboard/analisis" exact component={Analysis} />
           <Route path="/dashboard/prediksi" exact component={Prediction} />
+          <Route path="/dashboard/prediksi/prediksi-harga" exact component={CommodityRatePrediction} />
           <Route path="/dashboard/prediksi/prediksi-kesuksesan" exact component={SuccessRatePrediction} />
           <Route path="/dashboard/peta-komoditas" exact component={CommodityMap} />
         </Switch>

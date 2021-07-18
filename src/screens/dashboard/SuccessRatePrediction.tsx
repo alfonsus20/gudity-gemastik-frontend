@@ -1,111 +1,76 @@
 import React from "react";
-import Button from "../../components/Button";
-import TextField from "../../components/TextField";
-import { Line } from "react-chartjs-2";
+import { ConversationalForm } from "conversational-form";
+import "../../styles/myForm.css";
 
 const SuccessRatePrediction = () => {
-  const data = {
-    labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni"],
-    datasets: [
-      {
-        type: "line",
-        label: "Standar Kesuksesan",
-        data: [5, 3, 4, 10, 8, 9, 2],
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgba(255, 99, 132, 0.2)",
-        yAxisID: "y",
-      },
-      {
-        type: "line",
-        label: "Hasil Analisis Anda",
-        data: [2, 4, 1, 3, 7, 3, 6],
-        backgroundColor: "rgb(180, 164, 199)",
-        borderColor: "rgb(180, 164, 199,0.2)",
-        yAxisID: "y1",
-      },
-    ],
-  };
+  const formRef = React.useRef<HTMLDivElement>(null);
 
-  const options = {
-    maintainAspectRatio: false,
-    responsive: true,
-    interaction: {
-      mode: "index",
-      intersect: false,
+  const formFields = [
+    {
+      tag: "cf-robot-message",
+      "cf-questions": "Halo! Selamat datang di aplikasi Gudity.",
     },
-    scales: {
-      xAxes: [
+    {
+      tag: "cf-robot-message",
+      "cf-questions":
+        "Pada bagian ini anda dapat melakukan  prediksi apakah bisnis anda dapat dikatakan sebagai bisnis yang sukses dengan menjawab beberapa pertanyaan yang ada.",
+    },
+    {
+      tag: "fieldset",
+      "cf-questions": "Apakah anda sudah siap?",
+      children: [
         {
-          stacked: true,
+          tag: "input",
+          type: "radio",
+          name: "persetujuan",
+          "cf-label": "Ya",
+          value: "1",
         },
       ],
-      y: {
-        type: "linear",
-        display: true,
-        position: "left",
-        suggestedMin: Math.min(
-          ...[2, 4, 1, 3, 7, 3, 6],
-          ...[5, 3, 4, 10, 8, 9, 2]
-        ),
-        suggestedMax: Math.max(
-          ...[2, 4, 1, 3, 7, 3, 6],
-          ...[5, 3, 4, 10, 8, 9, 2]
-        ),
-      },
-      y1: {
-        type: "linear",
-        display: false,
-        position: "right",
-        grid: {
-          drawOnChartArea: false,
-        },
-        suggestedMin: Math.min(
-          ...[2, 4, 1, 3, 7, 3, 6],
-          ...[5, 3, 4, 10, 8, 9, 2]
-        ),
-        suggestedMax: Math.max(
-          ...[2, 4, 1, 3, 7, 3, 6],
-          ...[5, 3, 4, 10, 8, 9, 2]
-        ),
-      },
     },
-  };
+    {
+      tag: "input",
+      type: "text",
+      name: "firstname",
+      "cf-questions": "Pada bidang apakah industri usaha anda dijalankan?",
+    },
+    {
+      tag: "input",
+      type: "text",
+      name: "firstname",
+      "cf-questions": "Pada bidang apakah industri usaha anda dijalankan?",
+    },
+  ];
+
+  React.useEffect(() => {
+    const submitCallback = () => {
+      var formDataSerialized = conversationalForm.getFormData(true);
+      console.log("Formdata, obj:", formDataSerialized);
+      conversationalForm.addRobotChatResponse(
+        "You are done. Check the dev console for form data output."
+      );
+    };
+    const conversationalForm = ConversationalForm.startTheConversation({
+      options: {
+        theme: "blue",
+        showProgressBar: true,
+        userImage: "/assets/pictures/user-random.jpg",
+        robotImage: "/assets/icons/gudity.png",
+        submitCallback,
+        preventAutoFocus: true,
+        preventAutoAppend: true,
+      },
+      tags: formFields,
+    });
+    formRef?.current?.appendChild(conversationalForm.el);
+  });
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-5">Prediksi Harga Komoditas</h2>
-      <div className="grid grid-cols-12 gap-6 mb-8">
-        <div className="col-span-5 flex items-center">
-          <TextField
-            variant="dashboard"
-            className="w-full"
-            placeholder="Komoditas"
-          />
-        </div>
-        <div className="col-span-5 flex items-center">
-          <TextField
-            variant="dashboard"
-            className="w-full"
-            placeholder="Jangka Waktu (hari)"
-          />
-        </div>
-        <div className="col-span-2 flex items-center">
-          <Button text="Analisis" variant="primary" size="full" />
-        </div>
-      </div>
-      <div className="px-12 py-6 shadow mb-8">
-        <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
-        <div className="w-full h-60 overflow-hidden">
-          <Line type="line" data={data} options={options} />
-        </div>
-      </div>
-      <div className="px-12 py-6 shadow">
-        <h3 className="font-semibold">Hasil</h3>
-        <div>
-          <p>Harga 60 hari kebelakang : 45.000</p>
-          <p>Harga Hari ini : 48.250</p>
-        </div>
-      </div>
+    <div className="flex flex-col flex-auto">
+      <h2 className="text-2xl font-semibold mb-5">
+        Prediksi Kesuksesan Bisnismu
+      </h2>
+      <div ref={formRef} className="relative flex-auto"></div>
     </div>
   );
 };

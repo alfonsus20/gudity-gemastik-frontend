@@ -1,10 +1,6 @@
 @import "./tailwind.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,600&display=swap");
 
-:root {
-  --blue-primary: "#1854FF";
-}
-
 * {
   margin: 0;
   padding: 0;
