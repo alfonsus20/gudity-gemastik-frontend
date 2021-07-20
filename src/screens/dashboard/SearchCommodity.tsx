@@ -26,7 +26,7 @@ const SearchCommodity = () => {
           usaha di masa mendatang
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-x-4 gap-y-8">
         <div className="col-span-1">
           <div
             {...getRootProps({ className: "dropzone" })}

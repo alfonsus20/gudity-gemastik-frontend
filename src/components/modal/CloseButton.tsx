@@ -4,11 +4,15 @@ import { XIcon } from "@heroicons/react/solid";
 type CloseButtonProps = {
   onClick(): void;
   color?: "white" | "gray";
+  className?: string;
 };
 
-const CloseButton = ({ color, onClick }: CloseButtonProps) => {
+const CloseButton = ({ color, onClick , className}: CloseButtonProps) => {
   return (
-    <button className="absolute top-2 right-2" onClick={() => onClick()}>
+    <button
+      className={`absolute top-2 right-2 ${className}`}
+      onClick={() => onClick()}
+    >
       <XIcon
         className={`w-6 h-6 ${
           color === "white" ? "text-white" : "text-gray-400"
@@ -19,7 +23,7 @@ const CloseButton = ({ color, onClick }: CloseButtonProps) => {
 };
 
 CloseButton.defaultProps = {
-    color : 'white'
-}
+  color: "white",
+};
 
 export default CloseButton;

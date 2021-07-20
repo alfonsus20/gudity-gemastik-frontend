@@ -130,7 +130,7 @@ const Profile = () => {
               title: "Komoditas",
               content: (
                 <div className="mt-8">
-                  {/* <div className="grid grid-cols-2 gap-x-10 mb-8">
+                  <div className="grid grid-cols-2 gap-x-10 mb-8">
                     <div className="col-span-1 space-y-4">
                       <div className="flex flex-row items-center space-x-10">
                         <label htmlFor="" className="font-medium w-40 flex-shrink-0">
@@ -193,8 +193,8 @@ const Profile = () => {
                   </div>
                   <div className="flex justify-end">
                     <Button text="Simpan" variant="primary" className="w-32" />
-                  </div> */}
-                  <div className="flex flex-col items-center space-y-4">
+                  </div>
+                  {/* <div className="flex flex-col items-center space-y-4">
                     <img
                       src="/assets/icons/daftar-komoditas.png"
                       alt="Daftar Komoditas"
@@ -213,7 +213,7 @@ const Profile = () => {
                       className="w-32"
                       onClick={() => showWelcomeModal(true)}
                     />
-                  </div>
+                  </div> */}
                 </div>
               ),
             },

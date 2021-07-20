@@ -6,6 +6,7 @@ import TextField from "../../components/TextField";
 
 const Umkm = () => {
   const [successModalShown, showSuccessModal] = React.useState<boolean>(true);
+  const [openHour, setOpenHour] = React.useState("");
 
   return (
     <div className="flex flex-auto flex-col">
@@ -32,7 +33,13 @@ const Umkm = () => {
         </div>
       </div> */}
       <div>
-        <div className="space-y-2  mx-auto">
+        <form
+          className="space-y-2  mx-auto"
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log(openHour);
+          }}
+        >
           <div className="flex flex-col space-y-2">
             <label htmlFor="" className="text-blue-primary font-medium">
               Nama UMKM
@@ -59,6 +66,7 @@ const Umkm = () => {
               No Telepon
             </label>
             <TextField
+              onChange={(e) => console.log(e.target.value)}
               variant="tertiary"
               placeholder="Masukkan nama nomor telepon"
             />
@@ -71,6 +79,7 @@ const Umkm = () => {
               <TextField
                 variant="tertiary"
                 type="time"
+                onChange={(e) => console.log(e.target.value)}
                 placeholder="Masukkan hari operasional"
               />
             </div>
@@ -82,6 +91,8 @@ const Umkm = () => {
                 variant="tertiary"
                 type="time"
                 placeholder="Masukkanjam operasional"
+                value={openHour}
+                onChange={(e) => setOpenHour(e.target.value)}
               />
             </div>
           </div>
@@ -100,10 +111,11 @@ const Umkm = () => {
               text="Unggah"
               variant="primary"
               size="md"
+              type="submit"
               className="w-28"
             />
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

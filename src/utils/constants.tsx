@@ -155,7 +155,7 @@ export const SIDEBAR_ITEMS: SideBarItem[] = [
   {
     icon: <ShoppingBagIcon className="w-7 h-7" />,
     text: "Komoditas Anda",
-    pathName: "/dashboard/komoditas",
+    pathName: "/dashboard/produk",
   },
 
   {

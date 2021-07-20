@@ -40,16 +40,28 @@ const TextField = ({
         rounded && "rounded-md"
       } relative ${className}`}
     >
-      {icon && <span className="mr-2">{icon}</span>}
+      {icon && (
+        <span className="mr-2 absolute left-2 top-1/2 transform -translate-y-1/2">
+          {icon}
+        </span>
+      )}
       <input
-        className={`outline-none px-3 py-2 flex-auto bg-transparent w-full text-sm ${getTextFieldConfig()}   ${
+        className={`outline-none ${icon && "pl-9 pr-4"} ${
+          type === "password" && "pl-4 pr-9"
+        } ${
+          !icon && type !== "password" && "px-4"
+        } py-2 flex-auto bg-transparent w-full text-sm ${getTextFieldConfig()}   ${
           textCenter ? "text-center" : "text-left"
         } ${type === "date" && "date pl-8"}`}
-        type={type}
+        type={type !== "password" ? type : passwordShown ? "text" : "password"}
         {...rest}
       />
       {type === "password" && (
-        <button className="ml-2 absolute right-0 bottom-2" onClick={() => showPassword(!passwordShown)}>
+        <button
+          className="ml-2 absolute right-0 bottom-2"
+          type="button"
+          onClick={() => showPassword(!passwordShown)}
+        >
           {passwordShown ? (
             <EyeOffIcon className="h-6 w-6" />
           ) : (

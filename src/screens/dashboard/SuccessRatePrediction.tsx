@@ -22,9 +22,16 @@ const SuccessRatePrediction = () => {
         {
           tag: "input",
           type: "radio",
-          name: "persetujuan",
-          "cf-label": "Ya",
-          value: "1",
+          name: "basis",
+          "cf-label": "Online",
+          value: "online",
+        },
+        {
+          tag: "input",
+          type: "radio",
+          name: "basis",
+          "cf-label": "Offline",
+          value: "offline",
         },
       ],
     },
@@ -34,12 +41,12 @@ const SuccessRatePrediction = () => {
       name: "firstname",
       "cf-questions": "Pada bidang apakah industri usaha anda dijalankan?",
     },
-    {
-      tag: "input",
-      type: "text",
-      name: "firstname",
-      "cf-questions": "Pada bidang apakah industri usaha anda dijalankan?",
-    },
+    // {
+    //   tag: "input",
+    //   type: "text",
+    //   name: "firstname",
+    //   "cf-questions": "Pada bidang apakah industri usaha anda dijalankan?",
+    // },
   ];
 
   React.useEffect(() => {

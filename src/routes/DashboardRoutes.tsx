@@ -3,7 +3,6 @@ import { NavLink, Route, Switch } from "react-router-dom";
 import NavbarDashboard from "../components/NavbarDashboard";
 import AddProduct from "../screens/dashboard/AddProduct";
 import Analysis from "../screens/dashboard/Analysis";
-import Commodity from "../screens/dashboard/Commodity";
 import CommodityProducts from "../screens/dashboard/CommodityProducts";
 import Home from "../screens/dashboard/Home";
 import Prediction from "../screens/dashboard/Prediction";
@@ -14,12 +13,34 @@ import SuccessRatePrediction from "../screens/dashboard/SuccessRatePrediction";
 import CommodityRatePrediction from "../screens/dashboard/CommodityRatePrediction";
 import CommodityMap from "../screens/dashboard/CommodityMap";
 import Umkm from "../screens/dashboard/Umkm";
+import { motion } from "framer-motion";
+import CloseButton from "../components/modal/CloseButton";
 
 const DashboardRoutes = () => {
+  const [sidebarShown, showSidebar] = React.useState<boolean>(false);
+
+  const variants = {
+    hidden: {
+      left: "-100%",
+    },
+    visible: {
+      left: "0%",
+    },
+  };
+
   return (
-    <div className="flex flex-row min-h-screen bg-blue-admin relative">
-      <div className="flex-shrink-0 w-72 bg-blue-admin h-screen overflow-y-auto flex flex-col items-center sticky top-0 left-0 ">
-        <div className="text-white text-2xl font-semibold mt-12 mb-8">LOGO</div>
+    <div className="flex flex-row h-full bg-blue-admin relative">
+      <motion.div
+        variants={variants}
+        initial="hidden"
+        animate={sidebarShown ? "visible" : "hidden"}
+        transition={{ stiffness: 0 }}
+        className="flex-shrink-0 w-72 bg-blue-admin h-screen overflow-y-auto flex flex-col items-center fixed md:sticky top-0 -left-full md:left-0 z-30"
+      >
+        <CloseButton onClick={() => showSidebar(false)} className="md:hidden" />
+        <div className="text-white text-2xl font-semibold mt-12 mb-8 px-4">
+          <img src="/assets/pictures/logo.png" className="w-40" alt="logo" />
+        </div>
         <div className=" flex flex-col w-full px-4 space-y-2 mb-4">
           {SIDEBAR_ITEMS.slice(0, 3).map((item, i) => (
             <NavLink
@@ -27,6 +48,7 @@ const DashboardRoutes = () => {
               exact={item.pathName === "/dashboard" ? true : false}
               activeStyle={{ backgroundColor: "white", color: "#2E53DA" }}
               to={item.pathName}
+              onClick={() => showSidebar(false)}
               className="flex flex-row items-center px-4 py-3 w-full text-white rounded-md hover:text-blue-admin hover:bg-white"
             >
               <span className="mr-2">{item.icon}</span>{" "}
@@ -45,6 +67,7 @@ const DashboardRoutes = () => {
               key={i}
               activeStyle={{ backgroundColor: "white", color: "#2E53DA" }}
               to={item.pathName}
+              onClick={() => showSidebar(false)}
               className="flex flex-row items-center px-4 py-3 w-full text-white rounded-md hover:text-blue-admin hover:bg-white"
             >
               <span className="mr-2">{item.icon}</span>
@@ -52,24 +75,20 @@ const DashboardRoutes = () => {
             </NavLink>
           ))}
         </div>
-      </div>
-      <div
-        className="flex-auto bg-white py-8 px-12 min-h-screen flex flex-col"
-        style={{ borderRadius: "5rem 0rem 0rem 5rem" }}
-      >
-        <NavbarDashboard />
+      </motion.div>
+      <div className="flex-auto bg-white py-8 px-12 min-h-screen flex flex-col md:rounded-l-jumbo">
+        <NavbarDashboard showSidebar={showSidebar} />
         <Switch>
           <Route path="/dashboard" exact component={Home} />
           <Route path="/dashboard/profil" exact component={Profile} />
-          <Route path="/dashboard/komoditas" exact component={Commodity} />
           <Route path="/dashboard/umkm" exact component={Umkm} />
           <Route
-            path="/dashboard/komoditas/produk"
+            path="/dashboard/produk"
             exact
             component={CommodityProducts}
           />
           <Route
-            path="/dashboard/komoditas/produk/tambah"
+            path="/dashboard/produk/tambah"
             exact
             component={AddProduct}
           />
@@ -80,9 +99,21 @@ const DashboardRoutes = () => {
           />
           <Route path="/dashboard/analisis" exact component={Analysis} />
           <Route path="/dashboard/prediksi" exact component={Prediction} />
-          <Route path="/dashboard/prediksi/prediksi-harga" exact component={CommodityRatePrediction} />
-          <Route path="/dashboard/prediksi/prediksi-kesuksesan" exact component={SuccessRatePrediction} />
-          <Route path="/dashboard/peta-komoditas" exact component={CommodityMap} />
+          <Route
+            path="/dashboard/prediksi/prediksi-harga"
+            exact
+            component={CommodityRatePrediction}
+          />
+          <Route
+            path="/dashboard/prediksi/prediksi-kesuksesan"
+            exact
+            component={SuccessRatePrediction}
+          />
+          <Route
+            path="/dashboard/peta-komoditas"
+            exact
+            component={CommodityMap}
+          />
         </Switch>
       </div>
     </div>

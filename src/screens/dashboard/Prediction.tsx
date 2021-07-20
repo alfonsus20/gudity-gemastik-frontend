@@ -7,7 +7,7 @@ const Prediction = () => {
     <div>
       <h2 className="text-2xl font-semibold mb-5">Komoditas Anda</h2>
       <DashboardBanner description="Prediksi harga komoditas di masadepan dan kesuksesan bisnismu agar dapat membantu anda dalam usaha di masa mendatang." />
-      <div className="flex flex-row justify-around max-w-4xl mx-auto">
+      <div className="flex flex-row justify-center items-center md:justify-around max-w-4xl mx-auto gap-4">
         <Link
           to="/dashboard/prediksi/prediksi-kesuksesan"
           className="flex flex-col items-center p-8 shadow w-64 rounded-md"

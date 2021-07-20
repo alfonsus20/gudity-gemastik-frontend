@@ -27,11 +27,11 @@ const Home = () => {
             nice day!
           </p>
         </div>
-        <div className="flex-shrink-0 hidden md:block">
+        <div className="flex-shrink-0 hidden lg:block">
           <img src="/assets/icons/visualization.png" alt="analisis" />
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-x-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {DASHBOARD_FEATURES.map((feature, i) => (
           <p
             className={`${feature.backgroundColor} mx-auto px-8 py-6 col-span-1  text-white rounded-md text-center flex items-center font-medium`}
@@ -41,8 +41,8 @@ const Home = () => {
           </p>
         ))}
       </div>
-      <div className="flex flex-row shadow-lg px-8 py-12 rounded-md items-center mx-auto">
-        <p className="text-center font-medium">
+      <div className="flex flex-col sm:flex-row shadow-lg px-8 py-12 rounded-md items-center mx-auto">
+        <p className="text-center font-medium mb-4 sm:mb-0">
           Lakukan Analisis dan Prediksi sebanyak mungkin untuk memberikan hasil
           yang maksimal dalam perencanaan usaha anda kedepan
         </p>
