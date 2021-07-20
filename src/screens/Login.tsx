@@ -5,13 +5,13 @@ import Button from "../components/Button";
 import TextField from "../components/TextField";
 import Underline from "../components/Underline";
 import { login } from "../store/actions/userActions";
-import { AUTH_RESET } from "../store/constants/userConstants";
+import { AUTH_CLEAR_ERROR, AUTH_RESET } from "../store/constants/userConstants";
 import { RootState } from "../store/index";
 
 const Login = () => {
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
-  const { error } = useSelector((state: RootState) => state.auth);
+  const { success, error } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -21,7 +21,7 @@ const Login = () => {
 
   React.useEffect(() => {
     return () => {
-      dispatch({ type: AUTH_RESET });
+      dispatch({ type: AUTH_CLEAR_ERROR });
     };
   },[dispatch]);
 

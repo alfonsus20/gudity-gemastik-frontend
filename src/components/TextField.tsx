@@ -58,7 +58,7 @@ const TextField = ({
       />
       {type === "password" && (
         <button
-          className="ml-2 absolute right-0 bottom-2"
+          className="ml-2 absolute right-2 bottom-2"
           type="button"
           onClick={() => showPassword(!passwordShown)}
         >

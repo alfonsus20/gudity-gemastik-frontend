@@ -12,6 +12,8 @@ import {
 } from "@heroicons/react/outline";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/actions/userActions";
 
 const NavbarDashboard = ({
   showSidebar,
@@ -19,11 +21,12 @@ const NavbarDashboard = ({
   showSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [dropdownShown, showDropdown] = React.useState<boolean>(false);
+  const dispatch = useDispatch();
 
   return (
     <div className="w-full mb-4">
       <div className="flex flex-row items-center justify-between md:justify-end gap-x-5">
-        <button onClick={() => showSidebar(true)} className='md:hidden'>
+        <button onClick={() => showSidebar(true)} className="md:hidden">
           <MenuIcon className="text-blue w-8 h-8" />
         </button>
         <div className="flex flex-row items-center space-x-4">
@@ -78,7 +81,7 @@ const NavbarDashboard = ({
                 onClick={() => showDropdown(false)}
               >
                 <LogoutIcon className="w-5 h-5 mr-2" />
-                <button onClick={() => console.log("object")}>Keluar</button>
+                <button onClick={() => dispatch(logout())}>Keluar</button>
               </dd>
             </dl>
           </div>

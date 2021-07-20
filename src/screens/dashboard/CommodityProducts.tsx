@@ -40,8 +40,7 @@ const CommodityProducts = () => {
       </div> */}
       <div className="shadow rounded-md px-6 py-4 overflow-x-auto w-full">
         <table
-          className="w-full border-collapse table-fixed table"
-          style={{ whiteSpace: "nowrap", display: "table" }}
+          className="w-full border-collapse table-fixed table whitespace-nowrap lg:whitespace-normal"
         >
           <tbody className="table">
             <tr className="text-left">
@@ -63,7 +62,7 @@ const CommodityProducts = () => {
               <td className="p-3">1000/ KG</td>
               <td className="p-3">1000/ KG</td>
               <td className="p-3">Premium</td>
-              <td className="p-3 flex flex-col md:flex-row gap-x-4">
+              <td className="p-3 flex flex-col md:flex-row gap-4">
                 <Button variant="primary" text="Edit" className="w-20" />
                 <Button variant="danger" text="Hapus" className="w-20" />
               </td>
