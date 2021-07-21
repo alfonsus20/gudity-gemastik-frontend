@@ -5,7 +5,6 @@ import { Line } from "react-chartjs-2";
 import { RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { getFutureAnalysis } from "../../store/actions/predictionActions";
-import { FUTURE_ANALYSIS_RESET } from "../../store/constants/predictionConstants";
 
 const CommodityRatePrediction = () => {
   const [commodity, setCommodity] = React.useState<string>("");
@@ -45,12 +44,6 @@ const CommodityRatePrediction = () => {
     e.preventDefault();
     dispatch(getFutureAnalysis(commodity, day));
   };
-
-  React.useEffect(() => {
-    return () => {
-      dispatch({ type: FUTURE_ANALYSIS_RESET });
-    };
-  }, [dispatch]);
 
   return (
     <div>

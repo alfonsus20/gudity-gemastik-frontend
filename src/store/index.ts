@@ -4,23 +4,22 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import createRootReducer from "./reducers";
 import { createBrowserHistory } from "history";
 import { routerMiddleware } from "connected-react-router";
+import { AuthState } from "./reducers/userReducers";
 
 const middleware = [thunk];
 
 export const history = createBrowserHistory();
 
-export default function configureStore(preloadedState: any) {
-  const store = createStore(
-    createRootReducer(history),
-    preloadedState,
-    composeWithDevTools(
-      applyMiddleware(routerMiddleware(history), ...middleware)
-    )
-  );
-  return store;
+export interface ApplicationState {
+  auth: AuthState;
 }
 
-// @ts-ignore
-export type RootState = ReturnType<typeof configureStore.getState>;
-// @ts-ignore
-export type AppDispatch = ReturnType<typeof configureStore.dispatch>;
+const store = createStore(
+  createRootReducer(history),
+  composeWithDevTools(applyMiddleware(routerMiddleware(history), ...middleware))
+);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = ReturnType<typeof store.dispatch>;
+
+export default store;

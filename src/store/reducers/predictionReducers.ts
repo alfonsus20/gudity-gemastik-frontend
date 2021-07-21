@@ -1,3 +1,4 @@
+import { LOCATION_CHANGE } from "connected-react-router";
 import {
   FutureAnalysisDispatchTypes,
   FUTURE_ANALYSIS_FAILED,
@@ -31,7 +32,7 @@ export const futureAnalysisReducer = (
         error: action.payload,
         predictions: [],
       };
-    case FUTURE_ANALYSIS_RESET:
+    case LOCATION_CHANGE || FUTURE_ANALYSIS_RESET:
       return { predictions: [] };
     default:
       return state;

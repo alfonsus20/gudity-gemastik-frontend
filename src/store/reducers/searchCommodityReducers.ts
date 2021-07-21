@@ -1,3 +1,4 @@
+import { LOCATION_CHANGE } from "connected-react-router";
 import {
   CommodityImageClassificationDispatchTypes,
   COMMODITY_IMAGE_CLASSIFICATION_FAILED,
@@ -29,7 +30,7 @@ export const classifyCommodityWithImageReducer = (
       return { success: true, loading: false, ...action.payload };
     case COMMODITY_IMAGE_CLASSIFICATION_FAILED:
       return { success: false, loading: false, error: action.payload };
-    case COMMODITY_IMAGE_CLASSIFICATION_RESET:
+    case LOCATION_CHANGE || COMMODITY_IMAGE_CLASSIFICATION_RESET:
       return { loading: false, commodity_name: "", deskripsi: "" };
     default:
       return state;

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import { RootState } from "../../store";
 import { classifyCommodityWithImage } from "../../store/actions/searchCommodityActions";
-import { COMMODITY_IMAGE_CLASSIFICATION_RESET } from "../../store/constants/searchCommodityConstants";
 
 const SearchCommodity = () => {
   const [image, setImage] = React.useState<File>();
@@ -22,10 +21,6 @@ const SearchCommodity = () => {
   const { loading, commodity_name, deskripsi } = useSelector(
     (state: RootState) => state.imageClassification
   );
-
-  React.useEffect(() => {
-    dispatch({ type: COMMODITY_IMAGE_CLASSIFICATION_RESET });
-  }, [dispatch]);
 
   return (
     <div>

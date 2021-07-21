@@ -1,10 +1,10 @@
 import { PredictionState } from "../reducers/analysisReducers";
+import { LocationChange } from "./routerConstants";
 
 export const FUTURE_ANALYSIS_LOADING = "FUTURE_ANALYSIS_LOADING";
 export const FUTURE_ANALYSIS_SUCCESS = "FUTURE_ANALYSIS_SUCCESS";
 export const FUTURE_ANALYSIS_FAILED = "FUTURE_ANALYSIS_FAILED";
 export const FUTURE_ANALYSIS_RESET = "FUTURE_ANALYSIS_RESET";
-
 
 interface FutureAnalysisLoading {
   type: typeof FUTURE_ANALYSIS_LOADING;
@@ -29,4 +29,5 @@ export type FutureAnalysisDispatchTypes =
   | FutureAnalysisLoading
   | FutureAnalysisSuccess
   | FutureAnalysisFailed
-  | FutureAnalysisReset;
+  | FutureAnalysisReset
+  | LocationChange;
