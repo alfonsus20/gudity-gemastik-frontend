@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import { RootState } from "../../store";
 import { classifyCommodityWithImage } from "../../store/actions/searchCommodityActions";
+import Skeleton from "react-loading-skeleton";
 
 const SearchCommodity = () => {
   const [image, setImage] = React.useState<File>();
@@ -90,12 +91,12 @@ const SearchCommodity = () => {
           </div>
         </div>
         <div className="col-span-1  p-8 shadow">
-          <h3 className="font-semibold text-lg">Hasil:</h3>
-          <h4 className="font-semibold text-md">
-            {loading ? "Loading..." : commodity_name && commodity_name}
+          <h3 className="font-semibold text-lg mb-2">Hasil:</h3>
+          <h4 className="font-semibold text-md mb-2">
+            {loading ? <Skeleton style={{ width: "20%" }} /> : commodity_name}
           </h4>
           <div className="mb-5 " style={{ minHeight: 240 }}>
-            {loading ? "Loading..." : deskripsi && deskripsi}
+            {loading ? <Skeleton count={4} /> : deskripsi}
           </div>
           <Button
             text="Temukan Peta Komoditas"

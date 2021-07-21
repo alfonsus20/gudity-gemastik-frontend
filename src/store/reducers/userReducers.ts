@@ -26,6 +26,21 @@ export type AuthState = {
     address?: string;
     phone?: string;
     birthday?: string;
+    supplier_image?: string;
+    supplier_owner_name?: string;
+    supplier_address?: string;
+    supplier_name?: string;
+    supplier_phone?: string;
+    supplier_description?: string;
+    store_name?: string;
+    store_description?: string;
+    store_address?: string;
+    store_phone?: string;
+    store_start_at?: string;
+    store_finish_at?: string;
+    store_image?: string;
+    products?: string[];
+    invoices?: string[];
   };
 };
 

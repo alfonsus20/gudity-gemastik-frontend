@@ -14,7 +14,6 @@ const Register = () => {
   const [name, setName] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [nik, setNik] = React.useState<string>("");
-  const [address, setAddress] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [confirmPassword, setConfirmPassword] = React.useState<string>("");
 
@@ -29,8 +28,7 @@ const Register = () => {
         payload: "Password dan konfirmasi password tidak sesuai",
       });
     } else {
-      console.log({ email, password, nik, name, address })
-      dispatch(register({ email, password, nik, name, address }));
+      dispatch(register({ email, password, nik, name }));
     }
   };
 
@@ -80,12 +78,6 @@ const Register = () => {
             required
             placeholder="NIK"
             value={nik}
-          />
-          <TextField
-            onChange={(e) => setAddress(e.target.value)}
-            required
-            placeholder="Alamat"
-            value={address}
           />
           <TextField
             type="password"

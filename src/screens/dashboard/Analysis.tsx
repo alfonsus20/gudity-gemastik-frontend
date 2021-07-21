@@ -5,7 +5,8 @@ import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { getPastAnalysis } from "../../store/actions/analysisActions";
-import { PAST_ANALYSIS_RESET } from "../../store/constants/analysisConstants";
+import PropagateLoader from "react-spinners/PropagateLoader";
+import { css } from "@emotion/react";
 
 const Analysis = () => {
   const [commodity, setCommodity] = React.useState<string>("");
@@ -40,11 +41,12 @@ const Analysis = () => {
     },
   };
 
-  // React.useEffect(() => {
-  //   return () => {
-  //     dispatch({ type: PAST_ANALYSIS_RESET });
-  //   };
-  // }, [dispatch]);
+  const override = css`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -85,26 +87,30 @@ const Analysis = () => {
       </form>
       <div className="px-12 py-6 shadow mb-8">
         <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
-        <div className="w-full h-60 overflow-hidden">
-          <Line
-            type="line"
-            data={{
-              labels: predictions?.map((x: any) => x.time),
-              datasets: [
-                {
-                  type: "line",
-                  label: "Hasil Analisis",
-                  data: predictions?.map(
-                    (x: any) => Math.round(x.value * 14000 * 100) / 100
-                  ),
-                  backgroundColor: "rgb(255, 99, 132)",
-                  borderColor: "rgba(255, 99, 132, 0.2)",
-                  yAxisID: "y",
-                },
-              ],
-            }}
-            options={options}
-          />
+        <div className="w-full h-60 overflow-hidden relative">
+          {loading ? (
+            <PropagateLoader css={override} color='#2E53DA' />
+          ) : (
+            <Line
+              type="line"
+              data={{
+                labels: predictions?.map((x: any) => x.time),
+                datasets: [
+                  {
+                    type: "line",
+                    label: "Hasil Analisis",
+                    data: predictions?.map(
+                      (x: any) => Math.round(x.value * 14000 * 100) / 100
+                    ),
+                    backgroundColor: "rgb(255, 99, 132)",
+                    borderColor: "rgba(255, 99, 132, 0.2)",
+                    yAxisID: "y",
+                  },
+                ],
+              }}
+              options={options}
+            />
+          )}
         </div>
       </div>
       <div className="px-12 py-6 shadow">

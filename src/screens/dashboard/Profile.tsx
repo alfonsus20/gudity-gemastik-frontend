@@ -5,6 +5,7 @@ import CommodityWelcomeModal from "../../components/modal/CommodityWelcomeModal"
 import Tab from "../../components/Tab";
 import TextField from "../../components/TextField";
 import { RootState } from "../../store";
+import Skeleton from "react-loading-skeleton";
 
 const Profile = () => {
   const { userInfo, loading } = useSelector((state: RootState) => state.auth);
@@ -27,14 +28,18 @@ const Profile = () => {
       <div className="flex flex-row items-center">
         <div className="mr-8">
           <img
-            src={!loading && userInfo.profile_image ? userInfo.profile_image : '/assets/icons/user.png'}
+            src={
+              !loading && userInfo.profile_image
+                ? userInfo.profile_image
+                : "/assets/icons/user.png"
+            }
             className="w-36 h-36 rounded-md"
             alt=""
           />
         </div>
         <div className="flex flex-col">
           <h3 className="font-medium text-2xl mb-3">
-            {loading ? "Loading..." : userInfo.name}
+            {loading ? <Skeleton style={{ width: "12rem" }} /> : userInfo.name}
           </h3>
           <div className="flex">
             <div className="px-4 py-2 bg-gray-300 text-white text-center rounded-full w-auto text-sm">
@@ -64,7 +69,7 @@ const Profile = () => {
                         <TextField
                           variant="dashboard"
                           className="flex-auto"
-                          value={loading ? "Loading..." : userInfo.name}
+                          value={userInfo.name}
                           disabled={!enabled}
                         />
                       </div>

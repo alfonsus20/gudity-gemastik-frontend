@@ -5,6 +5,8 @@ import { Line } from "react-chartjs-2";
 import { RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { getFutureAnalysis } from "../../store/actions/predictionActions";
+import PropagateLoader from "react-spinners/PropagateLoader";
+import { css } from "@emotion/react";
 
 const CommodityRatePrediction = () => {
   const [commodity, setCommodity] = React.useState<string>("");
@@ -15,6 +17,13 @@ const CommodityRatePrediction = () => {
   );
 
   const dispatch = useDispatch();
+
+  const override = css`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `;
 
   const options = {
     maintainAspectRatio: false,
@@ -77,26 +86,30 @@ const CommodityRatePrediction = () => {
       </form>
       <div className="px-12 py-6 shadow mb-8">
         <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
-        <div className="w-full h-60 overflow-hidden">
-          <Line
-            type="line"
-            data={{
-              labels: predictions?.map((x: any) => x.time),
-              datasets: [
-                {
-                  type: "line",
-                  label: "Hasil Analisis",
-                  data: predictions?.map(
-                    (x: any) => Math.round(x.value * 14000 * 100) / 100
-                  ),
-                  backgroundColor: "rgb(255, 99, 132)",
-                  borderColor: "rgba(255, 99, 132, 0.2)",
-                  yAxisID: "y",
-                },
-              ],
-            }}
-            options={options}
-          />
+        <div className="w-full h-60 overflow-hidden relative">
+          {loading ? (
+            <PropagateLoader css={override} color="#2E53DA" />
+          ) : (
+            <Line
+              type="line"
+              data={{
+                labels: predictions?.map((x: any) => x.time),
+                datasets: [
+                  {
+                    type: "line",
+                    label: "Hasil Analisis",
+                    data: predictions?.map(
+                      (x: any) => Math.round(x.value * 14000 * 100) / 100
+                    ),
+                    backgroundColor: "rgb(255, 99, 132)",
+                    borderColor: "rgba(255, 99, 132, 0.2)",
+                    yAxisID: "y",
+                  },
+                ],
+              }}
+              options={options}
+            />
+          )}
         </div>
       </div>
       <div className="px-12 py-6 shadow">
