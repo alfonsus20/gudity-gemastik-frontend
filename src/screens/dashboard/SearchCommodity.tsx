@@ -3,13 +3,15 @@ import { useDropzone } from "react-dropzone";
 import Button from "../../components/Button";
 
 const SearchCommodity = () => {
+  const [image, setImage] = React.useState<File>();
+
   const { getRootProps, getInputProps, open, isDragActive, acceptedFiles } =
     useDropzone({
       accept: "image/jpeg, image/png",
       noClick: true,
       noKeyboard: true,
       maxFiles: 1,
-      onDrop: (files) => console.log(files),
+      onDrop: (files) => setImage(files[0]),
     });
 
   return (
@@ -53,21 +55,30 @@ const SearchCommodity = () => {
             </button>
           </div>
           <div className="flex flew-row gap-4 justify-center">
-            <Button text="Ulang" variant="secondary" className="w-28" />
+            <Button
+              text="Ulang"
+              variant="secondary"
+              className="w-28"
+              onClick={open}
+            />
             <Button text="Cari" variant="primary" className="w-28" />
           </div>
         </div>
         <div className="col-span-1  p-8 shadow">
           <h3 className="font-semibold text-lg">Hasil:</h3>
-          <div className='mb-5 ' style={{minHeight : 240}}>
+          <div className="mb-5 " style={{ minHeight: 240 }}>
             Kopi Toraja, merupakan salah satu varian kopi yang paling populer
             dan memiliki kualitas terbaik yang dimilikdunia tersebut. Mulai dari
-            tempat asal, karakteristik, hingga harga kopi Toraja.
-            Kopi Toraja, merupakan salah satu varian kopi yang paling populer
-            dan memiliki kualitas terbaik yang dimilikdunia tersebut. Mulai dari
-            tempat asal, karakteristik, hingga harga kopi Toraja.
+            tempat asal, karakteristik, hingga harga kopi Toraja. Kopi Toraja,
+            merupakan salah satu varian kopi yang paling populer dan memiliki
+            kualitas terbaik yang dimilikdunia tersebut. Mulai dari tempat asal,
+            karakteristik, hingga harga kopi Toraja.
           </div>
-          <Button text="Temukan Peta Komoditas" variant="primary" className='ml-auto' />
+          <Button
+            text="Temukan Peta Komoditas"
+            variant="primary"
+            className="ml-auto"
+          />
         </div>
       </div>
     </div>

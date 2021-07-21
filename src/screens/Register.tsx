@@ -3,11 +3,42 @@ import Button from "../components/Button";
 import Underline from "../components/Underline";
 import TextField from "../components/TextField";
 import { Link } from "react-router-dom";
-
+import {
+  AUTH_CLEAR_ERROR,
+  AUTH_FAILED,
+} from "../store/constants/userConstants";
+import { RootState } from "../store/index";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../store/actions/userActions";
 const Register = () => {
+  const [name, setName] = React.useState<string>("");
+  const [email, setEmail] = React.useState<string>("");
+  const [nik, setNik] = React.useState<string>("");
+  const [address, setAddress] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+  const [confirmPassword, setConfirmPassword] = React.useState<string>("");
+
+  const { error } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      dispatch({
+        type: AUTH_FAILED,
+        payload: "Password dan konfirmasi password tidak sesuai",
+      });
+    } else {
+      console.log({ email, password, nik, name, address })
+      dispatch(register({ email, password, nik, name, address }));
+    }
   };
+
+  React.useEffect(() => {
+    return () => {
+      dispatch({ type: AUTH_CLEAR_ERROR });
+    };
+  }, [dispatch]);
 
   return (
     <div
@@ -31,31 +62,53 @@ const Register = () => {
           <Underline center width={40} height={2} backgroundColor="#fff" />
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
-          <TextField value="" placeholder="Nama" />
+          <TextField
+            value={name}
+            placeholder="Nama"
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
           <TextField
             type="email"
-            value=""
+            value={email}
             placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             type="number"
-            onChange={() => console.log("object")}
+            onChange={(e) => setNik(e.target.value)}
+            required
             placeholder="NIK"
+            value={nik}
+          />
+          <TextField
+            onChange={(e) => setAddress(e.target.value)}
+            required
+            placeholder="Alamat"
+            value={address}
           />
           <TextField
             type="password"
-            value=""
-            onChange={() => console.log("object")}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
             placeholder="Kata Sandi"
-            className='text-white'
+            className="text-white"
           />
           <TextField
             type="password"
-            value=""
+            value={confirmPassword}
             rounded={false}
             placeholder="Ulangi Kata Sandi"
-            className='text-white'
+            className="text-white"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
+          {error && (
+            <span className="text-red-500 text-sm w-full mb-4 text-center">
+              {error}
+            </span>
+          )}
           <Button
             variant="primary"
             className="mb-4"

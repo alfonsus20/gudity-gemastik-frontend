@@ -56,7 +56,7 @@ const NavbarDashboard = ({
             <dl
               className={`${
                 dropdownShown ? "block" : "hidden"
-              } bg-white text-black px-4 py-2 rounded-md text-xs absolute top-12`}
+              } bg-white text-black px-4 py-2 rounded-md text-xs absolute top-12 z-20`}
             >
               <dd>
                 <Link
@@ -77,11 +77,13 @@ const NavbarDashboard = ({
                 </Link>
               </dd>
               <dd
-                className="flex flex-row py-2 border-gray-200 border-t-2 items-center"
+                className="py-2 border-gray-200 border-t-2 "
                 onClick={() => showDropdown(false)}
               >
-                <LogoutIcon className="w-5 h-5 mr-2" />
-                <button onClick={() => dispatch(logout())}>Keluar</button>
+                <button onClick={() => dispatch(logout())} className='flex flex-row items-center'>
+                  <LogoutIcon className="w-5 h-5 mr-2" />
+                  Keluar
+                </button>
               </dd>
             </dl>
           </div>

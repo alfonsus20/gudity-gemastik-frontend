@@ -16,6 +16,7 @@ interface LoginState {
 interface RegisterState extends LoginState {
   nik: string;
   name: string;
+  address: string;
 }
 
 export const login =
@@ -39,7 +40,7 @@ export const login =
   };
 
 export const register =
-  ({ email, password, nik, name }: RegisterState) =>
+  ({ email, password, nik, name, address }: RegisterState) =>
   async (dispatch: Dispatch<AuthDispatchTypes>) => {
     try {
       dispatch({ type: AUTH_LOADING });
@@ -49,12 +50,14 @@ export const register =
         password,
         nik,
         name,
+        address,
       });
 
       dispatch({ type: AUTH_SUCCESS });
       dispatch({ type: AUTH_RESET });
       await login({ email, password });
     } catch (error) {
+      console.log(error);
       dispatch({ type: AUTH_FAILED, payload: error.message });
     }
   };

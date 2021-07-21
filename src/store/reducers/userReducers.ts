@@ -7,7 +7,7 @@ import {
   AUTH_CLEAR_ERROR,
 } from "../constants/userConstants";
 
-export type AuthType = {
+export type AuthStates = {
   isAuthenticated: boolean;
   loading?: boolean;
   success?: boolean;
@@ -15,7 +15,7 @@ export type AuthType = {
 };
 
 export const authReducer = (
-  state: AuthType = {
+  state: AuthStates = {
     isAuthenticated: !!localStorage.getItem("token"),
     loading: false,
   },

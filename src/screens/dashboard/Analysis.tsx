@@ -2,12 +2,19 @@ import React from "react";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import { Line } from "react-chartjs-2";
-import mlApi from "../../api/mlApi";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { getPastAnalysis } from "../../store/actions/analysisActions";
+import { PAST_ANALYSIS_RESET } from "../../store/constants/analysisConstants";
 
 const Analysis = () => {
   const [commodity, setCommodity] = React.useState<string>("");
   const [day, setDay] = React.useState<string>("");
-  const [data, setData] = React.useState({});
+
+  const { predictions, loading } = useSelector(
+    (state: RootState) => state.pastPredictions
+  );
+  const dispatch = useDispatch();
 
   const options = {
     maintainAspectRatio: false,
@@ -33,30 +40,15 @@ const Analysis = () => {
     },
   };
 
-  const fetchData = async () => {
-    const { data } = await mlApi.get(
-      `/commodity/predict?commodity_name=${commodity}&day=${day}`
-    );
-    setData({
-      labels: data.data.map((x: any) => x.time),
-      datasets: [
-        {
-          type: "line",
-          label: "Hasil Analisis",
-          data: data.data.map(
-            (x: any) => Math.round(x.value * 14000 * 100) / 100
-          ),
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgba(255, 99, 132, 0.2)",
-          yAxisID: "y",
-        },
-      ],
-    });
-  };
+  React.useEffect(() => {
+    return () => {
+      dispatch({ type: PAST_ANALYSIS_RESET });
+    };
+  }, [dispatch]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    fetchData();
+    dispatch(getPastAnalysis(commodity, day));
   };
 
   return (
@@ -82,13 +74,37 @@ const Analysis = () => {
           />
         </div>
         <div className="md:col-span-2 flex items-center">
-          <Button text="Analisis" variant="primary" size="full" type="submit" />
+          <Button
+            text={loading ? "Loading..." : "Analisis"}
+            variant="primary"
+            size="full"
+            type="submit"
+            disabled={loading}
+          />
         </div>
       </form>
       <div className="px-12 py-6 shadow mb-8">
         <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
         <div className="w-full h-60 overflow-hidden">
-          <Line type="line" data={data} options={options} />
+          <Line
+            type="line"
+            data={{
+              labels: predictions?.map((x: any) => x.time),
+              datasets: [
+                {
+                  type: "line",
+                  label: "Hasil Analisis",
+                  data: predictions?.map(
+                    (x: any) => Math.round(x.value * 14000 * 100) / 100
+                  ),
+                  backgroundColor: "rgb(255, 99, 132)",
+                  borderColor: "rgba(255, 99, 132, 0.2)",
+                  yAxisID: "y",
+                },
+              ],
+            }}
+            options={options}
+          />
         </div>
       </div>
       <div className="px-12 py-6 shadow">

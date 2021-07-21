@@ -1,0 +1,42 @@
+import {
+  PastAnalysisDispatchTypes,
+  PAST_ANALYSIS_FAILED,
+  PAST_ANALYSIS_LOADING,
+  PAST_ANALYSIS_RESET,
+  PAST_ANALYSIS_SUCCESS,
+} from "../constants/analysisConstants";
+
+export type PredictionState = {
+  time: string;
+  value: number;
+};
+
+type PastAnalysisStates = {
+  loading?: boolean;
+  success?: boolean;
+  error?: string;
+  predictions?: PredictionState[];
+};
+
+export const pastAnalysisReducer = (
+  state: PastAnalysisStates = { loading: false, predictions: [] },
+  action: PastAnalysisDispatchTypes
+) => {
+  switch (action.type) {
+    case PAST_ANALYSIS_LOADING:
+      return { loading: true };
+    case PAST_ANALYSIS_SUCCESS:
+      return { loading: false, success: true, predictions: action.payload };
+    case PAST_ANALYSIS_FAILED:
+      return {
+        loading: false,
+        success: false,
+        error: action.payload,
+        predictions: [],
+      };
+    case PAST_ANALYSIS_RESET:
+      return { predictions: [] };
+    default:
+      return state;
+  }
+};
