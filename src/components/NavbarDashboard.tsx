@@ -23,14 +23,14 @@ const NavbarDashboard = ({
 }) => {
   const [dropdownShown, showDropdown] = React.useState<boolean>(false);
 
-  const { userInfo, loading } = useSelector((state: RootState) => state.auth);
+  const { userInfo, loading, isAuthenticated } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if (Object.keys(userInfo).length === 0) {
+    if (isAuthenticated && Object.keys(userInfo).length === 0) {
       dispatch(fetchUserInfo());
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo,isAuthenticated]);
 
   return (
     <div className="w-full mb-4">
@@ -69,7 +69,7 @@ const NavbarDashboard = ({
             <dl
               className={`${
                 dropdownShown ? "block" : "hidden"
-              } bg-white text-black px-4 py-2 rounded-md text-xs absolute top-12 z-20 w-40`}
+              } bg-white text-black px-4 py-2 rounded-md text-xs absolute top-12 z-20`}
             >
               <dd>
                 <Link

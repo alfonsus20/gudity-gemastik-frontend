@@ -13,7 +13,7 @@ import {
 } from "@heroicons/react/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/index";
-import { fetchUserInfo } from "../store/actions/userActions";
+import { fetchUserInfo, logout } from "../store/actions/userActions";
 
 const Navbar = () => {
   const [isBackgroundBlack, setIsBackgroundBlack] =
@@ -21,11 +21,12 @@ const Navbar = () => {
   const [quickAccessShown, showQuickAccess] = React.useState<boolean>(false);
   const [logoutModalShown, showLogoutModal] = React.useState<boolean>(false);
   const [dropdownShown, showDropdown] = React.useState<boolean>(false);
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   const location = useLocation();
 
-  const { userInfo, loading } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, userInfo, loading } = useSelector(
+    (state: RootState) => state.auth
+  );
   const dispatch = useDispatch();
 
   const backgroundVariants = {
@@ -47,14 +48,14 @@ const Navbar = () => {
     };
     window.addEventListener("scroll", checkViewPort);
 
-    if (Object.keys(userInfo).length === 0) {
+    if (isAuthenticated && Object.keys(userInfo).length === 0) {
       dispatch(fetchUserInfo());
     }
 
     return () => {
       window.removeEventListener("scroll", checkViewPort);
     };
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, isAuthenticated]);
 
   return (
     <motion.div
@@ -147,11 +148,16 @@ const Navbar = () => {
                 </Link>
               </dd>
               <dd
-                className="flex flex-row py-2 border-gray-200 border-t-2 items-center"
+                className=" py-2 border-gray-200 border-t-2 items-center"
                 onClick={() => showDropdown(false)}
               >
-                <LogoutIcon className="w-5 h-5 mr-2" />
-                <button onClick={() => console.log("object")}>Keluar</button>
+                <button
+                  className="flex flex-row"
+                  onClick={() => dispatch(logout())}
+                >
+                  <LogoutIcon className="w-5 h-5 mr-2" />
+                  Keluar
+                </button>
               </dd>
             </dl>
           </div>

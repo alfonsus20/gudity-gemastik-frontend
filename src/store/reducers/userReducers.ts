@@ -5,15 +5,15 @@ import {
   AUTH_RESET,
   AuthDispatchTypes,
   AUTH_CLEAR_ERROR,
-  FETCH_USER_INFO_LOADING,
-  FETCH_USER_INFO_SUCCESS,
-  FETCH_USER_INFO_FAILED,
-  FETCH_USER_INFO_RESET,
+  USER_INFO_LOADING,
+  USER_INFO_SUCCESS,
+  USER_INFO_FAILED,
+  USER_INFO_RESET,
 } from "../constants/userConstants";
 
 export type AuthState = {
-  isAuthenticated?: boolean;
-  loading?: boolean;
+  isAuthenticated: boolean;
+  loading: boolean;
   success?: boolean;
   error?: string;
   userInfo: {
@@ -57,23 +57,23 @@ export const authReducer = (
       };
     case AUTH_RESET:
       return { ...state, isAuthenticated: false };
-    case FETCH_USER_INFO_LOADING:
+    case USER_INFO_LOADING:
       return { ...state, loading: true };
-    case FETCH_USER_INFO_SUCCESS:
+    case USER_INFO_SUCCESS:
       return {
         ...state,
         loading: false,
         success: true,
         userInfo: action.payload,
       };
-    case FETCH_USER_INFO_FAILED:
+    case USER_INFO_FAILED:
       return {
         ...state,
         loading: false,
         success: false,
         error: action.payload,
       };
-    case FETCH_USER_INFO_RESET:
+    case USER_INFO_RESET:
       return { ...state, userInfo: {} };
     default:
       return state;

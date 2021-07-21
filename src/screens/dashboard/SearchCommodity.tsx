@@ -1,6 +1,10 @@
 import React from "react";
 import { useDropzone } from "react-dropzone";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
+import { RootState } from "../../store";
+import { classifyCommodityWithImage } from "../../store/actions/searchCommodityActions";
+import { COMMODITY_IMAGE_CLASSIFICATION_RESET } from "../../store/constants/searchCommodityConstants";
 
 const SearchCommodity = () => {
   const [image, setImage] = React.useState<File>();
@@ -13,6 +17,15 @@ const SearchCommodity = () => {
       maxFiles: 1,
       onDrop: (files) => setImage(files[0]),
     });
+
+  const dispatch = useDispatch();
+  const { loading, commodity_name, deskripsi } = useSelector(
+    (state: RootState) => state.imageClassification
+  );
+
+  React.useEffect(() => {
+    dispatch({ type: COMMODITY_IMAGE_CLASSIFICATION_RESET });
+  }, [dispatch]);
 
   return (
     <div>
@@ -32,27 +45,39 @@ const SearchCommodity = () => {
         <div className="col-span-1">
           <div
             {...getRootProps({ className: "dropzone" })}
-            className="rounded-md shadow flex flex-col items-center p-8 mb-6"
+            className="rounded-md shadow flex flex-col items-center p-8 mb-6 justify-center"
+            style={{ minHeight: 250 }}
           >
             <input {...getInputProps()} />
-            <div>
-              <img src="/assets/icons/upload.png" alt="" />
-            </div>
-            <p className="text-blue-marker font-medium mb-5">
-              {acceptedFiles.length !== 0
-                ? acceptedFiles[0].name
-                : isDragActive
-                ? "Letakkan di sini"
-                : "Unggah gambar kamu disini"}
-            </p>
-            <button
-              type="button"
-              onClick={open}
-              className="text-white px-8 py-2 rounded-full text-sm"
-              style={{ backgroundColor: "rgba(24, 84, 255, 0.5)" }}
-            >
-              Pilih File
-            </button>
+
+            {image ? (
+              <img
+                src={URL.createObjectURL(image)}
+                className="w-72"
+                alt={image.name}
+              />
+            ) : (
+              <>
+                <div>
+                  <img src="/assets/icons/upload.png" alt="" />
+                </div>
+                <p className="text-blue-marker font-medium mb-5">
+                  {acceptedFiles.length !== 0
+                    ? acceptedFiles[0].name
+                    : isDragActive
+                    ? "Letakkan di sini"
+                    : "Unggah gambar kamu disini"}
+                </p>
+                <button
+                  type="button"
+                  onClick={open}
+                  className="text-white px-8 py-2 rounded-full text-sm"
+                  style={{ backgroundColor: "rgba(24, 84, 255, 0.5)" }}
+                >
+                  Pilih File
+                </button>
+              </>
+            )}
           </div>
           <div className="flex flew-row gap-4 justify-center">
             <Button
@@ -61,18 +86,21 @@ const SearchCommodity = () => {
               className="w-28"
               onClick={open}
             />
-            <Button text="Cari" variant="primary" className="w-28" />
+            <Button
+              text="Cari"
+              variant="primary"
+              className="w-28"
+              onClick={() => dispatch(classifyCommodityWithImage(image!))}
+            />
           </div>
         </div>
         <div className="col-span-1  p-8 shadow">
           <h3 className="font-semibold text-lg">Hasil:</h3>
+          <h4 className="font-semibold text-md">
+            {loading ? "Loading..." : commodity_name && commodity_name}
+          </h4>
           <div className="mb-5 " style={{ minHeight: 240 }}>
-            Kopi Toraja, merupakan salah satu varian kopi yang paling populer
-            dan memiliki kualitas terbaik yang dimilikdunia tersebut. Mulai dari
-            tempat asal, karakteristik, hingga harga kopi Toraja. Kopi Toraja,
-            merupakan salah satu varian kopi yang paling populer dan memiliki
-            kualitas terbaik yang dimilikdunia tersebut. Mulai dari tempat asal,
-            karakteristik, hingga harga kopi Toraja.
+            {loading ? "Loading..." : deskripsi && deskripsi}
           </div>
           <Button
             text="Temukan Peta Komoditas"

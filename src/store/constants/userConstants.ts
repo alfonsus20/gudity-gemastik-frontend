@@ -25,27 +25,27 @@ export interface AuthReset {
   type: typeof AUTH_RESET;
 }
 
-export const FETCH_USER_INFO_LOADING = "FETCH_USER_INFO_LOADING";
-export const FETCH_USER_INFO_SUCCESS = "FETCH_USER_INFO_SUCCESS";
-export const FETCH_USER_INFO_FAILED = "FETCH_USER_INFO_FAILED";
-export const FETCH_USER_INFO_RESET = "FETCH_USER_INFO_RESET";
+export const USER_INFO_LOADING = "USER_INFO_LOADING";
+export const USER_INFO_SUCCESS = "USER_INFO_SUCCESS";
+export const USER_INFO_FAILED = "USER_INFO_FAILED";
+export const USER_INFO_RESET = "USER_INFO_RESET";
 
-export interface FetchUserInfoLoading {
-  type: typeof FETCH_USER_INFO_LOADING;
+export interface UserInfoLoading {
+  type: typeof USER_INFO_LOADING;
 }
 
-export interface FetchUserInfoSuccess {
-  type: typeof FETCH_USER_INFO_SUCCESS;
+export interface UserInfoSuccess {
+  type: typeof USER_INFO_SUCCESS;
   payload: object;
 }
 
-export interface FetchUserInfoFailed {
-  type: typeof FETCH_USER_INFO_FAILED;
+export interface UserInfoFailed {
+  type: typeof USER_INFO_FAILED;
   payload: string;
 }
 
-export interface FetchUserInfoReset {
-  type: typeof FETCH_USER_INFO_RESET;
+export interface UserInfoReset {
+  type: typeof USER_INFO_RESET;
 }
 
 export type AuthDispatchTypes =
@@ -54,7 +54,7 @@ export type AuthDispatchTypes =
   | AuthFailed
   | AuthErrorReset
   | AuthReset
-  | FetchUserInfoLoading
-  | FetchUserInfoSuccess
-  | FetchUserInfoFailed
-  | FetchUserInfoReset;
+  | UserInfoLoading
+  | UserInfoSuccess
+  | UserInfoFailed
+  | UserInfoReset;

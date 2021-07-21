@@ -1,4 +1,4 @@
-import { PredictionState } from "../reducers/analysisReducer";
+import { PredictionState } from "../reducers/analysisReducers";
 
 export const PAST_ANALYSIS_LOADING = "PAST_ANALYSIS_LOADING";
 export const PAST_ANALYSIS_SUCCESS = "PAST_ANALYSIS_SUCCESS";
