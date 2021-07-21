@@ -40,11 +40,11 @@ const Analysis = () => {
     },
   };
 
-  React.useEffect(() => {
-    return () => {
-      dispatch({ type: PAST_ANALYSIS_RESET });
-    };
-  }, [dispatch]);
+  // React.useEffect(() => {
+  //   return () => {
+  //     dispatch({ type: PAST_ANALYSIS_RESET });
+  //   };
+  // }, [dispatch]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();

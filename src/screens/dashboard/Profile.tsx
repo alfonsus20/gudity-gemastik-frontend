@@ -1,11 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Button from "../../components/Button";
 import CommodityWelcomeModal from "../../components/modal/CommodityWelcomeModal";
 import Tab from "../../components/Tab";
 import TextField from "../../components/TextField";
+import { RootState } from "../../store";
 
 const Profile = () => {
+  const { userInfo, loading } = useSelector((state: RootState) => state.auth);
+
   const [welcomeModal, showWelcomeModal] = React.useState<boolean>(false);
+  const [enabled, enableForm] = React.useState<boolean>(false);
+  const [tabKey, setTabKey] = React.useState<string>("");
+
+  React.useEffect(() => {
+    setTabKey(userInfo.name!);
+  }, [userInfo.name]);
 
   return (
     <div>
@@ -17,13 +27,15 @@ const Profile = () => {
       <div className="flex flex-row items-center">
         <div className="mr-8">
           <img
-            src="/assets/pictures/user-random.jpg"
+            src={!loading && userInfo.profile_image ? userInfo.profile_image : '/assets/icons/user.png'}
             className="w-36 h-36 rounded-md"
             alt=""
           />
         </div>
         <div className="flex flex-col">
-          <h3 className="font-medium text-2xl mb-3">Bocah Mozaaaaaaaaaaaik</h3>
+          <h3 className="font-medium text-2xl mb-3">
+            {loading ? "Loading..." : userInfo.name}
+          </h3>
           <div className="flex">
             <div className="px-4 py-2 bg-gray-300 text-white text-center rounded-full w-auto text-sm">
               Komoditas
@@ -33,6 +45,7 @@ const Profile = () => {
       </div>
       <div>
         <Tab
+          key={tabKey}
           tabs={[
             {
               title: "Profile",
@@ -48,7 +61,12 @@ const Profile = () => {
                           Nama Lengkap
                         </label>
                         <span>:</span>
-                        <TextField variant="dashboard" className="flex-auto" />
+                        <TextField
+                          variant="dashboard"
+                          className="flex-auto"
+                          value={loading ? "Loading..." : userInfo.name}
+                          disabled={!enabled}
+                        />
                       </div>
                       <div className="flex flex-row items-center space-x-10">
                         <label
@@ -62,6 +80,7 @@ const Profile = () => {
                           variant="dashboard"
                           type="password"
                           className="flex-auto"
+                          disabled={!enabled}
                         />
                       </div>
                       <div className="flex flex-row items-center space-x-10">
@@ -76,6 +95,8 @@ const Profile = () => {
                           variant="dashboard"
                           type="email"
                           className="flex-auto"
+                          value={userInfo.email}
+                          disabled={!enabled}
                         />
                       </div>
                     </div>
@@ -88,7 +109,12 @@ const Profile = () => {
                           Alamat
                         </label>
                         <span>:</span>
-                        <TextField variant="dashboard" className="flex-auto" />
+                        <TextField
+                          variant="dashboard"
+                          className="flex-auto"
+                          value={userInfo.address}
+                          disabled={!enabled}
+                        />
                       </div>
                       <div className="flex flex-row items-center space-x-10">
                         <label
@@ -102,6 +128,7 @@ const Profile = () => {
                           variant="dashboard"
                           type="date"
                           className="flex-auto"
+                          disabled={!enabled}
                         />
                       </div>
                       <div className="flex flex-row items-center space-x-10">
@@ -116,12 +143,22 @@ const Profile = () => {
                           variant="dashboard"
                           type="tel"
                           className="flex-auto"
+                          value={userInfo.phone}
+                          disabled={!enabled}
                         />
                       </div>
                     </div>
                   </div>
                   <div className="flex justify-end">
-                    <Button text="Edit" variant="primary" className="w-32" />
+                    <Button
+                      text={enabled ? "Simpan" : "Edit"}
+                      variant="primary"
+                      className="w-32"
+                      onClick={() => {
+                        enableForm(true);
+                        setTabKey("form enabled");
+                      }}
+                    />
                   </div>
                 </div>
               ),
@@ -133,54 +170,71 @@ const Profile = () => {
                   <div className="grid grid-cols-2 gap-x-10 mb-8">
                     <div className="col-span-1 space-y-4">
                       <div className="flex flex-row items-center space-x-10">
-                        <label htmlFor="" className="font-medium w-40 flex-shrink-0">
-                          Nama Pemilik <span className='text-red-600'>*</span>
+                        <label
+                          htmlFor=""
+                          className="font-medium w-40 flex-shrink-0"
+                        >
+                          Nama Pemilik <span className="text-red-600">*</span>
+                        </label>
+                        <span>:</span>
+                        <TextField
+                          variant="dashboard"
+                          className="flex-auto"
+                          value=""
+                        />
+                      </div>
+                      <div className="flex flex-row items-center space-x-10">
+                        <label
+                          htmlFor=""
+                          className="font-medium w-40 flex-shrink-0"
+                        >
+                          Nama Usaha <span className="text-red-600">*</span>
                         </label>
                         <span>:</span>
                         <TextField variant="dashboard" className="flex-auto" />
                       </div>
                       <div className="flex flex-row items-center space-x-10">
-                        <label htmlFor="" className="font-medium w-40 flex-shrink-0">
-                          Nama Usaha <span className='text-red-600'>*</span>
+                        <label
+                          htmlFor=""
+                          className="font-medium w-40 flex-shrink-0"
+                        >
+                          Alamat <span className="text-red-600">*</span>
                         </label>
                         <span>:</span>
                         <TextField
                           variant="dashboard"
                           className="flex-auto"
-                        />
-                      </div>
-                      <div className="flex flex-row items-center space-x-10">
-                        <label htmlFor="" className="font-medium w-40 flex-shrink-0">
-                          Alamat <span className='text-red-600'>*</span>
-                        </label>
-                        <span>:</span>
-                        <TextField
-                          variant="dashboard"
-                          className="flex-auto"
+                          value=""
                         />
                       </div>
                     </div>
                     <div className="col-span-1 space-y-4">
                       <div className="flex flex-row items-center space-x-10">
-                        <label htmlFor="" className="font-medium w-40 flex-shrink-0">
-                          No Telepon <span className='text-red-600'>*</span>
+                        <label
+                          htmlFor=""
+                          className="font-medium w-40 flex-shrink-0"
+                        >
+                          No Telepon <span className="text-red-600">*</span>
                         </label>
                         <span>:</span>
                         <TextField variant="dashboard" className="flex-auto" />
                       </div>
                       <div className="flex flex-row items-center space-x-10">
-                        <label htmlFor="" className="font-medium w-40 flex-shrink-0">
-                          Deskripsi <span className='text-red-600'>*</span>
+                        <label
+                          htmlFor=""
+                          className="font-medium w-40 flex-shrink-0"
+                        >
+                          Deskripsi <span className="text-red-600">*</span>
                         </label>
                         <span>:</span>
-                        <TextField
-                          variant="dashboard"
-                          className="flex-auto"
-                        />
+                        <TextField variant="dashboard" className="flex-auto" />
                       </div>
                       <div className="flex flex-row items-center space-x-10">
-                        <label htmlFor="" className="font-medium w-40 flex-shrink-0">
-                          Foto Profil <span className='text-red-600'>*</span>
+                        <label
+                          htmlFor=""
+                          className="font-medium w-40 flex-shrink-0"
+                        >
+                          Foto Profil <span className="text-red-600">*</span>
                         </label>
                         <span>:</span>
                         <TextField

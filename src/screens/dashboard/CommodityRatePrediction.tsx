@@ -2,29 +2,20 @@ import React from "react";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import { Line } from "react-chartjs-2";
+import { RootState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { getFutureAnalysis } from "../../store/actions/predictionActions";
+import { FUTURE_ANALYSIS_RESET } from "../../store/constants/predictionConstants";
 
 const CommodityRatePrediction = () => {
-  const data = {
-    labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni"],
-    datasets: [
-      {
-        type: "line",
-        label: "Standar Kesuksesan",
-        data: [5, 3, 4, 10, 8, 9, 2],
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgba(255, 99, 132, 0.2)",
-        yAxisID: "y",
-      },
-      {
-        type: "line",
-        label: "Hasil Analisis Anda",
-        data: [2, 4, 1, 3, 7, 3, 6],
-        backgroundColor: "rgb(180, 164, 199)",
-        borderColor: "rgb(180, 164, 199,0.2)",
-        yAxisID: "y1",
-      },
-    ],
-  };
+  const [commodity, setCommodity] = React.useState<string>("");
+  const [day, setDay] = React.useState<string>("");
+
+  const { predictions, loading } = useSelector(
+    (state: RootState) => state.futurePredictions
+  );
+
+  const dispatch = useDispatch();
 
   const options = {
     maintainAspectRatio: false,
@@ -32,6 +23,9 @@ const CommodityRatePrediction = () => {
     interaction: {
       mode: "index",
       intersect: false,
+    },
+    animation: {
+      duration: 0,
     },
     scales: {
       xAxes: [
@@ -43,43 +37,31 @@ const CommodityRatePrediction = () => {
         type: "linear",
         display: true,
         position: "left",
-        suggestedMin: Math.min(
-          ...[2, 4, 1, 3, 7, 3, 6],
-          ...[5, 3, 4, 10, 8, 9, 2]
-        ),
-        suggestedMax: Math.max(
-          ...[2, 4, 1, 3, 7, 3, 6],
-          ...[5, 3, 4, 10, 8, 9, 2]
-        ),
-      },
-      y1: {
-        type: "linear",
-        display: false,
-        position: "right",
-        grid: {
-          drawOnChartArea: false,
-        },
-        suggestedMin: Math.min(
-          ...[2, 4, 1, 3, 7, 3, 6],
-          ...[5, 3, 4, 10, 8, 9, 2]
-        ),
-        suggestedMax: Math.max(
-          ...[2, 4, 1, 3, 7, 3, 6],
-          ...[5, 3, 4, 10, 8, 9, 2]
-        ),
       },
     },
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    dispatch(getFutureAnalysis(commodity, day));
+  };
+
+  React.useEffect(() => {
+    return () => {
+      dispatch({ type: FUTURE_ANALYSIS_RESET });
+    };
+  }, [dispatch]);
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-5">Prediksi Harga Komoditas</h2>
-      <div className="grid grid-cols-12 gap-6 mb-8">
+      <form className="grid grid-cols-12 gap-6 mb-8" onSubmit={handleSubmit}>
         <div className="col-span-5 flex items-center">
           <TextField
             variant="dashboard"
             className="w-full"
             placeholder="Komoditas"
+            onChange={(e) => setCommodity(e.target.value)}
           />
         </div>
         <div className="col-span-5 flex items-center">
@@ -87,16 +69,41 @@ const CommodityRatePrediction = () => {
             variant="dashboard"
             className="w-full"
             placeholder="Jangka Waktu (hari)"
+            onChange={(e) => setDay(e.target.value)}
           />
         </div>
         <div className="col-span-2 flex items-center">
-          <Button text="Analisis" variant="primary" size="full" />
+          <Button
+            text={loading ? "Loading..." : "Analisis"}
+            variant="primary"
+            size="full"
+            type="submit"
+            disabled={loading}
+          />
         </div>
-      </div>
+      </form>
       <div className="px-12 py-6 shadow mb-8">
         <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
         <div className="w-full h-60 overflow-hidden">
-          <Line type="line" data={data} options={options} />
+          <Line
+            type="line"
+            data={{
+              labels: predictions?.map((x: any) => x.time),
+              datasets: [
+                {
+                  type: "line",
+                  label: "Hasil Analisis",
+                  data: predictions?.map(
+                    (x: any) => Math.round(x.value * 14000 * 100) / 100
+                  ),
+                  backgroundColor: "rgb(255, 99, 132)",
+                  borderColor: "rgba(255, 99, 132, 0.2)",
+                  yAxisID: "y",
+                },
+              ],
+            }}
+            options={options}
+          />
         </div>
       </div>
       <div className="px-12 py-6 shadow">

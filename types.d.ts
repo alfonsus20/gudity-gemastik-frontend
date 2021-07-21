@@ -6,4 +6,5 @@
 // };
 
 declare module "react-select";
-declare module "conversational-form"
+declare module "react-router-redux";
+declare module "conversational-form";

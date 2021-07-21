@@ -5,6 +5,7 @@ import {
   PAST_ANALYSIS_RESET,
   PAST_ANALYSIS_SUCCESS,
 } from "../constants/analysisConstants";
+import { LOCATION_CHANGE } from "connected-react-router";
 
 export type PredictionState = {
   time: string;
@@ -34,7 +35,7 @@ export const pastAnalysisReducer = (
         error: action.payload,
         predictions: [],
       };
-    case PAST_ANALYSIS_RESET:
+    case LOCATION_CHANGE || PAST_ANALYSIS_RESET:
       return { predictions: [] };
     default:
       return state;

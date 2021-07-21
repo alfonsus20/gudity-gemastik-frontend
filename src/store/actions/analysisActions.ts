@@ -14,7 +14,7 @@ export const getPastAnalysis =
       dispatch({ type: PAST_ANALYSIS_LOADING });
 
       const { data } = await mlApi.get(
-        `/commodity/predict?commodity_name=${commodity}&day=${day}`
+        `/commodity?commodity_name=${commodity}&day=${day}`
       );
 
       dispatch({ type: PAST_ANALYSIS_SUCCESS, payload: data.data });
