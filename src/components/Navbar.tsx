@@ -11,8 +11,9 @@ import {
   PresentationChartLineIcon,
   LogoutIcon,
 } from "@heroicons/react/outline";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/index";
+import { fetchUserInfo } from "../store/actions/userActions";
 
 const Navbar = () => {
   const [isBackgroundBlack, setIsBackgroundBlack] =
@@ -21,7 +22,11 @@ const Navbar = () => {
   const [logoutModalShown, showLogoutModal] = React.useState<boolean>(false);
   const [dropdownShown, showDropdown] = React.useState<boolean>(false);
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+
   const location = useLocation();
+
+  const { userInfo, loading } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
 
   const backgroundVariants = {
     shown: {
@@ -41,10 +46,15 @@ const Navbar = () => {
       }
     };
     window.addEventListener("scroll", checkViewPort);
+
+    if (Object.keys(userInfo).length === 0) {
+      dispatch(fetchUserInfo());
+    }
+
     return () => {
       window.removeEventListener("scroll", checkViewPort);
     };
-  }, []);
+  }, [dispatch, userInfo]);
 
   return (
     <motion.div
@@ -92,12 +102,16 @@ const Navbar = () => {
           >
             <div>
               <img
-                src="/assets/pictures/user-random.jpg"
+                src={
+                  !loading && userInfo!.profile_image
+                    ? userInfo!.profile_image
+                    : "/assets/icons/user.png"
+                }
                 className="w-12 h-12 rounded-full mr-1"
                 alt="user"
               />
             </div>
-            <p className="">Hi, Bocah</p>
+            <p className="">Hi, {loading ? "Loading..." : userInfo!.name}</p>
             <ChevronDownIcon className="w-5 h-5" />
             <dl
               className={`${

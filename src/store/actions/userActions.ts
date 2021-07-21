@@ -6,6 +6,9 @@ import {
   AUTH_LOADING,
   AUTH_RESET,
   AUTH_SUCCESS,
+  FETCH_USER_INFO_FAILED,
+  FETCH_USER_INFO_LOADING,
+  FETCH_USER_INFO_SUCCESS,
 } from "../constants/userConstants";
 
 interface LoginState {
@@ -66,3 +69,18 @@ export const logout = () => (dispatch: Dispatch<AuthDispatchTypes>) => {
   dispatch({ type: AUTH_RESET });
   localStorage.removeItem("token");
 };
+
+export const fetchUserInfo =
+  () => async (dispatch: Dispatch<AuthDispatchTypes>) => {
+    try {
+      dispatch({ type: FETCH_USER_INFO_LOADING });
+
+      const { data } = await baseApi.get("/user/profile", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      dispatch({ type: FETCH_USER_INFO_SUCCESS, payload: data.data });
+    } catch (error) {
+      dispatch({ type: FETCH_USER_INFO_FAILED, payload: error.message });
+    }
+  };
