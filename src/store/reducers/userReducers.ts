@@ -9,12 +9,18 @@ import {
   USER_INFO_SUCCESS,
   USER_INFO_FAILED,
   USER_INFO_RESET,
+  UpdateSupplierDispatchTypes,
+  UPDATE_SUPPLIER_INFO_LOADING,
+  UPDATE_SUPPLIER_INFO_SUCCESS,
+  UPDATE_SUPPLIER_INFO_FAILED,
+  UPDATE_SUPPLIER_INFO_RESET,
 } from "../constants/userConstants";
 
 export type AuthState = {
   isAuthenticated: boolean;
   loading: boolean;
   success?: boolean;
+  successUpdateSupplier?: boolean;
   error?: string;
   userInfo: {
     user_id?: number;
@@ -50,7 +56,7 @@ export const authReducer = (
     loading: false,
     userInfo: {},
   },
-  action: AuthDispatchTypes
+  action: AuthDispatchTypes | UpdateSupplierDispatchTypes
 ): AuthState => {
   switch (action.type) {
     case AUTH_LOADING:
@@ -71,15 +77,30 @@ export const authReducer = (
         error: "",
       };
     case AUTH_RESET:
-      return { ...state, isAuthenticated: false };
-    case USER_INFO_LOADING:
+      return { ...state, isAuthenticated: false, userInfo: {} };
+    case USER_INFO_LOADING || UPDATE_SUPPLIER_INFO_LOADING:
       return { ...state, loading: true };
+    case UPDATE_SUPPLIER_INFO_SUCCESS:
+      return { ...state, successUpdateSupplier: true };
     case USER_INFO_SUCCESS:
       return {
         ...state,
         loading: false,
         success: true,
         userInfo: action.payload,
+      };
+
+    case UPDATE_SUPPLIER_INFO_FAILED:
+      return {
+        ...state,
+        loading: false,
+        successUpdateSupplier: false,
+        error: action.payload,
+      };
+    case UPDATE_SUPPLIER_INFO_RESET:
+      return {
+        ...state,
+        successUpdateSupplier: false,
       };
     case USER_INFO_FAILED:
       return {

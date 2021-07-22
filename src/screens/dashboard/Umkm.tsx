@@ -11,6 +11,8 @@ const Umkm = () => {
   return (
     <div className="flex flex-auto flex-col">
       <SuccessModal
+        title="Terima Kasih"
+        message="Selamat"
         shown={successModalShown}
         onClose={() => showSuccessModal(false)}
       />

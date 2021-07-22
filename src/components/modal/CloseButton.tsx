@@ -11,6 +11,7 @@ const CloseButton = ({ color, onClick , className}: CloseButtonProps) => {
   return (
     <button
       className={`absolute top-2 right-2 ${className}`}
+      type='button'
       onClick={() => onClick()}
     >
       <XIcon

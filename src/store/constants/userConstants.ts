@@ -58,3 +58,31 @@ export type AuthDispatchTypes =
   | UserInfoSuccess
   | UserInfoFailed
   | UserInfoReset;
+
+export const UPDATE_SUPPLIER_INFO_LOADING = "UPDATE_SUPPLIER_INFO_LOADING";
+export const UPDATE_SUPPLIER_INFO_SUCCESS = "UPDATE_SUPPLIER_INFO_SUCCESS";
+export const UPDATE_SUPPLIER_INFO_FAILED = "UPDATE_SUPPLIER_INFO_FAILED";
+export const UPDATE_SUPPLIER_INFO_RESET = "UPDATE_SUPPLIER_INFORESETG";
+
+export interface UpdateSupplierInfoLoading {
+  type: typeof UPDATE_SUPPLIER_INFO_LOADING;
+}
+
+export interface UpdateSupplierInfoSuccess {
+  type: typeof UPDATE_SUPPLIER_INFO_SUCCESS;
+}
+
+export interface UpdateSupplierInfoFailed {
+  type: typeof UPDATE_SUPPLIER_INFO_FAILED;
+  payload: string;
+}
+
+export interface UpdateSupplierInfoReset {
+  type: typeof UPDATE_SUPPLIER_INFO_RESET;
+}
+
+export type UpdateSupplierDispatchTypes =
+  | UpdateSupplierInfoLoading
+  | UpdateSupplierInfoSuccess
+  | UpdateSupplierInfoFailed
+  | UpdateSupplierInfoReset;

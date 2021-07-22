@@ -8,10 +8,13 @@ type TabState = {
 type TabProps = {
   tabs: TabState[];
   className?: string;
+  openTabIndex?: number;
 };
 
-const Tab = ({ tabs, className }: TabProps) => {
-  const [currentTab, setCurrentTab] = React.useState<TabState>(tabs[0]);
+const Tab = ({ tabs, className, openTabIndex }: TabProps) => {
+  const [currentTab, setCurrentTab] = React.useState<TabState>(
+    tabs[openTabIndex! || 0]
+  );
 
   return (
     <div className={className}>
@@ -38,9 +41,13 @@ const Tab = ({ tabs, className }: TabProps) => {
           </button>
         ))}
       </div>
-      <div className='pb-6'>{currentTab.content}</div>
+      <div className="pb-6">{currentTab.content}</div>
     </div>
   );
+};
+
+Tab.defaultProps = {
+  openTabIndex: 0,
 };
 
 export default Tab;

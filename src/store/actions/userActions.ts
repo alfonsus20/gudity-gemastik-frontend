@@ -6,6 +6,10 @@ import {
   AUTH_LOADING,
   AUTH_RESET,
   AUTH_SUCCESS,
+  UpdateSupplierDispatchTypes,
+  UPDATE_SUPPLIER_INFO_FAILED,
+  UPDATE_SUPPLIER_INFO_LOADING,
+  UPDATE_SUPPLIER_INFO_SUCCESS,
   USER_INFO_FAILED,
   USER_INFO_LOADING,
   USER_INFO_SUCCESS,
@@ -83,5 +87,42 @@ export const fetchUserInfo =
       dispatch({ type: USER_INFO_SUCCESS, payload: data.data });
     } catch (error) {
       dispatch({ type: USER_INFO_FAILED, payload: error.message });
+    }
+  };
+
+interface SupplierState {
+  supplier_profile_image: File;
+  supplier_owner_name: string;
+  supplier_address: string;
+  supplier_name: string;
+  supplier_phone: string;
+  supplier_description: string;
+}
+
+export const updateSupplierInfo =
+  (supplierData: SupplierState) =>
+  async (
+    dispatch: Dispatch<AuthDispatchTypes | UpdateSupplierDispatchTypes>
+  ) => {
+    try {
+      dispatch({ type: UPDATE_SUPPLIER_INFO_LOADING });
+
+      const formData = new FormData();
+
+      Object.keys(supplierData).forEach((key) => {
+        formData.append(key, supplierData[key as keyof SupplierState]);
+      });
+
+      await baseApi.put("/user/suppliers/claim", formData, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      dispatch({ type: UPDATE_SUPPLIER_INFO_SUCCESS });
+
+      // @ts-ignore
+      dispatch(fetchUserInfo());
+    } catch (error) {
+      // console.log(error.response.data.message);
+      dispatch({ type: UPDATE_SUPPLIER_INFO_FAILED, payload: error.message });
     }
   };
