@@ -1,3 +1,4 @@
+import { LocationChangeAction} from "connected-react-router";
 import {
   AUTH_LOADING,
   AUTH_SUCCESS,
@@ -14,6 +15,11 @@ import {
   UPDATE_SUPPLIER_INFO_SUCCESS,
   UPDATE_SUPPLIER_INFO_FAILED,
   UPDATE_SUPPLIER_INFO_RESET,
+  UPDATE_STORE_INFO_LOADING,
+  UPDATE_STORE_INFO_SUCCESS,
+  UPDATE_STORE_INFO_FAILED,
+  UPDATE_STORE_INFO_RESET,
+  UpdateStoreDispatchTypes,
 } from "../constants/userConstants";
 
 export type AuthState = {
@@ -21,6 +27,7 @@ export type AuthState = {
   loading: boolean;
   success?: boolean;
   successUpdateSupplier?: boolean;
+  successUpdateStore?: boolean;
   error?: string;
   userInfo: {
     user_id?: number;
@@ -56,7 +63,11 @@ export const authReducer = (
     loading: false,
     userInfo: {},
   },
-  action: AuthDispatchTypes | UpdateSupplierDispatchTypes
+  action:
+    | AuthDispatchTypes
+    | UpdateSupplierDispatchTypes
+    | UpdateStoreDispatchTypes
+    | LocationChangeAction
 ): AuthState => {
   switch (action.type) {
     case AUTH_LOADING:
@@ -77,11 +88,15 @@ export const authReducer = (
         error: "",
       };
     case AUTH_RESET:
-      return { ...state, isAuthenticated: false, userInfo: {} };
-    case USER_INFO_LOADING || UPDATE_SUPPLIER_INFO_LOADING:
+      return { loading: false, isAuthenticated: false, userInfo: {} };
+    case USER_INFO_LOADING ||
+      UPDATE_SUPPLIER_INFO_LOADING ||
+      UPDATE_STORE_INFO_LOADING:
       return { ...state, loading: true };
     case UPDATE_SUPPLIER_INFO_SUCCESS:
       return { ...state, successUpdateSupplier: true };
+    case UPDATE_STORE_INFO_SUCCESS:
+      return { ...state, successUpdateStore: true };
     case USER_INFO_SUCCESS:
       return {
         ...state,
@@ -89,7 +104,6 @@ export const authReducer = (
         success: true,
         userInfo: action.payload,
       };
-
     case UPDATE_SUPPLIER_INFO_FAILED:
       return {
         ...state,
@@ -97,10 +111,22 @@ export const authReducer = (
         successUpdateSupplier: false,
         error: action.payload,
       };
+    case UPDATE_STORE_INFO_FAILED:
+      return {
+        ...state,
+        loading: false,
+        successUpdateStore: false,
+        error: action.payload,
+      };
     case UPDATE_SUPPLIER_INFO_RESET:
       return {
         ...state,
         successUpdateSupplier: false,
+      };
+    case UPDATE_STORE_INFO_RESET:
+      return {
+        ...state,
+        successUpdateStore: false,
       };
     case USER_INFO_FAILED:
       return {

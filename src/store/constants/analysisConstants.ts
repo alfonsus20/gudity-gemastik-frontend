@@ -1,5 +1,4 @@
 import { PredictionState } from "../reducers/analysisReducers";
-import { LocationChange } from "./routerConstants";
 
 export const PAST_ANALYSIS_LOADING = "PAST_ANALYSIS_LOADING";
 export const PAST_ANALYSIS_SUCCESS = "PAST_ANALYSIS_SUCCESS";
@@ -29,5 +28,4 @@ export type PastAnalysisDispatchTypes =
   | PastAnalysisLoading
   | PastAnalysisSuccess
   | PastAnalysisFailed
-  | PastAnalysisReset
-  | LocationChange;
+  | PastAnalysisReset;

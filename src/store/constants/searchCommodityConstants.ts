@@ -1,5 +1,3 @@
-import { LocationChange } from "./routerConstants";
-
 export const COMMODITY_IMAGE_CLASSIFICATION_LOADING =
   "COMMODITY_IMAGE_CLASSIFICATION_LOADING";
 export const COMMODITY_IMAGE_CLASSIFICATION_SUCCESS =
@@ -35,4 +33,3 @@ export type CommodityImageClassificationDispatchTypes =
   | CommodityImageClassificationSuccess
   | CommodityImageClassificationFailed
   | CommodityImageClassificationReset
-  | LocationChange;

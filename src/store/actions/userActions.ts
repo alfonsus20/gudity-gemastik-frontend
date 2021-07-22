@@ -6,7 +6,11 @@ import {
   AUTH_LOADING,
   AUTH_RESET,
   AUTH_SUCCESS,
+  UpdateStoreDispatchTypes,
   UpdateSupplierDispatchTypes,
+  UPDATE_STORE_INFO_FAILED,
+  UPDATE_STORE_INFO_LOADING,
+  UPDATE_STORE_INFO_SUCCESS,
   UPDATE_SUPPLIER_INFO_FAILED,
   UPDATE_SUPPLIER_INFO_LOADING,
   UPDATE_SUPPLIER_INFO_SUCCESS,
@@ -66,7 +70,7 @@ export const register =
       dispatch({ type: AUTH_SUCCESS });
     } catch (error) {
       console.log(error);
-      dispatch({ type: AUTH_FAILED, payload: error.message });
+      dispatch({ type: AUTH_FAILED, payload: error.response.data.message });
     }
   };
 
@@ -86,7 +90,7 @@ export const fetchUserInfo =
 
       dispatch({ type: USER_INFO_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({ type: USER_INFO_FAILED, payload: error.message });
+      dispatch({ type: USER_INFO_FAILED, payload: error.response.data.message });
     }
   };
 
@@ -123,6 +127,42 @@ export const updateSupplierInfo =
       dispatch(fetchUserInfo());
     } catch (error) {
       // console.log(error.response.data.message);
-      dispatch({ type: UPDATE_SUPPLIER_INFO_FAILED, payload: error.message });
+      dispatch({ type: UPDATE_SUPPLIER_INFO_FAILED, payload: error.response.data.message });
+    }
+  };
+
+interface StoreState {
+  store_name: string;
+  store_description: string;
+  store_address: string;
+  store_phone: string;
+  store_start_at: string;
+  store_finish_at: string;
+  store_profile_image: File;
+}
+
+export const updateStoreInfo =
+  (storeData: StoreState) =>
+  async (dispatch: Dispatch<AuthDispatchTypes | UpdateStoreDispatchTypes>) => {
+    try {
+      dispatch({ type: UPDATE_STORE_INFO_LOADING });
+
+      const formData = new FormData();
+
+      Object.keys(storeData).forEach((key) => {
+        formData.append(key, storeData[key as keyof StoreState]);
+      });
+
+      await baseApi.put("/user/stores/claim", formData, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      dispatch({ type: UPDATE_STORE_INFO_SUCCESS });
+
+      // @ts-ignore
+      dispatch(fetchUserInfo());
+    } catch (error) {
+      // console.log(error.response.data.message);
+      dispatch({ type: UPDATE_STORE_INFO_FAILED, payload: error.response.data.message });
     }
   };

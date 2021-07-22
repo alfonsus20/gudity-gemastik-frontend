@@ -5,7 +5,7 @@ import {
   PAST_ANALYSIS_RESET,
   PAST_ANALYSIS_SUCCESS,
 } from "../constants/analysisConstants";
-import { LOCATION_CHANGE } from "connected-react-router";
+import { LocationChangeAction, LOCATION_CHANGE } from "connected-react-router";
 
 export type PredictionState = {
   time: string;
@@ -21,7 +21,7 @@ type PastAnalysisStates = {
 
 export const pastAnalysisReducer = (
   state: PastAnalysisStates = { loading: false, predictions: [] },
-  action: PastAnalysisDispatchTypes
+  action: PastAnalysisDispatchTypes | LocationChangeAction
 ) => {
   switch (action.type) {
     case PAST_ANALYSIS_LOADING:

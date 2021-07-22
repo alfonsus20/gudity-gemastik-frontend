@@ -1,4 +1,4 @@
-import { LOCATION_CHANGE } from "connected-react-router";
+import { LocationChangeAction, LOCATION_CHANGE } from "connected-react-router";
 import {
   CommodityImageClassificationDispatchTypes,
   COMMODITY_IMAGE_CLASSIFICATION_FAILED,
@@ -21,7 +21,7 @@ export const classifyCommodityWithImageReducer = (
     commodity_name: "",
     deskripsi: "",
   },
-  action: CommodityImageClassificationDispatchTypes
+  action: CommodityImageClassificationDispatchTypes | LocationChangeAction
 ) => {
   switch (action.type) {
     case COMMODITY_IMAGE_CLASSIFICATION_LOADING:

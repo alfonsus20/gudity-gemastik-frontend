@@ -14,10 +14,11 @@ const Profile = () => {
   const [welcomeModal, showWelcomeModal] = React.useState<boolean>(false);
   const [tabKey, setTabKey] = React.useState<string>("");
   const [openTabIndex, setOpenTabIndex] = React.useState<number>(0);
-  const [commodityTabOpen, openCommodityTab] = React.useState<boolean>(false);
+  const [newSupplierBanner, showNewSupplierBanner] =
+    React.useState<boolean>(false);
 
   React.useEffect(() => {
-    openCommodityTab(!!userInfo.supplier_name);
+    showNewSupplierBanner(!userInfo.supplier_name);
   }, [userInfo]);
 
   return (
@@ -26,9 +27,9 @@ const Profile = () => {
         shown={welcomeModal}
         onClose={() => {
           showWelcomeModal(false);
-          openCommodityTab(true);
+          showNewSupplierBanner(false);
           setOpenTabIndex(1);
-          setTabKey("open commodity tab");
+          setTabKey("open welcome tab");
         }}
       />
       <h2 className="text-2xl font-semibold mb-5">Profile</h2>{" "}
@@ -72,9 +73,7 @@ const Profile = () => {
               title: "Komoditas",
               content: (
                 <div className="mt-8">
-                  {commodityTabOpen ? (
-                    <SupplierForm />
-                  ) : (
+                  {newSupplierBanner ? (
                     <div className="flex flex-col items-center space-y-4">
                       <img
                         src="/assets/icons/daftar-komoditas.png"
@@ -95,6 +94,8 @@ const Profile = () => {
                         onClick={() => showWelcomeModal(true)}
                       />
                     </div>
+                  ) : (
+                    <SupplierForm />
                   )}
                 </div>
               ),

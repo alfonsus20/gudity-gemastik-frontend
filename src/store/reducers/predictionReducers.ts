@@ -1,4 +1,4 @@
-import { LOCATION_CHANGE } from "connected-react-router";
+import { LocationChangeAction, LOCATION_CHANGE } from "connected-react-router";
 import {
   FutureAnalysisDispatchTypes,
   FUTURE_ANALYSIS_FAILED,
@@ -18,7 +18,7 @@ type FutureAnalysisStates = {
 
 export const futureAnalysisReducer = (
   state: FutureAnalysisStates = { loading: false, predictions: [] },
-  action: FutureAnalysisDispatchTypes
+  action: FutureAnalysisDispatchTypes | LocationChangeAction
 ) => {
   switch (action.type) {
     case FUTURE_ANALYSIS_LOADING:
@@ -33,7 +33,7 @@ export const futureAnalysisReducer = (
         predictions: [],
       };
     case LOCATION_CHANGE || FUTURE_ANALYSIS_RESET:
-      return { predictions: [] };
+      return { loading: false, predictions: [] };
     default:
       return state;
   }

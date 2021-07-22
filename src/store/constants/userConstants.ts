@@ -86,3 +86,31 @@ export type UpdateSupplierDispatchTypes =
   | UpdateSupplierInfoSuccess
   | UpdateSupplierInfoFailed
   | UpdateSupplierInfoReset;
+
+export const UPDATE_STORE_INFO_LOADING = "UPDATE_STORE_INFO_LOADING";
+export const UPDATE_STORE_INFO_SUCCESS = "UPDATE_STORE_INFO_SUCCESS";
+export const UPDATE_STORE_INFO_FAILED = "UPDATE_STORE_INFO_FAILED";
+export const UPDATE_STORE_INFO_RESET = "UPDATE_STORE_INFORESETG";
+
+export interface UpdateStoreInfoLoading {
+  type: typeof UPDATE_STORE_INFO_LOADING;
+}
+
+export interface UpdateStoreInfoSuccess {
+  type: typeof UPDATE_STORE_INFO_SUCCESS;
+}
+
+export interface UpdateStoreInfoFailed {
+  type: typeof UPDATE_STORE_INFO_FAILED;
+  payload: string;
+}
+
+export interface UpdateStoreInfoReset {
+  type: typeof UPDATE_STORE_INFO_RESET;
+}
+
+export type UpdateStoreDispatchTypes =
+  | UpdateStoreInfoLoading
+  | UpdateStoreInfoSuccess
+  | UpdateStoreInfoFailed
+  | UpdateStoreInfoReset;
