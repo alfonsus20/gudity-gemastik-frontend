@@ -73,11 +73,11 @@ const SuccessRatePrediction = () => {
   });
 
   return (
-    <div className="flex flex-col flex-auto">
+    <div className="flex flex-col flex-auto ">
       <h2 className="text-2xl font-semibold mb-5">
         Prediksi Kesuksesan Bisnismu
       </h2>
-      <div ref={formRef} className="relative flex-auto"></div>
+      <div ref={formRef} className="relative flex-auto z-0"></div>
     </div>
   );
 };

@@ -19,7 +19,6 @@ const Analysis = () => {
 
   const options = {
     maintainAspectRatio: false,
-    responsive: true,
     interaction: {
       mode: "index",
       intersect: false,
@@ -53,6 +52,10 @@ const Analysis = () => {
     dispatch(getPastAnalysis(commodity, day));
   };
 
+  React.useEffect(() => {
+    window.addEventListener("resize", () => {});
+  });
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-5">Analisis</h2>
@@ -85,11 +88,11 @@ const Analysis = () => {
           />
         </div>
       </form>
-      <div className="px-12 py-6 shadow mb-8">
+      <div className="px-8 md:px-12 py-6 shadow mb-8">
         <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
         <div className="w-full h-60 overflow-hidden relative">
           {loading ? (
-            <PropagateLoader css={override} color='#2E53DA' />
+            <PropagateLoader css={override} color="#2E53DA" />
           ) : (
             <Line
               type="line"

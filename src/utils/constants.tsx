@@ -62,19 +62,19 @@ export const FEATURES: FeatureCardProps[] = [
     image: "prediksi",
     title: "Prediksi",
     description:
-      "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
+      "Ketahui prospek harga produk komoditas di masa depan, serta prediksi kesuksesan bisnis kamu saat ini.",
   },
   {
     image: "saran",
     title: "Saran",
     description:
-      "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
+      "Cari komoditas yang sesuai untuk mengoptimalkan usaha UMKM anda.",
   },
   {
     image: "informasi",
     title: "Informasi",
     description:
-      "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
+      " Informasi peta sebaran komoditas, serta profil komoditas terkait dan didukung dengan kemudahan proses transaksi jual beli",
   },
 ];
 
@@ -188,20 +188,28 @@ export const SIDEBAR_ITEMS: SideBarItem[] = [
 type DashboardFeature = {
   text: string;
   backgroundColor: string;
+  pathname: string;
 };
 
 export const DASHBOARD_FEATURES: DashboardFeature[] = [
-  { text: "Cari Jenis Komoditas dengan Gambar", backgroundColor: "bg-red-500" },
+  {
+    text: "Cari Jenis Komoditas dengan Gambar",
+    backgroundColor: "bg-red-500",
+    pathname: "cari-komoditas",
+  },
   {
     text: "Analisis Harga Komoditas di Masa Lampau",
     backgroundColor: "bg-indigo-500",
+    pathname: "analisis",
   },
   {
     text: "Prediksi Kesuksesan Usahamu dan Harga dimasa Depan",
     backgroundColor: "bg-yellow-500",
+    pathname: "prediksi/prediksi-kesuksesan",
   },
   {
     text: "Cari Sebaran Komoditas dengan Peta",
     backgroundColor: "bg-purple-400",
+    pathname: "prediksi/prediksi-harga",
   },
 ];

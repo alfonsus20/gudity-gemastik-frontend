@@ -81,7 +81,7 @@ const Button = ({
       } ${getButtonConfiguration()} ${getButtonSize()} ${className}`}
       {...rest}
     >
-      {icon && <>{icon} &nbsp;</>}
+      {icon && <span className="mr-2">{icon}</span>}
       {text}
     </button>
   );

@@ -5,24 +5,20 @@ import Features from "../components/Features";
 import NewsCard from "../components/NewsCard";
 import NewsModal from "../components/modal/NewsModal";
 import { FEATURES } from "../utils/constants";
+import ComplementaryCard from "../components/card/ComplementaryCard";
+import CommodityCarousel from "../components/carousel/CommodityCarousel";
+import ReviewCarousel from "../components/carousel/ReviewCarousel";
 
 const Home = () => {
   return (
     <div className="relative">
       <NewsModal />
       <div className="min-h-screen relative">
-        <video
-          src="assets/videos/video.mp4"
-          autoPlay
-          muted
-          loop
-          className="w-full h-full object-cover absolute top-0 left-0 z-0"
-        ></video>
         <div
-          className="w-full px-8 min-h-screen relative z-10 pt-10 text-white flex items-center"
+          className="w-full px-8 min-h-screen relative z-10 pt-10 text-white flex items-center bg-cover"
           style={{
             background:
-              "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%)",
+              "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(/assets/backgrounds/homepage.jpg)",
           }}
         >
           <div className="max-w-screen-xl mx-auto w-full px-2">
@@ -110,7 +106,74 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="max-w-screen-xl mx-auto px-8 py-20 md:py-28 flex flex-col-reverse md:flex-row md:space-x-12 lg:space-x-36">
+        <div className="flex flex-col justify-center">
+          <h2 className="text-4xl font-medium mb-4">
+            Ingin Lebih Dalam Mengenal Aplikasi GUDITY?{" "}
+          </h2>
+          <p className="mb-6">
+            Membantu usaha UMKM makanan dan minuman anda dalam proses pemerataan
+            bahan baku serta mengantisipasi fluktuasi harga komoditas yang
+            ditunjang dengan penggunaan teknologi terkini.
+          </p>
+          <div className="flex flex-row space-x-6 mb-10">
+            <div className="">
+              <img src="/assets/icons/book.svg" alt="book" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-medium mb-2">
+                Percepat Bisnis Anda
+              </h3>
+              <p>
+                Rencanakan dan persiapkan usaha UMKM anda mulai dari sekarang
+                bersama dengan Gudity.
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <Button variant="secondary" text="Pelajari Lebih Lanjut" />
+          </div>
+        </div>
+        <div className="flex-shrink-0 flex justify-center">
+          <img
+            src="/assets/pictures/gudity-book.png"
+            className="w-100"
+            alt="gudity-book"
+          />
+        </div>
+      </div>
+      <div className="max-w-screen-xl mx-auto px-8 py-20 md:py-28 flex flex-col md:flex-row items-center space-x-6 lg:space-x-12">
+        <h2 className="text-4xl font-medium mb-8 md:w-5/12">
+          Nikmati fitur pelengkap kami untuk memperlancar usaha anda
+        </h2>
+        <div className=" md:w-7/12 gap-6 flex flex-col md:flex-row">
+          <div className="flex justify-start items-start">
+            <ComplementaryCard
+              title="Belanja dari Produk Komoditas"
+              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+              buttonName="Belanja sekarang"
+              buttonPathname="komoditas"
+              image="buy-commodity.png"
+            />
+          </div>
+          <div className="flex justify-end items-start">
+            <ComplementaryCard
+              title="Kumpulan UMKM"
+              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+              buttonName="Lihat Sekarang"
+              buttonPathname="umkm"
+              image="umkm-collection.png"
+            />
+          </div>
+        </div>
+      </div>
+      <div style={{ backgroundColor: "#E9EEFF" }} className="px-8 py-20">
+        <CommodityCarousel />
+      </div>
       <Features />
+      <div style={{ backgroundColor: "#E9EEFF" }} className="px-8 py-20">
+        <ReviewCarousel />
+      </div>
     </div>
   );
 };

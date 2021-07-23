@@ -36,7 +36,7 @@ const TextField = ({
 
   return (
     <div
-      className={`flex flex-row ${
+      className={`flex flex-row  ${
         rounded && "rounded-md"
       } relative ${className}`}
     >

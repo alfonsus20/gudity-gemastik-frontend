@@ -49,7 +49,7 @@ const SearchCommodity = () => {
             {image ? (
               <img
                 src={URL.createObjectURL(image)}
-                className="w-72"
+                className="w-72 h-72"
                 alt={image.name}
               />
             ) : (
