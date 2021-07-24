@@ -19,6 +19,7 @@ const Analysis = () => {
 
   const options = {
     maintainAspectRatio: false,
+    responsive: true,
     interaction: {
       mode: "index",
       intersect: false,
@@ -88,7 +89,7 @@ const Analysis = () => {
           />
         </div>
       </form>
-      <div className="px-8 md:px-12 py-6 shadow mb-8">
+      <div className="px-4 md:px-12 py-6 shadow mb-8">
         <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
         <div className="w-full h-60 overflow-hidden relative">
           {loading ? (
@@ -116,7 +117,7 @@ const Analysis = () => {
           )}
         </div>
       </div>
-      <div className="px-12 py-6 shadow">
+      <div className="px-6 md:px-12 py-6 shadow">
         <h3 className="font-semibold">Hasil</h3>
         <div>
           <p>Harga 60 hari kebelakang : 45.000</p>

@@ -36,7 +36,7 @@ export const pastAnalysisReducer = (
         predictions: [],
       };
     case LOCATION_CHANGE || PAST_ANALYSIS_RESET:
-      return { predictions: [] };
+      return { loading: false, predictions: [] };
     default:
       return state;
   }

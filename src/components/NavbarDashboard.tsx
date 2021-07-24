@@ -53,7 +53,7 @@ const NavbarDashboard = ({
             onMouseEnter={() => showDropdown(true)}
             onMouseLeave={() => showDropdown(false)}
           >
-            <div>
+            <div className='flex-shrink-0'>
               <img
                 src={
                   !loading && userInfo.profile_image
@@ -64,8 +64,8 @@ const NavbarDashboard = ({
                 alt="user"
               />
             </div>
-            <p className="">Hi, {loading ? "Loading..." : userInfo.name}</p>
-            <ChevronDownIcon className="w-5 h-5" />
+            <p className="flex-auto text-sm md:text-md">Hi, {loading ? "Loading..." : userInfo.name}</p>
+            <ChevronDownIcon className="w-5 h-5 flex-shrink-0" />
             <dl
               className={`${
                 dropdownShown ? "block" : "hidden"

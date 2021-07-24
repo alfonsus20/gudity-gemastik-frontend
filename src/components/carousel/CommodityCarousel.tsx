@@ -47,7 +47,7 @@ const CommodityCarousel = () => {
               />
             </div>
             <div className="flex items-center">
-              <div className="bg-white px-12 py-8 shadow space-y-4">
+              <div className="bg-white px-6 md:px-12 py-4 md:py-8 shadow space-y-4">
                 <h3 className="font-semibold text-2xl">Komoditas Kopi</h3>
                 <p className="text-sm">
                   Lorem Ipsum is simply dummy text of the printing and
@@ -71,7 +71,7 @@ const CommodityCarousel = () => {
               />
             </div>
             <div className="flex items-center">
-              <div className="bg-white px-12 py-8 shadow space-y-4">
+              <div className="bg-white px-6 md:px-12 py-4 md:py-8 shadow space-y-4">
                 <h3 className="font-semibold text-2xl">Komoditas Gula</h3>
                 <p className="text-sm">
                   Lorem Ipsum is simply dummy text of the printing and

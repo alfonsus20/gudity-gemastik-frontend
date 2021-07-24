@@ -45,7 +45,7 @@ const ReviewCarousel = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
       <Slider {...settings}>
-        <div className="px-6  flex">
+        <div className="md:px-6 flex">
           <div className="flex flex-row items-center space-x-4 px-6 py-8 rounded-md shadow bg-white mx-auto">
             <div className="flex-shrink-0">
               <img
@@ -65,7 +65,7 @@ const ReviewCarousel = () => {
             </div>
           </div>
         </div>
-        <div className="px-6  flex">
+        <div className="md:px-6 flex">
           <div className="flex flex-row items-center space-x-4 px-6 py-8 rounded-md shadow bg-white mx-auto">
             <div className="flex-shrink-0">
               <img
@@ -85,7 +85,7 @@ const ReviewCarousel = () => {
             </div>
           </div>
         </div>
-        <div className="px-6  flex">
+        <div className="md:px-6 flex">
           <div className="flex flex-row items-center space-x-4 px-6 py-8 rounded-md shadow bg-white mx-auto">
             <div className="flex-shrink-0">
               <img

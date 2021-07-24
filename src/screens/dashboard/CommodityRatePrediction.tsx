@@ -57,8 +57,8 @@ const CommodityRatePrediction = () => {
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-5">Prediksi Harga Komoditas</h2>
-      <form className="grid grid-cols-12 gap-6 mb-8" onSubmit={handleSubmit}>
-        <div className="col-span-5 flex items-center">
+      <form className="grid md:grid-cols-12 gap-6 mb-8" onSubmit={handleSubmit}>
+        <div className="md:col-span-5 flex items-center">
           <TextField
             variant="dashboard"
             className="w-full"
@@ -66,7 +66,7 @@ const CommodityRatePrediction = () => {
             onChange={(e) => setCommodity(e.target.value)}
           />
         </div>
-        <div className="col-span-5 flex items-center">
+        <div className="md:col-span-5 flex items-center">
           <TextField
             variant="dashboard"
             className="w-full"
@@ -74,7 +74,7 @@ const CommodityRatePrediction = () => {
             onChange={(e) => setDay(e.target.value)}
           />
         </div>
-        <div className="col-span-2 flex items-center">
+        <div className="md:col-span-2 flex items-center">
           <Button
             text={loading ? "Loading..." : "Analisis"}
             variant="primary"
@@ -84,7 +84,7 @@ const CommodityRatePrediction = () => {
           />
         </div>
       </form>
-      <div className="px-12 py-6 shadow mb-8">
+      <div className="px-4 md:px-12 py-6 shadow mb-8">
         <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
         <div className="w-full h-60 overflow-hidden relative">
           {loading ? (
@@ -112,7 +112,7 @@ const CommodityRatePrediction = () => {
           )}
         </div>
       </div>
-      <div className="px-12 py-6 shadow">
+      <div className="px-6 md:px-12 py-6 shadow">
         <h3 className="font-semibold">Hasil</h3>
         <div>
           <p>Harga 60 hari kebelakang : 45.000</p>
