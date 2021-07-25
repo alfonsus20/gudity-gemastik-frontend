@@ -10,7 +10,7 @@ import {
 import { PredictionState } from "./analysisReducers";
 
 type FutureAnalysisStates = {
-  loading?: boolean;
+  loading: boolean;
   success?: boolean;
   error?: string;
   predictions?: PredictionState[];

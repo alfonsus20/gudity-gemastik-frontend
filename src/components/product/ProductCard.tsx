@@ -1,7 +1,6 @@
 import React from "react";
 import { HeartIcon as HeartOutline } from "@heroicons/react/outline";
 /* eslint-disable */
-import { HeartIcon as HeartSolid } from "@heroicons/react/solid";
 import Button from "../Button";
 import Rating from "./Rating";
 
@@ -11,7 +10,7 @@ type ProductCardProps = {
   description: string;
   price: number;
   rating: number;
-  sold: number;
+  reviewCount: number;
   className?: string;
   withOrderButton?: boolean;
 };
@@ -23,12 +22,12 @@ const ProductCard = ({
   price,
   rating,
   className,
-  sold,
+  reviewCount,
   withOrderButton,
 }: ProductCardProps) => {
   return (
     <div
-      className={`p-3 xs:px-4 xs:py-6 shadow-md xs:shadow mx-auto flex-shrink-0 max-w-xs ${className}`}
+      className={`p-3 xs:px-4 xs:py-6 shadow-md xs:shadow mx-auto flex-shrink-0 w-64 ${className}`}
     >
       <div className="mb-2 relative">
         <img
@@ -42,11 +41,11 @@ const ProductCard = ({
       </div>
       <h3 className="text-blue-marker font-semibold">{name}</h3>
       <p className="text-sm mb-2">{description}</p>
-      <p className="font-semibold mb-2">Rp {price}/gram</p>
+      <p className="font-semibold mb-2">Rp {price}/kg</p>
       <div className="flex flex-col xs:flex-row justify-between">
         <div className="mb-2 xs:mb-0">
           <Rating rating={rating} size="sm" />
-          <p className="text-xs">Terjual {sold} kg</p>
+          <p className="text-xs">{reviewCount} review</p>
         </div>
         <div>
           {withOrderButton && (

@@ -242,7 +242,7 @@ const Product = () => {
             description="Vintage Typewriter to post awesome stories about UI design and webdev."
             price={3.725}
             rating={4.05}
-            sold={100000}
+            reviewCount={5}
             image="biji-kopi.jpg"
           />
         ))}

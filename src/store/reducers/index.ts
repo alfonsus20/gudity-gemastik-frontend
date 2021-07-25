@@ -5,7 +5,8 @@ import { futureAnalysisReducer } from "./predictionReducers";
 import { classifyCommodityWithImageReducer } from "./searchCommodityReducers";
 import { authReducer } from "./userReducers";
 import { connectRouter } from "connected-react-router";
-import { supplierListReducer } from "./supplierReducers";
+import { supplierDetailReducer, supplierListReducer } from "./supplierReducers";
+import { supplierProductsReducer } from "./productReducers";
 
 const createRootReducer = (history: any) =>
   combineReducers({
@@ -16,6 +17,8 @@ const createRootReducer = (history: any) =>
     futurePredictions: futureAnalysisReducer,
     imageClassification: classifyCommodityWithImageReducer,
     supplierList: supplierListReducer,
+    supplierDetail: supplierDetailReducer,
+    productList : supplierProductsReducer
   });
 
 export default createRootReducer;

@@ -46,9 +46,14 @@ const Supplier = () => {
             </h2>
             <Underline backgroundColor="#110828" center />
           </div>
-          <div className="flex flex-col-reverse md:flex-row justify-center items-center space-x-4 mb-8">
-            <Dropdown  className='w-56 text-black border-2 border-purple px-2' options={[]} icon={<FilterIcon className="w-6 h-6" />} />
-            <TextField className='w-56' 
+          <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-4 mb-8">
+            <Dropdown
+              className="w-56 text-black border-2 border-purple px-2"
+              options={[]}
+              icon={<FilterIcon className="w-6 h-6" />}
+            />
+            <TextField
+              className="w-56"
               type="text"
               onChange={() => console.log("object")}
               value=""
@@ -62,6 +67,7 @@ const Supplier = () => {
               <SupplierCard
                 key={supplier.supplier_id}
                 image="kopi.jpg"
+                id={supplier.supplier_id}
                 name={supplier.supplier_owner_name}
                 description={supplier.supplier_description}
                 location={supplier.supplier_address}

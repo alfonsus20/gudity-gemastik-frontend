@@ -62,15 +62,17 @@ const Button = ({
 
   if (pathName) {
     return (
-      <Link
-        to={`/${pathName}`}
-        className={`flex flex-row justify-center items-center ${
-          variant.includes("plain") ? "py-0" : "py-2 border-2"
-        } ${getButtonConfiguration()} ${getButtonSize()} ${className}`}
-      >
-        {icon && <span className="mr-2">{icon}</span>}
-        {text}
-      </Link>
+      <div className='flex'>
+        <Link
+          to={`/${pathName}`}
+          className={`flex flex-row justify-center items-center ${
+            variant.includes("plain") ? "py-0" : "py-2 border-2"
+          } ${getButtonConfiguration()} ${getButtonSize()} ${className}`}
+        >
+          {icon && <span className="mr-2">{icon}</span>}
+          {text}
+        </Link>
+      </div>
     );
   }
 

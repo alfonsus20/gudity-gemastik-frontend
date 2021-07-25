@@ -28,3 +28,32 @@ export type FetchSupplierListDispatchTypes =
   | FetchSupplierListSuccess
   | FetchSupplierListFailed
   | FetchSupplierListReset;
+
+export const FETCH_SUPPLIER_DETAIL_LOADING = "FETCH_SUPPLIER_DETAIL_LOADING";
+export const FETCH_SUPPLIER_DETAIL_SUCCESS = "FETCH_SUPPLIER_DETAIL_SUCCESS";
+export const FETCH_SUPPLIER_DETAIL_FAILED = "FETCH_SUPPLIER_DETAIL_FAILED";
+export const FETCH_SUPPLIER_DETAIL_RESET = "FETCH_SUPPLIER_DETAIL_RESET";
+
+interface FetchSupplierDetailLoading {
+  type: typeof FETCH_SUPPLIER_DETAIL_LOADING;
+}
+
+interface FetchSupplierDetailSuccess {
+  type: typeof FETCH_SUPPLIER_DETAIL_SUCCESS;
+  payload: SupplierState;
+}
+
+interface FetchSupplierDetailFailed {
+  type: typeof FETCH_SUPPLIER_DETAIL_FAILED;
+  payload: string;
+}
+
+interface FetchSupplierDetailReset {
+  type: typeof FETCH_SUPPLIER_DETAIL_RESET;
+}
+
+export type FetchSupplierDetailDispatchTypes =
+  | FetchSupplierDetailLoading
+  | FetchSupplierDetailSuccess
+  | FetchSupplierDetailFailed
+  | FetchSupplierDetailReset;

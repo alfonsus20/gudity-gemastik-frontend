@@ -14,6 +14,7 @@ type SupplierCardProps = {
   location: string;
   store: string;
   phone: string;
+  id: number;
 };
 
 const SupplierCard = ({
@@ -23,8 +24,8 @@ const SupplierCard = ({
   location,
   store,
   phone,
+  id,
 }: SupplierCardProps) => {
-
   return (
     <div className="grid sm:grid-cols-2 w-full shadow mb-12 sm:mb-6 px-3 md:px-0 py-6 md:py-0 rounded-md">
       <div className="col-span-1 px-2 sm:px-0 ">
@@ -45,15 +46,14 @@ const SupplierCard = ({
           </div>
           <div className="grid grid-cols-12 text-md mb-2 gap-x-2">
             <ArchiveIcon className="h-6 w-6 col-span-1" />
-            <span className="ml-2 md:ml-0 col-span-11">
-              Sejak {store}
-            </span>
+            <span className="ml-2 md:ml-0 col-span-11">{store}</span>
           </div>
           <div className="grid grid-cols-12 text-md mb-4 gap-x-2">
             <PhoneIcon className="h-6 w-6 col-span-1" />
             <span className="ml-2 md:ml-0 col-span-11">{phone}</span>
           </div>
           <Button
+            pathName={`supplier/${id}`}
             variant="secondary"
             className="border-2 text-sm font-medium"
             text="Lihat Selengkapnya"

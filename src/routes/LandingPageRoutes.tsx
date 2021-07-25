@@ -26,7 +26,7 @@ const LandingPageRoutes = () => {
         <Route path="/berita" component={News} exact />
         <Route path="/umkm" component={Umkm} exact />
         <Route path="/supplier" component={Commodity} exact />
-        <Route path="/komoditas/:id" component={CommodityDetail} exact />
+        <Route path="/supplier/:id" component={CommodityDetail} exact />
         <Route path="/produk/:id" component={Product} exact />
         <Route path="/keranjang" component={Cart} exact />
         <Route path="/checkout" component={Checkout} exact />
