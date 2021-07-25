@@ -27,6 +27,7 @@ const Product = () => {
 
   const history = useHistory();
 
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const { product } = useSelector((state: RootState) => state.productDetail);
   const { supplier } = useSelector((state: RootState) => state.supplierDetail);
   const { successAddToCart } = useSelector((state: RootState) => state.cart);
@@ -146,7 +147,13 @@ const Product = () => {
                 text="Masukkan Keranjang"
                 size="md"
                 variant="primary"
-                onClick={() => dispatch(addToCart(productId, quantity))}
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    history.push("/login");
+                  } else {
+                    dispatch(addToCart(productId, quantity));
+                  }
+                }}
               />
             </div>
           </div>

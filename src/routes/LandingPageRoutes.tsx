@@ -16,6 +16,7 @@ import Product from "../screens/Product";
 import Register from "../screens/Register";
 import Umkm from "../screens/Umkm";
 import AuthRoute from "./AuthRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const LandingPageRoutes = () => {
   return (
@@ -32,11 +33,11 @@ const LandingPageRoutes = () => {
           component={Product}
           exact
         />
-        <Route path="/keranjang" component={Cart} exact />
-        <Route path="/checkout" component={Checkout} exact />
-        <Route path="/pembayaran" component={Payment} exact />
-        <Route path="/orders" component={OrderList} exact />
-        <Route path="/orders/:id" component={OrderDetail} exact />
+        <PrivateRoute path="/keranjang" component={Cart} exact />
+        <PrivateRoute path="/checkout" component={Checkout} exact />
+        <PrivateRoute path="/pembayaran" component={Payment} exact />
+        <PrivateRoute path="/orders" component={OrderList} exact />
+        <PrivateRoute path="/orders/:id" component={OrderDetail} exact />
         <AuthRoute path="/login" component={Login} exact />
         <AuthRoute path="/daftar" component={Register} exact />
       </Switch>
