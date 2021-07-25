@@ -17,7 +17,7 @@ const DashboardBanner = ({ description, image }: DashboardBannerProps) => {
     >
       <div className="flex-auto">
         <h3 className="font-semibold text-2xl mb-2">
-          Selamat Datang {userInfo.name}!
+          Selamat Datang {userInfo!.name}!
         </h3>
         <p className="text-md text-purple">{description}</p>
       </div>

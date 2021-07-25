@@ -38,10 +38,10 @@ export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
     path: "umkm",
   },
   {
-    title: "SARAN KOMODITAS",
+    title: "SARAN SUPPLIER",
     image: "komoditas",
     colspan: 2,
-    path: "komoditas",
+    path: "supplier",
   },
   {
     title: "INFORMASI TERKINI",
@@ -137,7 +137,7 @@ export const ROUTES_WITHOUT_NAVBAR: string[] = [
   "daftar",
   "berita",
   "umkm",
-  "komoditas",
+  "supplier",
 ];
 
 type SideBarItem = {

@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import { RootState } from "../../store";
 import { classifyCommodityWithImage } from "../../store/actions/searchCommodityActions";
 import Skeleton from "react-loading-skeleton";
+import DashboardBanner from "../../components/DashboardBanner";
 
 const SearchCommodity = () => {
   const [image, setImage] = React.useState<File>();
@@ -25,18 +26,10 @@ const SearchCommodity = () => {
 
   return (
     <div>
-      <div
-        className="px-12 py-8 rounded-md mb-6"
-        style={{ backgroundColor: "#F0F4FF" }}
-      >
-        <h3 className="font-semibold text-2xl mb-2">
-          Selamat Datang Bocah Mozaik!
-        </h3>
-        <p className="text-md text-purple">
-          Analisis harga komoditas di masa lampau agar dapat membantu anda dalam
-          usaha di masa mendatang
-        </p>
-      </div>
+      <DashboardBanner
+        description="Analisis harga komoditas di masa lampau agar dapat membantu anda dalam
+          usaha di masa mendatang"
+      />
       <div className="grid md:grid-cols-2 gap-x-4 gap-y-8">
         <div className="col-span-1">
           <div

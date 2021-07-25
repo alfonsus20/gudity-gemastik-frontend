@@ -11,7 +11,7 @@ import Dropdown from "../components/Dropdown";
 import ProductCard from "../components/product/ProductCard";
 import Features from "../components/Features";
 
-const CommodityDetail = () => {
+const SupplierDetail = () => {
   return (
     <div>
       <div className="shadow-none sm:shadow max-w-screen-xl mx-auto p-8 mt-32 flex flex-col sm:flex-row">
@@ -124,4 +124,4 @@ const CommodityDetail = () => {
   );
 };
 
-export default CommodityDetail;
+export default SupplierDetail;

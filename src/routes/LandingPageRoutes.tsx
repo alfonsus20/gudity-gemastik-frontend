@@ -4,8 +4,8 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Cart from "../screens/Cart";
 import Checkout from "../screens/Checkout";
-import Commodity from "../screens/Commodity";
-import CommodityDetail from "../screens/CommodityDetail";
+import Commodity from "../screens/Supplier";
+import CommodityDetail from "../screens/SupplierDetail";
 import Home from "../screens/Home";
 import Login from "../screens/Login";
 import News from "../screens/News";
@@ -25,7 +25,7 @@ const LandingPageRoutes = () => {
         <Route path="/" component={Home} exact />
         <Route path="/berita" component={News} exact />
         <Route path="/umkm" component={Umkm} exact />
-        <Route path="/komoditas" component={Commodity} exact />
+        <Route path="/supplier" component={Commodity} exact />
         <Route path="/komoditas/:id" component={CommodityDetail} exact />
         <Route path="/produk/:id" component={Product} exact />
         <Route path="/keranjang" component={Cart} exact />

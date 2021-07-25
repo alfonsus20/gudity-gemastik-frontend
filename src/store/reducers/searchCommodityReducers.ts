@@ -25,11 +25,11 @@ export const classifyCommodityWithImageReducer = (
 ) => {
   switch (action.type) {
     case COMMODITY_IMAGE_CLASSIFICATION_LOADING:
-      return { ...state, loading: true };
+      return { loading: true };
     case COMMODITY_IMAGE_CLASSIFICATION_SUCCESS:
-      return { success: true, loading: false, ...action.payload };
+      return { loading: false, success: true, ...action.payload };
     case COMMODITY_IMAGE_CLASSIFICATION_FAILED:
-      return { success: false, loading: false, error: action.payload };
+      return { loading: false, success: false, error: action.payload };
     case LOCATION_CHANGE || COMMODITY_IMAGE_CLASSIFICATION_RESET:
       return { loading: false, commodity_name: "", deskripsi: "" };
     default:
