@@ -6,7 +6,11 @@ import { classifyCommodityWithImageReducer } from "./searchCommodityReducers";
 import { authReducer } from "./userReducers";
 import { connectRouter } from "connected-react-router";
 import { supplierDetailReducer, supplierListReducer } from "./supplierReducers";
-import { supplierProductsReducer } from "./productReducers";
+import {
+  productDetailReducer,
+  supplierProductsReducer,
+} from "./productReducers";
+import { cartReducer } from "./cartReducers";
 
 const createRootReducer = (history: any) =>
   combineReducers({
@@ -18,7 +22,9 @@ const createRootReducer = (history: any) =>
     imageClassification: classifyCommodityWithImageReducer,
     supplierList: supplierListReducer,
     supplierDetail: supplierDetailReducer,
-    productList : supplierProductsReducer
+    productList: supplierProductsReducer,
+    productDetail: productDetailReducer,
+    cart: cartReducer,
   });
 
 export default createRootReducer;

@@ -3,7 +3,6 @@ import Button from "../components/Button";
 import ImageGallery from "../components/ImageGallery";
 import {
   HeartIcon as HeartOutline,
-  ShoppingCartIcon,
   SwitchVerticalIcon,
   FilterIcon,
 } from "@heroicons/react/outline";
@@ -14,9 +13,32 @@ import TextField from "../components/TextField";
 import Rating from "../components/product/Rating";
 import RatingCollection from "../components/product/RatingCollection";
 import Review from "../components/Review";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductDetail } from "../store/actions/productActions";
+import { useHistory, useParams } from "react-router-dom";
+import { RootState } from "../store";
+import { getSupplierDetail } from "../store/actions/supplierActions";
+import { addToCart } from "../store/actions/cartActions";
 
 const Product = () => {
   const [quantity, setQuantity] = React.useState<number>(1);
+  const { supplierId, productId } =
+    useParams<{ supplierId: string; productId: string }>();
+
+  const history = useHistory();
+
+  const { product } = useSelector((state: RootState) => state.productDetail);
+  const { supplier } = useSelector((state: RootState) => state.supplierDetail);
+  const { successAddToCart } = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(getProductDetail(supplierId, productId));
+    dispatch(getSupplierDetail(supplierId));
+    if (successAddToCart) {
+      history.push("/keranjang");
+    }
+  }, [dispatch, supplierId, productId, successAddToCart, history]);
 
   return (
     <div>
@@ -35,15 +57,15 @@ const Product = () => {
           />
           <div className="mt-4 sm:ml-6 flex-auto">
             <h2 className="font-semibold text-3xl mb-6 text-blue-marker">
-              Kopi Robusta (Matang Pohon)
+              {product.name}
             </h2>
             <h2 className="font-semibold text-3xl mb-2 text-black">
-              Rp 3.725/ gram
+              Rp {product.price}/ kg
             </h2>
             <div className="flex flex-row justify-between">
               <div className="mb-4">
-                <Rating showRate rating={4.05} />
-                <p className="text-sm">Terjual 100.000 kg</p>
+                <Rating showRate rating={product.star || 0} />
+                <p className="text-sm">{product.review_count} review</p>
               </div>
               <div className="flex flex-row">
                 <ShareIcon className="w-8 h-8 mr-2" />
@@ -51,15 +73,6 @@ const Product = () => {
               </div>
             </div>
             <div className="mb-2">
-              <div className="flex flex-row mb-3">
-                <label className="w-32 flex-shrink-0">Promosi</label>
-                <div className="flex-auto">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Ipsum iste eligendi minus consequuntur nulla, omnis beatae
-                  amet distinctio veniam eveniet porro dolores, ducimus vero nam
-                  soluta doloremque sunt illo nihil?
-                </div>
-              </div>
               <div className="flex flex-row mb-3">
                 <label className="w-32 flex-shrink-0">Pengiriman</label>
                 <div className="flex-auto">
@@ -124,15 +137,16 @@ const Product = () => {
             <div className="flex flex-row">
               <Button
                 className="text-blue-primary border-2 border-blue-primary text-sm mr-4"
-                icon={<ShoppingCartIcon className="w-6 h-6" />}
-                text="Masukkan Keranjang"
+                text="Lihat Keranjang"
                 variant="secondary"
+                pathName="keranjang"
               />
               <Button
-                className="text-white border-2 border-blue-primary bg-blue-primary text-sm w-40"
-                text="Beli Sekarang"
+                className="text-white border-2 border-blue-primary bg-blue-primary text-sm "
+                text="Masukkan Keranjang"
                 size="md"
                 variant="primary"
+                onClick={() => dispatch(addToCart(productId, quantity))}
               />
             </div>
           </div>
@@ -144,48 +158,36 @@ const Product = () => {
               <tbody>
                 <tr>
                   <td className="pr-4 pb-2 text-gray-500">Nama</td>
-                  <td className="pb-2"> Kopi Robusta</td>
+                  <td className="pb-2"> {product.name}</td>
                 </tr>
                 <tr>
-                  <td className="pr-4 pb-2 text-gray-500">Kuantitas</td>
-                  <td className="pb-2"> Premium</td>
-                </tr>
-                <tr>
-                  <td className="pr-4 pb-2 text-gray-500">Ketersediaan</td>
-                  <td className="pb-2">
-                    Tersedia, selalu memproduksi setiap hari
-                  </td>
+                  <td className="pr-4 pb-2 text-gray-500">Kualitas</td>
+                  <td className="pb-2"> {product.quality}</td>
                 </tr>
                 <tr>
                   <td className="pr-4 pb-2 text-gray-500">Dikirim dari</td>
-                  <td className="pb-2">
-                    Lalalala, Kec. Lalala, Kabupaten Lalala, Jawa Timur, Kode
-                    Pos Lalala
-                  </td>
+                  <td className="pb-2">{supplier.supplier_address}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div>
             <h3 className="font-medium text-2xl mb-2">Deskripsi Produk</h3>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </p>
+            <p>{product.description}</p>
           </div>
         </div>
       </div>
       <div className="max-w-screen-xl mx-auto pt-4 pb-12 sm:py-20 px-8 shadow">
         <RatingCollection
           ratings={[
-            { rating: 5, reviewersNumber: 305 },
-            { rating: 4, reviewersNumber: 92 },
-            { rating: 3, reviewersNumber: 12 },
-            { rating: 2, reviewersNumber: 40 },
-            { rating: 1, reviewersNumber: 1 },
+            { rating: 5, reviewersNumber: product.product_five_star },
+            { rating: 4, reviewersNumber: product.product_four_star },
+            { rating: 3, reviewersNumber: product.product_three_star },
+            { rating: 2, reviewersNumber: product.product_two_star },
+            { rating: 1, reviewersNumber: product.product_total_one_star },
           ]}
+          average={product.star || 0}
+          count={product.review_count}
         />
         <div className="flex flex-col xs:flex-row justify-between mt-8">
           <h3 className="font-medium text-2xl mb-2">Ulasan Produk</h3>

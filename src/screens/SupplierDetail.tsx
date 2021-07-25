@@ -81,6 +81,8 @@ const SupplierDetail = () => {
                   rating={product.star}
                   reviewCount={product.review_count}
                   image="biji-kopi.jpg"
+                  supplierId={id}
+                  productId={product.product_id.toString()}
                 />
               ))}
         </div>

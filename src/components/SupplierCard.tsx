@@ -53,7 +53,7 @@ const SupplierCard = ({
             <span className="ml-2 md:ml-0 col-span-11">{phone}</span>
           </div>
           <Button
-            pathName={`supplier/${id}`}
+            pathName={`suppliers/${id}`}
             variant="secondary"
             className="border-2 text-sm font-medium"
             text="Lihat Selengkapnya"

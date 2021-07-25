@@ -41,7 +41,7 @@ export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
     title: "SARAN SUPPLIER",
     image: "komoditas",
     colspan: 2,
-    path: "supplier",
+    path: "suppliers",
   },
   {
     title: "INFORMASI TERKINI",
@@ -137,7 +137,7 @@ export const ROUTES_WITHOUT_NAVBAR: string[] = [
   "daftar",
   "berita",
   "umkm",
-  "supplier",
+  "suppliers",
 ];
 
 type SideBarItem = {

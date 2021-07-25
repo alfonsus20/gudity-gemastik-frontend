@@ -25,9 +25,13 @@ const LandingPageRoutes = () => {
         <Route path="/" component={Home} exact />
         <Route path="/berita" component={News} exact />
         <Route path="/umkm" component={Umkm} exact />
-        <Route path="/supplier" component={Commodity} exact />
-        <Route path="/supplier/:id" component={CommodityDetail} exact />
-        <Route path="/produk/:id" component={Product} exact />
+        <Route path="/suppliers" component={Commodity} exact />
+        <Route path="/suppliers/:id" component={CommodityDetail} exact />
+        <Route
+          path="/suppliers/:supplierId/produk/:productId"
+          component={Product}
+          exact
+        />
         <Route path="/keranjang" component={Cart} exact />
         <Route path="/checkout" component={Checkout} exact />
         <Route path="/pembayaran" component={Payment} exact />

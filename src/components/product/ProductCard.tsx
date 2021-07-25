@@ -3,6 +3,7 @@ import { HeartIcon as HeartOutline } from "@heroicons/react/outline";
 /* eslint-disable */
 import Button from "../Button";
 import Rating from "./Rating";
+import { Link } from "react-router-dom";
 
 type ProductCardProps = {
   image: string;
@@ -13,6 +14,8 @@ type ProductCardProps = {
   reviewCount: number;
   className?: string;
   withOrderButton?: boolean;
+  supplierId?: string;
+  productId?: string;
 };
 
 const ProductCard = ({
@@ -24,9 +27,12 @@ const ProductCard = ({
   className,
   reviewCount,
   withOrderButton,
+  supplierId,
+  productId,
 }: ProductCardProps) => {
   return (
-    <div
+    <Link
+      to={`/suppliers/${supplierId}/produk/${productId}`}
       className={`p-3 xs:px-4 xs:py-6 shadow-md xs:shadow mx-auto flex-shrink-0 w-64 ${className}`}
     >
       <div className="mb-2 relative">
@@ -59,7 +65,7 @@ const ProductCard = ({
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
