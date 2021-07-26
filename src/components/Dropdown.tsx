@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import Select from "react-select";
 
 type DropdownOption = {
@@ -12,6 +12,7 @@ type DropdownProps = {
   rounded?: boolean;
   placeholder?: string;
   icon?: React.ReactNode;
+  handleChange?: Dispatch<SetStateAction<any>>;
 };
 
 const Dropdown = ({
@@ -20,6 +21,7 @@ const Dropdown = ({
   rounded,
   placeholder,
   icon,
+  handleChange,
 }: DropdownProps) => {
   const customStyles = {
     option: (provided: object) => ({
@@ -53,6 +55,7 @@ const Dropdown = ({
         placeholder={placeholder}
         isSearchable={false}
         className="flex-1"
+        onChange={handleChange ? handleChange : console.log("object")}
       />
     </div>
   );

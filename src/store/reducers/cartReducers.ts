@@ -3,7 +3,6 @@ import {
   AddToCartDispatchTypes,
   ADD_TO_CART_FAILED,
   ADD_TO_CART_LOADING,
-  ADD_TO_CART_RESET,
   ADD_TO_CART_SUCCESS,
   FetchCartItemsDispatchTypes,
   FETCH_CART_ITEMS_FAILED,
@@ -17,6 +16,8 @@ export type CartState = {
   successAddToCart?: boolean;
   successFetchCartItems?: boolean;
   error?: string;
+  total: number;
+  totalItems: number;
   cartItems: SupplierCartState[];
 };
 
@@ -35,7 +36,7 @@ export type ProductCartState = {
 };
 
 export const cartReducer = (
-  state: CartState = { loading: false, cartItems: [] },
+  state: CartState = { loading: false, cartItems: [], total: 0, totalItems: 0 },
   action:
     | AddToCartDispatchTypes
     | LocationChangeAction
@@ -69,7 +70,7 @@ export const cartReducer = (
         successFetchCartItems: false,
       };
     case LOCATION_CHANGE || FETCH_CART_ITEMS_RESET:
-      return { loading: false, cartItems: [] };
+      return { loading: false, cartItems: [], total: 0, totalItems: 0 };
     default:
       return state;
   }

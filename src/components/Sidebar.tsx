@@ -11,7 +11,8 @@ type SidebarProps = {
   items: SidebarItem[];
   total: number;
   buttonText?: string;
-  buttonAction ?(): void;
+  buttonAction?(): void;
+  buttonDisabled?: boolean;
 };
 
 const Sidebar = ({
@@ -20,6 +21,7 @@ const Sidebar = ({
   total,
   buttonText,
   buttonAction,
+  buttonDisabled,
 }: SidebarProps) => {
   return (
     <aside className="shadow px-6 py-4 text-sm md:sticky top-24">
@@ -43,6 +45,7 @@ const Sidebar = ({
             onClick={buttonAction}
             size="full"
             variant="primary"
+            disabled={buttonDisabled}
           />
         </div>
       )}

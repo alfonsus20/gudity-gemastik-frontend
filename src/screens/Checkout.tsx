@@ -7,16 +7,38 @@ import Button from "../components/Button";
 import { ChatAltIcon, ShoppingBagIcon } from "@heroicons/react/outline";
 import Dropdown from "../components/Dropdown";
 import AddressModal from "../components/modal/AddressModal";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { checkoutItems, getBankList } from "../store/actions/checkoutActions";
+import { useHistory } from "react-router-dom";
+import { CHECKOUT_ITEMS_RESET } from "../store/constants/checkoutConstants";
 
 const Checkout = () => {
-  const [addressModalShown, showAddressModal] = React.useState<boolean>(false);
+  // const [addressModalShown, showAddressModal] = React.useState<boolean>(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { productsCheckout, bankList, successCheckout } = useSelector(
+    (state: RootState) => state.checkout
+  );
+  const { userInfo } = useSelector((state: RootState) => state.auth);
+
+  const [bank, setBank] = React.useState<any>();
+  const [expedition, setExpedition] = React.useState<string>("reguler");
+
+  React.useEffect(() => {
+    dispatch(getBankList());
+    if (successCheckout) {
+      history.replace("/pembayaran");
+      dispatch({ type: CHECKOUT_ITEMS_RESET });
+    }
+  }, [dispatch, successCheckout]);
 
   return (
     <div className="mt-20">
-      <AddressModal
+      {/* <AddressModal
         shown={addressModalShown}
         onClose={() => showAddressModal(false)}
-      />
+      /> */}
       <Header title="Rincian Pembayaran" />
       <Wrapper>
         <Wrapper.Left>
@@ -25,21 +47,18 @@ const Checkout = () => {
               <LocationMarkerIcon className="text-black w-6 h-6 mr-4" />
               <div>
                 <p className="font-semibold">Alamat Pengiriman</p>
-                <p>Bocah Mozaik</p>
-                <p>(+62)8113552304</p>
-                <p>
-                  Garden Dian Regency Jl Edelweis 1 no 14, Lowokwaru, Malang,
-                  Jawa Timur
-                </p>
+                <p>{userInfo.name}</p>
+                <p>{userInfo.phone}</p>
+                <p>{userInfo.address}</p>
               </div>
             </div>
-            <div className="flex justify-end">
+            {/* <div className="flex justify-end">
               <Button
                 text="UBAH"
                 variant="plain-blue"
                 onClick={() => showAddressModal(true)}
               />
-            </div>
+            </div> */}
           </div>
           <div className="shadow px-8 py-6  rounded-md mb-6">
             <div className="flex flex-row items-center py-3">
@@ -51,6 +70,7 @@ const Checkout = () => {
               </button>
             </div>
             <div className="grid grid-cols-6 gap-x-3 gap-y-4 text-sm md:text-md">
+              {" "}
               <div className="col-span-3 font-semibold text-lg">
                 Produk Dipesan
               </div>
@@ -63,47 +83,32 @@ const Checkout = () => {
               <div className="col-span-1 flex items-center justify-end">
                 Sub Total
               </div>
-              <div className="col-span-3">
-                <div className="flex flex-row items-center">
-                  <img
-                    src="/assets/pictures/kopi.jpg"
-                    className="w-24 h-16 sm:w-32 sm:h-24 md:w-40 md:h-32 rounded-md object-cover mr-4"
-                    alt=""
-                  />
-                  <p>Kopi Robusta (Masak Pohon)</p>
-                </div>
-              </div>
-              <div className="col-span-1 flex items-center justify-end">
-                Rp 3.725
-              </div>
-              <div className="col-span-1 flex items-center justify-end">
-                1000 gram
-              </div>
-              <div className="col-span-1 flex items-center justify-end">
-                Rp 3.725.000
-              </div>
-              <div className="col-span-3">
-                <div className="flex flex-row items-center">
-                  <img
-                    src="/assets/pictures/kopi.jpg"
-                    className="w-24 h-16 sm:w-32 sm:h-24 md:w-40 md:h-32 rounded-md object-cover mr-4"
-                    alt=""
-                  />
-                  <p>Kopi Robusta (Masak Pohon)</p>
-                </div>
-              </div>
-              <div className="col-span-1 flex items-center justify-end">
-                Rp 3.725
-              </div>
-              <div className="col-span-1 flex items-center justify-end">
-                1000 gram
-              </div>
-              <div className="col-span-1 flex items-center justify-end">
-                Rp 3.725.000
-              </div>
+              {productsCheckout.map((product) => (
+                <>
+                  <div className="col-span-3">
+                    <div className="flex flex-row items-center">
+                      <img
+                        src="/assets/pictures/kopi.jpg"
+                        className="w-24 h-16 sm:w-32 sm:h-24 md:w-40 md:h-32 rounded-md object-cover mr-4"
+                        alt=""
+                      />
+                      <p>{product.product_name}</p>
+                    </div>
+                  </div>
+                  <div className="col-span-1 flex items-center justify-end">
+                    Rp {product.product_price}
+                  </div>
+                  <div className="col-span-1 flex items-center justify-end">
+                    {product.product_quantity} kg
+                  </div>
+                  <div className="col-span-1 flex items-center justify-end">
+                    Rp {product.product_price * product.product_quantity}
+                  </div>
+                </>
+              ))}
               <div className="col-span-6">
                 <p className="mr-2 mb-2 text-lg">Metode Pengiriman</p>
-                {["Reguler", "Kilat"].map((item, i) => (
+                {["Reguler"].map((item, i) => (
                   <label
                     htmlFor={item}
                     className="flex items-center justify-between mb-4"
@@ -113,6 +118,8 @@ const Checkout = () => {
                       <input
                         type="radio"
                         name="transaction"
+                        checked={expedition === "reguler"}
+                        onChange={(e) => setExpedition(e.target.value)}
                         id={item}
                         className="flex-shrink-0 w-4 h-4 mr-4 md:mr-6"
                       />
@@ -147,24 +154,31 @@ const Checkout = () => {
                 <div>
                   <label htmlFor="">Pilih Bank</label>
                   <Dropdown
-                    options={[]}
+                    handleChange={setBank}
+                    options={bankList.map((bank) => ({
+                      value: bank.bank_id,
+                      label: bank.bank_name,
+                    }))}
                     className="border-2 border-violet w-auto px-2 rounded-md"
                   />
                 </div>
-                <div>
-                  <p>Ketentuan:</p>
-                  <ul className="list-disc pl-6">
-                    <li>
-                      Pilih metode pembayaran ini untuk melakukan pembayaran
-                      dengan ATM BNI / Mobile Banking BNI / Internet Banking BNI
-                    </li>
-                    <li>
-                      Kamu diberikan waktu maksimal 1 jam untuk melakukan
-                      pembayaran, terhitung setelah kamu melakukan proses
-                      checkout.
-                    </li>
-                  </ul>
-                </div>
+                {bank.label && (
+                  <div>
+                    <p>Ketentuan:</p>
+                    <ul className="list-disc pl-6">
+                      <li>
+                        Pilih metode pembayaran ini untuk melakukan pembayaran
+                        dengan ATM {bank.label} / Mobile Banking {bank.label} /
+                        Internet Banking {bank.label}
+                      </li>
+                      <li>
+                        Kamu diberikan waktu maksimal 1 jam untuk melakukan
+                        pembayaran, terhitung setelah kamu melakukan proses
+                        checkout.
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -173,11 +187,38 @@ const Checkout = () => {
           <Sidebar
             title="Rincian Pembayaran"
             buttonText="Lanjut"
-            buttonAction={() => console.log("object")}
-            total={1286020}
+            buttonAction={() =>
+              dispatch(
+                checkoutItems(
+                  expedition,
+                  bank.value,
+                  productsCheckout.map((product) => product.cart_id)
+                )
+              )
+            }
+            total={
+              (productsCheckout.length >= 0
+                ? productsCheckout.reduce(
+                    (acc, product) =>
+                      (acc += product.product_price * product.product_quantity),
+                    0
+                  )
+                : 0) + 24000
+            }
             items={[
-              { left: "Subtotal", right: "Rp 4.975.000" },
-              { left: "Biaya Pengiriman", right: "Rp 24.000" },
+              {
+                left: "Subtotal",
+                right:
+                  productsCheckout.length >= 0
+                    ? productsCheckout.reduce(
+                        (acc, product) =>
+                          (acc +=
+                            product.product_price * product.product_quantity),
+                        0
+                      )
+                    : 0,
+              },
+              { left: "Biaya Pengiriman", right: 24000 },
             ]}
           />
         </Wrapper.Right>

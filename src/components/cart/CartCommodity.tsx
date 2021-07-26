@@ -3,6 +3,15 @@ import CartItem from "./CartItem";
 import { ShoppingBagIcon } from "@heroicons/react/outline";
 import { ChatAltIcon } from "@heroicons/react/solid";
 import { ProductCartState } from "../../store/reducers/cartReducers";
+import { useDispatch } from "react-redux";
+import {
+  DECREASE_TOTAL,
+  INCREASE_TOTAL,
+} from "../../store/constants/cartConstants";
+import {
+  ADD_CHECKOUT_ITEM,
+  REMOVE_CHECKOUT_ITEM,
+} from "../../store/constants/checkoutConstants";
 
 type CartCommodityProps = {
   name: string;
@@ -15,6 +24,7 @@ const CartCommodity = ({ name, items, id }: CartCommodityProps) => {
   const [initialValues, setInitialValues] = React.useState<Array<number>>(
     items.map((item) => item.cart_id)
   );
+  const dispatch = useDispatch();
 
   return (
     <div className="shadow px-6 py-8 mb-6 ">
@@ -27,11 +37,28 @@ const CartCommodity = ({ name, items, id }: CartCommodityProps) => {
           checked={
             choosenValues.sort().toString() === initialValues.sort().toString()
           }
-          onChange={() =>
+          onChange={() => {
             choosenValues.sort().toString() === initialValues.sort().toString()
               ? setChoosenValues([])
-              : setChoosenValues(initialValues)
-          }
+              : setChoosenValues(initialValues);
+            choosenValues.sort().toString() === initialValues.sort().toString()
+              ? items
+                  .filter((item) => choosenValues.includes(item.cart_id))
+                  .forEach((item) =>
+                    dispatch({
+                      type: REMOVE_CHECKOUT_ITEM,
+                      payload: item,
+                    })
+                  )
+              : items
+                  .filter((item) => !choosenValues.includes(item.cart_id))
+                  .forEach((item) =>
+                    dispatch({
+                      type: ADD_CHECKOUT_ITEM,
+                      payload: item,
+                    })
+                  );
+          }}
         />
         <label
           htmlFor={`supplier_${id}`}
@@ -48,7 +75,7 @@ const CartCommodity = ({ name, items, id }: CartCommodityProps) => {
       <div>
         {items.map((item, i) => (
           <CartItem
-            {...item}
+            product={item}
             key={item.cart_id}
             setChoosenValues={setChoosenValues}
             choosenValues={choosenValues}

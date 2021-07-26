@@ -4,6 +4,8 @@ import Sidebar from "../components/Sidebar";
 import Wrapper from "../components/Wrapper";
 import Button from "../components/Button";
 import Tab from "../components/Tab";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 const Payment = () => {
   return (
@@ -98,7 +100,8 @@ const Payment = () => {
                 <div className="font-semibold">Komoditas Kopi Lalala</div>
               </div>
               <div className="text-sm flex flex-row">
-                <div className="w-40 flex-shrink-0">Pengiriman</div> <div>BES TRUCKING</div>
+                <div className="w-40 flex-shrink-0">Pengiriman</div>{" "}
+                <div>BES TRUCKING</div>
               </div>
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">Estimasi Pengiriman</div>

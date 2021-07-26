@@ -2,19 +2,28 @@ import React, { Dispatch } from "react";
 import { TrashIcon } from "@heroicons/react/outline";
 import { ProductCartState } from "../../store/reducers/cartReducers";
 import { SetStateAction } from "react";
+import { useDispatch } from "react-redux";
+import {
+  DECREASE_TOTAL,
+  INCREASE_TOTAL,
+} from "../../store/constants/cartConstants";
+import {
+  ADD_CHECKOUT_ITEM,
+  REMOVE_CHECKOUT_ITEM,
+} from "../../store/constants/checkoutConstants";
 
 const CartItem = ({
-  cart_id,
-  product_id,
-  product_quantity,
-  product_price,
-  product_name,
+  product,
   setChoosenValues,
   choosenValues,
-}: ProductCartState & {
+}: {
+  product: ProductCartState;
   setChoosenValues?: Dispatch<SetStateAction<number[]>>;
   choosenValues?: number[];
 }) => {
+  const dispatch = useDispatch();
+  const { cart_id, product_name, product_price, product_quantity } = product;
+
   return (
     <label htmlFor={cart_id.toString()} className="flex flex-row mb-6">
       <div className="mr-3 md:mr-6 flex-shrink-0 flex items-start">
@@ -26,14 +35,23 @@ const CartItem = ({
               id={cart_id.toString()}
               className="w-4 h-4"
               checked={choosenValues?.includes(cart_id)}
-              onChange={() =>
+              onChange={() => {
                 setChoosenValues &&
-                setChoosenValues((prev) =>
-                  choosenValues?.includes(cart_id)
-                    ? prev.filter((x) => x !== cart_id)
-                    : [...prev, cart_id]
-                )
-              }
+                  (choosenValues?.includes(cart_id)
+                    ? setChoosenValues((prev) =>
+                        prev.filter((x) => x !== cart_id)
+                      )
+                    : setChoosenValues((prev) => [...prev, cart_id]));
+                choosenValues?.includes(cart_id)
+                  ? dispatch({
+                      type: REMOVE_CHECKOUT_ITEM,
+                      payload: product,
+                    })
+                  : dispatch({
+                      type: ADD_CHECKOUT_ITEM,
+                      payload: product,
+                    });
+              }}
             />
           </div>
           <img

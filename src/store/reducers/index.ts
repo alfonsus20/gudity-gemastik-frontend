@@ -11,6 +11,7 @@ import {
   supplierProductsReducer,
 } from "./productReducers";
 import { cartReducer } from "./cartReducers";
+import { checkoutReducer } from "./checkoutReducers";
 
 const createRootReducer = (history: any) =>
   combineReducers({
@@ -25,6 +26,7 @@ const createRootReducer = (history: any) =>
     productList: supplierProductsReducer,
     productDetail: productDetailReducer,
     cart: cartReducer,
+    checkout: checkoutReducer,
   });
 
 export default createRootReducer;
