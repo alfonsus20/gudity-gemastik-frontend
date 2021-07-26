@@ -22,7 +22,7 @@ const TextArea = ({
       case "secondary":
         return "text-black border-2 border-purple mb-4";
       case "tertiary":
-        return "border-gray-200 border-2 ";
+        return "border-gray-400 border-2 ";
       case "dashboard":
         return "text-black border-2 border-black";
       default:
@@ -32,7 +32,7 @@ const TextArea = ({
 
   return (
     <textarea
-      className={`outline-none flex-auto bg-transparent w-full text-sm ${
+      className={`outline-none flex-auto bg-transparent w-full text-sm border-opacity-50 focus:border-opacity-100  ${
         textCenter ? "text-center" : "text-left"
       } flex-row px-3 py-2 resize-none h-28 ${
         rounded && "rounded-md"

@@ -22,11 +22,11 @@ const TextField = ({
   const getTextFieldConfig = (): string => {
     switch (variant) {
       case "primary":
-        return "text-white border-b-2 border-white border-opacity-50 focus:border-opacity-100";
+        return "text-white border-b-2 border-white ";
       case "secondary":
         return "text-black border-2 border-purple";
       case "tertiary":
-        return "border-gray-200 border-2 ";
+        return "border-gray-400 border-2 ";
       case "dashboard":
         return "text-black border-2 border-black";
       default:
@@ -50,7 +50,7 @@ const TextField = ({
           type === "password" && "pl-4 pr-9"
         } ${
           !icon && type !== "password" && "px-4"
-        } py-2 flex-auto bg-transparent w-full text-sm ${getTextFieldConfig()}   ${
+        } py-2 flex-auto bg-transparent w-full text-sm ${getTextFieldConfig()} border-opacity-50 focus:border-opacity-100   ${
           textCenter ? "text-center" : "text-left"
         } ${type === "date" && "date pl-8"}`}
         type={type !== "password" ? type : passwordShown ? "text" : "password"}

@@ -24,7 +24,7 @@ const Home = () => {
         {DASHBOARD_FEATURES.map((feature, i) => (
           <Link
             to={`/dashboard/${feature.pathname}`}
-            className={`${feature.backgroundColor} mx-auto px-8 py-6 col-span-1  text-white rounded-md text-center flex items-center font-medium w-full`}
+            className={`${feature.backgroundColor} mx-auto px-8 py-6 col-span-1  text-white rounded-md text-center flex items-center font-medium w-full transform hover:bg-opacity-95`}
             key={i}
           >
             {feature.text}

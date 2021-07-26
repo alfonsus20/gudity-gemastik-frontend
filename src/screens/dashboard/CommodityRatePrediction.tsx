@@ -60,7 +60,7 @@ const CommodityRatePrediction = () => {
       <form className="grid md:grid-cols-12 gap-6 mb-8" onSubmit={handleSubmit}>
         <div className="md:col-span-5 flex items-center">
           <TextField
-            variant="dashboard"
+            variant="tertiary"
             className="w-full"
             placeholder="Komoditas"
             onChange={(e) => setCommodity(e.target.value)}
@@ -68,7 +68,7 @@ const CommodityRatePrediction = () => {
         </div>
         <div className="md:col-span-5 flex items-center">
           <TextField
-            variant="dashboard"
+            variant="tertiary"
             className="w-full"
             placeholder="Jangka Waktu (hari)"
             onChange={(e) => setDay(e.target.value)}

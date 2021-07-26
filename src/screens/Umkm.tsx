@@ -49,7 +49,7 @@ const Umkm = () => {
               type="text"
               onChange={() => console.log("object")}
               value=""
-              className="border-2 border-blue-marker mb-4 md:mb-0"
+              variant='secondary'
               placeholder="Cari UMKM"
               icon={
                 <svg
