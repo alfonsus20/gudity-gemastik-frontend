@@ -1,58 +1,38 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CartCommodity from "../components/cart/CartCommodity";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Wrapper from "../components/Wrapper";
+import { RootState } from "../store";
+import { fetchCartItems } from "../store/actions/cartActions";
 
 const Cart = () => {
+  const dispatch = useDispatch();
+  const { cartItems } = useSelector((state: RootState) => state.cart);
+  const productIds = cartItems.map((item) =>
+    item.products.map((product) => product.cart_id)
+  );
+
+  const merged = productIds.reduce((prev, next) => prev.concat(next),[]);
+
+  React.useEffect(() => {
+    dispatch(fetchCartItems());
+  }, [dispatch]);
+
   return (
     <div className="mt-20">
       <Header title="Keranjang Belanja" />
       <Wrapper>
         <Wrapper.Left>
-          <CartCommodity
-            name="Komoditas Kopi Lalala"
-            items={[
-              {
-                price: 3725,
-                name: "Kopi Robusta (Masak Pohon)",
-                measurement: "gram",
-                amount: 100,
-                image: "kopi.jpg",
-              },
-              {
-                price: 3725,
-                name: "Kopi Robusta (Masak Pohon)",
-                measurement: "gram",
-                amount: 100,
-                image: "kopi.jpg",
-              },
-            ]}
-          />
-          <CartCommodity
-            name="Komoditas Guls NaNaNa"
-            items={[
-              {
-                price: 3725,
-                name: "Kopi Robusta (Masak Pohon)",
-                measurement: "gram",
-                amount: 100,
-                image: "gula.jpg",
-              },
-            ]}
-          />
-          <CartCommodity
-            name="Komoditas Kopi Lalala"
-            items={[
-              {
-                price: 3725,
-                name: "Kopi Robusta (Masak Pohon)",
-                measurement: "gram",
-                amount: 100,
-                image: "kopi.jpg",
-              },
-            ]}
-          />
+          {cartItems.map((item) => (
+            <CartCommodity
+              key={item.supplier_id}
+              id={item.supplier_id}
+              name={item.supplier_name}
+              items={item.products}
+            />
+          ))}
         </Wrapper.Left>
         <Wrapper.Right>
           <Sidebar

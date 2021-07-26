@@ -1,3 +1,5 @@
+import { SupplierCartState } from "../reducers/cartReducers";
+
 export const ADD_TO_CART_LOADING = "ADD_TO_CART_LOADING";
 export const ADD_TO_CART_SUCCESS = "ADD_TO_CART_SUCCESS";
 export const ADD_TO_CART_FAILED = "ADD_TO_CART_FAILED";
@@ -25,3 +27,32 @@ export type AddToCartDispatchTypes =
   | AddToCartSuccess
   | AddToCartFailed
   | AddToCartReset;
+
+export const FETCH_CART_ITEMS_LOADING = "FETCH_CART_ITEMS_LOADING";
+export const FETCH_CART_ITEMS_SUCCESS = "FETCH_CART_ITEMS_SUCCESS";
+export const FETCH_CART_ITEMS_FAILED = "FETCH_CART_ITEMS_FAILED";
+export const FETCH_CART_ITEMS_RESET = "FETCH_CART_ITEMS_RESET";
+
+interface FetchCartItemsLoading {
+  type: typeof FETCH_CART_ITEMS_LOADING;
+}
+
+interface FetchCartItemsSuccess {
+  type: typeof FETCH_CART_ITEMS_SUCCESS;
+  payload: SupplierCartState[];
+}
+
+interface FetchCartItemsFailed {
+  type: typeof FETCH_CART_ITEMS_FAILED;
+  payload: string;
+}
+
+interface FetchCartItemsReset {
+  type: typeof FETCH_CART_ITEMS_RESET;
+}
+
+export type FetchCartItemsDispatchTypes =
+  | FetchCartItemsLoading
+  | FetchCartItemsSuccess
+  | FetchCartItemsFailed
+  | FetchCartItemsReset;
