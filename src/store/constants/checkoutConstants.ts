@@ -58,6 +58,7 @@ interface CheckoutItemsLoading {
 
 interface CheckoutItemsSuccess {
   type: typeof CHECKOUT_ITEMS_SUCCESS;
+  payload: string;
 }
 
 interface CheckoutItemsFailed {

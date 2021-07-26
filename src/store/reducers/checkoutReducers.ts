@@ -21,6 +21,7 @@ type CheckoutState = {
   loading: boolean;
   productsCheckout: ProductCartState[];
   bankList: BankState[];
+  paymentCode?: string;
 };
 
 export type BankState = {
@@ -70,6 +71,7 @@ export const checkoutReducer = (
       return {
         ...state,
         successCheckout: true,
+        paymentCode: action.payload
       };
     case CHECKOUT_ITEMS_FAILED:
       return {

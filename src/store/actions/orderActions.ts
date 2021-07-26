@@ -1,0 +1,64 @@
+import { Dispatch } from "redux";
+import baseApi from "../../api/baseApi";
+import {
+  FetchOrderDetailDispatchTypes,
+  FetchOrderListDispatchTypes,
+  FETCH_ORDER_DETAIL_FAILED,
+  FETCH_ORDER_DETAIL_LOADING,
+  FETCH_ORDER_DETAIL_SUCCESS,
+  FETCH_ORDER_LIST_FAILED,
+  FETCH_ORDER_LIST_LOADING,
+  FETCH_ORDER_LIST_SUCCESS,
+} from "../constants/orderConstants";
+
+export const getOrderList =
+  () => async (dispatch: Dispatch<FetchOrderListDispatchTypes>) => {
+    try {
+      dispatch({ type: FETCH_ORDER_LIST_LOADING });
+
+      const { data } = await baseApi.get("/user/invoices/checkout", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      dispatch({ type: FETCH_ORDER_LIST_SUCCESS, payload: data.data });
+    } catch (error) {
+      dispatch({
+        type: FETCH_ORDER_LIST_FAILED,
+        payload: error.message,
+      });
+    }
+  };
+
+export const getOrderDetail =
+  (paymentCode: string) =>
+  async (dispatch: Dispatch<FetchOrderDetailDispatchTypes>) => {
+    try {
+      dispatch({ type: FETCH_ORDER_DETAIL_LOADING });
+
+      const { data } = await baseApi.get(
+        `/user/invoices/${paymentCode}/detail`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+
+      const { data: dataProduct } = await baseApi.get(
+        `/user/invoices/${paymentCode}/products`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      dispatch({
+        type: FETCH_ORDER_DETAIL_SUCCESS,
+        payload: { ...data.data, products: dataProduct.data },
+      });
+    } catch (error) {
+      dispatch({
+        type: FETCH_ORDER_DETAIL_FAILED,
+        payload: error.message,
+      });
+    }
+  };

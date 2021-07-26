@@ -13,11 +13,17 @@ const ProgressBar = () => {
           <div className="flex flex-row justify-between relative z-20">
             {TRANSACTION_PHASES.map((phase, i) => (
               <div
-                className="w-16 md:w-20 h-16 md:h-20 flex items-center justify-center rounded-full border-4 border-blue-progress bg-white"
+                className={`w-16 md:w-20 h-16 md:h-20 flex items-center justify-center rounded-full border-4 border-blue-progress ${
+                  phase.name === "Pembayaran" ? "bg-blue-progress" : " bg-white"
+                }`}
                 key={i}
               >
                 <img
-                  src={`/assets/icons/progress/${phase.unfinishedImage}.svg`}
+                  src={`/assets/icons/progress/${
+                    phase.name === "Pembayaran"
+                      ? phase.finishedImage
+                      : phase.unfinishedImage
+                  }.svg`}
                   alt=""
                   className="w-6 h-6 md:w-8 md:h-8"
                 />

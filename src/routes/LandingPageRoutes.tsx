@@ -35,9 +35,9 @@ const LandingPageRoutes = () => {
         />
         <PrivateRoute path="/keranjang" component={Cart} exact />
         <PrivateRoute path="/checkout" component={Checkout} exact />
-        <PrivateRoute path="/pembayaran" component={Payment} exact />
+        <PrivateRoute path="/pembayaran/:paymentCode" component={Payment} exact />
         <PrivateRoute path="/orders" component={OrderList} exact />
-        <PrivateRoute path="/orders/:id" component={OrderDetail} exact />
+        <PrivateRoute path="/orders/:paymentCode" component={OrderDetail} exact />
         <AuthRoute path="/login" component={Login} exact />
         <AuthRoute path="/daftar" component={Register} exact />
       </Switch>

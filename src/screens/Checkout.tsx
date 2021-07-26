@@ -162,7 +162,7 @@ const Checkout = () => {
                     className="border-2 border-violet w-auto px-2 rounded-md"
                   />
                 </div>
-                {bank.label && (
+                {bank && (
                   <div>
                     <p>Ketentuan:</p>
                     <ul className="list-disc pl-6">

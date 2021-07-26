@@ -4,10 +4,21 @@ import Sidebar from "../components/Sidebar";
 import Wrapper from "../components/Wrapper";
 import Button from "../components/Button";
 import Tab from "../components/Tab";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
+import { useParams } from "react-router-dom";
+import { getOrderDetail } from "../store/actions/orderActions";
 
 const Payment = () => {
+  const { paymentCode } = useParams<{ paymentCode: string }>();
+  const { order } = useSelector((state: RootState) => state.orderDetail);
+  const { userInfo } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(getOrderDetail(paymentCode));
+  }, [dispatch]);
+
   return (
     <div className="mt-20">
       <Header title="Pembayaran" />
@@ -18,11 +29,11 @@ const Payment = () => {
         </h3>
         <p className="text-center">
           Transaksi akan diproses apabila Anda telah melakukan pembayaran dengan
-          batas waktu sebelum 10 Juli 2021 pukul 22:18 WIB.
+          batas waktu sebelum 28 Juli 2021 pukul 23:00 WIB.
         </p>
         <div className="flex flex-col justify-center items-center space-y-1">
           <p>
-            Pembayaran melalui <strong>Bank BNI</strong>
+            Pembayaran melalui <strong>{order.payment_bank}</strong>
           </p>
           <p>Nomor Virtual Account</p>
           <div className="font-semibold transition transform hover:scale-110">
@@ -42,7 +53,7 @@ const Payment = () => {
         <Tab
           tabs={[
             {
-              title: "ATM BNI",
+              title: order.payment_bank,
               content: (
                 <ol className="list-decimal pl-6">
                   <li>Masukkan Kartu Anda.</li>
@@ -68,11 +79,11 @@ const Payment = () => {
               ),
             },
             {
-              title: "Mobile Banking BNI",
+              title: `Mobile Banking ${order.payment_bank}`,
               content: <div className="space-y-2 mb-6"></div>,
             },
             {
-              title: "Internet Banking BNI",
+              title: `Internet Banking ${order.payment_bank}`,
               content: <div className="space-y-2 mb-6"></div>,
             },
           ]}
@@ -100,63 +111,50 @@ const Payment = () => {
                 <div className="font-semibold">Komoditas Kopi Lalala</div>
               </div>
               <div className="text-sm flex flex-row">
-                <div className="w-40 flex-shrink-0">Pengiriman</div>{" "}
-                <div>BES TRUCKING</div>
+                <div className="w-40 flex-shrink-0">Pengiriman</div>
+                <div>{order.expedition}</div>
               </div>
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">Estimasi Pengiriman</div>
-                <div>13 Jul 2021 sampai 15 Jul 2021</div>
+                <div>28 Juli 2021 - 2 Agustus 2021</div>
               </div>
             </div>
             <div>
-              <div className="text-md flex flex-row mb-4">
-                <div>
-                  <img
-                    src="/assets/pictures/kopi.jpg"
-                    className="w-24 h-16 sm:w-32 sm:h-24 rounded-md object-cover mr-4"
-                    alt=""
-                  />
+              {order.products.map((product) => (
+                <div className="text-md flex flex-row mb-4">
+                  <div>
+                    <img
+                      src="/assets/pictures/kopi.jpg"
+                      className="w-24 h-16 sm:w-32 sm:h-24 rounded-md object-cover mr-4"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <p className="font-semibold">{product.product_name}</p>
+                    <p className="text-sm">{product.product_quantity} kg</p>
+                    <p className="text-sm">
+                      Rp {product.product_price * product.product_quantity}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-semibold">Kopi Robusta (Masak Pohon)</p>
-                  <p className="text-sm">1000 gram</p>
-                  <p className="text-sm">Rp250.000</p>
-                </div>
-              </div>
-              <div className="text-md flex flex-row mb-4">
-                <div>
-                  <img
-                    src="/assets/pictures/kopi.jpg"
-                    className="w-24 h-16 sm:w-32 sm:h-24 rounded-md object-cover mr-4"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <p className="font-semibold">Kopi Robusta (Masak Pohon)</p>
-                  <p className="text-sm">1000 gram</p>
-                  <p className="text-sm">Rp250.000</p>
-                </div>
-              </div>
+              ))}
             </div>
             <div className="mb-4">
               <div className="text-md flex flex-row">
                 <div className="w-40 flex-shrink-0">Kepada</div>
-                <div className="font-semibold">Bocah Mozaik</div>
+                <div className="font-semibold">{userInfo.name}</div>
               </div>
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">Email</div>
-                <div> BocahMozaik@gmail.com</div>
+                <div>{userInfo.email}</div>
               </div>
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">No Telepon</div>
-                <div>(+62)8113552304</div>
+                <div>{userInfo.phone}</div>
               </div>
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">Alamat</div>
-                <div>
-                  Garden Dian Regency Jl Edelweis 1 no 14, Kec. Lowokwaru, Kab.
-                  Malang, Jawa Timur
-                </div>
+                <div>{userInfo.address}</div>
               </div>
             </div>
           </div>
@@ -166,10 +164,10 @@ const Payment = () => {
             title="Rincian Pembayaran"
             buttonText="Lanjut"
             buttonAction={() => console.log("object")}
-            total={1286020}
+            total={order.total_payment}
             items={[
-              { left: "Subtotal", right: "Rp 4.975.000" },
-              { left: "Biaya Pengiriman", right: "Rp 24.000" },
+              { left: "Subtotal", right: order.total_payment },
+              { left: "Biaya Pengiriman", right: 0 },
             ]}
           />
         </Wrapper.Right>
