@@ -7,7 +7,7 @@ const SampleNextArrow = (props: any) => {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", right: 25}}
+      style={{ ...style, display: "block", right: 25 }}
       onClick={onClick}
     />
   );
@@ -18,7 +18,7 @@ const SamplePrevArrow = (props: any) => {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", right: 60}}
+      style={{ ...style, display: "block", right: 60 }}
       onClick={onClick}
     />
   );
@@ -48,13 +48,12 @@ const CommodityCarousel = () => {
             </div>
             <div className="flex items-center">
               <div className="bg-white px-6 md:px-12 py-4 md:py-8 shadow space-y-4">
-                <h3 className="font-semibold text-2xl">Komoditas Kopi</h3>
+                <h3 className="font-semibold text-2xl">Supplier Suka Maju</h3>
                 <p className="text-sm">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
+                  Komoditas suka maju merupakan pemasok komoditas segala jenis
+                  kopi yang berdomisil di Malang, Jawa Timur. Kami menyediakan
+                  berbagai macam kopi dengan kualitas premium dan harga yang
+                  terjangkau.
                 </p>
                 <Button variant="secondary" text="Selengkapnya" size="sm" />
               </div>
@@ -72,13 +71,12 @@ const CommodityCarousel = () => {
             </div>
             <div className="flex items-center">
               <div className="bg-white px-6 md:px-12 py-4 md:py-8 shadow space-y-4">
-                <h3 className="font-semibold text-2xl">Komoditas Gula</h3>
+                <h3 className="font-semibold text-2xl">Supplier Alam Sutra</h3>
                 <p className="text-sm">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
+                  Komoditas alam sutra merupakan salah satu pemasok gula terbaik
+                  yang ada di provinsi Sulawesi Tenggara. Dengan menyediakan
+                  gula kualitas super yang dapat dipesan dengan berbagai macam
+                  jumlah.
                 </p>
                 <Button variant="secondary" text="Selengkapnya" size="sm" />
               </div>

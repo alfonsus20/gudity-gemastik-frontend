@@ -56,7 +56,7 @@ export const FEATURES: FeatureCardProps[] = [
     image: "analisis",
     title: "Analisis",
     description:
-      "Bisa melihat prospek harga komoditas kedepan/ history kebelakang hari (30 hari yg lalu).",
+      "Ketahui harga komoditas lampau yang ada untuk proses penentuan prediksi dan strategi di masa depan.",
   },
   {
     image: "prediksi",
@@ -65,14 +65,14 @@ export const FEATURES: FeatureCardProps[] = [
       "Ketahui prospek harga produk komoditas di masa depan, serta prediksi kesuksesan bisnis kamu saat ini.",
   },
   {
-    image: "saran",
-    title: "Saran",
+    image: "cari-komoditas",
+    title: "Cari Komoditas",
     description:
       "Cari komoditas yang sesuai untuk mengoptimalkan usaha UMKM anda.",
   },
   {
-    image: "informasi",
-    title: "Informasi",
+    image: "peta",
+    title: "Peta Komoditas",
     description:
       " Informasi peta sebaran komoditas, serta profil komoditas terkait dan didukung dengan kemudahan proses transaksi jual beli",
   },

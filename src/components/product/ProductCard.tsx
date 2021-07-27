@@ -46,7 +46,17 @@ const ProductCard = ({
         </button>
       </div>
       <h3 className="text-blue-marker font-semibold">{name}</h3>
-      <p className="text-sm mb-2">{description}</p>
+
+      <p
+        className="overflow-hidden text-sm mb-2 text-justify"
+        style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+        }}
+      >
+        {description}
+      </p>
       <p className="font-semibold mb-2">Rp {price}/kg</p>
       <div className="flex flex-col xs:flex-row justify-between">
         <div className="mb-2 xs:mb-0">

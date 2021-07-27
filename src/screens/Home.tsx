@@ -64,18 +64,18 @@ const Home = () => {
                 colspan={1}
               />
               <NewsCard
-                title="Test 2"
+                title="Subholding Gas Pertamina Beri UMKM Pelatihan Pemasaran Online"
+                content="Subholding Gas Grup Pertamina berkomitmen mendukung UMKM dengan menyediakan energi bersih dan layanan terintegrasi."
+                colspan={1}
+              />
+              <NewsCard
+                title="Simak! UMKM Bisa Dapat Biaya Renovasi Tempat Usaha"
                 content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
                 colspan={1}
               />
               <NewsCard
-                title="Test 3"
-                content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
-                colspan={1}
-              />
-              <NewsCard
-                title="Test 4"
-                content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
+                title="Produk UMKM Makanan atau Minuman Tembus Pasar Internasional"
+                content="Rendang sebagai makanan khas Indonesia, kembali berhasil menjadi salah satu makanan terbaik di dunia versi CNN tahun 2021."
                 colspan={1}
               />
             </div>
@@ -153,7 +153,7 @@ const Home = () => {
           <div className="flex justify-start items-start">
             <ComplementaryCard
               title="Belanja dari Produk Komoditas"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+              description="Lihat berbagai macam kumpulan UMKM yang tersedia dari berbagai macam jenis produk olahan pilihan yang tersebar di berbagaimacam wilayah."
               buttonName="Belanja sekarang"
               buttonPathname="komoditas"
               image="buy-commodity.png"
@@ -162,7 +162,7 @@ const Home = () => {
           <div className="flex justify-end items-start">
             <ComplementaryCard
               title="Kumpulan UMKM"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+              description="Telusuri pemasok komoditas kami dan pilih komoditas yang ada dengan harga terbaik,  kualitas unggul serta proses transaksi yang mudah dan aman."
               buttonName="Lihat Sekarang"
               buttonPathname="umkm"
               image="umkm-collection.png"
