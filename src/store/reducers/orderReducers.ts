@@ -22,8 +22,8 @@ export type PurchasedProductState = {
 type OrderListState = {
   error?: string;
   success?: boolean;
-  loading: false;
-  orderList: OrderDetailState[];
+  loading: boolean;
+  orderList: OrderState[];
 };
 
 export type OrderState = {
@@ -55,17 +55,20 @@ export const orderListReducer = (
     case FETCH_ORDER_LIST_LOADING:
       return {
         ...state,
+        loading: true,
       };
     case FETCH_ORDER_LIST_SUCCESS:
       return {
         ...state,
         success: true,
+        loading: false,
         orderList: action.payload,
       };
     case FETCH_ORDER_LIST_FAILED:
       return {
         ...state,
         success: false,
+        loading: false,
         error: action.payload,
       };
     case LOCATION_CHANGE:

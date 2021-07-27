@@ -48,12 +48,9 @@ const Product = () => {
           <ImageGallery
             className="flex-shrink-0"
             images={[
-              { name: "kopi.jpg", id: "1" },
-              { name: "umkm.jpg", id: "2" },
-              { name: "umkm-card.jpg", id: "3" },
-              { name: "gula.jpg", id: "4" },
-              { name: "prediksi.jpg", id: "5" },
-              { name: "informasi.jpg", id: "6" },
+              { name: "kopi-produk.jpg", id: "1" },
+              { name: "kopi.jpg", id: "2" },
+              { name: "arabika.jpg", id: "3" }
             ]}
           />
           <div className="mt-4 sm:ml-6 flex-auto">

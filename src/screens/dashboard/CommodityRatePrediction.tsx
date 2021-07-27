@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFutureAnalysis } from "../../store/actions/predictionActions";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { css } from "@emotion/react";
+import Skeleton from "react-loading-skeleton";
 
 const CommodityRatePrediction = () => {
   const [commodity, setCommodity] = React.useState<string>("");
@@ -93,12 +94,12 @@ const CommodityRatePrediction = () => {
             <Line
               type="line"
               data={{
-                labels: predictions?.map((x: any) => x.time),
+                labels: predictions.map((x: any) => x.time),
                 datasets: [
                   {
                     type: "line",
                     label: "Hasil Analisis",
-                    data: predictions?.map(
+                    data: predictions.map(
                       (x: any) => Math.round(x.value * 14000 * 100) / 100
                     ),
                     backgroundColor: "rgb(255, 99, 132)",
@@ -114,10 +115,28 @@ const CommodityRatePrediction = () => {
       </div>
       <div className="px-6 md:px-12 py-6 shadow">
         <h3 className="font-semibold">Hasil</h3>
-        <div>
-          <p>Harga 60 hari kebelakang : 45.000</p>
-          <p>Harga Hari ini : 48.250</p>
-        </div>
+        {loading ? (
+          <>
+            <Skeleton style={{ width: "25%" }} />
+            <br />
+            <Skeleton style={{ width: "25%" }} />
+          </>
+        ) : (
+          predictions.length > 0 && (
+            <>
+              <p>
+                Harga hari ini : Rp{" "}
+                {Math.round(predictions[0].value * 14000 * 100) / 100}
+              </p>
+              <p>
+                Harga {day} hari ke depan : Rp{" "}
+                {Math.round(
+                  predictions[predictions.length - 1].value * 14000 * 100
+                ) / 100}
+              </p>
+            </>
+          )
+        )}
       </div>
     </div>
   );

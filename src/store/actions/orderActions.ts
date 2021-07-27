@@ -16,11 +16,29 @@ export const getOrderList =
     try {
       dispatch({ type: FETCH_ORDER_LIST_LOADING });
 
-      const { data } = await baseApi.get("/user/invoices/checkout", {
+      const { data } = await baseApi.get("/user/invoices/accepted", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
 
-      dispatch({ type: FETCH_ORDER_LIST_SUCCESS, payload: data.data });
+      const arrayOuter: any = [];
+
+      const getOrderProducts = async (order: any) => {
+        const { data: dataProduct } = await baseApi.get(
+          `/user/invoices/${order.code}/products`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+
+        arrayOuter.push({ ...order, products: [...dataProduct.data] });
+      };
+
+      await Promise.all(data.data.map((order: any) => getOrderProducts(order)));
+
+
+      dispatch({ type: FETCH_ORDER_LIST_SUCCESS, payload: arrayOuter });
     } catch (error) {
       dispatch({
         type: FETCH_ORDER_LIST_FAILED,

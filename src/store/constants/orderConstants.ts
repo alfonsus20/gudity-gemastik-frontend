@@ -15,7 +15,7 @@ interface FetchOrderListLoading {
 
 interface FetchOrderListSuccess {
   type: typeof FETCH_ORDER_LIST_SUCCESS;
-  payload: OrderDetailState[];
+  payload: OrderState[];
 }
 
 interface FetchOrderListFailed {

@@ -17,7 +17,7 @@ const Checkout = () => {
   // const [addressModalShown, showAddressModal] = React.useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { productsCheckout, bankList, successCheckout } = useSelector(
+  const { productsCheckout, bankList, successCheckout, paymentCode } = useSelector(
     (state: RootState) => state.checkout
   );
   const { userInfo } = useSelector((state: RootState) => state.auth);
@@ -28,7 +28,7 @@ const Checkout = () => {
   React.useEffect(() => {
     dispatch(getBankList());
     if (successCheckout) {
-      history.replace("/pembayaran");
+      history.replace(`/pembayaran/${paymentCode}`);
       dispatch({ type: CHECKOUT_ITEMS_RESET });
     }
   }, [dispatch, successCheckout]);
@@ -128,7 +128,7 @@ const Checkout = () => {
                         <p className="text-sm">4 - 6 hari</p>
                       </div>
                     </div>
-                    <p className="font-semibold">Rp 24.000</p>
+                    <p className="font-semibold">Rp 0</p>
                   </label>
                 ))}
               </div>
@@ -218,7 +218,7 @@ const Checkout = () => {
                       )
                     : 0,
               },
-              { left: "Biaya Pengiriman", right: 24000 },
+              { left: "Biaya Pengiriman", right: 0 },
             ]}
           />
         </Wrapper.Right>

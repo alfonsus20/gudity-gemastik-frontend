@@ -16,16 +16,16 @@ type PastAnalysisStates = {
   loading?: boolean;
   success?: boolean;
   error?: string;
-  predictions?: PredictionState[];
+  predictions: PredictionState[];
 };
 
 export const pastAnalysisReducer = (
   state: PastAnalysisStates = { loading: false, predictions: [] },
   action: PastAnalysisDispatchTypes | LocationChangeAction
-) => {
+): PastAnalysisStates => {
   switch (action.type) {
     case PAST_ANALYSIS_LOADING:
-      return { loading: true };
+      return { ...state, loading: true };
     case PAST_ANALYSIS_SUCCESS:
       return { loading: false, success: true, predictions: action.payload };
     case PAST_ANALYSIS_FAILED:

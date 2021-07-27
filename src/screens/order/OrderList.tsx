@@ -2,8 +2,20 @@ import React from "react";
 import Header from "../../components/Header";
 import Tab from "../../components/Tab";
 import OrderCard from "../../components/OrderCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrderList } from "../../store/actions/orderActions";
+import { RootState } from "../../store";
+import OrderWaitingPayment from "../../components/order/OrderWaitingPayment";
 
 const OrderList = () => {
+  // const dispatch = useDispatch();
+  // const { orderList, loading } = useSelector(
+  //   (state: RootState) => state.orderList
+  // );
+  // React.useEffect(() => {
+  //   dispatch(getOrderList());
+  // }, [dispatch]);
+
   return (
     <div className="mt-20">
       <Header title="Detail Pemesanan" />
@@ -16,36 +28,7 @@ const OrderList = () => {
             {
               title: "Dalam Pemesanan",
               content: (
-                <div className="space-y-2 mb-6">
-                  {[
-                    "waitingPayment" as const,
-                    "onDelivery" as const,
-                    "done" as const,
-                  ].map((item) => (
-                    <OrderCard
-                      type={item}
-                      orderId={20210709001}
-                      orderDate="9 Juli 2021, 22:18"
-                      paymentMethod="Bank BNI"
-                      paymentTotal={4999000}
-                      commodityName="Komoditas Kopi Lalala"
-                      products={[
-                        {
-                          name: "Kopi Robusta (Masak Pohon)",
-                          weight: 1000,
-                          price: 200000,
-                          image: "kopi.jpg",
-                        },
-                        {
-                          name: "Kopi Robusta (Masak Pohon)",
-                          weight: 1000,
-                          price: 200000,
-                          image: "kopi.jpg",
-                        },
-                      ]}
-                    />
-                  ))}
-                </div>
+                <div className="space-y-2 mb-6">{<OrderWaitingPayment />}</div>
               ),
             },
             {

@@ -13,16 +13,16 @@ type FutureAnalysisStates = {
   loading: boolean;
   success?: boolean;
   error?: string;
-  predictions?: PredictionState[];
+  predictions: PredictionState[];
 };
 
 export const futureAnalysisReducer = (
   state: FutureAnalysisStates = { loading: false, predictions: [] },
   action: FutureAnalysisDispatchTypes | LocationChangeAction
-) => {
+): FutureAnalysisStates => {
   switch (action.type) {
     case FUTURE_ANALYSIS_LOADING:
-      return { loading: true };
+      return { ...state, loading: true };
     case FUTURE_ANALYSIS_SUCCESS:
       return { loading: false, success: true, predictions: action.payload };
     case FUTURE_ANALYSIS_FAILED:
