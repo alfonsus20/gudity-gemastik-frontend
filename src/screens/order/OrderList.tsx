@@ -1,10 +1,6 @@
 import React from "react";
 import Header from "../../components/Header";
 import Tab from "../../components/Tab";
-import OrderCard from "../../components/OrderCard";
-import { useDispatch, useSelector } from "react-redux";
-import { getOrderList } from "../../store/actions/orderActions";
-import { RootState } from "../../store";
 import OrderWaitingPayment from "../../components/order/OrderWaitingPayment";
 
 const OrderList = () => {

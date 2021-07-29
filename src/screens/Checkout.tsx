@@ -3,10 +3,8 @@ import { LocationMarkerIcon } from "@heroicons/react/solid";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Wrapper from "../components/Wrapper";
-import Button from "../components/Button";
 import { ChatAltIcon, ShoppingBagIcon } from "@heroicons/react/outline";
 import Dropdown from "../components/Dropdown";
-import AddressModal from "../components/modal/AddressModal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { checkoutItems, getBankList } from "../store/actions/checkoutActions";
@@ -203,7 +201,7 @@ const Checkout = () => {
                       (acc += product.product_price * product.product_quantity),
                     0
                   )
-                : 0) + 24000
+                : 0) 
             }
             items={[
               {

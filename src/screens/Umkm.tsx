@@ -78,7 +78,7 @@ const Umkm = () => {
               weekdayOpenHours="07.00 - 15.30"
               weekendOpenHours="07.00 - 15.30"
             />
-            <UmkmCard
+            {/* <UmkmCard
               title="Sumber Jaya UMKM"
               description="Menjual berbagai macam pernak pernik untuk oleh - oleh khas Jawa Timur dengan harga miring dengan kualitas OK!"
               location="Pertokoan LalaLili Madiun, Jl Lalala no 30, Jawa Timur"
@@ -93,7 +93,7 @@ const Umkm = () => {
               telephone="0811-9792-0234"
               weekdayOpenHours="07.00 - 15.30"
               weekendOpenHours="07.00 - 15.30"
-            />
+            /> */}
           </div>
           <div className="flex justify-center">
             <Button variant="tertiary" text="Lihat Lebih Banyak" />
