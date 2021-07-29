@@ -4,13 +4,6 @@ import { PurchasedProductState } from "../store/reducers/orderReducers";
 import Button from "./Button";
 import OrderBadge, { OrderBadgeProps } from "./order/OrderBadge";
 
-type ProductInfo = {
-  name: string;
-  weight: number;
-  price: number;
-  image: string;
-};
-
 type TransactionInfo = {
   paymentCode: string;
   orderDate: string;
