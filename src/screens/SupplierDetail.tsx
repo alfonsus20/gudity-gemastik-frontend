@@ -69,7 +69,7 @@ const SupplierDetail = () => {
           className="w-60 mb-6 border-2 border-violet rounded-md px-2"
           placeholder="Saring Menurut"
         />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-6 mb-10 ">
+        <div className="flex flex-row gap-x-4 gap-y-6 mb-10 overflow-auto w-full ">
           {loading
             ? "Loading..."
             : products.map((product) => (

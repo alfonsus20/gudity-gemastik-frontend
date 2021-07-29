@@ -15,9 +15,8 @@ const Checkout = () => {
   // const [addressModalShown, showAddressModal] = React.useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { productsCheckout, bankList, successCheckout, paymentCode } = useSelector(
-    (state: RootState) => state.checkout
-  );
+  const { productsCheckout, bankList, successCheckout, paymentCode } =
+    useSelector((state: RootState) => state.checkout);
   const { userInfo } = useSelector((state: RootState) => state.auth);
 
   const [bank, setBank] = React.useState<any>();
@@ -29,7 +28,7 @@ const Checkout = () => {
       history.replace(`/pembayaran/${paymentCode}`);
       dispatch({ type: CHECKOUT_ITEMS_RESET });
     }
-  }, [dispatch, successCheckout]);
+  }, [dispatch, successCheckout, paymentCode, history]);
 
   return (
     <div className="mt-20">
@@ -195,13 +194,13 @@ const Checkout = () => {
               )
             }
             total={
-              (productsCheckout.length >= 0
+              productsCheckout.length >= 0
                 ? productsCheckout.reduce(
                     (acc, product) =>
                       (acc += product.product_price * product.product_quantity),
                     0
                   )
-                : 0) 
+                : 0
             }
             items={[
               {

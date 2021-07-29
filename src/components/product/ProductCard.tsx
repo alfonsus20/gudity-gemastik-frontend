@@ -33,7 +33,7 @@ const ProductCard = ({
   return (
     <Link
       to={`/suppliers/${supplierId}/produk/${productId}`}
-      className={`p-3 xs:px-4 xs:py-6 shadow-md xs:shadow mx-auto flex-shrink-0 w-64 ${className}`}
+      className={`p-3 xs:px-4 xs:py-6 shadow-md xs:shadow flex-shrink-0 w-64 ${className}`}
     >
       <div className="mb-2 relative">
         <img

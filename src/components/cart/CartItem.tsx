@@ -3,10 +3,7 @@ import { TrashIcon } from "@heroicons/react/outline";
 import { ProductCartState } from "../../store/reducers/cartReducers";
 import { SetStateAction } from "react";
 import { useDispatch } from "react-redux";
-import {
-  DECREASE_TOTAL,
-  INCREASE_TOTAL,
-} from "../../store/constants/cartConstants";
+
 import {
   ADD_CHECKOUT_ITEM,
   REMOVE_CHECKOUT_ITEM,

@@ -56,12 +56,3 @@ export type FetchCartItemsDispatchTypes =
   | FetchCartItemsSuccess
   | FetchCartItemsFailed
   | FetchCartItemsReset;
-
-export const INCREASE_TOTAL = "INCREASE_TOTAL";
-export const DECREASE_TOTAL = "DECREASE_TOTAL";
-export const RESET_TOTAL = "RESET_TOTAL";
-
-interface IncreaseTotal {
-  type: typeof INCREASE_TOTAL;
-  payload: number;
-}

@@ -4,10 +4,7 @@ import { ShoppingBagIcon } from "@heroicons/react/outline";
 import { ChatAltIcon } from "@heroicons/react/solid";
 import { ProductCartState } from "../../store/reducers/cartReducers";
 import { useDispatch } from "react-redux";
-import {
-  DECREASE_TOTAL,
-  INCREASE_TOTAL,
-} from "../../store/constants/cartConstants";
+
 import {
   ADD_CHECKOUT_ITEM,
   REMOVE_CHECKOUT_ITEM,
@@ -21,9 +18,8 @@ type CartCommodityProps = {
 
 const CartCommodity = ({ name, items, id }: CartCommodityProps) => {
   const [choosenValues, setChoosenValues] = React.useState<Array<number>>([]);
-  const [initialValues, setInitialValues] = React.useState<Array<number>>(
-    items.map((item) => item.cart_id)
-  );
+  const initialValues = items.map((item) => item.cart_id);
+
   const dispatch = useDispatch();
 
   return (

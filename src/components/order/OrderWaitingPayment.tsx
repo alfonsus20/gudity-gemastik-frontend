@@ -6,7 +6,7 @@ import OrderCard from "../OrderCard";
 
 const OrderWaitingPayment = () => {
   const dispatch = useDispatch();
-  const { orderList, loading } = useSelector(
+  const { orderList } = useSelector(
     (state: RootState) => state.orderList
   );
 

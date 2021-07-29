@@ -9,13 +9,10 @@ const CommodityMap = () => {
   const [locations, setLocations] = React.useState<
     Array<{ lat: number; lng: number }>
   >([]);
-  const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    setLoading(true);
     setTimeout(() => {
-      setLoading(false);
       setLocations([
         { lat: -7.266245670653063, lng: 112.66284432595177 },
         { lat: -7.325754909862289, lng: 112.6822495981488 },

@@ -12,19 +12,11 @@ const Cart = () => {
   const history = useHistory();
 
   const dispatch = useDispatch();
-  const { cartItems, total, totalItems } = useSelector(
-    (state: RootState) => state.cart
-  );
+  const { cartItems } = useSelector((state: RootState) => state.cart);
 
   const { productsCheckout } = useSelector(
     (state: RootState) => state.checkout
   );
-
-  const productIds = cartItems.map((item) =>
-    item.products.map((product) => product.cart_id)
-  );
-
-  const merged = productIds.reduce((prev, next) => prev.concat(next), []);
 
   React.useEffect(() => {
     dispatch(fetchCartItems());

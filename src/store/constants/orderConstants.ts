@@ -1,8 +1,4 @@
-import {
-  OrderDetailState,
-  OrderState,
-  PurchasedProductState,
-} from "../reducers/orderReducers";
+import { OrderState } from "../reducers/orderReducers";
 
 export const FETCH_ORDER_LIST_LOADING = "FETCH_ORDER_LIST_LOADING";
 export const FETCH_ORDER_LIST_SUCCESS = "FETCH_ORDER_LIST_SUCCESS";

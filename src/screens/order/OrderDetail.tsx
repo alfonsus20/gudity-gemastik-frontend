@@ -16,7 +16,7 @@ const OrderDetail = () => {
 
   React.useEffect(() => {
     dispatch(getOrderDetail(paymentCode));
-  }, [dispatch]);
+  }, [dispatch, paymentCode]);
 
   return (
     <div className="mt-20">
