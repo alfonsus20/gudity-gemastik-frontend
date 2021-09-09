@@ -18,6 +18,7 @@ import {
   USER_INFO_LOADING,
   USER_INFO_SUCCESS,
 } from "../constants/userConstants";
+import axios, { AxiosError } from "axios";
 
 interface LoginState {
   email: string;
@@ -42,10 +43,12 @@ export const login =
       }
       dispatch({ type: AUTH_SUCCESS });
     } catch (error) {
-      dispatch({
-        type: AUTH_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: AUTH_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };
 
@@ -69,8 +72,9 @@ export const register =
       }
       dispatch({ type: AUTH_SUCCESS });
     } catch (error) {
-      console.log(error);
-      dispatch({ type: AUTH_FAILED, payload: error.response.data.message });
+      if (axios.isAxiosError(error)) {
+        dispatch({ type: AUTH_FAILED, payload: error.response?.data.message });
+      }
     }
   };
 
@@ -90,7 +94,12 @@ export const fetchUserInfo =
 
       dispatch({ type: USER_INFO_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({ type: USER_INFO_FAILED, payload: error.response.data.message });
+      if (axios.isAxiosError(error)) {
+        dispatch({
+          type: USER_INFO_FAILED,
+          payload: error.response?.data.message,
+        });
+      }
     }
   };
 
@@ -127,7 +136,12 @@ export const updateSupplierInfo =
       dispatch(fetchUserInfo());
     } catch (error) {
       // console.log(error.response.data.message);
-      dispatch({ type: UPDATE_SUPPLIER_INFO_FAILED, payload: error.response.data.message });
+      if (axios.isAxiosError(error)) {
+        dispatch({
+          type: UPDATE_SUPPLIER_INFO_FAILED,
+          payload: error.response?.data.message,
+        });
+      }
     }
   };
 
@@ -163,6 +177,11 @@ export const updateStoreInfo =
       dispatch(fetchUserInfo());
     } catch (error) {
       // console.log(error.response.data.message);
-      dispatch({ type: UPDATE_STORE_INFO_FAILED, payload: error.response.data.message });
+      if (axios.isAxiosError(error)) {
+        dispatch({
+          type: UPDATE_STORE_INFO_FAILED,
+          payload: error.response?.data.message,
+        });
+      }
     }
   };

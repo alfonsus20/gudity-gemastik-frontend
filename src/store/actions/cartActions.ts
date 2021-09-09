@@ -27,10 +27,12 @@ export const addToCart =
 
       dispatch({ type: ADD_TO_CART_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({
-        type: ADD_TO_CART_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: ADD_TO_CART_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };
 
@@ -66,9 +68,11 @@ export const fetchCartItems =
 
       dispatch({ type: FETCH_CART_ITEMS_SUCCESS, payload: arrayOuter });
     } catch (error) {
-      dispatch({
-        type: FETCH_CART_ITEMS_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: FETCH_CART_ITEMS_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };

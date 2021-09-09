@@ -22,10 +22,12 @@ export const getBankList =
 
       dispatch({ type: FETCH_BANK_LIST_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({
-        type: FETCH_BANK_LIST_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: FETCH_BANK_LIST_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };
 
@@ -49,9 +51,11 @@ export const checkoutItems =
 
       dispatch({ type: CHECKOUT_ITEMS_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({
-        type: CHECKOUT_ITEMS_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: CHECKOUT_ITEMS_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };

@@ -19,6 +19,8 @@ export const getFutureAnalysis =
 
       dispatch({ type: FUTURE_ANALYSIS_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({ type: FUTURE_ANALYSIS_FAILED, payload: error.message });
+      if (error instanceof Error) {
+        dispatch({ type: FUTURE_ANALYSIS_FAILED, payload: error.message });
+      }
     }
   };

@@ -22,7 +22,9 @@ export const getSupplierList =
 
       dispatch({ type: FETCH_SUPPLIER_LIST_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({ type: FETCH_SUPPLIER_LIST_FAILED, payload: error.message });
+      if (error instanceof Error) {
+        dispatch({ type: FETCH_SUPPLIER_LIST_FAILED, payload: error.message });
+      }
     }
   };
 
@@ -38,6 +40,11 @@ export const getSupplierDetail =
 
       dispatch({ type: FETCH_SUPPLIER_DETAIL_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({ type: FETCH_SUPPLIER_DETAIL_FAILED, payload: error.message });
+      if (error instanceof Error) {
+        dispatch({
+          type: FETCH_SUPPLIER_DETAIL_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };

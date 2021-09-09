@@ -19,6 +19,8 @@ export const getPastAnalysis =
 
       dispatch({ type: PAST_ANALYSIS_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({ type: PAST_ANALYSIS_FAILED, payload: error.message });
+      if (error instanceof Error) {
+        dispatch({ type: PAST_ANALYSIS_FAILED, payload: error.message });
+      }
     }
   };

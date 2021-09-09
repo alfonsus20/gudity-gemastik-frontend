@@ -23,9 +23,11 @@ export const classifyCommodityWithImage =
         payload: data.data,
       });
     } catch (error) {
-      dispatch({
-        type: COMMODITY_IMAGE_CLASSIFICATION_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: COMMODITY_IMAGE_CLASSIFICATION_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };

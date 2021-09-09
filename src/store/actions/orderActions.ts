@@ -37,13 +37,14 @@ export const getOrderList =
 
       await Promise.all(data.data.map((order: any) => getOrderProducts(order)));
 
-
       dispatch({ type: FETCH_ORDER_LIST_SUCCESS, payload: arrayOuter });
     } catch (error) {
-      dispatch({
-        type: FETCH_ORDER_LIST_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: FETCH_ORDER_LIST_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };
 
@@ -74,9 +75,11 @@ export const getOrderDetail =
         payload: { ...data.data, products: dataProduct.data },
       });
     } catch (error) {
-      dispatch({
-        type: FETCH_ORDER_DETAIL_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: FETCH_ORDER_DETAIL_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };

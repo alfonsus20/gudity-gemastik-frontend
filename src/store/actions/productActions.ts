@@ -23,10 +23,12 @@ export const getSupplierProducts =
 
       dispatch({ type: FETCH_SUPPLIER_PRODUCTS_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({
-        type: FETCH_SUPPLIER_PRODUCTS_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: FETCH_SUPPLIER_PRODUCTS_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };
 
@@ -45,9 +47,11 @@ export const getProductDetail =
 
       dispatch({ type: FETCH_PRODUCT_DETAIL_SUCCESS, payload: data.data });
     } catch (error) {
-      dispatch({
-        type: FETCH_PRODUCT_DETAIL_FAILED,
-        payload: error.message,
-      });
+      if (error instanceof Error) {
+        dispatch({
+          type: FETCH_PRODUCT_DETAIL_FAILED,
+          payload: error.message,
+        });
+      }
     }
   };
