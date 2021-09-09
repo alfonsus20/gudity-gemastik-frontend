@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../components/Button";
 import FeatureCard from "../components/FeatureCard";
 import Features from "../components/Features";
@@ -8,8 +8,18 @@ import { FEATURES } from "../utils/constants";
 import ComplementaryCard from "../components/card/ComplementaryCard";
 import CommodityCarousel from "../components/carousel/CommodityCarousel";
 import ReviewCarousel from "../components/carousel/ReviewCarousel";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { getAllNews } from "../store/actions/newsActions";
 
 const Home = () => {
+  const { newsList } = useSelector((state: RootState) => state.newsList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllNews());
+  }, []);
+
   return (
     <div className="relative">
       <NewsModal />
@@ -58,26 +68,20 @@ const Home = () => {
               />
             </div>
             <div className="grid md:grid-cols-2 gap-x-4 gap-y-8 w-full md:w-1/2">
-              <NewsCard
-                title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
-                content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
-                colspan={1}
-              />
-              <NewsCard
-                title="Subholding Gas Pertamina Beri UMKM Pelatihan Pemasaran Online"
-                content="Subholding Gas Grup Pertamina berkomitmen mendukung UMKM dengan menyediakan energi bersih dan layanan terintegrasi."
-                colspan={1}
-              />
-              <NewsCard
-                title="Simak! UMKM Bisa Dapat Biaya Renovasi Tempat Usaha"
-                content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
-                colspan={1}
-              />
-              <NewsCard
-                title="Produk UMKM Makanan atau Minuman Tembus Pasar Internasional"
-                content="Rendang sebagai makanan khas Indonesia, kembali berhasil menjadi salah satu makanan terbaik di dunia versi CNN tahun 2021."
-                colspan={1}
-              />
+              {newsList.length === 0 ? (
+                <h2 className="col-span-2">Belum ada berita</h2>
+              ) : (
+                newsList
+                  .slice(0, 4)
+                  .map((news) => (
+                    <NewsCard
+                      key={news.id}
+                      title={news.title}
+                      content={news.body}
+                      colspan={1}
+                    />
+                  ))
+              )}
             </div>
             <Button
               onClick={() => console.log("object")}

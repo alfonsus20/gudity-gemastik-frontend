@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Underline from "../components/Underline";
 import NewsCard from "../components/NewsCard";
 import Button from "../components/Button";
@@ -6,8 +6,20 @@ import TextField from "../components/TextField";
 import NewsModal from "../components/modal/NewsModal";
 import Features from "../components/Features";
 import { SearchIcon } from "@heroicons/react/outline";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllNews } from "../store/actions/newsActions";
+import { RootState } from "../store";
 
 const News = () => {
+  const { newsList } = useSelector((state: RootState) => state.newsList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (newsList.length === 0) {
+      dispatch(getAllNews());
+    }
+  }, []);
+
   return (
     <div>
       <NewsModal />
@@ -45,22 +57,32 @@ const News = () => {
               placeholder="Cari Berita"
               variant="secondary"
               rounded
-              icon={<SearchIcon  className='w-6 h-6'/>}
+              icon={<SearchIcon className="w-6 h-6" />}
             />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-12">
-            {[...Array(9)].map((_, i) => (
-              <NewsCard
-                key={i}
-                title="Penyaluran BLT UMKM Rp 1,2 Juta Tersendat karena COVID Makin Gawat"
-                content="PT Sarana Multigriya Finansial (Persero) atau SMF berkolaborasi dengan PT Permodalan Nasional Madani (Persero) atau PNM meluncurkan program pembiayaan renovasi rumah yang juga digunakan untuk tempat usaha atau mendukung UMKM."
-                colspan={1}
-              />
-            ))}
-          </div>
-          <div className="flex justify-center">
-            <Button variant="tertiary" text="Lihat Lebih Banyak" size="lg" />
-          </div>
+          {newsList.length === 0 ? (
+            <h2 className="text-center py-6">Belum ada berita</h2>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-screen-lg mx-auto gap-x-4 gap-y-11 mb-12">
+                {newsList.map((news) => (
+                  <NewsCard
+                    key={news.id}
+                    title={news.title}
+                    content={news.body}
+                    colspan={1}
+                  />
+                ))}
+              </div>
+              <div className="flex justify-center">
+                <Button
+                  variant="tertiary"
+                  text="Lihat Lebih Banyak"
+                  size="lg"
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
       <Features />

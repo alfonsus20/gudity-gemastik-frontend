@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { pastAnalysisReducer } from "./analysisReducers";
-import { newsModalReducer } from "./newsReducer";
+import { getAllNewsReducer, newsModalReducer } from "./newsReducer";
 import { futureAnalysisReducer } from "./predictionReducers";
 import { classifyCommodityWithImageReducer } from "./searchCommodityReducers";
 import { authReducer } from "./userReducers";
@@ -18,6 +18,7 @@ const createRootReducer = (history: any) =>
   combineReducers({
     router: connectRouter(history),
     newsModal: newsModalReducer,
+    newsList: getAllNewsReducer,
     auth: authReducer,
     pastPredictions: pastAnalysisReducer,
     futurePredictions: futureAnalysisReducer,
