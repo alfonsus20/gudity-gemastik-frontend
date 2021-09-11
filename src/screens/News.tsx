@@ -18,7 +18,7 @@ const News = () => {
     if (newsList.length === 0) {
       dispatch(getAllNews());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

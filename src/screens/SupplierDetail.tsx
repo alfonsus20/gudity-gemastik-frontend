@@ -9,24 +9,36 @@ import {
 import Dropdown from "../components/Dropdown";
 import ProductCard from "../components/product/ProductCard";
 import Features from "../components/Features";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { getSupplierDetail } from "../store/actions/supplierActions";
 import { getSupplierProducts } from "../store/actions/productActions";
+import { FETCH_SUPPLIER_DETAIL_RESET } from "../store/constants/supplierConstants";
 
 const SupplierDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const { loading, supplier } = useSelector(
+  const { error, loading, supplier } = useSelector(
     (state: RootState) => state.supplierDetail
   );
   const { products } = useSelector((state: RootState) => state.productList);
   const dispatch = useDispatch();
 
+  const history = useHistory();
+
   React.useEffect(() => {
     dispatch(getSupplierDetail(id));
-    dispatch(getSupplierProducts(id));
+    // dispatch(getSupplierProducts(id));
   }, [dispatch, id]);
+
+  React.useEffect(() => {
+    if (error) {
+      history.replace("/not-found");
+      return () => {
+        dispatch({ type: FETCH_SUPPLIER_DETAIL_RESET });
+      };
+    }
+  }, [error]);
 
   return (
     <div>
@@ -37,21 +49,21 @@ const SupplierDetail = () => {
         />
         <div className="mt-4 sm:ml-6 flex-auto">
           <h2 className="font-semibold text-3xl mb-2">
-            {supplier.supplier_owner_name}
+            {supplier.username ? supplier.username.name : "-"}
           </h2>
-          <p className="mb-2">{supplier.supplier_description} </p>
+          <p className="mb-2">{supplier.description} </p>
           <div>
             <div className="flex flex-row text-md mb-2">
               <LocationMarkerIcon className="h-6 w-6" />
-              <span className="ml-2">{supplier.supplier_address}</span>
+              <span className="ml-2">{supplier.address}</span>
             </div>
             <div className="flex flex-row text-md mb-2">
               <ArchiveIcon className="h-6 w-6" />
-              <span className="ml-2">{supplier.supplier_store_name}</span>
+              <span className="ml-2">{supplier.name}</span>
             </div>
             <div className="flex flex-row text-md mb-4">
               <PhoneIcon className="h-6 w-6" />
-              <span className="ml-2">{supplier.supplier_phone}</span>
+              <span className="ml-2">{supplier.phone}</span>
             </div>
           </div>
           <Button

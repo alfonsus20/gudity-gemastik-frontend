@@ -18,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllNews());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="relative">

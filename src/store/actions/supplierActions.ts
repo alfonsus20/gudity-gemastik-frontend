@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 import baseApi from "../../api/baseApi";
+import onlyGetReq from "../../api/onlyGetReq";
 import {
   FetchSupplierDetailDispatchTypes,
   FetchSupplierListDispatchTypes,
@@ -16,9 +17,9 @@ export const getSupplierList =
     try {
       dispatch({ type: FETCH_SUPPLIER_LIST_LOADING });
 
-      const { data } = await baseApi.get("/suppliers", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      const { data } = await onlyGetReq.get(
+        "/suppliers?select=id,address,description,name,phone,thumbnail,username:users(name)"
+      );
 
       dispatch({ type: FETCH_SUPPLIER_LIST_SUCCESS, payload: data.data });
     } catch (error) {
@@ -34,11 +35,18 @@ export const getSupplierDetail =
     try {
       dispatch({ type: FETCH_SUPPLIER_DETAIL_LOADING });
 
-      const { data } = await baseApi.get(`/suppliers/${id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      const { data } = await onlyGetReq.get(
+        `/suppliers?select=id,address,description,name,phone,thumbnail,username%3Ausers(name)&id=eq.${id}`
+      );
 
-      dispatch({ type: FETCH_SUPPLIER_DETAIL_SUCCESS, payload: data.data });
+      if (data.data.length > 0) {
+        dispatch({
+          type: FETCH_SUPPLIER_DETAIL_SUCCESS,
+          payload: data.data[0],
+        });
+      } else {
+        throw new Error("tidak ditemukan");
+      }
     } catch (error) {
       if (error instanceof Error) {
         dispatch({

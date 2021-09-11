@@ -20,13 +20,13 @@ type SupplierListState = {
 };
 
 export type SupplierState = {
-  supplier_id: number;
-  supplier_image: string;
-  supplier_owner_name: string;
-  supplier_store_name: string;
-  supplier_address: string;
-  supplier_phone: string;
-  supplier_description: string;
+  id: number;
+  address: string;
+  description: string;
+  name: string;
+  phone: string;
+  thumbnail: string;
+  username: { name: string };
 };
 
 export const supplierListReducer = (
@@ -35,9 +35,10 @@ export const supplierListReducer = (
 ): SupplierListState => {
   switch (action.type) {
     case FETCH_SUPPLIER_LIST_LOADING:
-      return { ...state, loading: true };
+      return { ...state, loading: true, error: "" };
     case FETCH_SUPPLIER_LIST_SUCCESS:
       return {
+        ...state,
         loading: false,
         success: true,
         suppliers: action.payload,
@@ -49,7 +50,7 @@ export const supplierListReducer = (
         success: false,
         error: action.payload,
       };
-    case LOCATION_CHANGE || FETCH_SUPPLIER_LIST_RESET:
+    case FETCH_SUPPLIER_LIST_RESET:
       return { loading: false, suppliers: [] };
     default:
       return state;
@@ -86,8 +87,11 @@ export const supplierDetailReducer = (
         success: false,
         error: action.payload,
       };
-    case LOCATION_CHANGE || FETCH_SUPPLIER_DETAIL_RESET:
-      return { loading: false, supplier: {} as SupplierState };
+    case FETCH_SUPPLIER_DETAIL_RESET:
+      return {
+        loading: false,
+        supplier: {} as SupplierState,
+      };
     default:
       return state;
   }

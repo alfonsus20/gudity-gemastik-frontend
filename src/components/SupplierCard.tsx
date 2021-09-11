@@ -30,7 +30,11 @@ const SupplierCard = ({
     <div className="grid sm:grid-cols-2 w-full shadow mb-12 sm:mb-6 px-3 md:px-0 py-6 md:py-0 rounded-md">
       <div className="col-span-1 px-2 sm:px-0 ">
         <img
-          src={`assets/pictures/${image}`}
+          src={
+            !image || image === "http://image.com"
+              ? `/assets/pictures/kopi.jpg`
+              : image
+          }
           alt={name}
           className="w-full rounded-md object-cover"
         />

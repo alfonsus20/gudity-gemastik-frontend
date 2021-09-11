@@ -17,9 +17,7 @@ export const getSupplierProducts =
     try {
       dispatch({ type: FETCH_SUPPLIER_PRODUCTS_LOADING });
 
-      const { data } = await baseApi.get(`/suppliers/${supplierId}/products`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      const { data } = await baseApi.get(`/suppliers/${supplierId}/products`);
 
       dispatch({ type: FETCH_SUPPLIER_PRODUCTS_SUCCESS, payload: data.data });
     } catch (error) {

@@ -170,7 +170,7 @@ const Product = () => {
                 </tr>
                 <tr>
                   <td className="pr-4 pb-2 text-gray-500">Dikirim dari</td>
-                  <td className="pb-2">{supplier.supplier_address}</td>
+                  <td className="pb-2">{supplier.address}</td>
                 </tr>
               </tbody>
             </table>

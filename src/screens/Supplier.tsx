@@ -65,14 +65,14 @@ const Supplier = () => {
           <div className="max-w-screen-lg mx-auto mb-12">
             {suppliers.map((supplier) => (
               <SupplierCard
-                key={supplier.supplier_id}
-                image="kopi.jpg"
-                id={supplier.supplier_id}
-                name={supplier.supplier_owner_name}
-                description={supplier.supplier_description}
-                location={supplier.supplier_address}
-                store={supplier.supplier_store_name}
-                phone={supplier.supplier_phone}
+                key={supplier.id}
+                image={supplier.thumbnail}
+                id={supplier.id}
+                name={supplier.username.name}
+                description={supplier.description}
+                location={supplier.address}
+                store={supplier.name}
+                phone={supplier.phone}
               />
             ))}
           </div>
