@@ -13,6 +13,7 @@ import {
 import { cartReducer } from "./cartReducers";
 import { checkoutReducer } from "./checkoutReducers";
 import { orderDetailReducer, orderListReducer } from "./orderReducers";
+import { umkmListReducer } from "./umkmReducers";
 
 const createRootReducer = (history: any) =>
   combineReducers({
@@ -27,6 +28,7 @@ const createRootReducer = (history: any) =>
     supplierDetail: supplierDetailReducer,
     productList: supplierProductsReducer,
     productDetail: productDetailReducer,
+    umkmList: umkmListReducer,
     cart: cartReducer,
     checkout: checkoutReducer,
     orderList: orderListReducer,

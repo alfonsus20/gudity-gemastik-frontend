@@ -5,8 +5,18 @@ import TextField from "../components/TextField";
 import UmkmCard from "../components/UmkmCard";
 import Features from "../components/Features";
 import Dropdown from "../components/Dropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUmkmList } from "../store/actions/umkmActions";
+import { RootState } from "../store";
 
 const Umkm = () => {
+  const dispatch = useDispatch();
+  const { umkmList } = useSelector((state: RootState) => state.umkmList);
+
+  React.useEffect(() => {
+    dispatch(fetchUmkmList());
+  }, [dispatch]);
+
   return (
     <div>
       <div className="min-h-screen relative ">
@@ -49,7 +59,7 @@ const Umkm = () => {
               type="text"
               onChange={() => console.log("object")}
               value=""
-              variant='secondary'
+              variant="secondary"
               placeholder="Cari UMKM"
               icon={
                 <svg
@@ -70,30 +80,23 @@ const Umkm = () => {
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-screen-xl mx-auto gap-x-6 gap-y-11 mb-12">
-            <UmkmCard
-              title="Sumber Jaya UMKM"
-              description="Menjual berbagai macam pernak pernik untuk oleh - oleh khas Jawa Timur dengan harga miring dengan kualitas OK!"
-              location="Pertokoan LalaLili Madiun, Jl Lalala no 30, Jawa Timur"
-              telephone="0811-9792-0234"
-              weekdayOpenHours="07.00 - 15.30"
-              weekendOpenHours="07.00 - 15.30"
-            />
-            {/* <UmkmCard
-              title="Sumber Jaya UMKM"
-              description="Menjual berbagai macam pernak pernik untuk oleh - oleh khas Jawa Timur dengan harga miring dengan kualitas OK!"
-              location="Pertokoan LalaLili Madiun, Jl Lalala no 30, Jawa Timur"
-              telephone="0811-9792-0234"
-              weekdayOpenHours="07.00 - 15.30"
-              weekendOpenHours="07.00 - 15.30"
-            />
-            <UmkmCard
-              title="Sumber Jaya UMKM"
-              description="Menjual berbagai macam pernak pernik untuk oleh - oleh khas Jawa Timur dengan harga miring dengan kualitas OK!"
-              location="Pertokoan LalaLili Madiun, Jl Lalala no 30, Jawa Timur"
-              telephone="0811-9792-0234"
-              weekdayOpenHours="07.00 - 15.30"
-              weekendOpenHours="07.00 - 15.30"
-            /> */}
+            {umkmList.length === 0
+              ? "Belum ada umkm"
+              : umkmList.map((umkm) => (
+                  <UmkmCard
+                    key={umkm.id}
+                    thumbnail={umkm.thumbnail}
+                    title={umkm.name}
+                    description={umkm.description}
+                    location={umkm.address}
+                    telephone={umkm.phone}
+                    weekdayOpenHours={
+                      umkm.time_opened.slice(0, 5) +
+                      " - " +
+                      umkm.time_closed.slice(0, 5)
+                    }
+                  />
+                ))}
           </div>
           <div className="flex justify-center">
             <Button variant="tertiary" text="Lihat Lebih Banyak" />

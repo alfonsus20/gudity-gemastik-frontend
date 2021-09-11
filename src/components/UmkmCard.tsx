@@ -11,7 +11,7 @@ type UmkmCardProps = {
   location: string;
   telephone: string;
   weekdayOpenHours: string;
-  weekendOpenHours: string;
+  thumbnail: string;
 };
 
 const UmkmCard = ({
@@ -20,20 +20,24 @@ const UmkmCard = ({
   location,
   telephone,
   weekdayOpenHours,
-  weekendOpenHours,
+  thumbnail,
 }: UmkmCardProps) => {
   return (
     <div className="p-4 shadow">
       <div className="mb-2">
         <img
-          src="assets/pictures/umkm-card.jpg"
+          src={
+            !thumbnail || thumbnail === "http://image.com"
+              ? "assets/pictures/umkm-card.jpg"
+              : thumbnail
+          }
           alt=""
           className="rounded-md"
         />
       </div>
       <h3 className="text-lg font-medium mb-1">{title}</h3>
       <div className="font-light text-sm space-y-2">
-        <p className='text-justify'>{description}</p>
+        <p className="text-justify">{description}</p>
         <div className="flex flex-row">
           <LocationMarkerIcon className="h-5 w-5 mr-3" /> {location}
         </div>
@@ -44,11 +48,6 @@ const UmkmCard = ({
           <ClockIcon className="h-5 w-5 mr-3" />
           <span className="mr-2">Senin - Jumat</span>
           <time>{weekdayOpenHours}</time>
-        </div>
-        <div className="flex flex-row">
-          <ClockIcon className="h-5 w-5 mr-3" />
-          <span className="mr-2">Sabtu - Minggu</span>
-          <time>{weekendOpenHours}</time>
         </div>
       </div>
     </div>
