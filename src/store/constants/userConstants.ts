@@ -1,3 +1,5 @@
+import { UserState } from "../reducers/userReducers";
+
 export const AUTH_LOADING = "AUTH_LOADING";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAILED = "AUTH_FAILED";
@@ -36,7 +38,7 @@ export interface UserInfoLoading {
 
 export interface UserInfoSuccess {
   type: typeof USER_INFO_SUCCESS;
-  payload: object;
+  payload: UserState;
 }
 
 export interface UserInfoFailed {

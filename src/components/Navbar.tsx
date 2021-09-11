@@ -104,15 +104,15 @@ const Navbar = () => {
             <div>
               <img
                 src={
-                  !loading && userInfo!.profile_image
-                    ? userInfo!.profile_image
+                  !loading && userInfo.thumbnail
+                    ? userInfo.thumbnail
                     : "/assets/icons/user.png"
                 }
                 className="w-12 h-12 rounded-full mr-1"
                 alt="user"
               />
             </div>
-            <p className="">Hi, {loading ? "Loading..." : userInfo!.name}</p>
+            <p className="">Hi, {loading ? "Loading..." : userInfo.name}</p>
             <ChevronDownIcon className="w-5 h-5" />
             <dl
               className={`${

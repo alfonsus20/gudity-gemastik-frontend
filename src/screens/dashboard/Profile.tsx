@@ -18,7 +18,7 @@ const Profile = () => {
     React.useState<boolean>(false);
 
   React.useEffect(() => {
-    showNewSupplierBanner(!userInfo.supplier_name);
+    showNewSupplierBanner(!userInfo.is_supplier);
   }, [userInfo]);
 
   return (
@@ -37,8 +37,8 @@ const Profile = () => {
         <div className="mr-8">
           <img
             src={
-              !loading && userInfo.profile_image
-                ? userInfo.profile_image
+              !loading && userInfo.thumbnail
+                ? userInfo.thumbnail
                 : "/assets/icons/user.png"
             }
             className="w-36 h-36 rounded-md"
@@ -52,7 +52,7 @@ const Profile = () => {
           <div className="flex">
             <div
               className={`px-4 py-2 ${
-                userInfo.supplier_name ? "bg-green-500" : "bg-gray-300"
+                userInfo.is_supplier ? "bg-green-500" : "bg-gray-300"
               } text-white text-center rounded-full w-auto text-sm`}
             >
               Supplier

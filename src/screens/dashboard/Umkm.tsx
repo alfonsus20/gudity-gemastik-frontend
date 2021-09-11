@@ -40,14 +40,14 @@ const Umkm = () => {
   };
 
   React.useEffect(() => {
-    setStoreName(userInfo.store_name!);
-    setStoreAddress(userInfo.store_address!);
-    setStorePhone(userInfo.store_phone!);
-    setStoreDescription(userInfo.store_description!);
-    setStoreStartAt(userInfo.store_start_at!);
-    setStoreFinishAt(userInfo.store_finish_at!);
+    // setStoreName(userInfo.store_name!);
+    // setStoreAddress(userInfo.store_address!);
+    // setStorePhone(userInfo.store_phone!);
+    // setStoreDescription(userInfo.store_description!);
+    // setStoreStartAt(userInfo.store_start_at!);
+    // setStoreFinishAt(userInfo.store_finish_at!);
 
-    showBanner(!userInfo.store_name);
+    // showBanner(!userInfo.store_name);
 
     if (successUpdateStore) {
       showSuccessModal(true);

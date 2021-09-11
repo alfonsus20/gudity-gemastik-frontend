@@ -38,11 +38,11 @@ const SupplierForm = () => {
   };
 
   React.useEffect(() => {
-    setSupplierOwnerName(userInfo.supplier_owner_name!);
-    setSupplierName(userInfo.supplier_name!);
-    setSupplierAddress(userInfo.supplier_address!);
-    setSupplierPhone(userInfo.supplier_phone!);
-    setSupplierDescription(userInfo.supplier_description!);
+    // setSupplierOwnerName(userInfo.name);
+    // setSupplierName(userInfo.supplier_name!);
+    // setSupplierAddress(userInfo.supplier_address!);
+    // setSupplierPhone(userInfo.supplier_phone!);
+    // setSupplierDescription(userInfo.supplier_description!);
 
     if (successUpdateSupplier) {
       showSuccessModal(true);

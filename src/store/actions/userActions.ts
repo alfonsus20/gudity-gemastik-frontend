@@ -19,6 +19,7 @@ import {
   USER_INFO_SUCCESS,
 } from "../constants/userConstants";
 import axios, { AxiosError } from "axios";
+import onlyGetReq from "../../api/onlyGetReq";
 
 interface LoginState {
   email: string;
@@ -39,7 +40,7 @@ export const login =
       const { data } = await baseApi.post("/sign_in", { email, password });
 
       if (data.data) {
-        localStorage.setItem("token", data.data);
+        localStorage.setItem("token", data.data.access_token);
       }
       dispatch({ type: AUTH_SUCCESS });
     } catch (error) {
@@ -61,14 +62,14 @@ export const register =
       await baseApi.post("/sign_up", {
         email,
         password,
-        nik,
+        identity_number: nik,
         name,
       });
 
       const { data } = await baseApi.post("/sign_in", { email, password });
 
       if (data.data) {
-        localStorage.setItem("token", data.data);
+        localStorage.setItem("token", data.data.access_token);
       }
       dispatch({ type: AUTH_SUCCESS });
     } catch (error) {
@@ -88,11 +89,27 @@ export const fetchUserInfo =
     try {
       dispatch({ type: USER_INFO_LOADING });
 
-      const { data } = await baseApi.get("/user/profile", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      console.log(localStorage.getItem("token")!.replace("Bearer ", ""));
+      const { data } = await baseApi.get(
+        "/u/profile?select=id,name,address,birthday,email,phone,identity_number,thumbnail",
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
 
-      dispatch({ type: USER_INFO_SUCCESS, payload: data.data });
+      let userInfo = data.data;
+
+      const { data: dataSupplier } = await onlyGetReq.get(
+        `/suppliers?select=users(*)&user_id=eq.${userInfo.id}`
+      );
+
+      console.log(userInfo.id);
+
+      userInfo = { ...userInfo, is_supplier: dataSupplier.data.length > 0 };
+
+      dispatch({ type: USER_INFO_SUCCESS, payload: userInfo });
     } catch (error) {
       if (axios.isAxiosError(error)) {
         dispatch({

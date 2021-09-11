@@ -24,11 +24,11 @@ const UserForm = () => {
   };
 
   React.useEffect(() => {
-    setUserName(userInfo.name!);
-    setUserEmail(userInfo.email!);
-    setUserAddress(userInfo.address!);
-    setUserBirthday(userInfo.birthday!);
-    setUserPhone(userInfo.phone!);
+    setUserName(userInfo.name);
+    setUserEmail(userInfo.email);
+    setUserAddress(userInfo.address);
+    setUserBirthday(userInfo.birthday);
+    setUserPhone(userInfo.phone);
   }, [userInfo]);
 
   return (

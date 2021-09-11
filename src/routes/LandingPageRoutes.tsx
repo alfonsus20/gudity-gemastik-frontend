@@ -17,30 +17,42 @@ import Register from "../screens/Register";
 import Umkm from "../screens/Umkm";
 import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
+import NotFound from "../components/NotFound";
 
 const LandingPageRoutes = () => {
   return (
     <>
       <Navbar />
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/berita" component={News} exact />
-        <Route path="/umkm" component={Umkm} exact />
-        <Route path="/suppliers" component={Commodity} exact />
-        <Route path="/suppliers/:id" component={CommodityDetail} exact />
-        <Route
-          path="/suppliers/:supplierId/produk/:productId"
-          component={Product}
-          exact
-        />
-        <PrivateRoute path="/keranjang" component={Cart} exact />
-        <PrivateRoute path="/checkout" component={Checkout} exact />
-        <PrivateRoute path="/pembayaran/:paymentCode" component={Payment} exact />
-        <PrivateRoute path="/orders" component={OrderList} exact />
-        <PrivateRoute path="/orders/:paymentCode" component={OrderDetail} exact />
-        <AuthRoute path="/login" component={Login} exact />
-        <AuthRoute path="/daftar" component={Register} exact />
-      </Switch>
+      <main>
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/berita" component={News} exact />
+          <Route path="/umkm" component={Umkm} exact />
+          <Route path="/suppliers" component={Commodity} exact />
+          <Route path="/suppliers/:id" component={CommodityDetail} exact />
+          <Route
+            path="/suppliers/:supplierId/produk/:productId"
+            component={Product}
+            exact
+          />
+          <PrivateRoute path="/keranjang" component={Cart} exact />
+          <PrivateRoute path="/checkout" component={Checkout} exact />
+          <PrivateRoute
+            path="/pembayaran/:paymentCode"
+            component={Payment}
+            exact
+          />
+          <PrivateRoute path="/orders" component={OrderList} exact />
+          <PrivateRoute
+            path="/orders/:paymentCode"
+            component={OrderDetail}
+            exact
+          />
+          <AuthRoute path="/login" component={Login} exact />
+          <AuthRoute path="/daftar" component={Register} exact />{" "}
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </main>
       <Footer />
     </>
   );

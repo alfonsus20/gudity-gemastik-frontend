@@ -1,4 +1,4 @@
-import { LocationChangeAction} from "connected-react-router";
+import { LocationChangeAction } from "connected-react-router";
 import {
   AUTH_LOADING,
   AUTH_SUCCESS,
@@ -29,39 +29,26 @@ export type AuthState = {
   successUpdateSupplier?: boolean;
   successUpdateStore?: boolean;
   error?: string;
-  userInfo: {
-    user_id?: number;
-    profile_image?: string;
-    name?: string;
-    email?: string;
-    nik?: string;
-    password?: string;
-    address?: string;
-    phone?: string;
-    birthday?: string;
-    supplier_image?: string;
-    supplier_owner_name?: string;
-    supplier_address?: string;
-    supplier_name?: string;
-    supplier_phone?: string;
-    supplier_description?: string;
-    store_name?: string;
-    store_description?: string;
-    store_address?: string;
-    store_phone?: string;
-    store_start_at?: string;
-    store_finish_at?: string;
-    store_image?: string;
-    products?: string[];
-    invoices?: string[];
-  };
+  userInfo: UserState;
+};
+
+export type UserState = {
+  id: number;
+  name: string;
+  address: string;
+  birthday: string;
+  email: string;
+  phone: string;
+  identity_number: string;
+  thumbnail: string;
+  is_supplier: boolean;
 };
 
 export const authReducer = (
   state: AuthState = {
     isAuthenticated: !!localStorage.getItem("token"),
     loading: false,
-    userInfo: {},
+    userInfo: {} as UserState,
   },
   action:
     | AuthDispatchTypes
@@ -88,10 +75,14 @@ export const authReducer = (
         error: "",
       };
     case AUTH_RESET:
-      return { loading: false, isAuthenticated: false, userInfo: {} };
-    case USER_INFO_LOADING ||
-      UPDATE_SUPPLIER_INFO_LOADING ||
-      UPDATE_STORE_INFO_LOADING:
+      return {
+        loading: false,
+        isAuthenticated: false,
+        userInfo: {} as UserState,
+      };
+    case USER_INFO_LOADING:
+    case UPDATE_SUPPLIER_INFO_LOADING:
+    case UPDATE_STORE_INFO_LOADING:
       return { ...state, loading: true };
     case UPDATE_SUPPLIER_INFO_SUCCESS:
       return { ...state, successUpdateSupplier: true };
@@ -136,7 +127,7 @@ export const authReducer = (
         error: action.payload,
       };
     case USER_INFO_RESET:
-      return { ...state, userInfo: {} };
+      return { ...state, userInfo: {} as UserState };
     default:
       return state;
   }
