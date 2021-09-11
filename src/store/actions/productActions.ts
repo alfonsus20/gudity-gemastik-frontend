@@ -21,7 +21,7 @@ export const getSupplierProducts =
 
       dispatch({ type: FETCH_SUPPLIER_PRODUCTS_SUCCESS, payload: data.data });
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof Error) { 
         dispatch({
           type: FETCH_SUPPLIER_PRODUCTS_FAILED,
           payload: error.message,

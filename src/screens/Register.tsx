@@ -40,9 +40,9 @@ const Register = () => {
 
   return (
     <div
-      className="relative min-h-screen flex items-center justify-center"
+      className="relative min-h-screen flex items-center justify-center bg-cover"
       style={{
-        background:
+        backgroundImage:
           "linear-gradient(102.72deg, rgba(0, 0, 0, 0.9) 42.77%, rgba(29, 16, 61, 0.9) 99.02%), url(assets/backgrounds/register.jpg)",
       }}
     >

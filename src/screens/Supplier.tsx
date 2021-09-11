@@ -22,9 +22,9 @@ const Supplier = () => {
     <div>
       <div className="min-h-screen relative">
         <div
-          className="w-full min-h-screen relative z-10 pt-10 text-white flex items-center"
+          className="w-full min-h-screen relative z-10 pt-10 text-white flex items-center bg-cover"
           style={{
-            background:
+            backgroundImage:
               "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(assets/backgrounds/komoditas.jpg)",
           }}
         >

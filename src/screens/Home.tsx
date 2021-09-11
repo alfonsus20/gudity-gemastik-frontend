@@ -25,9 +25,9 @@ const Home = () => {
       <NewsModal />
       <div className="min-h-screen relative">
         <div
-          className="w-full px-8 min-h-screen relative z-10 pt-10 text-white flex items-center bg-cover"
+          className="w-full px-8 min-h-screen relative z-10 pt-10 text-white flex items-center bg-cover bg-no-repeat"
           style={{
-            background:
+            backgroundImage:
               "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(/assets/backgrounds/homepage.jpg)",
           }}
         >
