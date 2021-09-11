@@ -43,10 +43,12 @@ const SupplierDetail = () => {
   return (
     <div>
       <div className="shadow-none sm:shadow max-w-screen-xl mx-auto p-8 mt-32 flex flex-col sm:flex-row">
-        <ImageGallery
-          className="flex-shrink-0"
-          images={[{ name: "kopi.jpg", id: "1" }]}
-        />
+        {!loading && (
+          <ImageGallery
+            className="flex-shrink-0"
+            images={[{ thumbnail: supplier.thumbnail, id: Number(id) }]}
+          />
+        )}
         <div className="mt-4 sm:ml-6 flex-auto">
           <h2 className="font-semibold text-3xl mb-2">
             {supplier.username ? supplier.username.name : "-"}

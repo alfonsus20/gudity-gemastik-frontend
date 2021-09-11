@@ -1,9 +1,10 @@
 import React from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
+import { ProductImage } from "../store/reducers/productReducers";
 
 export type Image = {
-  name: string;
-  id: string;
+  thumbnail: string;
+  id: number;
 };
 
 type ImageGalleryProps = {
@@ -12,7 +13,7 @@ type ImageGalleryProps = {
 };
 
 const ImageGallery = ({ images, className }: ImageGalleryProps) => {
-  const [highlightedImage, setHighlightedImage] = React.useState<Image>(
+  const [highlightedImage, setHighlightedImage] = React.useState<ProductImage>(
     images[0]
   );
   const [startIndex, setStartIndex] = React.useState<number>(0);
@@ -22,8 +23,8 @@ const ImageGallery = ({ images, className }: ImageGalleryProps) => {
     <div className={`max-w-full sm:max-w-md ${className}`}>
       <div className="mb-4">
         <img
-          src={`/assets/pictures/${highlightedImage.name}`}
-          alt={highlightedImage.name}
+          src={highlightedImage.thumbnail}
+          alt={highlightedImage.thumbnail}
           className="rounded-md w-full h-80 xs:h-88 sm:w-112 sm:h-72 object-cover"
         />
       </div>
@@ -45,9 +46,9 @@ const ImageGallery = ({ images, className }: ImageGalleryProps) => {
           <div className="grid grid-cols-4 gap-x-2">
             {images.slice(startIndex, endIndex + 1).map((image) => (
               <img
-                src={`/assets/pictures/${image.name}`}
+                src={`/assets/pictures/${image.thumbnail}`}
                 className="w-60 h-24 object-cover rounded-md cursor-pointer"
-                alt={highlightedImage.name}
+                alt={highlightedImage.thumbnail}
                 key={image.id}
                 onClick={() => setHighlightedImage(image)}
               />

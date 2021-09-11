@@ -18,6 +18,11 @@ export interface ProductReview {
   star: number;
 }
 
+export interface ProductImage {
+  id: number;
+  thumbnail: string;
+}
+
 export interface SupplierProductState {
   id: number;
   reviews: ProductReview[];
@@ -31,6 +36,7 @@ export interface SupplierProductState {
 export interface ProductState extends SupplierProductState {
   quality: string;
   location: string;
+  product_images: ProductImage[];
 }
 
 type SupplierProductsState = {

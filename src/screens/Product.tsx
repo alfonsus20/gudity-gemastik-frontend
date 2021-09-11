@@ -62,14 +62,12 @@ const Product = () => {
     <div>
       <div className="shadow-none sm:shadow max-w-screen-xl mx-auto px-8 py-12 mt-20 sm:mt-32 sm:mb-8">
         <div className="flex flex-col sm:flex-row mb-8">
-          <ImageGallery
-            className="flex-shrink-0"
-            images={[
-              { name: "kopi-produk.jpg", id: "1" },
-              { name: "kopi.jpg", id: "2" },
-              { name: "arabika.jpg", id: "3" },
-            ]}
-          />
+          {product.product_images && (
+            <ImageGallery
+              className="flex-shrink-0"
+              images={product.product_images}
+            />
+          )}
           <div className="mt-4 sm:ml-6 flex-auto">
             <h2 className="font-semibold text-3xl mb-6 text-blue-marker">
               {product.name}
