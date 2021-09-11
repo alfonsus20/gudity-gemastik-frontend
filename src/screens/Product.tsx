@@ -8,7 +8,6 @@ import {
 } from "@heroicons/react/outline";
 import { ShareIcon } from "@heroicons/react/solid";
 import Dropdown from "../components/Dropdown";
-import ProductCard from "../components/product/ProductCard";
 import TextField from "../components/TextField";
 import Rating from "../components/product/Rating";
 import RatingCollection from "../components/product/RatingCollection";
@@ -19,6 +18,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { RootState } from "../store";
 import { getSupplierDetail } from "../store/actions/supplierActions";
 import { addToCart } from "../store/actions/cartActions";
+import { countRatingAverage } from "../utils/helpers";
 
 const Product = () => {
   const [quantity, setQuantity] = React.useState<number>(1);
@@ -28,7 +28,9 @@ const Product = () => {
   const history = useHistory();
 
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
-  const { product } = useSelector((state: RootState) => state.productDetail);
+  const { product, loading } = useSelector(
+    (state: RootState) => state.productDetail
+  );
   const { supplier } = useSelector((state: RootState) => state.supplierDetail);
   const { successAddToCart } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
@@ -40,6 +42,21 @@ const Product = () => {
       history.push("/keranjang");
     }
   }, [dispatch, supplierId, productId, successAddToCart, history]);
+
+  const countReviewStar = () => {
+    const starVoters = [0, 0, 0, 0, 0];
+
+    if (product.reviews.length > 0) {
+      product.reviews.forEach((voter) => {
+        starVoters[voter.star - 1]++;
+      });
+    }
+
+    return starVoters.map((voterNumber, index) => ({
+      rating: index + 1,
+      reviewersNumber: voterNumber,
+    }));
+  };
 
   return (
     <div>
@@ -62,8 +79,17 @@ const Product = () => {
             </h2>
             <div className="flex flex-row justify-between">
               <div className="mb-4">
-                <Rating showRate rating={product.star || 0} />
-                <p className="text-sm">{product.review_count} review</p>
+                {loading || !product.reviews ? (
+                  "Loading..."
+                ) : (
+                  <>
+                    <Rating
+                      showRate
+                      rating={countRatingAverage(product.reviews)}
+                    />
+                    <p className="text-sm">{product.reviews.length} review</p>
+                  </>
+                )}
               </div>
               <div className="flex flex-row">
                 <ShareIcon className="w-8 h-8 mr-2" />
@@ -182,17 +208,15 @@ const Product = () => {
         </div>
       </div>
       <div className="max-w-screen-xl mx-auto pt-4 pb-12 sm:py-20 px-8 shadow">
-        <RatingCollection
-          ratings={[
-            { rating: 5, reviewersNumber: product.product_five_star },
-            { rating: 4, reviewersNumber: product.product_four_star },
-            { rating: 3, reviewersNumber: product.product_three_star },
-            { rating: 2, reviewersNumber: product.product_two_star },
-            { rating: 1, reviewersNumber: product.product_total_one_star },
-          ]}
-          average={product.star || 0}
-          count={product.review_count}
-        />
+        {loading || !product.reviews ? (
+          "Loading..."
+        ) : (
+          <RatingCollection
+            ratings={countReviewStar().reverse()}
+            average={countRatingAverage(product.reviews)}
+            count={product.reviews.length}
+          />
+        )}
         <div className="flex flex-col xs:flex-row justify-between mt-8">
           <h3 className="font-medium text-2xl mb-2">Ulasan Produk</h3>
           <div className="flex flex-row gap-2 mb-4">
@@ -211,33 +235,19 @@ const Product = () => {
           </div>
         </div>
         <div>
-          <Review
-            reviewerName="Bocah Mozaik"
-            review="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-            images={[
-              { name: "kopi-produk.jpg", id: "1" },
-              { name: "kopi-produk.jpg", id: "2" },
-            ]}
-            rating={4}
-          />
-          <Review
-            reviewerName="Bocah Mozaik"
-            review="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-            images={[
-              { name: "kopi-produk.jpg", id: "1" },
-              { name: "kopi-produk.jpg", id: "2" },
-            ]}
-            rating={4}
-          />
-          <Review
-            reviewerName="Bocah Mozaik"
-            review="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-            images={[
-              { name: "kopi-produk.jpg", id: "1" },
-              { name: "kopi-produk.jpg", id: "2" },
-            ]}
-            rating={4}
-          />
+          {loading || !product.reviews ? (
+            "Loading..."
+          ) : product.reviews.length === 0 ? (
+            <h2>Belum ada review</h2>
+          ) : (
+            product.reviews.map((review) => (
+              <Review
+                reviewerName="Bocah Mozaik"
+                review={review.review}
+                rating={review.star}
+              />
+            ))
+          )}
         </div>
       </div>
       <div className="max-w-screen-xl mx-auto py-8 my-12 px-8 w-full overflow-x-auto flex flex-row gap-4">

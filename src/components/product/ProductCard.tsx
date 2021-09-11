@@ -5,6 +5,7 @@ import Button from "../Button";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
 import { ProductReview } from "../../store/reducers/productReducers";
+import { countRatingAverage } from "../../utils/helpers";
 
 type ProductCardProps = {
   image: string;
@@ -29,13 +30,6 @@ const ProductCard = ({
   productId,
   reviews,
 }: ProductCardProps) => {
-  const countRatingAverage = () => {
-    let total = reviews.reduce((acc, review) => acc + review.star, 0);
-    return total / reviews.length;
-  };
-  console.log("reviews");
-  console.log(reviews);
-
   return (
     <Link
       to={`/suppliers/${supplierId}/produk/${productId}`}
@@ -70,7 +64,7 @@ const ProductCard = ({
       <p className="font-semibold mb-2">Rp {price}/kg</p>
       <div className="flex flex-col xs:flex-row justify-between">
         <div className="mb-2 xs:mb-0">
-          <Rating rating={countRatingAverage()} size="sm" />
+          <Rating rating={countRatingAverage(reviews)} size="sm" />
           <p className="text-xs">{reviews.length} review</p>
         </div>
         <div>

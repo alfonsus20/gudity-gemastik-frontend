@@ -28,21 +28,9 @@ export interface SupplierProductState {
   description: string;
 }
 
-export interface ProductState {
-  product_id: number;
-  name: string;
+export interface ProductState extends SupplierProductState {
   quality: string;
-  description: string;
-  thumbnail: string;
-  product_commodity_type: string;
-  star: number;
-  price: number;
-  review_count: number;
-  product_total_one_star: number;
-  product_two_star: number;
-  product_three_star: number;
-  product_four_star: number;
-  product_five_star: number;
+  location: string;
 }
 
 type SupplierProductsState = {
