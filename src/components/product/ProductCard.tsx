@@ -4,18 +4,18 @@ import { HeartIcon as HeartOutline } from "@heroicons/react/outline";
 import Button from "../Button";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import { ProductReview } from "../../store/reducers/productReducers";
 
 type ProductCardProps = {
   image: string;
   name: string;
   description: string;
   price: number;
-  rating: number;
-  reviewCount: number;
+  reviews: ProductReview[];
   className?: string;
   withOrderButton?: boolean;
   supplierId?: string;
-  productId?: string;
+  productId?: number;
 };
 
 const ProductCard = ({
@@ -23,13 +23,19 @@ const ProductCard = ({
   name,
   description,
   price,
-  rating,
   className,
-  reviewCount,
   withOrderButton,
   supplierId,
   productId,
+  reviews,
 }: ProductCardProps) => {
+  const countRatingAverage = () => {
+    let total = reviews.reduce((acc, review) => acc + review.star, 0);
+    return total / reviews.length;
+  };
+  console.log("reviews");
+  console.log(reviews);
+
   return (
     <Link
       to={`/suppliers/${supplierId}/produk/${productId}`}
@@ -37,7 +43,11 @@ const ProductCard = ({
     >
       <div className="mb-2 relative">
         <img
-          src={`/assets/pictures/${image}`}
+          src={
+            !image || image === "http://image.com"
+              ? "/assets/pictures/biji-kopi.jpg"
+              : image
+          }
           alt={name}
           className="w-32 h-44 mx-auto object-cover"
         />
@@ -60,8 +70,8 @@ const ProductCard = ({
       <p className="font-semibold mb-2">Rp {price}/kg</p>
       <div className="flex flex-col xs:flex-row justify-between">
         <div className="mb-2 xs:mb-0">
-          <Rating rating={rating} size="sm" />
-          <p className="text-xs">{reviewCount} review</p>
+          <Rating rating={countRatingAverage()} size="sm" />
+          <p className="text-xs">{reviews.length} review</p>
         </div>
         <div>
           {withOrderButton && (

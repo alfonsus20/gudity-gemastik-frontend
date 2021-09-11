@@ -50,7 +50,7 @@ const Product = () => {
             images={[
               { name: "kopi-produk.jpg", id: "1" },
               { name: "kopi.jpg", id: "2" },
-              { name: "arabika.jpg", id: "3" }
+              { name: "arabika.jpg", id: "3" },
             ]}
           />
           <div className="mt-4 sm:ml-6 flex-auto">
@@ -241,17 +241,15 @@ const Product = () => {
         </div>
       </div>
       <div className="max-w-screen-xl mx-auto py-8 my-12 px-8 w-full overflow-x-auto flex flex-row gap-4">
-        {[...Array(10)].map((_, i) => (
+        {/* {[...Array(10)].map((_, i) => (
           <ProductCard
             key={i}
             name="Biji Kopi Arabika"
             description="Vintage Typewriter to post awesome stories about UI design and webdev."
             price={3.725}
-            rating={4.05}
-            reviewCount={5}
             image="biji-kopi.jpg"
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );

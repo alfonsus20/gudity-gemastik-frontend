@@ -12,7 +12,23 @@ import {
   FETCH_SUPPLIER_PRODUCTS_SUCCESS,
 } from "../constants/productConstants";
 
-export type ProductState = {
+export interface ProductReview {
+  id: number;
+  review: string;
+  star: number;
+}
+
+export interface SupplierProductState {
+  id: number;
+  reviews: ProductReview[];
+  name: string;
+  price: number;
+  type: string;
+  thumbnail: string;
+  description: string;
+}
+
+export interface ProductState {
   product_id: number;
   name: string;
   quality: string;
@@ -27,13 +43,13 @@ export type ProductState = {
   product_three_star: number;
   product_four_star: number;
   product_five_star: number;
-};
+}
 
 type SupplierProductsState = {
   loading: boolean;
   success?: boolean;
   error?: string;
-  products: ProductState[];
+  products: SupplierProductState[];
 };
 
 type ProductDetailState = {
@@ -45,7 +61,7 @@ type ProductDetailState = {
 
 export const supplierProductsReducer = (
   state: SupplierProductsState = { loading: false, products: [] },
-  action: FetchSupplierProductsDispatchTypes | LocationChangeAction
+  action: FetchSupplierProductsDispatchTypes
 ): SupplierProductsState => {
   switch (action.type) {
     case FETCH_SUPPLIER_PRODUCTS_LOADING:
@@ -59,8 +75,6 @@ export const supplierProductsReducer = (
         success: false,
         error: action.payload,
       };
-    case LOCATION_CHANGE || FETCH_SUPPLIER_PRODUCTS_RESET:
-      return { loading: false, products: [] };
     default:
       return state;
   }

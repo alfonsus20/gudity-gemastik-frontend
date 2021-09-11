@@ -28,7 +28,7 @@ const SupplierDetail = () => {
 
   React.useEffect(() => {
     dispatch(getSupplierDetail(id));
-    // dispatch(getSupplierProducts(id));
+    dispatch(getSupplierProducts(id));
   }, [dispatch, id]);
 
   React.useEffect(() => {
@@ -82,21 +82,24 @@ const SupplierDetail = () => {
           placeholder="Saring Menurut"
         />
         <div className="flex flex-row gap-x-4 gap-y-6 mb-10 overflow-auto w-full ">
-          {loading
-            ? "Loading..."
-            : products.map((product) => (
-                <ProductCard
-                  key={product.product_id}
-                  name={product.name}
-                  description={product.description}
-                  price={product.price}
-                  rating={product.star}
-                  reviewCount={product.review_count}
-                  image="biji-kopi.jpg"
-                  supplierId={id}
-                  productId={product.product_id.toString()}
-                />
-              ))}
+          {loading ? (
+            "Loading..."
+          ) : products.length > 0 ? (
+            products.map((product) => (
+              <ProductCard
+                key={product.id}
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                reviews={product.reviews}
+                image={product.thumbnail}
+                supplierId={id}
+                productId={product.id}
+              />
+            ))
+          ) : (
+            <h2 className="text-center w-full">Belum ada produk</h2>
+          )}
         </div>
         <div className="flex justify-center">
           <Button variant="tertiary" text="Lihat Lebih Banyak" size="lg" />

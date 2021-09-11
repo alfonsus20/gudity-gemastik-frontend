@@ -1,4 +1,7 @@
-import { ProductState } from "../reducers/productReducers";
+import {
+  ProductState,
+  SupplierProductState,
+} from "../reducers/productReducers";
 
 export const FETCH_SUPPLIER_PRODUCTS_LOADING =
   "FETCH_SUPPLIER_PRODUCTS_LOADING";
@@ -13,7 +16,7 @@ interface FetchSupplierProductsLoading {
 
 interface FetchSupplierProductsSuccess {
   type: typeof FETCH_SUPPLIER_PRODUCTS_SUCCESS;
-  payload: ProductState[];
+  payload: SupplierProductState[];
 }
 
 interface FetchSupplierProductsFailed {
