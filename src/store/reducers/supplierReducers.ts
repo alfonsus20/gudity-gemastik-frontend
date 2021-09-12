@@ -11,6 +11,7 @@ import {
   FETCH_SUPPLIER_LIST_RESET,
   FETCH_SUPPLIER_LIST_SUCCESS,
 } from "../constants/supplierConstants";
+import { UserSupplierProduct } from "../constants/userConstants";
 
 type SupplierListState = {
   loading: boolean;
@@ -27,6 +28,7 @@ export type SupplierState = {
   phone: string;
   thumbnail: string;
   username: { name: string };
+  products: UserSupplierProduct[];
 };
 
 export const supplierListReducer = (

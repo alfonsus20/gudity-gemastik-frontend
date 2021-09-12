@@ -116,3 +116,59 @@ export type UpdateStoreDispatchTypes =
   | UpdateStoreInfoSuccess
   | UpdateStoreInfoFailed
   | UpdateStoreInfoReset;
+
+export const FETCH_USER_SUPPLIER_PRODUCTS_LOADING =
+  "FETCH_USER_SUPPLIER_PRODUCTS_LOADING";
+export const FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS =
+  "FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS";
+export const FETCH_USER_SUPPLIER_PRODUCTS_FAILED =
+  "FETCH_USER_SUPPLIER_PRODUCTS_FAILED";
+
+export type UserSupplierProduct = {
+  id: number;
+  name: string;
+  price: number;
+  quality: string;
+  description: string;
+};
+
+export type FetchUserSupplierProductsLoading = {
+  type: typeof FETCH_USER_SUPPLIER_PRODUCTS_LOADING;
+};
+
+export type FetchUserSupplierProductsSuccess = {
+  type: typeof FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS;
+  payload: UserSupplierProduct[];
+};
+
+export type FetchUserSupplierProductsFailed = {
+  type: typeof FETCH_USER_SUPPLIER_PRODUCTS_FAILED;
+  payload: string;
+};
+
+export type FetchUserSupplierProductsDispatchTypes =
+  | FetchUserSupplierProductsLoading
+  | FetchUserSupplierProductsFailed
+  | FetchUserSupplierProductsSuccess;
+
+export const DELETE_USER_PRODUCT_LOADING = "DELETE_USER_PRODUCT_LOADING";
+export const DELETE_USER_PRODUCT_SUCCESS = "DELETE_USER_PRODUCT_SUCCESS";
+export const DELETE_USER_PRODUCT_FAILED = "DELETE_USER_PRODUCT_FAILED";
+
+export type DeleteUserProductLoading = {
+  type: typeof DELETE_USER_PRODUCT_LOADING;
+};
+
+export type DeleteUserProductSuccess = {
+  type: typeof DELETE_USER_PRODUCT_SUCCESS;
+};
+
+export type DeleteUserProductFailed = {
+  type: typeof DELETE_USER_PRODUCT_FAILED;
+  payload: string;
+};
+
+export type DeleteUserProductDispatchTypes =
+  | DeleteUserProductFailed
+  | DeleteUserProductLoading
+  | DeleteUserProductSuccess;

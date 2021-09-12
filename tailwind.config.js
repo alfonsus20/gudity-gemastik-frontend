@@ -5,8 +5,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      borderRadius :{
-        "jumbo" : "5rem" 
+      borderRadius: {
+        jumbo: "5rem",
       },
       colors: {
         blue: {

@@ -9,16 +9,14 @@ import { UPDATE_SUPPLIER_INFO_RESET } from "../../store/constants/userConstants"
 
 const SupplierForm = () => {
   // Supplier Data
-  const { userInfo, loading, successUpdateSupplier } = useSelector(
+  const { userInfo, loading, successUpdateSupplier, } = useSelector(
     (state: RootState) => state.auth
   );
-  const [supplierOwnerName, setSupplierOwnerName] = React.useState<string>("");
-  const [supplierName, setSupplierName] = React.useState<string>("");
-  const [supplierAddress, setSupplierAddress] = React.useState<string>("");
-  const [supplierPhone, setSupplierPhone] = React.useState<string>("");
-  const [supplierDescription, setSupplierDescription] =
-    React.useState<string>("");
-  const [supplierImage, setSupplierImage] = React.useState<File>();
+  const [name, setName] = React.useState<string>("");
+  const [address, setAddress] = React.useState<string>("");
+  const [phone, setPhone] = React.useState<string>("");
+  const [description, setDescription] = React.useState<string>("");
+  const [image, setImage] = React.useState<File>();
   const dispatch = useDispatch();
 
   const [successModalShown, showSuccessModal] = React.useState<boolean>(false);
@@ -27,27 +25,26 @@ const SupplierForm = () => {
     e.preventDefault();
     dispatch(
       updateSupplierInfo({
-        supplier_owner_name: supplierOwnerName,
-        supplier_name: supplierName,
-        supplier_address: supplierAddress,
-        supplier_phone: supplierPhone,
-        supplier_description: supplierDescription,
-        supplier_profile_image: supplierImage!,
+        name,
+        address,
+        phone,
+        description,
       })
     );
   };
 
   React.useEffect(() => {
-    // setSupplierOwnerName(userInfo.name);
-    // setSupplierName(userInfo.supplier_name!);
-    // setSupplierAddress(userInfo.supplier_address!);
-    // setSupplierPhone(userInfo.supplier_phone!);
-    // setSupplierDescription(userInfo.supplier_description!);
+    if (userInfo.supplier_info) {
+      setName(userInfo.supplier_info.name);
+      setAddress(userInfo.supplier_info.address);
+      setPhone(userInfo.supplier_info.phone);
+      setDescription(userInfo.supplier_info.description);
+    }
 
     if (successUpdateSupplier) {
       showSuccessModal(true);
     }
-  }, [userInfo, successUpdateSupplier, dispatch]);
+  }, [successUpdateSupplier, userInfo]);
 
   return (
     <form onSubmit={handleSubmitSupplierProfile}>
@@ -71,20 +68,8 @@ const SupplierForm = () => {
             <TextField
               variant="dashboard"
               className="flex-auto"
-              value={supplierName}
-              onChange={(e) => setSupplierName(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-row items-center space-x-10">
-            <label htmlFor="" className="font-medium w-40 flex-shrink-0">
-              Nama Usaha <span className="text-red-600">*</span>
-            </label>
-            <span>:</span>
-            <TextField
-              variant="dashboard"
-              className="flex-auto"
-              value={supplierOwnerName}
-              onChange={(e) => setSupplierOwnerName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="flex flex-row items-center space-x-10">
@@ -95,12 +80,10 @@ const SupplierForm = () => {
             <TextField
               variant="dashboard"
               className="flex-auto"
-              value={supplierAddress}
-              onChange={(e) => setSupplierAddress(e.target.value)}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             />
-          </div>
-        </div>
-        <div className="col-span-1 space-y-4">
+          </div>{" "}
           <div className="flex flex-row items-center space-x-10">
             <label htmlFor="" className="font-medium w-40 flex-shrink-0">
               No Telepon <span className="text-red-600">*</span>
@@ -109,10 +92,12 @@ const SupplierForm = () => {
             <TextField
               variant="dashboard"
               className="flex-auto"
-              value={supplierPhone}
-              onChange={(e) => setSupplierPhone(e.target.value)}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </div>
+        </div>
+        <div className="col-span-1 space-y-4">
           <div className="flex flex-row items-center space-x-10">
             <label htmlFor="" className="font-medium w-40 flex-shrink-0">
               Deskripsi <span className="text-red-600">*</span>
@@ -121,8 +106,8 @@ const SupplierForm = () => {
             <TextField
               variant="dashboard"
               className="flex-auto"
-              value={supplierDescription}
-              onChange={(e) => setSupplierDescription(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <div className="flex flex-row items-center space-x-10">
@@ -134,7 +119,7 @@ const SupplierForm = () => {
               variant="dashboard"
               type="file"
               className="flex-auto"
-              onChange={(e) => setSupplierImage(e.target.files![0])}
+              onChange={(e) => setImage(e.target.files![0])}
             />
           </div>
         </div>

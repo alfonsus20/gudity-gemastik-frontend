@@ -1,9 +1,28 @@
 import { SearchIcon } from "@heroicons/react/outline";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
+import { RootState } from "../../store";
+import {
+  deleteUserSupplierProduct,
+  getUserSupplierProducts,
+} from "../../store/actions/userActions";
 
 const CommodityProducts = () => {
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state: RootState) => state.auth);
+
+  React.useEffect(() => {
+    if (
+      userInfo.is_supplier &&
+      userInfo.supplier_info &&
+      !userInfo.supplier_info.products
+    ) {
+      dispatch(getUserSupplierProducts(userInfo.supplier_info.id));
+    }
+  }, [userInfo]);
+
   return (
     <div className="flex flex-col">
       <h2 className="text-2xl font-semibold mb-5">Kumpulan Produk Anda</h2>
@@ -15,61 +34,70 @@ const CommodityProducts = () => {
           rounded
         />
         <div>
-          <Button text="Tambah Produk" variant="secondary" />
+          <Button text="Tambah Produk" variant="secondary" pathName = 'dashboard/produk/tambah'/>
         </div>
       </div>
-      {/* <div className="flex-auto flex flex-col">
-        <div className="flex justify-center items-center flex-auto">
-          <div className="flex flex-col items-center space-y-4 flex-auto">
-            <img
-              src="/assets/icons/shopping.png"
-              className="w-80"
-              alt="Daftar Komoditas"
-            />
-            <div className="text-center">
-              <h3 className="text-blue-marker font-semibold">
-                Ingin Bergabung menjadi bagian dari Komoditas Kami?
-              </h3>
-              <p className="text-blue-marker text-sm">
-                Dapatkan manfaat dan keuntungan bagi usaha anda
-              </p>
+      {userInfo && !userInfo.is_supplier && (
+        <div className="flex-auto flex flex-col">
+          <div className="flex justify-center items-center flex-auto">
+            <div className="flex flex-col items-center space-y-4 flex-auto">
+              <img
+                src="/assets/icons/shopping.png"
+                className="w-80"
+                alt="Daftar Komoditas"
+              />
+              <div className="text-center">
+                <h3 className="text-blue-marker font-semibold">
+                  Ingin Bergabung menjadi bagian dari Komoditas Kami?
+                </h3>
+                <p className="text-blue-marker text-sm">
+                  Dapatkan manfaat dan keuntungan bagi usaha anda
+                </p>
+              </div>
+              <Button text="Daftar" variant="primary" className="w-32" />
             </div>
-            <Button text="Daftar" variant="primary" className="w-32" />
           </div>
         </div>
-      </div> */}
-      <div className="shadow rounded-md px-6 py-4 overflow-x-auto w-full">
-        <table
-          className="w-full border-collapse table-fixed table whitespace-nowrap lg:whitespace-normal"
-        >
-          <tbody className="table">
-            <tr className="text-left">
-              <th className="px-3 py-2 ">Nama Produk</th>
-              <th className="px-3 py-2 ">Deskripsi Produk</th>
-              <th className="px-3 py-2 ">Harga</th>
-              <th className="px-3 py-2 ">Kuantitas</th>
-              <th className="px-3 py-2 ">Kualitas</th>
-              <th className="px-3 py-2 ">Ketersediaan</th>
-              <th className="px-3 py-2 ">Actions</th>
-            </tr>
-            <tr>
-              <td className="p-3">Lorem ipsum dolor sit,</td>
-              <td className="p-3">
-                Pariatur explicabo quibusdam veritatis temporibus quam ea, aut
-                sunt nobis.
-              </td>
-              <td className="p-3">3.725/ KG</td>
-              <td className="p-3">1000/ KG</td>
-              <td className="p-3">1000/ KG</td>
-              <td className="p-3">Premium</td>
-              <td className="p-3 flex flex-col md:flex-row gap-4">
-                <Button variant="primary" text="Edit" className="w-20" />
-                <Button variant="danger" text="Hapus" className="w-20" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      )}
+      {userInfo &&
+      userInfo.supplier_info &&
+      userInfo.supplier_info.products &&
+      userInfo.supplier_info.products.length > 0 ? (
+        <div className="shadow rounded-md px-6 py-4 overflow-x-auto w-full">
+          <table className="w-full border-collapse table-fixed table whitespace-nowrap lg:whitespace-normal">
+            <tbody className="table w-full">
+              <tr className="text-left">
+                <th className="px-3 py-2 ">Nama Produk</th>
+                <th className="px-3 py-2 ">Deskripsi Produk</th>
+                <th className="px-3 py-2 ">Harga</th>
+                <th className="px-3 py-2 ">Ketersediaan</th>
+                <th className="px-3 py-2 ">Actions</th>
+              </tr>
+              {userInfo.supplier_info.products.map((product) => (
+                <tr key={product.id}>
+                  <td className="p-3">{product.name}</td>
+                  <td className="p-3">{product.description}</td>
+                  <td className="p-3">{product.price}/ KG</td>
+                  <td className="p-3">{product.quality}</td>
+                  <td className="p-3 flex flex-col md:flex-row gap-4">
+                    <Button variant="primary" text="Edit" className="w-20" />
+                    <Button
+                      variant="danger"
+                      text="Hapus"
+                      className="w-20"
+                      onClick={() =>
+                        dispatch(deleteUserSupplierProduct(product.id))
+                      }
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <h2>Belum ada produk</h2>
+      )}
     </div>
   );
 };

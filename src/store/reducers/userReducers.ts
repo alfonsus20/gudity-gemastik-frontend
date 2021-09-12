@@ -20,7 +20,13 @@ import {
   UPDATE_STORE_INFO_FAILED,
   UPDATE_STORE_INFO_RESET,
   UpdateStoreDispatchTypes,
+  FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS,
+  FetchUserSupplierProductsDispatchTypes,
+  DELETE_USER_PRODUCT_SUCCESS,
+  DeleteUserProductDispatchTypes,
+  DELETE_USER_PRODUCT_LOADING,
 } from "../constants/userConstants";
+import { SupplierState } from "./supplierReducers";
 
 export type AuthState = {
   isAuthenticated: boolean;
@@ -30,6 +36,7 @@ export type AuthState = {
   successUpdateStore?: boolean;
   error?: string;
   userInfo: UserState;
+  isDeletingUserSupplierProduct?: boolean;
 };
 
 export type UserState = {
@@ -42,6 +49,7 @@ export type UserState = {
   identity_number: string;
   thumbnail: string;
   is_supplier: boolean;
+  supplier_info?: SupplierState;
 };
 
 export const authReducer = (
@@ -55,6 +63,8 @@ export const authReducer = (
     | UpdateSupplierDispatchTypes
     | UpdateStoreDispatchTypes
     | LocationChangeAction
+    | FetchUserSupplierProductsDispatchTypes
+    | DeleteUserProductDispatchTypes
 ): AuthState => {
   switch (action.type) {
     case AUTH_LOADING:
@@ -83,7 +93,6 @@ export const authReducer = (
     case USER_INFO_LOADING:
     case UPDATE_SUPPLIER_INFO_LOADING:
     case UPDATE_STORE_INFO_LOADING:
-      return { ...state, loading: true };
     case UPDATE_SUPPLIER_INFO_SUCCESS:
       return { ...state, successUpdateSupplier: true };
     case UPDATE_STORE_INFO_SUCCESS:
@@ -128,6 +137,17 @@ export const authReducer = (
       };
     case USER_INFO_RESET:
       return { ...state, userInfo: {} as UserState };
+    case FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          supplier_info: {
+            ...state.userInfo.supplier_info!,
+            products: action.payload,
+          },
+        },
+      };
     default:
       return state;
   }

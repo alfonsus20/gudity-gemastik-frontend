@@ -6,6 +6,14 @@ import {
   AUTH_LOADING,
   AUTH_RESET,
   AUTH_SUCCESS,
+  DeleteUserProductDispatchTypes,
+  DELETE_USER_PRODUCT_FAILED,
+  DELETE_USER_PRODUCT_LOADING,
+  DELETE_USER_PRODUCT_SUCCESS,
+  FetchUserSupplierProductsDispatchTypes,
+  FETCH_USER_SUPPLIER_PRODUCTS_FAILED,
+  FETCH_USER_SUPPLIER_PRODUCTS_LOADING,
+  FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS,
   UpdateStoreDispatchTypes,
   UpdateSupplierDispatchTypes,
   UPDATE_STORE_INFO_FAILED,
@@ -20,6 +28,7 @@ import {
 } from "../constants/userConstants";
 import axios, { AxiosError } from "axios";
 import onlyGetReq from "../../api/onlyGetReq";
+import { RootState } from "..";
 
 interface LoginState {
   email: string;
@@ -102,12 +111,20 @@ export const fetchUserInfo =
       let userInfo = data.data;
 
       const { data: dataSupplier } = await onlyGetReq.get(
-        `/suppliers?select=users(*)&user_id=eq.${userInfo.id}`
+        `/suppliers?select=id,address,description,name,phone,users(id)&user_id=eq.${userInfo.id}`
       );
 
-      console.log(userInfo.id);
+      userInfo = {
+        ...userInfo,
+        is_supplier: dataSupplier.data.length > 0,
+      };
 
-      userInfo = { ...userInfo, is_supplier: dataSupplier.data.length > 0 };
+      if (dataSupplier.data.length > 0) {
+        userInfo = {
+          ...userInfo,
+          supplier_info: dataSupplier.data[0],
+        };
+      }
 
       dispatch({ type: USER_INFO_SUCCESS, payload: userInfo });
     } catch (error) {
@@ -121,12 +138,10 @@ export const fetchUserInfo =
   };
 
 interface SupplierState {
-  supplier_profile_image: File;
-  supplier_owner_name: string;
-  supplier_address: string;
-  supplier_name: string;
-  supplier_phone: string;
-  supplier_description: string;
+  name: string;
+  address: string;
+  phone: string;
+  description: string;
 }
 
 export const updateSupplierInfo =
@@ -137,14 +152,8 @@ export const updateSupplierInfo =
     try {
       dispatch({ type: UPDATE_SUPPLIER_INFO_LOADING });
 
-      const formData = new FormData();
-
-      Object.keys(supplierData).forEach((key) => {
-        formData.append(key, supplierData[key as keyof SupplierState]);
-      });
-
-      await baseApi.put("/user/suppliers/claim", formData, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      await baseApi.post("/u/claim_supplier", supplierData, {
+        headers: { Authorization: localStorage.getItem("token") },
       });
 
       dispatch({ type: UPDATE_SUPPLIER_INFO_SUCCESS });
@@ -152,7 +161,6 @@ export const updateSupplierInfo =
       // @ts-ignore
       dispatch(fetchUserInfo());
     } catch (error) {
-      // console.log(error.response.data.message);
       if (axios.isAxiosError(error)) {
         dispatch({
           type: UPDATE_SUPPLIER_INFO_FAILED,
@@ -198,6 +206,66 @@ export const updateStoreInfo =
         dispatch({
           type: UPDATE_STORE_INFO_FAILED,
           payload: error.response?.data.message,
+        });
+      }
+    }
+  };
+
+export const getUserSupplierProducts =
+  (supplierId: number) =>
+  async (dispatch: Dispatch<FetchUserSupplierProductsDispatchTypes>) => {
+    try {
+      dispatch({ type: FETCH_USER_SUPPLIER_PRODUCTS_LOADING });
+
+      const { data } = await onlyGetReq.get(
+        `/products?supplier_id=eq.${supplierId}&select=id,name,price,quality,description`
+      );
+
+      console.log(data);
+
+      dispatch({
+        type: FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS,
+        payload: data.data,
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch({
+          type: FETCH_USER_SUPPLIER_PRODUCTS_FAILED,
+          payload: error.message,
+        });
+      }
+    }
+  };
+
+export const deleteUserSupplierProduct =
+  (productId: number) =>
+  async (
+    dispatch: Dispatch<DeleteUserProductDispatchTypes>,
+    getState: () => RootState
+  ) => {
+    try {
+      dispatch({ type: DELETE_USER_PRODUCT_LOADING });
+
+      const { data } = await baseApi.delete(`/u/product/${productId}`, {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+
+      console.log(data);
+
+      dispatch({
+        type: DELETE_USER_PRODUCT_SUCCESS,
+      });
+
+      const { supplier_info } = getState().auth.userInfo;
+      // @ts-ignore
+      dispatch(getUserSupplierProducts(supplier_info?.id));
+    } catch (error) {
+      // @ts-ignore
+      console.log(error.response.data.message);
+      if (error instanceof Error) {
+        dispatch({
+          type: DELETE_USER_PRODUCT_FAILED,
+          payload: error.message,
         });
       }
     }
