@@ -68,6 +68,9 @@ export const authReducer = (
 ): AuthState => {
   switch (action.type) {
     case AUTH_LOADING:
+    case USER_INFO_LOADING:
+    case UPDATE_SUPPLIER_INFO_LOADING:
+    case UPDATE_STORE_INFO_LOADING:
       return { ...state, loading: true };
     case AUTH_SUCCESS:
       return { ...state, loading: false, success: true, isAuthenticated: true };
@@ -90,9 +93,6 @@ export const authReducer = (
         isAuthenticated: false,
         userInfo: {} as UserState,
       };
-    case USER_INFO_LOADING:
-    case UPDATE_SUPPLIER_INFO_LOADING:
-    case UPDATE_STORE_INFO_LOADING:
     case UPDATE_SUPPLIER_INFO_SUCCESS:
       return { ...state, successUpdateSupplier: true };
     case UPDATE_STORE_INFO_SUCCESS:

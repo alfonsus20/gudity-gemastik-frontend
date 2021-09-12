@@ -74,7 +74,7 @@ const NavbarDashboard = ({
               <dd>
                 <Link
                   to="/dashboard/profil"
-                  className="flex flex-row py-2 items-center"
+                  className="flex flex-row py-2 items-center w-full"
                   onClick={() => showDropdown(false)}
                 >
                   <UserCircleIcon className="w-5 h-5 mr-2" /> Profile
@@ -83,7 +83,7 @@ const NavbarDashboard = ({
               <dd>
                 <Link
                   to="/"
-                  className="flex flex-row py-2 items-center"
+                  className="flex flex-row py-2 items-center w-full"
                   onClick={() => showDropdown(false)}
                 >
                   <HomeIcon className="w-5 h-5 mr-2" /> Halaman Utama
@@ -95,7 +95,7 @@ const NavbarDashboard = ({
               >
                 <button
                   onClick={() => dispatch(logout())}
-                  className="flex flex-row items-center"
+                  className="flex flex-row items-center w-full"
                 >
                   <LogoutIcon className="w-5 h-5 mr-2" />
                   Keluar

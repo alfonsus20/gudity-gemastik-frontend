@@ -28,6 +28,11 @@ const AddProduct = () => {
     );
   };
 
+  const productTypes = [
+    { label: "Gula", value: 1 },
+    { label: "Kopi", value: 2 },
+  ];
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-5">Tambah Produk Anda</h2>
@@ -75,10 +80,8 @@ const AddProduct = () => {
               Jenis Produk
             </label>
             <Dropdown
-              options={[
-                { label: "Gula", value: 1 },
-                { label: "Kopi", value: 2 },
-              ]}
+              defaultValue={productTypes[0]}
+              options={productTypes}
               placeholder="Masukkan Satuan"
               className="border-gray-200 border-2 text-sm "
               handleChange={setProductType}

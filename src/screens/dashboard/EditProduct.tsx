@@ -50,7 +50,6 @@ const EditProduct = () => {
         const currentProduct = userInfo.supplier_info.products.filter(
           (product) => product.id === Number(productId)
         )[0];
-        console.log(currentProduct);
         setName(currentProduct.name);
         setPrice(currentProduct.price.toString());
         setDescription(currentProduct.description);

@@ -17,29 +17,18 @@ const CommodityProducts = () => {
   const history = useHistory();
 
   React.useEffect(() => {
-    if (userInfo.is_supplier && userInfo.supplier_info && !userInfo.supplier_info.products) {
+    if (
+      userInfo.is_supplier &&
+      userInfo.supplier_info &&
+      !userInfo.supplier_info.products
+    ) {
       dispatch(getUserSupplierProducts(userInfo.supplier_info.id));
     }
   }, [userInfo]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col flex-auto">
       <h2 className="text-2xl font-semibold mb-5">Kumpulan Produk Anda</h2>
-      <div className="flex flex-row justify-between items-center mb-4">
-        <TextField
-          icon={<SearchIcon className="w-6 h-6" />}
-          variant="secondary"
-          placeholder="Cari Produk Anda"
-          rounded
-        />
-        <div>
-          <Button
-            text="Tambah Produk"
-            variant="secondary"
-            pathName="dashboard/produk/tambah"
-          />
-        </div>
-      </div>
       {userInfo && !userInfo.is_supplier && (
         <div className="flex-auto flex flex-col">
           <div className="flex justify-center items-center flex-auto">
@@ -57,54 +46,85 @@ const CommodityProducts = () => {
                   Dapatkan manfaat dan keuntungan bagi usaha anda
                 </p>
               </div>
-              <Button text="Daftar" variant="primary" className="w-32" />
+              <Button
+                text="Daftar"
+                variant="primary"
+                className="w-32"
+                pathName="dashboard/profil"
+              />
             </div>
           </div>
         </div>
       )}
-      {userInfo &&
-      userInfo.supplier_info &&
-      userInfo.supplier_info.products &&
-      userInfo.supplier_info.products.length > 0 ? (
-        <div className="shadow rounded-md px-6 py-4 overflow-x-auto w-full">
-          <table className="w-full border-collapse table-fixed table whitespace-nowrap lg:whitespace-normal">
-            <tbody className="table w-full">
-              <tr className="text-left">
-                <th className="px-3 py-2 ">Nama Produk</th>
-                <th className="px-3 py-2 ">Deskripsi Produk</th>
-                <th className="px-3 py-2 ">Harga</th>
-                <th className="px-3 py-2 ">Ketersediaan</th>
-                <th className="px-3 py-2 ">Actions</th>
-              </tr>
-              {userInfo.supplier_info.products.map((product) => (
-                <tr key={product.id}>
-                  <td className="p-3">{product.name}</td>
-                  <td className="p-3">{product.description}</td>
-                  <td className="p-3">{product.price}/ kg</td>
-                  <td className="p-3">{product.quality}</td>
-                  <td className="p-3 flex flex-col md:flex-row gap-4">
-                    <Button
-                      variant="primary"
-                      text="Edit"
-                      className="w-20"
-                      onClick={() => history.push(`/dashboard/produk/1/edit`)}
-                    />
-                    <Button
-                      variant="danger"
-                      text="Hapus"
-                      className="w-20"
-                      onClick={() =>
-                        dispatch(deleteUserSupplierProduct(product.id))
-                      }
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <h2 className="text-center text-2xl">Belum ada produk</h2>
+      {userInfo && userInfo.is_supplier && (
+        <>
+          <div className="flex flex-row justify-between items-center mb-4">
+            <TextField
+              icon={<SearchIcon className="w-6 h-6" />}
+              variant="secondary"
+              placeholder="Cari Produk Anda"
+              rounded
+            />
+            <div>
+              <Button
+                text="Tambah Produk"
+                variant="secondary"
+                pathName="dashboard/produk/tambah"
+              />
+            </div>
+          </div>
+
+          {userInfo.supplier_info &&
+          userInfo.supplier_info.products &&
+          userInfo.supplier_info.products.length > 0 ? (
+            <div className="shadow rounded-md px-6 py-4 overflow-x-auto w-full">
+              <table className="w-full border-collapse table-fixed table whitespace-nowrap lg:whitespace-normal">
+                <tbody className="table w-full">
+                  <tr className="text-left">
+                    <th className="px-3 py-2 ">Nama Produk</th>
+                    <th className="px-3 py-2 ">Deskripsi Produk</th>
+                    <th className="px-3 py-2 ">Harga</th>
+                    <th className="px-3 py-2 ">Ketersediaan</th>
+                    <th className="px-3 py-2 ">Actions</th>
+                  </tr>
+                  {userInfo.supplier_info.products.map((product) => (
+                    <tr key={product.id}>
+                      <td className="p-3">{product.name}</td>
+                      <td className="p-3">{product.description}</td>
+                      <td className="p-3">{product.price}/ kg</td>
+                      <td className="p-3">{product.quality}</td>
+                      <td className="p-3 flex flex-col md:flex-row gap-4">
+                        <Button
+                          variant="primary"
+                          text="Edit"
+                          className="w-20"
+                          onClick={() =>
+                            history.push(`/dashboard/produk/${product.id}/edit`)
+                          }
+                        />
+                        <Button
+                          variant="danger"
+                          text="Hapus"
+                          className="w-20"
+                          onClick={() =>
+                            dispatch(deleteUserSupplierProduct(product.id))
+                          }
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div
+              className="flex items-center justify-center"
+              style={{ minHeight: 200 }}
+            >
+              <h2 className="text-center text-2xl">Belum ada produk</h2>
+            </div>
+          )}
+        </>
       )}
       <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
