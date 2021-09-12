@@ -130,6 +130,7 @@ export type UserSupplierProduct = {
   price: number;
   quality: string;
   description: string;
+  productType: number;
 };
 
 export type FetchUserSupplierProductsLoading = {
@@ -172,3 +173,47 @@ export type DeleteUserProductDispatchTypes =
   | DeleteUserProductFailed
   | DeleteUserProductLoading
   | DeleteUserProductSuccess;
+
+export const ADD_USER_PRODUCT_LOADING = "ADD_USER_PRODUCT_LOADING";
+export const ADD_USER_PRODUCT_SUCCESS = "ADD_USER_PRODUCT_SUCCESS";
+export const ADD_USER_PRODUCT_FAILED = "ADD_USER_PRODUCT_FAILED";
+
+export type AddUserProductLoading = {
+  type: typeof ADD_USER_PRODUCT_LOADING;
+};
+
+export type AddUserProductSuccess = {
+  type: typeof ADD_USER_PRODUCT_SUCCESS;
+};
+
+export type AddUserProductFailed = {
+  type: typeof ADD_USER_PRODUCT_FAILED;
+  payload: string;
+};
+
+export type AddUserProductDispatchTypes =
+  | AddUserProductFailed
+  | AddUserProductLoading
+  | AddUserProductSuccess;
+
+export const EDIT_USER_PRODUCT_LOADING = "EDIT_USER_PRODUCT_LOADING";
+export const EDIT_USER_PRODUCT_SUCCESS = "EDIT_USER_PRODUCT_SUCCESS";
+export const EDIT_USER_PRODUCT_FAILED = "EDIT_USER_PRODUCT_FAILED";
+
+export type EditUserProductLoading = {
+  type: typeof EDIT_USER_PRODUCT_LOADING;
+};
+
+export type EditUserProductSuccess = {
+  type: typeof EDIT_USER_PRODUCT_SUCCESS;
+};
+
+export type EditUserProductFailed = {
+  type: typeof EDIT_USER_PRODUCT_FAILED;
+  payload: string;
+};
+
+export type EditUserProductDispatchTypes =
+  | EditUserProductFailed
+  | EditUserProductLoading
+  | EditUserProductSuccess;

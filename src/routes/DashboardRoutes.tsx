@@ -15,6 +15,7 @@ import CommodityMap from "../screens/dashboard/CommodityMap";
 import Umkm from "../screens/dashboard/Umkm";
 import { motion } from "framer-motion";
 import CloseButton from "../components/modal/CloseButton";
+import EditProduct from "../screens/dashboard/EditProduct";
 
 const DashboardRoutes = () => {
   const [sidebarShown, showSidebar] = React.useState<boolean>(false);
@@ -87,11 +88,8 @@ const DashboardRoutes = () => {
             exact
             component={CommodityProducts}
           />
-          <Route
-            path="/dashboard/produk/tambah"
-            exact
-            component={AddProduct}
-          />
+          <Route path="/dashboard/produk/:productId/edit" exact component={EditProduct} />
+          <Route path="/dashboard/produk/tambah" exact component={AddProduct} />
           <Route
             path="/dashboard/cari-komoditas"
             exact

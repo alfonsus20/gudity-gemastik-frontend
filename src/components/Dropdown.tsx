@@ -12,6 +12,7 @@ type DropdownProps = {
   rounded?: boolean;
   placeholder?: string;
   icon?: React.ReactNode;
+  defaultValue?: DropdownOption;
   handleChange?: Dispatch<SetStateAction<any>>;
 };
 
@@ -22,6 +23,7 @@ const Dropdown = ({
   placeholder,
   icon,
   handleChange,
+  defaultValue,
 }: DropdownProps) => {
   const customStyles = {
     option: (provided: object) => ({
@@ -55,7 +57,14 @@ const Dropdown = ({
         placeholder={placeholder}
         isSearchable={false}
         className="flex-1"
-        onChange={handleChange ? handleChange : console.log("object")}
+        defaultValue={defaultValue}
+        onChange={(e: any) => {
+          if (handleChange) {
+            handleChange(e.value);
+          } else {
+            console.log(e);
+          }
+        }}
       />
     </div>
   );

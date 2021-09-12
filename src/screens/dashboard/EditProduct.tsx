@@ -1,36 +1,70 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import Button from "../../components/Button";
 import Dropdown from "../../components/Dropdown";
 import TextArea from "../../components/TextArea";
 import TextField from "../../components/TextField";
-import { addUserSupplierProduct } from "../../store/actions/userActions";
+import { RootState } from "../../store";
+import {
+  addUserSupplierProduct,
+  editUserSupplierProduct,
+  getUserSupplierProducts,
+} from "../../store/actions/userActions";
 
-const AddProduct = () => {
+const EditProduct = () => {
   const [name, setName] = React.useState<string>("");
   const [price, setPrice] = React.useState<string>("");
   const [description, setDescription] = React.useState<string>("");
   const [quality, setQuality] = React.useState<string>("");
   const [productType, setProductType] = React.useState<number>(1);
 
+  const { userInfo } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const { productId } = useParams<{ productId: string }>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(
-      addUserSupplierProduct({
-        name,
-        price: Number(price),
-        description,
-        quality,
-        product_type_id: productType,
-      })
+      editUserSupplierProduct(
+        {
+          name,
+          price: Number(price),
+          description,
+          quality,
+          product_type_id: productType,
+        },
+        Number(productId)
+      )
     );
   };
 
+  const productTypes = [
+    { label: "Gula", value: 1 },
+    { label: "Kopi", value: 2 },
+  ];
+
+  React.useEffect(() => {
+    if (userInfo && userInfo.supplier_info) {
+      if (userInfo.supplier_info.products) {
+        const currentProduct = userInfo.supplier_info.products.filter(
+          (product) => product.id === Number(productId)
+        )[0];
+        console.log(currentProduct);
+        setName(currentProduct.name);
+        setPrice(currentProduct.price.toString());
+        setDescription(currentProduct.description);
+        setQuality(currentProduct.quality);
+        setProductType(currentProduct.productType);
+      } else {
+        dispatch(getUserSupplierProducts(userInfo.supplier_info.id));
+      }
+    }
+  }, [userInfo]);
+
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-5">Tambah Produk Anda</h2>
+      <h2 className="text-2xl font-semibold mb-5">Edit Produk Anda</h2>
       <form className="space-y-2  mx-auto" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-2">
           <label htmlFor="" className="text-blue-primary font-medium">
@@ -75,10 +109,10 @@ const AddProduct = () => {
               Jenis Produk
             </label>
             <Dropdown
-              options={[
-                { label: "Gula", value: 1 },
-                { label: "Kopi", value: 2 },
-              ]}
+              defaultValue={
+                productTypes.filter((type) => type.value === productType)[0]
+              }
+              options={productTypes}
               placeholder="Masukkan Satuan"
               className="border-gray-200 border-2 text-sm "
               handleChange={setProductType}
@@ -108,11 +142,11 @@ const AddProduct = () => {
           />
         </div>
         <div className="flex justify-end pt-2">
-          <Button text="Tambah" variant="primary" size="md" className="w-28" />
+          <Button text="Ubah" variant="primary" size="md" className="w-28" />
         </div>
       </form>
     </div>
   );
 };
 
-export default AddProduct;
+export default EditProduct;

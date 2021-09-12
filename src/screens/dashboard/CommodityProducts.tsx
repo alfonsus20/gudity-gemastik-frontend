@@ -1,6 +1,8 @@
 import { SearchIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { ToastContainer } from "react-toastify";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import { RootState } from "../../store";
@@ -12,13 +14,10 @@ import {
 const CommodityProducts = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: RootState) => state.auth);
+  const history = useHistory();
 
   React.useEffect(() => {
-    if (
-      userInfo.is_supplier &&
-      userInfo.supplier_info &&
-      !userInfo.supplier_info.products
-    ) {
+    if (userInfo.is_supplier && userInfo.supplier_info && !userInfo.supplier_info.products) {
       dispatch(getUserSupplierProducts(userInfo.supplier_info.id));
     }
   }, [userInfo]);
@@ -34,7 +33,11 @@ const CommodityProducts = () => {
           rounded
         />
         <div>
-          <Button text="Tambah Produk" variant="secondary" pathName = 'dashboard/produk/tambah'/>
+          <Button
+            text="Tambah Produk"
+            variant="secondary"
+            pathName="dashboard/produk/tambah"
+          />
         </div>
       </div>
       {userInfo && !userInfo.is_supplier && (
@@ -77,10 +80,15 @@ const CommodityProducts = () => {
                 <tr key={product.id}>
                   <td className="p-3">{product.name}</td>
                   <td className="p-3">{product.description}</td>
-                  <td className="p-3">{product.price}/ KG</td>
+                  <td className="p-3">{product.price}/ kg</td>
                   <td className="p-3">{product.quality}</td>
                   <td className="p-3 flex flex-col md:flex-row gap-4">
-                    <Button variant="primary" text="Edit" className="w-20" />
+                    <Button
+                      variant="primary"
+                      text="Edit"
+                      className="w-20"
+                      onClick={() => history.push(`/dashboard/produk/1/edit`)}
+                    />
                     <Button
                       variant="danger"
                       text="Hapus"
@@ -96,8 +104,9 @@ const CommodityProducts = () => {
           </table>
         </div>
       ) : (
-        <h2>Belum ada produk</h2>
+        <h2 className="text-center text-2xl">Belum ada produk</h2>
       )}
+      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };

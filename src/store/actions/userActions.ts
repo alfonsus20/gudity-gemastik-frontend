@@ -1,6 +1,10 @@
 import { Dispatch } from "redux";
 import baseApi from "../../api/baseApi";
 import {
+  AddUserProductDispatchTypes,
+  ADD_USER_PRODUCT_FAILED,
+  ADD_USER_PRODUCT_LOADING,
+  ADD_USER_PRODUCT_SUCCESS,
   AuthDispatchTypes,
   AUTH_FAILED,
   AUTH_LOADING,
@@ -10,6 +14,10 @@ import {
   DELETE_USER_PRODUCT_FAILED,
   DELETE_USER_PRODUCT_LOADING,
   DELETE_USER_PRODUCT_SUCCESS,
+  EditUserProductDispatchTypes,
+  EDIT_USER_PRODUCT_FAILED,
+  EDIT_USER_PRODUCT_LOADING,
+  EDIT_USER_PRODUCT_SUCCESS,
   FetchUserSupplierProductsDispatchTypes,
   FETCH_USER_SUPPLIER_PRODUCTS_FAILED,
   FETCH_USER_SUPPLIER_PRODUCTS_LOADING,
@@ -26,9 +34,11 @@ import {
   USER_INFO_LOADING,
   USER_INFO_SUCCESS,
 } from "../constants/userConstants";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import onlyGetReq from "../../api/onlyGetReq";
 import { RootState } from "..";
+import { toast } from "react-toastify";
+import { push } from "connected-react-router";
 
 interface LoginState {
   email: string;
@@ -218,14 +228,24 @@ export const getUserSupplierProducts =
       dispatch({ type: FETCH_USER_SUPPLIER_PRODUCTS_LOADING });
 
       const { data } = await onlyGetReq.get(
-        `/products?supplier_id=eq.${supplierId}&select=id,name,price,quality,description`
+        `/products?supplier_id=eq.${supplierId}&select=id,name,price,quality,description,product_types(id)`
       );
 
-      console.log(data);
+      let structuredData = data.data;
+
+      structuredData = structuredData.map((singleData: any) => {
+        let singleStructuredData = singleData;
+        singleStructuredData = {
+          ...singleStructuredData,
+          productType: singleStructuredData.product_types.id,
+        };
+        delete singleStructuredData.product_types;
+        return singleStructuredData;
+      });
 
       dispatch({
         type: FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS,
-        payload: data.data,
+        payload: structuredData,
       });
     } catch (error) {
       if (error instanceof Error) {
@@ -259,12 +279,85 @@ export const deleteUserSupplierProduct =
       const { supplier_info } = getState().auth.userInfo;
       // @ts-ignore
       dispatch(getUserSupplierProducts(supplier_info?.id));
+      toast.success("Produk Berhasil Dihapus");
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch({
+          type: DELETE_USER_PRODUCT_FAILED,
+          payload: error.message,
+        });
+      }
+    }
+  };
+
+export const addUserSupplierProduct =
+  (newProductData: any) =>
+  async (
+    dispatch: Dispatch<AddUserProductDispatchTypes>,
+    getState: () => RootState
+  ) => {
+    try {
+      dispatch({ type: ADD_USER_PRODUCT_LOADING });
+
+      await baseApi.post(`/u/product/create`, newProductData, {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+
+      dispatch({
+        type: ADD_USER_PRODUCT_SUCCESS,
+      });
+
+      const { supplier_info } = getState().auth.userInfo;
+      // @ts-ignore
+      dispatch(getUserSupplierProducts(supplier_info?.id));
+
+      // @ts-ignore
+      dispatch(push("/dashboard/produk"));
+
+      toast.success("Produk Berhasil Ditambahkan");
     } catch (error) {
       // @ts-ignore
       console.log(error.response.data.message);
       if (error instanceof Error) {
         dispatch({
-          type: DELETE_USER_PRODUCT_FAILED,
+          type: ADD_USER_PRODUCT_FAILED,
+          payload: error.message,
+        });
+      }
+    }
+  };
+
+export const editUserSupplierProduct =
+  (newProductData: any, productId: number) =>
+  async (
+    dispatch: Dispatch<EditUserProductDispatchTypes>,
+    getState: () => RootState
+  ) => {
+    try {
+      dispatch({ type: EDIT_USER_PRODUCT_LOADING });
+
+      await baseApi.patch(`/u/product/${productId}`, newProductData, {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+
+      dispatch({
+        type: EDIT_USER_PRODUCT_SUCCESS,
+      });
+
+      const { supplier_info } = getState().auth.userInfo;
+      // @ts-ignore
+      dispatch(getUserSupplierProducts(supplier_info?.id));
+
+      // @ts-ignore
+      dispatch(push("/dashboard/produk"));
+
+      toast.success("Produk Berhasil Diubah");
+    } catch (error) {
+      // @ts-ignore
+      console.log(error.response.data.message);
+      if (error instanceof Error) {
+        dispatch({
+          type: EDIT_USER_PRODUCT_FAILED,
           payload: error.message,
         });
       }

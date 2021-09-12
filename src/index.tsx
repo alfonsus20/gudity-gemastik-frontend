@@ -6,12 +6,13 @@ import { Provider } from "react-redux";
 import store, { history } from "./store";
 import { ConnectedRouter } from "connected-react-router";
 import { Router } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Router history={history}>
-        <App />
+        <App /> 
       </Router>
     </ConnectedRouter>
   </Provider>,
