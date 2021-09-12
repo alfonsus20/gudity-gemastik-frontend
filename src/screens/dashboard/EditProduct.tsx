@@ -7,7 +7,6 @@ import TextArea from "../../components/TextArea";
 import TextField from "../../components/TextField";
 import { RootState } from "../../store";
 import {
-  addUserSupplierProduct,
   editUserSupplierProduct,
   getUserSupplierProducts,
 } from "../../store/actions/userActions";
@@ -17,7 +16,7 @@ const EditProduct = () => {
   const [price, setPrice] = React.useState<string>("");
   const [description, setDescription] = React.useState<string>("");
   const [quality, setQuality] = React.useState<string>("");
-  const [productType, setProductType] = React.useState<number>(1);
+  const [productType, setProductType] = React.useState<number>(0);
 
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
@@ -107,15 +106,17 @@ const EditProduct = () => {
             <label htmlFor="" className="text-blue-primary font-medium">
               Jenis Produk
             </label>
-            <Dropdown
-              defaultValue={
-                productTypes.filter((type) => type.value === productType)[0]
-              }
-              options={productTypes}
-              placeholder="Masukkan Satuan"
-              className="border-gray-200 border-2 text-sm "
-              handleChange={setProductType}
-            />
+            {productType !== 0 && (
+              <Dropdown
+                defaultValue={
+                  productTypes.filter((type) => type.value === productType)[0]
+                }
+                options={productTypes}
+                placeholder="Masukkan Satuan"
+                className="border-gray-200 border-2 text-sm "
+                handleChange={setProductType}
+              />
+            )}
           </div>
         </div>
         <div className="flex flex-col space-y-2">

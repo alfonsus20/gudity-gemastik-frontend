@@ -83,12 +83,12 @@ const DashboardRoutes = () => {
           <Route path="/dashboard" exact component={Home} />
           <Route path="/dashboard/profil" exact component={Profile} />
           <Route path="/dashboard/umkm" exact component={Umkm} />
+          <Route path="/dashboard/produk" exact component={CommodityProducts} />
           <Route
-            path="/dashboard/produk"
+            path="/dashboard/produk/:productId/edit"
             exact
-            component={CommodityProducts}
+            component={EditProduct}
           />
-          <Route path="/dashboard/produk/:productId/edit" exact component={EditProduct} />
           <Route path="/dashboard/produk/tambah" exact component={AddProduct} />
           <Route
             path="/dashboard/cari-komoditas"

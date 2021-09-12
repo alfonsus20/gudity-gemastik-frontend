@@ -5,3 +5,4 @@ declare module "conversational-form";
 declare module "google-map-react";
 declare module "swr";
 declare module "react-loading-skeleton";
+declare module "react-reveal";

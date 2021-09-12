@@ -23,8 +23,8 @@ const ImageGallery = ({ images, className }: ImageGalleryProps) => {
     <div className={`max-w-full sm:max-w-md ${className}`}>
       <div className="mb-4">
         <img
-          src={highlightedImage.thumbnail}
-          alt={highlightedImage.thumbnail}
+          src={highlightedImage ? highlightedImage.thumbnail : "/assets/pictures/nopicture.jpg"}
+          alt={highlightedImage ? highlightedImage.thumbnail : "nopicture"}
           className="rounded-md w-full h-80 xs:h-88 sm:w-112 sm:h-72 object-cover"
         />
       </div>

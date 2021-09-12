@@ -11,6 +11,7 @@ import ReviewCarousel from "../components/carousel/ReviewCarousel";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { getAllNews } from "../store/actions/newsActions";
+import { Slide, Fade, Rotate } from "react-reveal";
 
 const Home = () => {
   const { newsList } = useSelector((state: RootState) => state.newsList);
@@ -31,20 +32,22 @@ const Home = () => {
               "linear-gradient(86.97deg, rgba(0, 0, 0, 0.95) -0.91%, rgba(7, 11, 18, 0) 131.36%), url(/assets/backgrounds/homepage.jpg)",
           }}
         >
-          <div className="max-w-screen-xl mx-auto w-full px-2">
-            <div className="font-semibold">
-              <h2 className="text-3xl md:text-4xl">Kami hadir</h2>
-              <h1 className="text-4xl md:text-5xl my-1 leading-snug md:leading-snug">
-                Sebagai Solusi UMKM Anda <br /> dalam Proses
-                <span className="highlight ml-3">Analisis</span> dan
-                <span className="highlight ml-3">Prediksi</span>
-                <br /> pada <span className="highlight"> masa depan.</span>
-              </h1>
+          <Slide left cascade>
+            <div className="max-w-screen-xl mx-auto w-full px-2">
+              <div className="font-semibold">
+                <h2 className="text-3xl md:text-4xl">Kami hadir</h2>
+                <h1 className="text-4xl md:text-5xl my-1 leading-snug md:leading-snug">
+                  Sebagai Solusi UMKM Anda <br /> dalam Proses
+                  <span className="highlight ml-3">Analisis</span> dan
+                  <span className="highlight ml-3">Prediksi</span>
+                  <br /> pada <span className="highlight"> masa depan.</span>
+                </h1>
+              </div>
+              <div className="mt-6">
+                <Button variant="primary" text="Lebih Lanjut" size="md" />
+              </div>
             </div>
-            <div className="mt-6">
-              <Button variant="primary" text="Lebih Lanjut" size="md" />
-            </div>
-          </div>
+          </Slide>
         </div>
       </div>
       <div className="bg-black">
@@ -67,20 +70,20 @@ const Home = () => {
                 variant="tertiary"
               />
             </div>
+
             <div className="grid md:grid-cols-2 gap-x-4 gap-y-8 w-full md:w-1/2">
               {newsList.length === 0 ? (
                 <h2 className="col-span-2">Belum ada berita</h2>
               ) : (
-                newsList
-                  .slice(0, 4)
-                  .map((news) => (
+                newsList.slice(0, 4).map((news, index) => (
+                  <Fade bottom duration={(index + 1) * 500} key={news.id}>
                     <NewsCard
-                      key={news.id}
                       title={news.title}
                       content={news.body}
                       colspan={1}
                     />
-                  ))
+                  </Fade>
+                ))
               )}
             </div>
             <Button
@@ -97,7 +100,9 @@ const Home = () => {
         <div className="max-w-screen-xl mx-auto px-8">
           <div className="grid xs:grid-cols-2 md:grid-cols-4 gap-7 mb-12">
             {FEATURES.map((feature, i) => (
-              <FeatureCard {...feature} key={i} />
+              <Fade duration={(i + 1) * 500} bottom key={i}>
+                <FeatureCard {...feature} />
+              </Fade>
             ))}
           </div>
           <div className="flex">
@@ -110,73 +115,85 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-screen-xl mx-auto px-8 py-20 md:py-28 flex flex-col-reverse md:flex-row md:space-x-12 lg:space-x-36">
-        <div className="flex flex-col justify-center">
-          <h2 className="text-4xl font-medium mb-4">
-            Ingin Lebih Dalam Mengenal Aplikasi GUDITY?{" "}
-          </h2>
-          <p className="mb-6">
-            Membantu usaha UMKM makanan dan minuman anda dalam proses pemerataan
-            bahan baku serta mengantisipasi fluktuasi harga komoditas yang
-            ditunjang dengan penggunaan teknologi terkini.
-          </p>
-          <div className="flex flex-row space-x-6 mb-10">
-            <div className="">
-              <img src="/assets/icons/book.svg" alt="book" />
+      <div className="max-w-screen-xl mx-auto px-8 py-20 md:py-28 flex flex-col-reverse md:flex-row md:space-x-12 lg:space-x-36 overflow-x-hidden">
+        <Slide left>
+          <div className="flex flex-col justify-center">
+            <h2 className="text-4xl font-medium mb-4">
+              Ingin Lebih Dalam Mengenal Aplikasi GUDITY?
+            </h2>
+            <p className="mb-6">
+              Membantu usaha UMKM makanan dan minuman anda dalam proses
+              pemerataan bahan baku serta mengantisipasi fluktuasi harga
+              komoditas yang ditunjang dengan penggunaan teknologi terkini.
+            </p>
+            <div className="flex flex-row space-x-6 mb-10">
+              <div className="">
+                <img src="/assets/icons/book.svg" alt="book" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-medium mb-2">
+                  Percepat Bisnis Anda
+                </h3>
+                <p>
+                  Rencanakan dan persiapkan usaha UMKM anda mulai dari sekarang
+                  bersama dengan Gudity.
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-2xl font-medium mb-2">
-                Percepat Bisnis Anda
-              </h3>
-              <p>
-                Rencanakan dan persiapkan usaha UMKM anda mulai dari sekarang
-                bersama dengan Gudity.
-              </p>
+            <div className="flex justify-center">
+              <Button variant="secondary" text="Pelajari Lebih Lanjut" />
             </div>
           </div>
-          <div className="flex justify-center">
-            <Button variant="secondary" text="Pelajari Lebih Lanjut" />
+        </Slide>
+        <Slide right>
+          <div className="flex-shrink-0 flex justify-center">
+            <img
+              src="/assets/pictures/gudity-book.png"
+              className="w-100"
+              alt="gudity-book"
+            />
           </div>
-        </div>
-        <div className="flex-shrink-0 flex justify-center">
-          <img
-            src="/assets/pictures/gudity-book.png"
-            className="w-100"
-            alt="gudity-book"
-          />
-        </div>
+        </Slide>
       </div>
       <div style={{ backgroundColor: "#E9EEFF" }} className="px-8 py-20">
-        <CommodityCarousel />
+        <Fade bottom>
+          <CommodityCarousel />
+        </Fade>
       </div>
       <div className="max-w-screen-xl mx-auto px-8 py-20 md:py-28 flex flex-col md:flex-row items-center md:space-x-6 lg:space-x-12">
         <h2 className="text-4xl font-medium mb-8 md:w-5/12">
           Nikmati fitur pelengkap kami untuk memperlancar usaha anda
         </h2>
         <div className=" md:w-7/12 gap-y-6 md:gap-6 flex flex-col md:flex-row">
-          <div className="flex justify-start items-start">
-            <ComplementaryCard
-              title="Belanja dari Produk Komoditas"
-              description="Lihat berbagai macam kumpulan UMKM yang tersedia dari berbagai macam jenis produk olahan pilihan yang tersebar di berbagaimacam wilayah."
-              buttonName="Belanja sekarang"
-              buttonPathname="komoditas"
-              image="buy-commodity.png"
-            />
-          </div>
-          <div className="flex justify-end items-start">
-            <ComplementaryCard
-              title="Kumpulan UMKM"
-              description="Telusuri pemasok komoditas kami dan pilih komoditas yang ada dengan harga terbaik,  kualitas unggul serta proses transaksi yang mudah dan aman."
-              buttonName="Lihat Sekarang"
-              buttonPathname="umkm"
-              image="umkm-collection.png"
-            />
-          </div>
+          <Rotate bottom left>
+            <div className="flex justify-start items-start">
+              <ComplementaryCard
+                title="Belanja dari Produk Komoditas"
+                description="Lihat berbagai macam kumpulan UMKM yang tersedia dari berbagai macam jenis produk olahan pilihan yang tersebar di berbagaimacam wilayah."
+                buttonName="Belanja sekarang"
+                buttonPathname="komoditas"
+                image="buy-commodity.png"
+              />
+            </div>
+          </Rotate>
+          <Rotate bottom left>
+            <div className="flex justify-end items-start">
+              <ComplementaryCard
+                title="Kumpulan UMKM"
+                description="Telusuri pemasok komoditas kami dan pilih komoditas yang ada dengan harga terbaik,  kualitas unggul serta proses transaksi yang mudah dan aman."
+                buttonName="Lihat Sekarang"
+                buttonPathname="umkm"
+                image="umkm-collection.png"
+              />
+            </div>
+          </Rotate>
         </div>
       </div>
       <Features />
       <div style={{ backgroundColor: "#E9EEFF" }} className="px-8 py-20">
-        <ReviewCarousel />
+        <Fade bottom>
+          <ReviewCarousel />
+        </Fade>
       </div>
     </div>
   );

@@ -25,36 +25,43 @@ const Cart = () => {
   return (
     <div className="mt-20">
       <Header title="Keranjang Belanja" />
-      <Wrapper>
-        <Wrapper.Left>
-          {cartItems.map((item) => (
-            <CartCommodity
-              key={item.supplier_id}
-              id={item.supplier_id}
-              name={item.supplier_name}
-              items={item.products}
+      {cartItems.length > 0 ? (
+        <Wrapper>
+          <Wrapper.Left>
+            {cartItems.map((item) => (
+              <CartCommodity
+                key={item.supplier_id}
+                id={item.supplier_id}
+                name={item.supplier_name}
+                items={item.products}
+              />
+            ))}
+          </Wrapper.Left>
+          <Wrapper.Right>
+            <Sidebar
+              title="Total Biaya"
+              buttonText="Pesan Sekarang"
+              buttonAction={() => history.push("/checkout")}
+              buttonDisabled={productsCheckout.length === 0}
+              total={
+                productsCheckout.length >= 0
+                  ? productsCheckout.reduce(
+                      (acc, product) =>
+                        (acc +=
+                          product.product_price * product.product_quantity),
+                      0
+                    )
+                  : 0
+              }
+              items={[{ left: "Total Produk", right: productsCheckout.length }]}
             />
-          ))}
-        </Wrapper.Left>
-        <Wrapper.Right>
-          <Sidebar
-            title="Total Biaya"
-            buttonText="Pesan Sekarang"
-            buttonAction={() => history.push("/checkout")}
-            buttonDisabled={productsCheckout.length === 0}
-            total={
-              productsCheckout.length >= 0
-                ? productsCheckout.reduce(
-                    (acc, product) =>
-                      (acc += product.product_price * product.product_quantity),
-                    0
-                  )
-                : 0
-            }
-            items={[{ left: "Total Produk", right: productsCheckout.length }]}
-          />
-        </Wrapper.Right>
-      </Wrapper>
+          </Wrapper.Right>
+        </Wrapper>
+      ) : (
+        <div style={{ minHeight: "50vh" }} className='flex items-center justify-center'>
+          <h2 className="text-center text-xl">Belum ada produk di Keranjang</h2>
+        </div>
+      )}
     </div>
   );
 };
