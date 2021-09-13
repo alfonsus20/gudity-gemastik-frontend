@@ -12,6 +12,7 @@ const AddProduct = () => {
   const [description, setDescription] = React.useState<string>("");
   const [quality, setQuality] = React.useState<string>("");
   const [productType, setProductType] = React.useState<number>(1);
+  const [image, setImage] = React.useState<File>();
 
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ const AddProduct = () => {
         description,
         quality,
         product_type_id: productType,
+        file: image,
       })
     );
   };
@@ -108,6 +110,7 @@ const AddProduct = () => {
             variant="tertiary"
             placeholder="Masukkan gambar produk"
             type="file"
+            onChange={(e) => setImage(e.target.files![0])}
           />
         </div>
         <div className="flex justify-end pt-2">

@@ -22,11 +22,11 @@ import {
   UpdateStoreDispatchTypes,
   FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS,
   FetchUserSupplierProductsDispatchTypes,
-  DELETE_USER_PRODUCT_SUCCESS,
   DeleteUserProductDispatchTypes,
   DELETE_USER_PRODUCT_LOADING,
 } from "../constants/userConstants";
 import { SupplierState } from "./supplierReducers";
+import { UmkmState } from "./umkmReducers";
 
 export type AuthState = {
   isAuthenticated: boolean;
@@ -49,7 +49,9 @@ export type UserState = {
   identity_number: string;
   thumbnail: string;
   is_supplier: boolean;
+  is_store: boolean;
   supplier_info?: SupplierState;
+  store_info?: UmkmState;
 };
 
 export const authReducer = (

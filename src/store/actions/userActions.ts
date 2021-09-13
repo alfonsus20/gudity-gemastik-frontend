@@ -39,6 +39,9 @@ import onlyGetReq from "../../api/onlyGetReq";
 import { RootState } from "..";
 import { toast } from "react-toastify";
 import { push } from "connected-react-router";
+import { v4 as uuidv4 } from "uuid";
+import path from "path";
+import { supabase } from "../../api/supabase";
 
 interface LoginState {
   email: string;
@@ -124,15 +127,27 @@ export const fetchUserInfo =
         `/suppliers?select=id,address,description,name,phone,users(id)&user_id=eq.${userInfo.id}`
       );
 
+      const { data: dataStore } = await onlyGetReq.get(
+        `/stores?user_id=eq.${userInfo.id}`
+      );
+
       userInfo = {
         ...userInfo,
         is_supplier: dataSupplier.data.length > 0,
+        is_store: dataStore.data.length > 0,
       };
 
       if (dataSupplier.data.length > 0) {
         userInfo = {
           ...userInfo,
           supplier_info: dataSupplier.data[0],
+        };
+      }
+
+      if (dataStore.data.length > 0) {
+        userInfo = {
+          ...userInfo,
+          store_info: dataStore.data[0],
         };
       }
 
@@ -166,10 +181,10 @@ export const updateSupplierInfo =
         headers: { Authorization: localStorage.getItem("token") },
       });
 
-      dispatch({ type: UPDATE_SUPPLIER_INFO_SUCCESS });
-
       // @ts-ignore
       dispatch(fetchUserInfo());
+
+      dispatch({ type: UPDATE_SUPPLIER_INFO_SUCCESS });
     } catch (error) {
       if (axios.isAxiosError(error)) {
         dispatch({
@@ -180,30 +195,24 @@ export const updateSupplierInfo =
     }
   };
 
-interface StoreState {
-  store_name: string;
-  store_description: string;
-  store_address: string;
-  store_phone: string;
-  store_start_at: string;
-  store_finish_at: string;
-  store_profile_image: File;
-}
+// interface StoreState {
+//   store_name: string;
+//   store_description: string;
+//   store_address: string;
+//   store_phone: string;
+//   store_start_at: string;
+//   store_finish_at: string;
+//   store_profile_image: File;
+// }
 
 export const updateStoreInfo =
-  (storeData: StoreState) =>
+  (storeData: any) =>
   async (dispatch: Dispatch<AuthDispatchTypes | UpdateStoreDispatchTypes>) => {
     try {
       dispatch({ type: UPDATE_STORE_INFO_LOADING });
 
-      const formData = new FormData();
-
-      Object.keys(storeData).forEach((key) => {
-        formData.append(key, storeData[key as keyof StoreState]);
-      });
-
-      await baseApi.put("/user/stores/claim", formData, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      await baseApi.post("/u/claim_store", storeData, {
+        headers: { Authorization: localStorage.getItem("token") },
       });
 
       dispatch({ type: UPDATE_STORE_INFO_SUCCESS });
@@ -299,9 +308,29 @@ export const addUserSupplierProduct =
     try {
       dispatch({ type: ADD_USER_PRODUCT_LOADING });
 
-      await baseApi.post(`/u/product/create`, newProductData, {
-        headers: { Authorization: localStorage.getItem("token") },
-      });
+      const fileName =
+        "product/" + uuidv4() + path.extname(newProductData.file);
+
+      await supabase.storage
+        .from("images")
+        .upload(fileName, newProductData.file, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+
+      await baseApi.post(
+        `/u/product/create`,
+        {
+          name: newProductData.name,
+          price: newProductData.price,
+          description: newProductData.description,
+          quality: newProductData.quality,
+          product_type_id: newProductData.product_type_id,
+        },
+        {
+          headers: { Authorization: localStorage.getItem("token") },
+        }
+      );
 
       dispatch({
         type: ADD_USER_PRODUCT_SUCCESS,

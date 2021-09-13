@@ -21,33 +21,34 @@ const Umkm = () => {
   const [storePhone, setStorePhone] = React.useState<string>("");
   const [storeDescription, setStoreDescription] = React.useState<string>("");
   const [storeImage, setStoreImage] = React.useState<File>();
-  const [storeStartAt, setStoreStartAt] = React.useState<string>("");
-  const [storeFinishAt, setStoreFinishAt] = React.useState<string>("");
+  const [openTime, setOpenTime] = React.useState<string>("");
+  const [closeTime, setCloseTime] = React.useState<string>("");
 
   const handleSubmitStoreProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(
       updateStoreInfo({
-        store_name: storeName,
-        store_address: storeAddress,
-        store_phone: storePhone,
-        store_description: storeDescription,
-        store_start_at: storeStartAt,
-        store_finish_at: storeFinishAt,
-        store_profile_image: storeImage!,
+        name: storeName,
+        address: storeAddress,
+        phone: storePhone,
+        description: storeDescription,
+        time_closed: openTime,
+        time_opened: closeTime,
       })
     );
   };
 
   React.useEffect(() => {
-    // setStoreName(userInfo.store_name!);
-    // setStoreAddress(userInfo.store_address!);
-    // setStorePhone(userInfo.store_phone!);
-    // setStoreDescription(userInfo.store_description!);
-    // setStoreStartAt(userInfo.store_start_at!);
-    // setStoreFinishAt(userInfo.store_finish_at!);
-
-    // showBanner(!userInfo.store_name);
+    showBanner(!userInfo.is_store);
+    
+    if (userInfo.store_info) {
+      setStoreName(userInfo.store_info.name);
+      setStoreAddress(userInfo.store_info.address);
+      setStoreDescription(userInfo.store_info.description);
+      setStorePhone(userInfo.store_info.phone);
+      setOpenTime(userInfo.store_info.time_opened);
+      setCloseTime(userInfo.store_info.time_closed);
+    }
 
     if (successUpdateStore) {
       showSuccessModal(true);
@@ -147,8 +148,8 @@ const Umkm = () => {
                 <TextField
                   variant="tertiary"
                   type="time"
-                  value={storeStartAt}
-                  onChange={(e) => setStoreStartAt(e.target.value)}
+                  value={openTime}
+                  onChange={(e) => setOpenTime(e.target.value)}
                 />
               </div>
               <div className="flex flex-col space-y-2 w-full">
@@ -158,8 +159,8 @@ const Umkm = () => {
                 <TextField
                   variant="tertiary"
                   type="time"
-                  value={storeFinishAt}
-                  onChange={(e) => setStoreFinishAt(e.target.value)}
+                  value={closeTime}
+                  onChange={(e) => setCloseTime(e.target.value)}
                 />
               </div>
             </div>

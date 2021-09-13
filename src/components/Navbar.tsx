@@ -152,7 +152,7 @@ const Navbar = () => {
                 onClick={() => showDropdown(false)}
               >
                 <button
-                  className="flex flex-row"
+                  className="flex flex-row items-center"
                   onClick={() => dispatch(logout())}
                 >
                   <LogoutIcon className="w-5 h-5 mr-2" />
