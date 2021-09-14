@@ -11,7 +11,7 @@ import { UPDATE_STORE_INFO_RESET } from "../../store/constants/userConstants";
 const Umkm = () => {
   const [successModalShown, showSuccessModal] = React.useState<boolean>(false);
   const [bannerShown, showBanner] = React.useState<boolean>(false);
-  const { userInfo, successUpdateStore } = useSelector(
+  const { userInfo, successUpdateStore, loading } = useSelector(
     (state: RootState) => state.auth
   );
   const dispatch = useDispatch();
@@ -26,21 +26,22 @@ const Umkm = () => {
 
   const handleSubmitStoreProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(
-      updateStoreInfo({
-        name: storeName,
-        address: storeAddress,
-        phone: storePhone,
-        description: storeDescription,
-        time_closed: openTime,
-        time_opened: closeTime,
-      })
-    );
+
+    let body = {
+      name: storeName,
+      address: storeAddress,
+      phone: storePhone,
+      description: storeDescription,
+      time_opened: openTime,
+      time_closed: closeTime,
+    };
+
+    dispatch(updateStoreInfo(body, storeImage));
   };
 
   React.useEffect(() => {
     showBanner(!userInfo.is_store);
-    
+
     if (userInfo.store_info) {
       setStoreName(userInfo.store_info.name);
       setStoreAddress(userInfo.store_info.address);
@@ -172,6 +173,7 @@ const Umkm = () => {
                 variant="tertiary"
                 placeholder="Masukkan gambar produk"
                 type="file"
+                accept="image/*"
                 onChange={(e) => setStoreImage(e.target.files![0])}
               />
             </div>
@@ -182,6 +184,7 @@ const Umkm = () => {
                 size="md"
                 type="submit"
                 className="w-28"
+                disabled={loading}
               />
             </div>
           </form>

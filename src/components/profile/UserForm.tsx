@@ -8,7 +8,6 @@ const UserForm = () => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const [enabled, enableForm] = React.useState<boolean>(false);
 
-  // User data
   const [userName, setUserName] = React.useState<string>(userInfo.name!);
   const [userEmail, setUserEmail] = React.useState<string>(userInfo.email!);
   const [userAddress, setUserAddress] = React.useState<string>(
@@ -18,6 +17,7 @@ const UserForm = () => {
     userInfo.birthday!
   );
   const [userPhone, setUserPhone] = React.useState<string>(userInfo.phone!);
+  const [image, setImage] = React.useState<File>();
 
   const handleSubmitUserProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -107,6 +107,18 @@ const UserForm = () => {
               value={userPhone}
               onChange={(e) => setUserPhone(e.target.value)}
               disabled={!enabled}
+            />
+          </div>
+          <div className="flex flex-row items-center space-x-10">
+            <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+              Foto Profil <span className="text-red-600">*</span>
+            </label>
+            <span>:</span>
+            <TextField
+              variant="dashboard"
+              type="file"
+              className="flex-auto"
+              onChange={(e) => setImage(e.target.files![0])}
             />
           </div>
         </div>

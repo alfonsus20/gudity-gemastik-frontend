@@ -9,7 +9,7 @@ import { UPDATE_SUPPLIER_INFO_RESET } from "../../store/constants/userConstants"
 
 const SupplierForm = () => {
   // Supplier Data
-  const { userInfo, loading, successUpdateSupplier, } = useSelector(
+  const { userInfo, loading, successUpdateSupplier } = useSelector(
     (state: RootState) => state.auth
   );
   const [name, setName] = React.useState<string>("");
@@ -23,13 +23,17 @@ const SupplierForm = () => {
 
   const handleSubmitSupplierProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     dispatch(
-      updateSupplierInfo({
-        name,
-        address,
-        phone,
-        description,
-      })
+      updateSupplierInfo(
+        {
+          name,
+          address,
+          phone,
+          description,
+        },
+        image
+      )
     );
   };
 

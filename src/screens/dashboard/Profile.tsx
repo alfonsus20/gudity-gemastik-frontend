@@ -70,7 +70,7 @@ const Profile = () => {
               content: <UserForm />,
             },
             {
-              title: "Komoditas",
+              title: "Pemasok",
               content: (
                 <div className="mt-8">
                   {newSupplierBanner ? (
@@ -81,7 +81,7 @@ const Profile = () => {
                       />
                       <div className="text-center">
                         <h3 className="text-blue-marker font-semibold">
-                          Ingin Bergabung menjadi bagian dari Komoditas Kami?
+                          Ingin Bergabung menjadi bagian dari Pemasok Kami?
                         </h3>
                         <p className="text-blue-marker text-sm">
                           Dapatkan manfaat dan keuntungan bagi usaha anda

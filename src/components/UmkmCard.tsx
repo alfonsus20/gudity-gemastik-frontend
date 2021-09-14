@@ -28,7 +28,7 @@ const UmkmCard = ({
         <img
           src={
             !thumbnail || thumbnail === "http://image.com"
-              ? "assets/pictures/umkm-card.jpg"
+              ? "https://i.ibb.co/WtTPLXq/y9DpT.jpg"
               : thumbnail
           }
           alt=""

@@ -170,14 +170,30 @@ interface SupplierState {
 }
 
 export const updateSupplierInfo =
-  (supplierData: SupplierState) =>
+  (supplierData: SupplierState, thumbnail?: File) =>
   async (
     dispatch: Dispatch<AuthDispatchTypes | UpdateSupplierDispatchTypes>
   ) => {
     try {
       dispatch({ type: UPDATE_SUPPLIER_INFO_LOADING });
 
-      await baseApi.post("/u/claim_supplier", supplierData, {
+      let body: any = supplierData;
+
+      if (thumbnail) {
+        const fileName = uuidv4() + path.extname(thumbnail.name);
+        await supabase.storage.from("images").upload(fileName, thumbnail, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+        body = {
+          ...body,
+          thumbnail:
+            "https://tmqbylesuwxzdqaxmdlm.supabase.in/storage/v1/object/public/images/" +
+            fileName,
+        };
+      }
+
+      await baseApi.post("/u/claim_supplier", body, {
         headers: { Authorization: localStorage.getItem("token") },
       });
 
@@ -206,12 +222,28 @@ export const updateSupplierInfo =
 // }
 
 export const updateStoreInfo =
-  (storeData: any) =>
+  (storeData: any, thumbnail?: File) =>
   async (dispatch: Dispatch<AuthDispatchTypes | UpdateStoreDispatchTypes>) => {
     try {
       dispatch({ type: UPDATE_STORE_INFO_LOADING });
 
-      await baseApi.post("/u/claim_store", storeData, {
+      let body = storeData;
+
+      if (thumbnail) {
+        const fileName = uuidv4() + path.extname(thumbnail.name);
+        await supabase.storage.from("images").upload(fileName, thumbnail, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+        body = {
+          ...body,
+          thumbnail:
+            "https://tmqbylesuwxzdqaxmdlm.supabase.in/storage/v1/object/public/images/" +
+            fileName,
+        };
+      }
+
+      await baseApi.post("/u/claim_store", body, {
         headers: { Authorization: localStorage.getItem("token") },
       });
 
@@ -220,7 +252,6 @@ export const updateStoreInfo =
       // @ts-ignore
       dispatch(fetchUserInfo());
     } catch (error) {
-      // console.log(error.response.data.message);
       if (axios.isAxiosError(error)) {
         dispatch({
           type: UPDATE_STORE_INFO_FAILED,

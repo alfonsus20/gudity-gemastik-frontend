@@ -18,7 +18,7 @@ const CommodityWelcomeModal = ({
           </h3>
           <div className="space-y-4">
             <p className="text-center text-xs">
-              Terima kasih karena sudah menggunakan Aplikasi Lalalal dan
+              Terima kasih karena sudah menggunakan Aplikasi Gudity dan
               memiliki niatan untuk menjadi bagian dari salah satu komoditas
               terbaik kami. Kami berharap agar kedepannya kepercayaan yang
               diberikan oleh anda kepada kami sebagai platform pemasaran
