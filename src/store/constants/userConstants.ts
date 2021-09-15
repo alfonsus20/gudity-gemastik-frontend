@@ -131,6 +131,7 @@ export type UserSupplierProduct = {
   quality: string;
   description: string;
   productType: number;
+  thumbnail?: string;
 };
 
 export type FetchUserSupplierProductsLoading = {

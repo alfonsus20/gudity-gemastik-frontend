@@ -19,14 +19,16 @@ const AddProduct = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(
-      addUserSupplierProduct({
-        name,
-        price: Number(price),
-        description,
-        quality,
-        product_type_id: productType,
-        file: image,
-      })
+      addUserSupplierProduct(
+        {
+          name,
+          price: Number(price),
+          description,
+          quality,
+          product_type_id: productType,
+        },
+        image
+      )
     );
   };
 

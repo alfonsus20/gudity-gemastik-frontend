@@ -213,3 +213,6 @@ export const DASHBOARD_FEATURES: DashboardFeature[] = [
     pathname: "prediksi/prediksi-harga",
   },
 ];
+
+export const IMAGE_BASE_URL =
+  "https://tmqbylesuwxzdqaxmdlm.supabase.in/storage/v1/object/public/images/";

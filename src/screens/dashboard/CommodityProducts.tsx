@@ -107,7 +107,12 @@ const CommodityProducts = () => {
                           text="Hapus"
                           className="w-20"
                           onClick={() =>
-                            dispatch(deleteUserSupplierProduct(product.id))
+                            dispatch(
+                              deleteUserSupplierProduct(
+                                product.id,
+                                product.thumbnail
+                              )
+                            )
                           }
                         />
                       </td>

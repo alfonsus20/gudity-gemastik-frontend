@@ -55,10 +55,8 @@ export const getProductDetail =
       dispatch({ type: FETCH_PRODUCT_DETAIL_LOADING });
 
       const { data } = await onlyGetReq.get(
-        `/products?id=eq.${productId}&select=id,name,price,quality,description,product_images(id,thumbnail),invoice_products(invoice_product_reviews(id,star,review))`
+        `/products?id=eq.${productId}&select=id,name,price,quality,description,thumbnail,invoice_products(invoice_product_reviews(id,star,review))`
       );
-
-      console.log(data.data[0]);
 
       if (data.data.length > 0) {
         let product = data.data[0];

@@ -42,6 +42,7 @@ import { push } from "connected-react-router";
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
 import { supabase } from "../../api/supabase";
+import { IMAGE_BASE_URL } from "../../utils/constants";
 
 interface LoginState {
   email: string;
@@ -268,7 +269,7 @@ export const getUserSupplierProducts =
       dispatch({ type: FETCH_USER_SUPPLIER_PRODUCTS_LOADING });
 
       const { data } = await onlyGetReq.get(
-        `/products?supplier_id=eq.${supplierId}&select=id,name,price,quality,description,product_types(id)`
+        `/products?supplier_id=eq.${supplierId}&select=id,name,price,quality,description,thumbnail,product_types(id)`
       );
 
       let structuredData = data.data;
@@ -298,19 +299,27 @@ export const getUserSupplierProducts =
   };
 
 export const deleteUserSupplierProduct =
-  (productId: number) =>
+  (productId: number, thumbnail?: string) =>
   async (
     dispatch: Dispatch<DeleteUserProductDispatchTypes>,
     getState: () => RootState
   ) => {
     try {
       dispatch({ type: DELETE_USER_PRODUCT_LOADING });
+      console.log(thumbnail);
 
-      const { data } = await baseApi.delete(`/u/product/${productId}`, {
+      if (thumbnail) {
+        console.log(thumbnail);
+        console.log([thumbnail.replace(IMAGE_BASE_URL, "")]);
+        const { data } = await supabase.storage
+          .from("images")
+          .remove([thumbnail.replace(IMAGE_BASE_URL, "")]);
+        console.log(data);
+      }
+
+      await baseApi.delete(`/u/product/${productId}`, {
         headers: { Authorization: localStorage.getItem("token") },
       });
-
-      console.log(data);
 
       dispatch({
         type: DELETE_USER_PRODUCT_SUCCESS,
@@ -331,43 +340,38 @@ export const deleteUserSupplierProduct =
   };
 
 export const addUserSupplierProduct =
-  (newProductData: any) =>
+  (newProductData: any, thumbnail?: File) =>
   async (
     dispatch: Dispatch<AddUserProductDispatchTypes>,
     getState: () => RootState
   ) => {
     try {
-      dispatch({ type: ADD_USER_PRODUCT_LOADING });
+      let body = newProductData;
 
-      const fileName =
-        "product/" + uuidv4() + path.extname(newProductData.file);
-
-      await supabase.storage
-        .from("images")
-        .upload(fileName, newProductData.file, {
+      if (thumbnail) {
+        const fileName = uuidv4() + path.extname(thumbnail.name);
+        await supabase.storage.from("images").upload(fileName, thumbnail, {
           cacheControl: "3600",
           upsert: false,
         });
+        body = {
+          ...body,
+          thumbnail:
+            "https://tmqbylesuwxzdqaxmdlm.supabase.in/storage/v1/object/public/images/" +
+            fileName,
+        };
+      }
 
-      await baseApi.post(
-        `/u/product/create`,
-        {
-          name: newProductData.name,
-          price: newProductData.price,
-          description: newProductData.description,
-          quality: newProductData.quality,
-          product_type_id: newProductData.product_type_id,
-        },
-        {
-          headers: { Authorization: localStorage.getItem("token") },
-        }
-      );
+      await baseApi.post(`/u/product/create`, body, {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
 
       dispatch({
         type: ADD_USER_PRODUCT_SUCCESS,
       });
 
       const { supplier_info } = getState().auth.userInfo;
+
       // @ts-ignore
       dispatch(getUserSupplierProducts(supplier_info?.id));
 
