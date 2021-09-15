@@ -19,6 +19,7 @@ import { RootState } from "../store";
 import { getSupplierDetail } from "../store/actions/supplierActions";
 import { addToCart } from "../store/actions/cartActions";
 import { countRatingAverage } from "../utils/helpers";
+import { ADD_TO_CART_RESET } from "../store/constants/cartConstants";
 
 const Product = () => {
   const [quantity, setQuantity] = React.useState<number>(1);
@@ -42,6 +43,12 @@ const Product = () => {
       history.push("/keranjang");
     }
   }, [dispatch, supplierId, productId, successAddToCart, history]);
+
+  React.useEffect(() => {
+    return () => {
+      dispatch({ type: ADD_TO_CART_RESET });
+    };
+  }, []);
 
   const countReviewStar = () => {
     const starVoters = [0, 0, 0, 0, 0];
@@ -172,7 +179,7 @@ const Product = () => {
                   if (!isAuthenticated) {
                     history.push("/login");
                   } else {
-                    dispatch(addToCart(productId, quantity));
+                    dispatch(addToCart(Number(productId), quantity));
                   }
                 }}
               />

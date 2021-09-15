@@ -23,6 +23,9 @@ const Checkout = () => {
   const [expedition, setExpedition] = React.useState<string>("reguler");
 
   React.useEffect(() => {
+    if (productsCheckout.length === 0) {
+      history.goBack();
+    }
     dispatch(getBankList());
     if (successCheckout) {
       history.replace(`/pembayaran/${paymentCode}`);
@@ -89,17 +92,17 @@ const Checkout = () => {
                         className="w-24 h-16 sm:w-32 sm:h-24 md:w-40 md:h-32 rounded-md object-cover mr-4"
                         alt=""
                       />
-                      <p>{product.product_name}</p>
+                      <p>{product.name}</p>
                     </div>
                   </div>
                   <div className="col-span-1 flex items-center justify-end">
-                    Rp {product.product_price}
+                    Rp {product.price}
                   </div>
                   <div className="col-span-1 flex items-center justify-end">
-                    {product.product_quantity} kg
+                    {product.quantity} kg
                   </div>
                   <div className="col-span-1 flex items-center justify-end">
-                    Rp {product.product_price * product.product_quantity}
+                    Rp {product.price * product.quantity}
                   </div>
                 </>
               ))}
@@ -196,8 +199,7 @@ const Checkout = () => {
             total={
               productsCheckout.length >= 0
                 ? productsCheckout.reduce(
-                    (acc, product) =>
-                      (acc += product.product_price * product.product_quantity),
+                    (acc, product) => (acc += product.price * product.quantity),
                     0
                   )
                 : 0
@@ -209,8 +211,7 @@ const Checkout = () => {
                   productsCheckout.length >= 0
                     ? productsCheckout.reduce(
                         (acc, product) =>
-                          (acc +=
-                            product.product_price * product.product_quantity),
+                          (acc += product.price * product.quantity),
                         0
                       )
                     : 0,

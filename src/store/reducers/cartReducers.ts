@@ -1,8 +1,8 @@
-import { LocationChangeAction, LOCATION_CHANGE } from "connected-react-router";
 import {
   AddToCartDispatchTypes,
   ADD_TO_CART_FAILED,
   ADD_TO_CART_LOADING,
+  ADD_TO_CART_RESET,
   ADD_TO_CART_SUCCESS,
   FetchCartItemsDispatchTypes,
   FETCH_CART_ITEMS_FAILED,
@@ -29,24 +29,26 @@ export type SupplierCartState = {
 
 export type ProductCartState = {
   cart_id: number;
-  product_id: number;
-  product_quantity: number;
-  product_price: number;
-  product_name: string;
+  id: number;
+  quantity: number;
+  price: number;
+  name: string;
+  thumbnail: string;
+  supplier_id: number;
 };
 
 export const cartReducer = (
   state: CartState = { loading: false, cartItems: [], total: 0, totalItems: 0 },
-  action:
-    | AddToCartDispatchTypes
-    | LocationChangeAction
-    | FetchCartItemsDispatchTypes
+  action: AddToCartDispatchTypes | FetchCartItemsDispatchTypes
 ): CartState => {
   switch (action.type) {
     case ADD_TO_CART_LOADING:
+    case FETCH_CART_ITEMS_LOADING:
       return { ...state, loading: true };
     case ADD_TO_CART_SUCCESS:
       return { ...state, loading: false, successAddToCart: true };
+    case ADD_TO_CART_RESET:
+      return { ...state, successAddToCart: false, error: "" };
     case ADD_TO_CART_FAILED:
       return {
         ...state,
@@ -54,8 +56,6 @@ export const cartReducer = (
         successAddToCart: false,
         error: action.payload,
       };
-    case FETCH_CART_ITEMS_LOADING:
-      return { ...state, loading: true };
     case FETCH_CART_ITEMS_SUCCESS:
       return {
         ...state,
@@ -69,7 +69,7 @@ export const cartReducer = (
         loading: false,
         successFetchCartItems: false,
       };
-    case LOCATION_CHANGE || FETCH_CART_ITEMS_RESET:
+    case FETCH_CART_ITEMS_RESET:
       return { loading: false, cartItems: [], total: 0, totalItems: 0 };
     default:
       return state;
