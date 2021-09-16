@@ -1,9 +1,12 @@
+import { push } from "connected-react-router";
 import { Dispatch } from "redux";
 import baseApi from "../../api/baseApi";
+import onlyGetReq from "../../api/onlyGetReq";
 import {
   CheckoutItemsDispatchTypes,
   CHECKOUT_ITEMS_FAILED,
   CHECKOUT_ITEMS_LOADING,
+  CHECKOUT_ITEMS_RESET,
   CHECKOUT_ITEMS_SUCCESS,
   FetchBankListDispatchTypes,
   FETCH_BANK_LIST_FAILED,
@@ -16,9 +19,7 @@ export const getBankList =
     try {
       dispatch({ type: FETCH_BANK_LIST_LOADING });
 
-      const { data } = await baseApi.get(`/banks`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      const { data } = await onlyGetReq.get("/banks");
 
       dispatch({ type: FETCH_BANK_LIST_SUCCESS, payload: data.data });
     } catch (error) {
@@ -32,7 +33,7 @@ export const getBankList =
   };
 
 export const checkoutItems =
-  (expedition: string, bankId: number, cartIds: number[]) =>
+  (expedition: number, bankId: number, cartIds: number[]) =>
   async (dispatch: Dispatch<CheckoutItemsDispatchTypes>) => {
     try {
       dispatch({ type: CHECKOUT_ITEMS_LOADING });
@@ -40,16 +41,21 @@ export const checkoutItems =
       const { data } = await baseApi.post(
         `/user/invoices/checkout`,
         {
-          invoice_expedition: expedition,
-          invoice_bank_id: bankId,
-          invoice_cart_ids: cartIds,
+          expedition_id: expedition,
+          bank_id: bankId,
+          carts: cartIds,
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
 
-      dispatch({ type: CHECKOUT_ITEMS_SUCCESS, payload: data.data });
+      dispatch({ type: CHECKOUT_ITEMS_SUCCESS });
+
+      // @ts-ignore
+      dispatch(push(`/pembayaran/${data.data.invoice_code}`));
+
+      dispatch({ type: CHECKOUT_ITEMS_RESET });
     } catch (error) {
       if (error instanceof Error) {
         dispatch({

@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 import baseApi from "../../api/baseApi";
+import onlyGetReq from "../../api/onlyGetReq";
 import {
   FetchOrderDetailDispatchTypes,
   FetchOrderListDispatchTypes,
@@ -54,7 +55,7 @@ export const getOrderDetail =
     try {
       dispatch({ type: FETCH_ORDER_DETAIL_LOADING });
 
-      const { data } = await baseApi.get(
+      const { data } = await onlyGetReq.get(
         `/user/invoices/${paymentCode}/detail`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

@@ -10,35 +10,42 @@ import { RootState } from "../store";
 import { checkoutItems, getBankList } from "../store/actions/checkoutActions";
 import { useHistory } from "react-router-dom";
 import { CHECKOUT_ITEMS_RESET } from "../store/constants/checkoutConstants";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   // const [addressModalShown, showAddressModal] = React.useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { productsCheckout, bankList, successCheckout, paymentCode } =
-    useSelector((state: RootState) => state.checkout);
+  const { productsCheckout, bankList, paymentCode } = useSelector(
+    (state: RootState) => state.checkout
+  );
   const { userInfo } = useSelector((state: RootState) => state.auth);
 
   const [bank, setBank] = React.useState<any>();
-  const [expedition, setExpedition] = React.useState<string>("reguler");
+  const [expedition, setExpedition] = React.useState<number>(1);
 
   React.useEffect(() => {
     if (productsCheckout.length === 0) {
       history.goBack();
     }
     dispatch(getBankList());
-    if (successCheckout) {
-      history.replace(`/pembayaran/${paymentCode}`);
-      dispatch({ type: CHECKOUT_ITEMS_RESET });
-    }
-  }, [dispatch, successCheckout, paymentCode, history]);
+  }, [dispatch, paymentCode, history]);
 
+  const handleClick = () => {
+    if (!bank) {
+      toast.error("Pilih metode pembayaran");
+    } else {
+      dispatch(
+        checkoutItems(
+          expedition,
+          bank.value,
+          productsCheckout.map((product) => product.cart_id)
+        )
+      );
+    }
+  };
   return (
     <div className="mt-20">
-      {/* <AddressModal
-        shown={addressModalShown}
-        onClose={() => showAddressModal(false)}
-      /> */}
       <Header title="Rincian Pembayaran" />
       <Wrapper>
         <Wrapper.Left>
@@ -70,7 +77,6 @@ const Checkout = () => {
               </button>
             </div>
             <div className="grid grid-cols-6 gap-x-3 gap-y-4 text-sm md:text-md">
-              {" "}
               <div className="col-span-3 font-semibold text-lg">
                 Produk Dipesan
               </div>
@@ -108,7 +114,7 @@ const Checkout = () => {
               ))}
               <div className="col-span-6">
                 <p className="mr-2 mb-2 text-lg">Metode Pengiriman</p>
-                {["Reguler"].map((item, i) => (
+                {["JNE"].map((item, i) => (
                   <label
                     htmlFor={item}
                     className="flex items-center justify-between mb-4"
@@ -118,8 +124,8 @@ const Checkout = () => {
                       <input
                         type="radio"
                         name="transaction"
-                        checked={expedition === "reguler"}
-                        onChange={(e) => setExpedition(e.target.value)}
+                        checked={expedition === 1}
+                        onChange={(e) => setExpedition(Number(e.target.value))}
                         id={item}
                         className="flex-shrink-0 w-4 h-4 mr-4 md:mr-6"
                       />
@@ -128,7 +134,7 @@ const Checkout = () => {
                         <p className="text-sm">4 - 6 hari</p>
                       </div>
                     </div>
-                    <p className="font-semibold">Rp 0</p>
+                    <p className="font-semibold">Free Ongkir</p>
                   </label>
                 ))}
               </div>
@@ -156,8 +162,8 @@ const Checkout = () => {
                   <Dropdown
                     handleChange={setBank}
                     options={bankList.map((bank) => ({
-                      value: bank.bank_id,
-                      label: bank.bank_name,
+                      value: bank.id,
+                      label: bank.name,
                     }))}
                     className="border-2 border-violet w-auto px-2 rounded-md"
                   />
@@ -187,15 +193,7 @@ const Checkout = () => {
           <Sidebar
             title="Rincian Pembayaran"
             buttonText="Lanjut"
-            buttonAction={() =>
-              dispatch(
-                checkoutItems(
-                  expedition,
-                  bank.value,
-                  productsCheckout.map((product) => product.cart_id)
-                )
-              )
-            }
+            buttonAction={handleClick}
             total={
               productsCheckout.length >= 0
                 ? productsCheckout.reduce(

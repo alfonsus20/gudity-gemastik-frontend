@@ -1,5 +1,4 @@
 import { Dispatch } from "redux";
-import baseApi from "../../api/baseApi";
 import onlyGetReq from "../../api/onlyGetReq";
 import {
   FetchSupplierDetailDispatchTypes,
@@ -38,7 +37,7 @@ export const getSupplierDetail =
       const { data } = await onlyGetReq.get(
         `/suppliers?select=id,address,description,name,phone,thumbnail,username%3Ausers(name)&id=eq.${id}`
       );
-
+      
       if (data.data.length > 0) {
         dispatch({
           type: FETCH_SUPPLIER_DETAIL_SUCCESS,

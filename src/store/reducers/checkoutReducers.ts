@@ -17,7 +17,6 @@ import { ProductCartState } from "./cartReducers";
 type CheckoutState = {
   error?: string;
   successFetchBanks?: boolean;
-  successCheckout?: boolean;
   loading: boolean;
   productsCheckout: ProductCartState[];
   bankList: BankState[];
@@ -25,9 +24,8 @@ type CheckoutState = {
 };
 
 export type BankState = {
-  bank_id: number;
-  bank_name: string;
-  bank_number: string;
+  id: number;
+  name: string;
 };
 
 export const checkoutReducer = (
@@ -50,7 +48,8 @@ export const checkoutReducer = (
           (product) => product.cart_id !== action.payload.cart_id
         ),
       };
-    case FETCH_BANK_LIST_LOADING || CHECKOUT_ITEMS_LOADING:
+    case FETCH_BANK_LIST_LOADING:
+    case CHECKOUT_ITEMS_LOADING:
       return {
         ...state,
         loading: true,
@@ -70,13 +69,12 @@ export const checkoutReducer = (
     case CHECKOUT_ITEMS_SUCCESS:
       return {
         ...state,
-        successCheckout: true,
-        paymentCode: action.payload
+        loading: false,
       };
     case CHECKOUT_ITEMS_FAILED:
       return {
         ...state,
-        successCheckout: false,
+        loading: false,
         error: action.payload,
       };
     case CHECKOUT_ITEMS_RESET:
