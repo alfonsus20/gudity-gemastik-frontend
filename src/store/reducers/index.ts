@@ -14,6 +14,7 @@ import { cartReducer } from "./cartReducers";
 import { checkoutReducer } from "./checkoutReducers";
 import { orderDetailReducer, orderListReducer } from "./orderReducers";
 import { umkmListReducer } from "./umkmReducers";
+import { paymentReducer } from "./paymentReducers";
 
 const createRootReducer = (history: any) =>
   combineReducers({
@@ -33,6 +34,7 @@ const createRootReducer = (history: any) =>
     checkout: checkoutReducer,
     orderList: orderListReducer,
     orderDetail: orderDetailReducer,
+    paymentDetail: paymentReducer,
   });
 
 export default createRootReducer;

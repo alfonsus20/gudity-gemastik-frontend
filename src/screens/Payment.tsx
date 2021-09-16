@@ -7,17 +7,25 @@ import Tab from "../components/Tab";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { useParams } from "react-router-dom";
-import { getOrderDetail } from "../store/actions/orderActions";
+import { getPaymentDetail } from "../store/actions/paymentActions";
+import { toast, ToastContainer } from "react-toastify";
 
 const Payment = () => {
   const { paymentCode } = useParams<{ paymentCode: string }>();
-  const { order } = useSelector((state: RootState) => state.orderDetail);
+  const { payment, loading } = useSelector(
+    (state: RootState) => state.paymentDetail
+  );
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getOrderDetail(paymentCode));
+    dispatch(getPaymentDetail(paymentCode));
   }, [dispatch, paymentCode]);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(payment.code);
+    toast.success("Nomor Virtual Akun Berhasil Disalin");
+  };
 
   return (
     <div className="mt-20">
@@ -33,15 +41,15 @@ const Payment = () => {
         </p>
         <div className="flex flex-col justify-center items-center space-y-1">
           <p>
-            Pembayaran melalui <strong>{order.payment_bank}</strong>
+            Pembayaran melalui <strong>{payment.bankName}</strong>
           </p>
           <p>Nomor Virtual Account</p>
           <div className="font-semibold transition transform hover:scale-110">
             <Button
-              text="476520743909"
+              text={payment.code}
               variant="plain-blue"
               size="lg"
-              onClick={() => navigator.clipboard.writeText("476520743909")}
+              onClick={handleCopy}
             />
           </div>
         </div>
@@ -50,47 +58,58 @@ const Payment = () => {
         <h3 className="text-xl text-center font-semibold mb-6">
           Petunjuk Pembayaran
         </h3>
-        <Tab
-          tabs={[
-            {
-              title: order.payment_bank,
-              content: (
-                <ol className="list-decimal pl-6">
-                  <li>Masukkan Kartu Anda.</li>
-                  <li>Pilih Bahasa.</li>
-                  <li>Masukkan PIN ATM Anda.</li>
-                  <li>Pilih “Menu Lainnya”.</li>
-                  <li>Pilih “Transfer”.</li>
-                  <li>
-                    Pilih Jenis rekening yang akan Anda gunakan (Contoh; “Dari
-                    Rekening Tabungan”).
-                  </li>
-                  <li>Pilih “Virtual Account Billing”</li>
-                  <li>Masukkan nomor Virtual Account Anda (476420743909).</li>
-                  <li>
-                    Tagihan yang harus dibayarkan akan muncul pada layar
-                    konfirmasi
-                  </li>
-                  <li>
-                    Konfirmasi, apabila telah sesuai, lanjutkan transaksi.
-                  </li>
-                  <li>Transaksi Anda telah selesai.</li>{" "}
-                </ol>
-              ),
-            },
-            {
-              title: `Mobile Banking ${order.payment_bank}`,
-              content: <div className="space-y-2 mb-6"></div>,
-            },
-            {
-              title: `Internet Banking ${order.payment_bank}`,
-              content: <div className="space-y-2 mb-6"></div>,
-            },
-          ]}
-        />
+        {loading || !payment.bankName ? (
+          <h2>Loading....</h2>
+        ) : (
+          <Tab
+            tabs={[
+              {
+                title: payment.bankName,
+                content: (
+                  <ol className="list-decimal pl-6">
+                    <li>Masukkan Kartu Anda.</li>
+                    <li>Pilih Bahasa.</li>
+                    <li>Masukkan PIN ATM Anda.</li>
+                    <li>Pilih “Menu Lainnya”.</li>
+                    <li>Pilih “Transfer”.</li>
+                    <li>
+                      Pilih Jenis rekening yang akan Anda gunakan (Contoh; “Dari
+                      Rekening Tabungan”).
+                    </li>
+                    <li>Pilih “Virtual Account Billing”</li>
+                    <li>
+                      Masukkan nomor Virtual Account Anda ({payment.code}).
+                    </li>
+                    <li>
+                      Tagihan yang harus dibayarkan akan muncul pada layar
+                      konfirmasi
+                    </li>
+                    <li>
+                      Konfirmasi, apabila telah sesuai, lanjutkan transaksi.
+                    </li>
+                    <li>Transaksi Anda telah selesai.</li>{" "}
+                  </ol>
+                ),
+              },
+              {
+                title: `Mobile Banking ${payment.bankName}`,
+                content: <div className="space-y-2 mb-6"></div>,
+              },
+              {
+                title: `Internet Banking ${payment.bankName}`,
+                content: <div className="space-y-2 mb-6"></div>,
+              },
+            ]}
+          />
+        )}
         <div className="flex flex-col justify-end">
           <div className="ml-auto flex flex-col mb-2">
-            <Button text="Detail Pemesanan" variant="primary" />
+            <Button
+              text="Detail Pemesanan"
+              variant="primary"
+              pathName={`orders/${payment.code}`}
+              size="full"
+            />
             <p className="text-xs mt-2">
               Status Pembayaran : <strong>Menunggu Pembayaran</strong>
             </p>
@@ -112,7 +131,7 @@ const Payment = () => {
               </div>
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">Pengiriman</div>
-                <div>{order.expedition}</div>
+                <div>{payment.expedition}</div>
               </div>
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">Estimasi Pengiriman</div>
@@ -120,24 +139,25 @@ const Payment = () => {
               </div>
             </div>
             <div>
-              {order.products.map((product) => (
-                <div className="text-md flex flex-row mb-4">
-                  <div>
-                    <img
-                      src="/assets/pictures/kopi.jpg"
-                      className="w-24 h-16 sm:w-32 sm:h-24 rounded-md object-cover mr-4"
-                      alt=""
-                    />
+              {payment.products &&
+                payment.products.map((product) => (
+                  <div className="text-md flex flex-row mb-4">
+                    <div>
+                      <img
+                        src={product.thumbnail}
+                        className="w-24 h-16 sm:w-32 sm:h-24 rounded-md object-cover mr-4"
+                        alt=""
+                      />
+                    </div>
+                    <div>
+                      <p className="font-semibold">{product.name}</p>
+                      <p className="text-sm">{product.quantity} kg</p>
+                      <p className="text-sm">
+                        Rp {product.price * product.quantity}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold">{product.product_name}</p>
-                    <p className="text-sm">{product.product_quantity} kg</p>
-                    <p className="text-sm">
-                      Rp {product.product_price * product.product_quantity}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
             <div className="mb-4">
               <div className="text-md flex flex-row">
@@ -164,14 +184,15 @@ const Payment = () => {
             title="Rincian Pembayaran"
             buttonText="Lanjut"
             buttonAction={() => console.log("object")}
-            total={order.total_payment}
+            total={payment.totalPrice}
             items={[
-              { left: "Subtotal", right: order.total_payment },
+              { left: "Subtotal", right: payment.totalPrice },
               { left: "Biaya Pengiriman", right: 0 },
             ]}
           />
         </Wrapper.Right>
       </Wrapper>
+      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };

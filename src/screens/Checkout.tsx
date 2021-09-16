@@ -38,7 +38,7 @@ const Checkout = () => {
       dispatch(
         checkoutItems(
           expedition,
-          bank.value,
+          bank,
           productsCheckout.map((product) => product.cart_id)
         )
       );

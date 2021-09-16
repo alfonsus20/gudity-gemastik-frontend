@@ -38,18 +38,26 @@ export const checkoutItems =
     try {
       dispatch({ type: CHECKOUT_ITEMS_LOADING });
 
+      console.log({
+        expedition_id: expedition,
+        bank_id: bankId,
+        carts: cartIds,
+      });
+
+
       const { data } = await baseApi.post(
-        `/user/invoices/checkout`,
+        `/u/invoice/create`,
         {
           expedition_id: expedition,
           bank_id: bankId,
           carts: cartIds,
         },
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: { Authorization: localStorage.getItem("token") },
         }
       );
 
+     
       dispatch({ type: CHECKOUT_ITEMS_SUCCESS });
 
       // @ts-ignore
@@ -57,6 +65,9 @@ export const checkoutItems =
 
       dispatch({ type: CHECKOUT_ITEMS_RESET });
     } catch (error) {
+      //@ts-ignore
+      console.log(error.response.data.message);
+
       if (error instanceof Error) {
         dispatch({
           type: CHECKOUT_ITEMS_FAILED,

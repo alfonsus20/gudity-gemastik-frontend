@@ -13,7 +13,7 @@ type TabProps = {
 
 const Tab = ({ tabs, className, openTabIndex }: TabProps) => {
   const [currentTab, setCurrentTab] = React.useState<TabState>(
-    tabs[openTabIndex! || 0]
+    tabs[openTabIndex || 0]
   );
 
   return (
