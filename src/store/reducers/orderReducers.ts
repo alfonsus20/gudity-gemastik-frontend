@@ -9,6 +9,7 @@ import {
   FETCH_ORDER_LIST_LOADING,
   FETCH_ORDER_LIST_SUCCESS,
 } from "../constants/orderConstants";
+import { PaymentState } from "./paymentReducers";
 
 export type PurchasedProductState = {
   product_id: number;
@@ -23,7 +24,7 @@ type OrderListState = {
   error?: string;
   success?: boolean;
   loading: boolean;
-  orderList: OrderState[];
+  orderList: PaymentState[];
 };
 
 export type OrderState = {

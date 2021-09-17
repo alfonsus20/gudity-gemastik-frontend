@@ -6,6 +6,7 @@ import {
 } from "../constants/paymentConstants";
 
 export type PaymentProductState = {
+  id: number;
   name: string;
   thumbnail: string;
   quantity: number;

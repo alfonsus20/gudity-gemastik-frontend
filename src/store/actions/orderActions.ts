@@ -11,40 +11,49 @@ import {
   FETCH_ORDER_LIST_LOADING,
   FETCH_ORDER_LIST_SUCCESS,
 } from "../constants/orderConstants";
+import { PaymentState } from "../reducers/paymentReducers";
 
 export const getOrderList =
-  () => async (dispatch: Dispatch<FetchOrderListDispatchTypes>) => {
+  (userId: number) =>
+  async (dispatch: Dispatch<FetchOrderListDispatchTypes>) => {
     try {
       dispatch({ type: FETCH_ORDER_LIST_LOADING });
 
-      const { data } = await baseApi.get("/user/invoices/accepted", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      const { data } = await onlyGetReq.get(
+        `/invoices?select=id,code,created_at,banks(name),expeditions(name),invoice_statuses(name),invoice_products(quantity,products(id,name,price,quality,thumbnail,suppliers(name,address)))&user_id=eq.${userId}`
+      );
+
+      let structuredArray: any = [];
+
+      data.data.forEach((order: any) => {
+        let supplierName = "",
+          supplierAddress = "",
+          totalPrice = 0;
+        let productStructured = order.invoice_products.map((product: any) => {
+          supplierName = product.products.suppliers.name;
+          supplierAddress = product.products.suppliers.address;
+          totalPrice += product.products.price * product.quantity;
+          return { ...product.products, quantity: product.quantity };
+        });
+        let structured: PaymentState = {
+          id: order.id,
+          bankName: order.banks.name,
+          code: order.code,
+          date: order.created_at,
+          expedition: order.expeditions.name,
+          products: productStructured,
+          paymentStatus: order.invoice_statuses.name,
+          supplierName,
+          supplierAddress,
+          totalPrice,
+        };
+        structuredArray.push(structured);
       });
 
-      const arrayOuter: any = [];
-
-      const getOrderProducts = async (order: any) => {
-        const { data: dataProduct } = await baseApi.get(
-          `/user/invoices/${order.code}/products`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-
-        arrayOuter.push({ ...order, products: [...dataProduct.data] });
-      };
-
-      await Promise.all(data.data.map((order: any) => getOrderProducts(order)));
-
-      dispatch({ type: FETCH_ORDER_LIST_SUCCESS, payload: arrayOuter });
+      dispatch({ type: FETCH_ORDER_LIST_SUCCESS, payload: structuredArray });
     } catch (error) {
       if (error instanceof Error) {
-        dispatch({
-          type: FETCH_ORDER_LIST_FAILED,
-          payload: error.message,
-        });
+        dispatch({ type: FETCH_ORDER_LIST_FAILED, payload: error.message });
       }
     }
   };

@@ -101,33 +101,27 @@ type TransactionPhase = {
   name: string;
   unfinishedImage: string;
   finishedImage: string;
+  id: number;
 };
 
 export const TRANSACTION_PHASES: TransactionPhase[] = [
   {
-    name: "Pembayaran",
-    unfinishedImage: "payment-unfinished",
-    finishedImage: "payment-finished",
-  },
-  {
     name: "Pesanan sedang Dikemas",
     unfinishedImage: "packaging-unfinished",
     finishedImage: "packaging-finished",
-  },
-  {
-    name: "Pesanan Siap Dikirim",
-    unfinishedImage: "unready-to-delivery",
-    finishedImage: "ready-to-delivery",
+    id: 1,
   },
   {
     name: "Pesanan dalam Pengiriman",
     unfinishedImage: "delivery-unfinished",
     finishedImage: "delivery-finished",
+    id: 2,
   },
   {
     name: "Pesanan sudah Terkirim",
     unfinishedImage: "arrived-unfinished",
     finishedImage: "arrived-finished",
+    id: 3,
   },
 ];
 
@@ -210,7 +204,7 @@ export const DASHBOARD_FEATURES: DashboardFeature[] = [
   {
     text: "Cari Sebaran Komoditas dengan Peta",
     backgroundColor: "bg-purple-400",
-    pathname: "prediksi/prediksi-harga",
+    pathname: "peta-komoditas",
   },
 ];
 

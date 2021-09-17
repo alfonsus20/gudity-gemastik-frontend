@@ -112,6 +112,7 @@ const AddProduct = () => {
             variant="tertiary"
             placeholder="Masukkan gambar produk"
             type="file"
+            required
             onChange={(e) => setImage(e.target.files![0])}
           />
         </div>

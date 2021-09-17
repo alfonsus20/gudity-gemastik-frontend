@@ -1,4 +1,5 @@
 import { OrderState } from "../reducers/orderReducers";
+import { PaymentState } from "../reducers/paymentReducers";
 
 export const FETCH_ORDER_LIST_LOADING = "FETCH_ORDER_LIST_LOADING";
 export const FETCH_ORDER_LIST_SUCCESS = "FETCH_ORDER_LIST_SUCCESS";
@@ -11,7 +12,7 @@ interface FetchOrderListLoading {
 
 interface FetchOrderListSuccess {
   type: typeof FETCH_ORDER_LIST_SUCCESS;
-  payload: OrderState[];
+  payload: PaymentState[];
 }
 
 interface FetchOrderListFailed {

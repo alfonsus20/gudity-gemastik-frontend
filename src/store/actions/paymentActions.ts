@@ -1,5 +1,4 @@
 import { Dispatch } from "redux";
-import { RootState } from "..";
 import onlyGetReq from "../../api/onlyGetReq";
 import {
   FetchPaymentDetailDispatchTypes,
@@ -11,10 +10,7 @@ import { PaymentState } from "../reducers/paymentReducers";
 
 export const getPaymentDetail =
   (code: string) =>
-  async (
-    dispatch: Dispatch<FetchPaymentDetailDispatchTypes>,
-    getState: () => RootState
-  ) => {
+  async (dispatch: Dispatch<FetchPaymentDetailDispatchTypes>) => {
     try {
       dispatch({ type: FETCH_PAYMENT_DETAIL_LOADING });
 

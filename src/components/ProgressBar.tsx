@@ -1,7 +1,21 @@
 import React from "react";
 import { TRANSACTION_PHASES } from "../utils/constants";
 
-const ProgressBar = () => {
+type ProgressBarState = {
+  status: string;
+};
+
+const ProgressBar = ({ status }: ProgressBarState) => {
+  const convertStatusToNumber = (): number => {
+    if (status === "diterima") {
+      return 3;
+    } else if (status === "diantar") {
+      return 2;
+    } else {
+      return 1;
+    }
+  };
+
   return (
     <div className="shadow rounded-md max-w-screen-xl mx-auto px-8 py-12 m-8">
       <h3 className="text-center text-2xl font-semibold">
@@ -14,13 +28,15 @@ const ProgressBar = () => {
             {TRANSACTION_PHASES.map((phase, i) => (
               <div
                 className={`w-16 md:w-20 h-16 md:h-20 flex items-center justify-center rounded-full border-4 border-blue-progress ${
-                  phase.name === "Pembayaran" ? "bg-blue-progress" : " bg-white"
+                  phase.id <= convertStatusToNumber()
+                    ? "bg-blue-progress"
+                    : " bg-white"
                 }`}
                 key={i}
               >
                 <img
                   src={`/assets/icons/progress/${
-                    phase.name === "Pembayaran"
+                    phase.id <= convertStatusToNumber()
                       ? phase.finishedImage
                       : phase.unfinishedImage
                   }.svg`}

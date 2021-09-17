@@ -4,28 +4,40 @@ import { RootState } from "../../store";
 import { getOrderList } from "../../store/actions/orderActions";
 import OrderCard from "../OrderCard";
 
-const OrderWaitingPayment = () => {
-  const dispatch = useDispatch();
-  const { orderList } = useSelector(
-    (state: RootState) => state.orderList
-  );
+export type OrderWaitingPaymentState = {
+  variant: "dikemas" | "diantar" | "diterima";
+};
 
-  React.useEffect(() => {
-    dispatch(getOrderList());
-  }, [dispatch]);
+const OrderWaitingPayment = ({ variant }: OrderWaitingPaymentState) => {
+  const dispatch = useDispatch();
+  const { orderList } = useSelector((state: RootState) => state.orderList);
+
+  const shownOrders = orderList.filter(
+    (order) => order.paymentStatus === variant
+  );
 
   return (
     <div>
-      {orderList.map((orderItem) => (
-        <OrderCard
-          type="waitingPayment"
-          paymentCode={orderItem.code}
-          orderDate="27 Juli 2021, 2:18"
-          paymentMethod={orderItem.payment_bank}
-          paymentTotal={orderItem.total_payment}
-          products={orderItem.products}
-        />
-      ))}
+      {shownOrders.length > 0 ? (
+        shownOrders.map((orderItem) => (
+          <OrderCard
+            variant={variant}
+            supplierName={orderItem.supplierName}
+            paymentCode={orderItem.code}
+            orderDate="27 Juli 2021, 2:18"
+            paymentMethod={orderItem.bankName}
+            paymentTotal={orderItem.totalPrice}
+            products={orderItem.products}
+          />
+        ))
+      ) : (
+        <div
+          style={{ minHeight: 200 }}
+          className="flex items-center justify-center"
+        >
+          <h2 className="text-center text-xl">Tidak ada data</h2>
+        </div>
+      )}
     </div>
   );
 };
