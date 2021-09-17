@@ -2,6 +2,7 @@ import {
   FetchPaymentDetailDispatchTypes,
   FETCH_PAYMENT_DETAIL_FAILED,
   FETCH_PAYMENT_DETAIL_LOADING,
+  FETCH_PAYMENT_DETAIL_RESET,
   FETCH_PAYMENT_DETAIL_SUCCESS,
 } from "../constants/paymentConstants";
 
@@ -47,6 +48,8 @@ export const paymentReducer = (
       return { ...state, loading: false, payment: action.payload };
     case FETCH_PAYMENT_DETAIL_FAILED:
       return { ...state, loading: false, error: action.payload };
+    case FETCH_PAYMENT_DETAIL_RESET:
+      return { error: "", loading: false, payment: {} as PaymentState };
     default:
       return state;
   }

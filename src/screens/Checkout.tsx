@@ -93,7 +93,7 @@ const Checkout = () => {
                   <div className="col-span-3">
                     <div className="flex flex-row items-center">
                       <img
-                        src="/assets/pictures/kopi.jpg"
+                        src={product.thumbnail}
                         className="w-24 h-16 sm:w-32 sm:h-24 md:w-40 md:h-32 rounded-md object-cover mr-4"
                         alt=""
                       />

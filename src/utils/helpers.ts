@@ -11,3 +11,29 @@ export const countRatingAverage = (reviews: any) => {
 
   return rounded;
 };
+
+export const longFormatDate = (date: string) => {
+  let d = new Date(date),
+    month = d.getMonth(),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+  if (day.length < 2) day = "0" + day;
+
+  const months = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
+
+  return [day, months[month], year].join(" ");
+};

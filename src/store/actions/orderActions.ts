@@ -76,7 +76,7 @@ export const getOrderDetail =
       dispatch({ type: FETCH_ORDER_DETAIL_LOADING });
 
       const { data } = await onlyGetReq.get(
-        `/invoices?select=id,invoice_products(id,quantity,products(name,suppliers(*),price),invoice_product_reviews(review,rating:star))&user_id=eq.${userId}&id=eq.${orderId}`
+        `/invoices?select=id,invoice_products(id,quantity,products(name,suppliers(*),price,thumbnail),invoice_product_reviews(review,rating:star))&user_id=eq.${userId}&id=eq.${orderId}`
       );
 
       let reviewData: any = data.data[0];

@@ -1,7 +1,12 @@
 import React from "react";
+import {
+  MapContainer,
+  Popup,
+  TileLayer,
+  CircleMarker,
+} from "react-leaflet";
 import Button from "../../components/Button";
 import DashboardBanner from "../../components/DashboardBanner";
-import Map from "../../components/Map";
 import TextField from "../../components/TextField";
 
 const CommodityMap = () => {
@@ -40,12 +45,28 @@ const CommodityMap = () => {
         <Button variant="primary" type="submit" text="Cari" className="w-40 " />
       </form>
 
-      <Map
-        locations={locations}
-        defaultCenter={{ lat: -7.264794797261607, lng: 112.7376809162472 }}
-        containerElement={<div style={{ height: `400px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
+      <div className="h-full">
+        <MapContainer
+          center={[-7.264794797261607, 112.7376809162472]}
+          zoom={12}
+          scrollWheelZoom={false}
+          className="h-full"
+        >
+          <TileLayer
+            accessToken="pk.eyJ1IjoiYWxmb25zdXMtMjAiLCJhIjoiY2t0b2ZubW9iMGNiMjMwbGdkNjdpdjg5dCJ9.HQ_Omlv_5yqCrX4NOYwMaQ"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {locations.length > 0 &&
+            locations.map((location) => (
+              <CircleMarker center={[location.lat, location.lng]} radius={40}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </CircleMarker>
+            ))}
+        </MapContainer>
+      </div>
     </div>
   );
 };

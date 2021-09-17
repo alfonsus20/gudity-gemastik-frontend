@@ -8,6 +8,7 @@ import { RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { getPaymentDetail } from "../../store/actions/paymentActions";
 import { ToastContainer } from "react-toastify";
+import { FETCH_PAYMENT_DETAIL_RESET } from "../../store/constants/paymentConstants";
 
 const OrderDetail = () => {
   const { paymentCode } = useParams<{ paymentCode: string }>();
@@ -17,11 +18,15 @@ const OrderDetail = () => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
-  const history = useHistory();
-
   React.useEffect(() => {
     dispatch(getPaymentDetail(paymentCode));
   }, [dispatch, paymentCode]);
+
+  React.useEffect(() => {
+    return () => {
+      dispatch({ type: FETCH_PAYMENT_DETAIL_RESET });
+    };
+  }, []);
 
   return (
     <div className="mt-20">
@@ -92,7 +97,11 @@ const OrderDetail = () => {
                   </div>
                   <div className="flex flex-row items-center space-x-2 sm:space-x-6">
                     {payment.paymentStatus === "diterima" && (
-                      <Button text="Beri Penilaian" variant="secondary" pathName={`orders/${payment.id}/review`} />
+                      <Button
+                        text="Beri Penilaian"
+                        variant="secondary"
+                        pathName={`orders/${payment.id}/review`}
+                      />
                     )}
                     <Button
                       text="Beli Lagi"

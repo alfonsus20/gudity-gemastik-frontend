@@ -10,6 +10,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getPaymentDetail } from "../store/actions/paymentActions";
 import { toast, ToastContainer } from "react-toastify";
 import { updateOrderStatus } from "../store/actions/orderActions";
+import { FETCH_PAYMENT_DETAIL_RESET } from "../store/constants/paymentConstants";
 
 const Payment = () => {
   const { paymentCode } = useParams<{ paymentCode: string }>();
@@ -29,6 +30,12 @@ const Payment = () => {
       history.goBack();
     }
   }, [payment]);
+
+  React.useEffect(() => {
+    return () => {
+      dispatch({ type: FETCH_PAYMENT_DETAIL_RESET });
+    };
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(payment.code);

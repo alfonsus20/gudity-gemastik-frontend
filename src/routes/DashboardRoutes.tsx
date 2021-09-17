@@ -77,7 +77,7 @@ const DashboardRoutes = () => {
           ))}
         </div>
       </motion.div>
-      <div className="flex-auto bg-white py-8 px-12 min-h-screen flex flex-col md:rounded-l-jumbo">
+      <div className="flex-auto bg-white py-8 px-6 md:px-12 min-h-screen flex flex-col md:rounded-l-jumbo">
         <NavbarDashboard showSidebar={showSidebar} />
         <Switch>
           <Route path="/dashboard" exact component={Home} />
