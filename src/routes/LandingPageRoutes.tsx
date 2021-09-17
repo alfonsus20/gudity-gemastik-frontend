@@ -18,6 +18,7 @@ import Umkm from "../screens/Umkm";
 import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "../components/NotFound";
+import Review from "../screens/Review";
 
 const LandingPageRoutes = () => {
   return (
@@ -46,6 +47,11 @@ const LandingPageRoutes = () => {
           <PrivateRoute
             path="/orders/:paymentCode"
             component={OrderDetail}
+            exact
+          />
+          <PrivateRoute
+            path="/orders/:orderId/review"
+            component={Review}
             exact
           />
           <AuthRoute path="/login" component={Login} exact />

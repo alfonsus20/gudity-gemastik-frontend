@@ -92,7 +92,7 @@ const OrderDetail = () => {
                   </div>
                   <div className="flex flex-row items-center space-x-2 sm:space-x-6">
                     {payment.paymentStatus === "diterima" && (
-                      <Button text="Beli Penilaian" variant="secondary" />
+                      <Button text="Beri Penilaian" variant="secondary" pathName={`orders/${payment.id}/review`} />
                     )}
                     <Button
                       text="Beli Lagi"

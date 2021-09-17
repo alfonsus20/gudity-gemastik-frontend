@@ -1,18 +1,23 @@
 import { LocationChangeAction, LOCATION_CHANGE } from "connected-react-router";
+import { ReviewProductState } from "../../components/card/ReviewCard";
 import {
   FetchOrderDetailDispatchTypes,
   FetchOrderListDispatchTypes,
+  FetchOrderReviewDispatchTypes,
   FETCH_ORDER_DETAIL_FAILED,
   FETCH_ORDER_DETAIL_LOADING,
   FETCH_ORDER_DETAIL_SUCCESS,
   FETCH_ORDER_LIST_FAILED,
   FETCH_ORDER_LIST_LOADING,
   FETCH_ORDER_LIST_SUCCESS,
+  FETCH_ORDER_REVIEW_FAILED,
+  FETCH_ORDER_REVIEW_LOADING,
+  FETCH_ORDER_REVIEW_SUCCESS,
   UpdateOrderStatusDispatchTypes,
   UPDATE_ORDER_STATUS_FAILED,
   UPDATE_ORDER_STATUS_LOADING,
 } from "../constants/orderConstants";
-import { PaymentState } from "./paymentReducers";
+import { PaymentProductState, PaymentState } from "./paymentReducers";
 
 export type PurchasedProductState = {
   product_id: number;
@@ -32,19 +37,13 @@ type OrderListState = {
 
 export type OrderState = {
   id: number;
-  total_payment: number;
-  code: string;
-  payment_bank: string;
-  expedition: string;
-  created_at: string;
-  updated_at: string;
-  products: PurchasedProductState[];
+  supplierName: string;
+  products: ReviewProductState[];
 };
 
 export type OrderDetailState = {
+  loading: boolean;
   error?: string;
-  success?: boolean;
-  loading: false;
   order: OrderState;
 };
 
@@ -93,33 +92,41 @@ export const orderListReducer = (
 export const orderDetailReducer = (
   state: OrderDetailState = {
     loading: false,
-    // @ts-ignore
-    order: { products: [] },
+    order: {} as OrderState,
   },
-  action: FetchOrderDetailDispatchTypes | LocationChangeAction
+  action:
+    | FetchOrderDetailDispatchTypes
+    | LocationChangeAction
+    | FetchOrderReviewDispatchTypes
 ): OrderDetailState => {
   switch (action.type) {
     case FETCH_ORDER_DETAIL_LOADING:
+    case FETCH_ORDER_REVIEW_LOADING:
       return {
         ...state,
+        loading: true,
       };
     case FETCH_ORDER_DETAIL_SUCCESS:
       return {
         ...state,
-        success: true,
+        loading: false,
         order: action.payload,
       };
-    case FETCH_ORDER_DETAIL_FAILED:
+    case FETCH_ORDER_REVIEW_SUCCESS:
       return {
         ...state,
-        success: false,
+        loading: false,
+      };
+    case FETCH_ORDER_DETAIL_FAILED:
+    case FETCH_ORDER_REVIEW_FAILED:
+      return {
+        ...state,
         error: action.payload,
       };
     case LOCATION_CHANGE:
       return {
         loading: false,
-        // @ts-ignore
-        order: { products: [] } as OrderState,
+        order: {} as OrderState,
       };
     default:
       return state;

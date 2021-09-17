@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { Dispatch } from "redux";
 import { RootState } from "..";
 import baseApi from "../../api/baseApi";
@@ -11,11 +12,16 @@ import {
   FETCH_ORDER_LIST_FAILED,
   FETCH_ORDER_LIST_LOADING,
   FETCH_ORDER_LIST_SUCCESS,
+  PostReviewDispatchTypes,
+  POST_REVIEW_FAILED,
+  POST_REVIEW_LOADING,
+  POST_REVIEW_SUCCESS,
   UpdateOrderStatusDispatchTypes,
   UPDATE_ORDER_STATUS_FAILED,
   UPDATE_ORDER_STATUS_LOADING,
   UPDATE_ORDER_STATUS_SUCCESS,
 } from "../constants/orderConstants";
+import { OrderState } from "../reducers/orderReducers";
 import { PaymentState } from "../reducers/paymentReducers";
 
 export const getOrderList =
@@ -64,37 +70,40 @@ export const getOrderList =
   };
 
 export const getOrderDetail =
-  (paymentCode: string) =>
+  (orderId: string, userId: number) =>
   async (dispatch: Dispatch<FetchOrderDetailDispatchTypes>) => {
     try {
       dispatch({ type: FETCH_ORDER_DETAIL_LOADING });
 
       const { data } = await onlyGetReq.get(
-        `/user/invoices/${paymentCode}/detail`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        `/invoices?select=id,invoice_products(id,quantity,products(name,suppliers(*),price),invoice_product_reviews(review,rating:star))&user_id=eq.${userId}&id=eq.${orderId}`
+      );
+
+      let reviewData: any = data.data[0];
+      let supplierName = "";
+
+      let productStructured = reviewData.invoice_products.map(
+        (product: any) => {
+          supplierName = product.products.suppliers.name;
+          return {
+            ...product.products,
+            id: product.id,
+            quantity: product.quantity,
+            review: product.invoice_product_reviews[0],
+          };
         }
       );
 
-      const { data: dataProduct } = await baseApi.get(
-        `/user/invoices/${paymentCode}/products`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      let structured: OrderState = {
+        id: reviewData.id,
+        supplierName,
+        products: productStructured,
+      };
 
-      dispatch({
-        type: FETCH_ORDER_DETAIL_SUCCESS,
-        payload: { ...data.data, products: dataProduct.data },
-      });
+      dispatch({ type: FETCH_ORDER_DETAIL_SUCCESS, payload: structured });
     } catch (error) {
       if (error instanceof Error) {
-        dispatch({
-          type: FETCH_ORDER_DETAIL_FAILED,
-          payload: error.message,
-        });
+        dispatch({ type: FETCH_ORDER_DETAIL_FAILED, payload: error.message });
       }
     }
   };
@@ -122,6 +131,36 @@ export const updateOrderStatus =
     } catch (error) {
       if (error instanceof Error) {
         dispatch({ type: UPDATE_ORDER_STATUS_FAILED, payload: error.message });
+      }
+    }
+  };
+
+export const postReview =
+  (body: any) =>
+  async (
+    dispatch: Dispatch<PostReviewDispatchTypes>,
+    getState: () => RootState
+  ) => {
+    try {
+      dispatch({ type: POST_REVIEW_LOADING });
+
+      await baseApi.post("/u/invoice/product_review", body, {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+
+      dispatch({ type: POST_REVIEW_SUCCESS });
+      toast.success("Review Berhasil Dikirim");
+
+      const {
+        auth: { userInfo },
+        orderDetail: { order },
+      } = getState();
+
+      // @ts-ignore
+      dispatch(getOrderDetail(order.id, userInfo.id));
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch({ type: POST_REVIEW_FAILED, payload: error.message });
       }
     }
   };

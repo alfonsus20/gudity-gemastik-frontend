@@ -1,7 +1,7 @@
 import React from "react";
 import Rating from "./product/Rating";
 
-type ReviewProps = {
+export type ReviewProps = {
   reviewerName: string;
   review: string;
   rating: number;

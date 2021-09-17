@@ -86,3 +86,59 @@ export type UpdateOrderStatusDispatchTypes =
   | UpdateOrderStatusSuccess
   | UpdateOrderStatusFailed
   | UpdateOrderStatusReset;
+
+export const FETCH_ORDER_REVIEW_LOADING = "FETCH_ORDER_REVIEW_LOADING";
+export const FETCH_ORDER_REVIEW_SUCCESS = "FETCH_ORDER_REVIEW_SUCCESS";
+export const FETCH_ORDER_REVIEW_FAILED = "FETCH_ORDER_REVIEW_FAILED";
+export const FETCH_ORDER_REVIEW_RESET = "FETCH_ORDER_REVIEW_RESET";
+
+interface FetchOrderReviewLoading {
+  type: typeof FETCH_ORDER_REVIEW_LOADING;
+}
+
+interface FetchOrderReviewSuccess {
+  type: typeof FETCH_ORDER_REVIEW_SUCCESS;
+}
+
+interface FetchOrderReviewFailed {
+  type: typeof FETCH_ORDER_REVIEW_FAILED;
+  payload: string;
+}
+
+interface FetchOrderReviewReset {
+  type: typeof FETCH_ORDER_REVIEW_RESET;
+}
+
+export type FetchOrderReviewDispatchTypes =
+  | FetchOrderReviewLoading
+  | FetchOrderReviewSuccess
+  | FetchOrderReviewFailed
+  | FetchOrderReviewReset;
+
+export const POST_REVIEW_LOADING = "POST_REVIEW_LOADING";
+export const POST_REVIEW_SUCCESS = "POST_REVIEW_SUCCESS";
+export const POST_REVIEW_FAILED = "POST_REVIEW_FAILED";
+export const POST_REVIEW_RESET = "POST_REVIEW_RESET";
+
+interface PostReviewLoading {
+  type: typeof POST_REVIEW_LOADING;
+}
+
+interface PostReviewSuccess {
+  type: typeof POST_REVIEW_SUCCESS;
+}
+
+interface PostReviewFailed {
+  type: typeof POST_REVIEW_FAILED;
+  payload: string;
+}
+
+interface PostReviewReset {
+  type: typeof POST_REVIEW_RESET;
+}
+
+export type PostReviewDispatchTypes =
+  | PostReviewLoading
+  | PostReviewSuccess
+  | PostReviewFailed
+  | PostReviewReset;
