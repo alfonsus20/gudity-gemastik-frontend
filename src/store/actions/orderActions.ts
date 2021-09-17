@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import { RootState } from "..";
 import baseApi from "../../api/baseApi";
 import onlyGetReq from "../../api/onlyGetReq";
 import {
@@ -10,6 +11,10 @@ import {
   FETCH_ORDER_LIST_FAILED,
   FETCH_ORDER_LIST_LOADING,
   FETCH_ORDER_LIST_SUCCESS,
+  UpdateOrderStatusDispatchTypes,
+  UPDATE_ORDER_STATUS_FAILED,
+  UPDATE_ORDER_STATUS_LOADING,
+  UPDATE_ORDER_STATUS_SUCCESS,
 } from "../constants/orderConstants";
 import { PaymentState } from "../reducers/paymentReducers";
 
@@ -90,6 +95,33 @@ export const getOrderDetail =
           type: FETCH_ORDER_DETAIL_FAILED,
           payload: error.message,
         });
+      }
+    }
+  };
+
+export const updateOrderStatus =
+  (paymentCode: string, status: "shipped" | "accepted") =>
+  async (
+    dispatch: Dispatch<UpdateOrderStatusDispatchTypes>,
+    getState: () => RootState
+  ) => {
+    try {
+      dispatch({ type: UPDATE_ORDER_STATUS_LOADING });
+
+      await baseApi.patch(
+        `/u/invoice/${paymentCode}/${status}`,
+        {},
+        { headers: { Authorization: localStorage.getItem("token") } }
+      );
+
+      dispatch({ type: UPDATE_ORDER_STATUS_SUCCESS });
+
+      const { userInfo } = getState().auth;
+      // @ts-ignore
+      dispatch(getOrderList(userInfo.id));
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch({ type: UPDATE_ORDER_STATUS_FAILED, payload: error.message });
       }
     }
   };

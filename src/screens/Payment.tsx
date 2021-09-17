@@ -6,9 +6,10 @@ import Button from "../components/Button";
 import Tab from "../components/Tab";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getPaymentDetail } from "../store/actions/paymentActions";
 import { toast, ToastContainer } from "react-toastify";
+import { updateOrderStatus } from "../store/actions/orderActions";
 
 const Payment = () => {
   const { paymentCode } = useParams<{ paymentCode: string }>();
@@ -17,14 +18,27 @@ const Payment = () => {
   );
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   React.useEffect(() => {
     dispatch(getPaymentDetail(paymentCode));
   }, [dispatch, paymentCode]);
 
+  React.useEffect(() => {
+    if (payment.paymentStatus && payment.paymentStatus !== "dikemas") {
+      history.goBack();
+    }
+  }, [payment]);
+
   const handleCopy = () => {
     navigator.clipboard.writeText(payment.code);
     toast.success("Nomor Virtual Akun Berhasil Disalin");
+  };
+
+  const handlePayment = () => {
+    dispatch(updateOrderStatus(payment.code, "shipped"));
+    toast.success("Pembayaran Berhasil Dilakukan");
+    history.replace("/orders");
   };
 
   return (
@@ -140,8 +154,8 @@ const Payment = () => {
             </div>
             <div>
               {payment.products &&
-                payment.products.map((product) => (
-                  <div className="text-md flex flex-row mb-4">
+                payment.products.map((product, index) => (
+                  <div className="text-md flex flex-row mb-4" key={index}>
                     <div>
                       <img
                         src={product.thumbnail}
@@ -183,7 +197,7 @@ const Payment = () => {
           <Sidebar
             title="Rincian Pembayaran"
             buttonText="Lanjut"
-            buttonAction={() => console.log("object")}
+            buttonAction={handlePayment}
             total={payment.totalPrice}
             items={[
               { left: "Subtotal", right: payment.totalPrice },

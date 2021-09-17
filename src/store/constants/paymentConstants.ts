@@ -1,4 +1,4 @@
-import {  PaymentState } from "../reducers/paymentReducers";
+import { PaymentState } from "../reducers/paymentReducers";
 
 export const FETCH_PAYMENT_DETAIL_LOADING = "FETCH_PAYMENT_DETAIL_LOADING";
 export const FETCH_PAYMENT_DETAIL_SUCCESS = "FETCH_PAYMENT_DETAIL_SUCCESS";

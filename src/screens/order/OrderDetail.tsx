@@ -7,6 +7,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { getPaymentDetail } from "../../store/actions/paymentActions";
+import { ToastContainer } from "react-toastify";
 
 const OrderDetail = () => {
   const { paymentCode } = useParams<{ paymentCode: string }>();
@@ -75,7 +76,7 @@ const OrderDetail = () => {
                   <img
                     src={product.thumbnail}
                     className="w-32 h-24 rounded-md object-cover"
-                    alt=""
+                    alt="product"
                   />
                 </div>
                 <div className="flex flex-col sm:flex-row justify-between flex-auto ">
@@ -90,7 +91,9 @@ const OrderDetail = () => {
                     </p>
                   </div>
                   <div className="flex flex-row items-center space-x-2 sm:space-x-6">
-                    <Button text="Beli Penilaian" variant="secondary" />
+                    {payment.paymentStatus === "diterima" && (
+                      <Button text="Beli Penilaian" variant="secondary" />
+                    )}
                     <Button
                       text="Beli Lagi"
                       variant="primary"
@@ -102,6 +105,7 @@ const OrderDetail = () => {
             ))}
         </div>
       </div>
+      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };

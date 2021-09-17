@@ -112,7 +112,6 @@ export const fetchUserInfo =
     try {
       dispatch({ type: USER_INFO_LOADING });
 
-      console.log(localStorage.getItem("token")!.replace("Bearer ", ""));
       const { data } = await baseApi.get(
         "/u/profile?select=id,name,address,birthday,email,phone,identity_number,thumbnail",
         {

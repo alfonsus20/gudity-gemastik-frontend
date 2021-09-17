@@ -9,8 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { checkoutItems, getBankList } from "../store/actions/checkoutActions";
 import { useHistory } from "react-router-dom";
-import { CHECKOUT_ITEMS_RESET } from "../store/constants/checkoutConstants";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const Checkout = () => {
   // const [addressModalShown, showAddressModal] = React.useState<boolean>(false);
@@ -219,6 +218,7 @@ const Checkout = () => {
           />
         </Wrapper.Right>
       </Wrapper>
+      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };

@@ -58,3 +58,31 @@ export type FetchOrderDetailDispatchTypes =
   | FetchOrderDetailSuccess
   | FetchOrderDetailFailed
   | FetchOrderDetailReset;
+
+export const UPDATE_ORDER_STATUS_LOADING = "UPDATE_ORDER_STATUS_LOADING";
+export const UPDATE_ORDER_STATUS_SUCCESS = "UPDATE_ORDER_STATUS_SUCCESS";
+export const UPDATE_ORDER_STATUS_FAILED = "UPDATE_ORDER_STATUS_FAILED";
+export const UPDATE_ORDER_STATUS_RESET = "UPDATE_ORDER_STATUS_RESET";
+
+interface UpdateOrderStatusLoading {
+  type: typeof UPDATE_ORDER_STATUS_LOADING;
+}
+
+interface UpdateOrderStatusSuccess {
+  type: typeof UPDATE_ORDER_STATUS_SUCCESS;
+}
+
+interface UpdateOrderStatusFailed {
+  type: typeof UPDATE_ORDER_STATUS_FAILED;
+  payload: string;
+}
+
+interface UpdateOrderStatusReset {
+  type: typeof UPDATE_ORDER_STATUS_RESET;
+}
+
+export type UpdateOrderStatusDispatchTypes =
+  | UpdateOrderStatusLoading
+  | UpdateOrderStatusSuccess
+  | UpdateOrderStatusFailed
+  | UpdateOrderStatusReset;

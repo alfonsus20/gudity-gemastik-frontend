@@ -1,10 +1,10 @@
 import { ChatAltIcon, ShoppingBagIcon } from "@heroicons/react/outline";
 import { useDispatch } from "react-redux";
-import { updateOrderStatus } from "../store/actions/orderActions";
-import { PaymentProductState } from "../store/reducers/paymentReducers";
-import Button from "./Button";
-import OrderBadge from "./order/OrderBadge";
-import { OrderWaitingPaymentState } from "./order/OrderWaitingPayment";
+import { updateOrderStatus } from "../../store/actions/orderActions";
+import { PaymentProductState } from "../../store/reducers/paymentReducers";
+import Button from "../Button";
+import OrderBadge from "../order/OrderBadge";
+import { OrderWaitingPaymentState } from "../order/OrderWaitingPayment";
 
 type TransactionInfo = {
   paymentCode: string;

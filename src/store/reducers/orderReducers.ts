@@ -8,6 +8,9 @@ import {
   FETCH_ORDER_LIST_FAILED,
   FETCH_ORDER_LIST_LOADING,
   FETCH_ORDER_LIST_SUCCESS,
+  UpdateOrderStatusDispatchTypes,
+  UPDATE_ORDER_STATUS_FAILED,
+  UPDATE_ORDER_STATUS_LOADING,
 } from "../constants/orderConstants";
 import { PaymentState } from "./paymentReducers";
 
@@ -50,10 +53,14 @@ export const orderListReducer = (
     loading: false,
     orderList: [],
   },
-  action: FetchOrderListDispatchTypes | LocationChangeAction
+  action:
+    | FetchOrderListDispatchTypes
+    | LocationChangeAction
+    | UpdateOrderStatusDispatchTypes
 ): OrderListState => {
   switch (action.type) {
     case FETCH_ORDER_LIST_LOADING:
+    case UPDATE_ORDER_STATUS_LOADING:
       return {
         ...state,
         loading: true,
@@ -66,6 +73,7 @@ export const orderListReducer = (
         orderList: action.payload,
       };
     case FETCH_ORDER_LIST_FAILED:
+    case UPDATE_ORDER_STATUS_FAILED:
       return {
         ...state,
         success: false,
