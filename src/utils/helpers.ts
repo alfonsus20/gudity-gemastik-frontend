@@ -6,5 +6,8 @@ export const countRatingAverage = (reviews: any) => {
     (acc: number, review: any) => acc + review.star,
     0
   );
-  return total / reviews.length;
+
+  let rounded = Math.round((total / reviews.length) * 100) / 100;
+
+  return rounded;
 };

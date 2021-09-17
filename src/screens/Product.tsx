@@ -247,7 +247,7 @@ const Product = () => {
           ) : (
             product.reviews.map((review) => (
               <Review
-                reviewerName="Bocah Mozaik"
+                reviewerName={review.userName!}
                 review={review.review}
                 rating={review.star}
               />

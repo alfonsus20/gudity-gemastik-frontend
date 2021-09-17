@@ -55,18 +55,29 @@ export const getProductDetail =
       dispatch({ type: FETCH_PRODUCT_DETAIL_LOADING });
 
       const { data } = await onlyGetReq.get(
-        `/products?id=eq.${productId}&select=id,name,price,quality,description,thumbnail,invoice_products(invoice_product_reviews(id,star,review))`
+        `/products?id=eq.${productId}&select=id,name,price,quality,description,thumbnail,invoice_products(invoice_product_reviews(id,star,review),invoices(id,users(name)))`
       );
 
       if (data.data.length > 0) {
         let product = data.data[0];
 
+        let reviews = product.invoice_products;
+
+        let reviewsStructured: any = [];
+
+        reviews.forEach((review: any) => {
+          if (review.invoice_product_reviews.length > 0) {
+            let reviewStructured = {
+              userName: review.invoices.users.name,
+              review: review.invoice_product_reviews[0].review,
+              star: review.invoice_product_reviews[0].star,
+            };
+            reviewsStructured.push(reviewStructured);
+          }
+        });
         let productStructured = {
           ...product,
-          reviews:
-            product.invoice_products.length > 0
-              ? product.invoice_products[0].invoice_product_reviews
-              : [],
+          reviews: reviewsStructured,
         };
 
         delete productStructured.product_types;

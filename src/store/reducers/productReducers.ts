@@ -16,6 +16,7 @@ export interface ProductReview {
   id: number;
   review: string;
   star: number;
+  userName?: string;
 }
 
 export interface ProductImage {
