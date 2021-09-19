@@ -36,6 +36,7 @@ export const addToCart =
       );
 
       dispatch({ type: ADD_TO_CART_SUCCESS, payload: data.data });
+      toast.success("Produk Ditambahkan ke Keranjang")
     } catch (error) {
       // @ts-ignore
       console.log(error.response.data.message);

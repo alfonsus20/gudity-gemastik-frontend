@@ -23,7 +23,14 @@ const CartItem = ({
   const { cart_id, name, price, quantity, thumbnail, id } = product;
 
   const handleRemoveCartItem = () => {
-    handleUncheckCartItem();
+    choosenValues?.includes(cart_id) &&
+      setChoosenValues((prev) => prev.filter((x) => x !== cart_id));
+
+    choosenValues?.includes(cart_id) &&
+      dispatch({
+        type: REMOVE_CHECKOUT_ITEM,
+        payload: product,
+      });
     dispatch(removeItemFromCart(cart_id, id));
   };
 

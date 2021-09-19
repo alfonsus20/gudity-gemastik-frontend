@@ -20,6 +20,7 @@ import { getSupplierDetail } from "../store/actions/supplierActions";
 import { addToCart } from "../store/actions/cartActions";
 import { countRatingAverage } from "../utils/helpers";
 import { ADD_TO_CART_RESET } from "../store/constants/cartConstants";
+import { ToastContainer } from "react-toastify";
 
 const Product = () => {
   const [quantity, setQuantity] = React.useState<number>(1);
@@ -33,16 +34,12 @@ const Product = () => {
     (state: RootState) => state.productDetail
   );
   const { supplier } = useSelector((state: RootState) => state.supplierDetail);
-  const { successAddToCart } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(getProductDetail(supplierId, productId));
     dispatch(getSupplierDetail(supplierId));
-    if (successAddToCart) {
-      history.push("/keranjang");
-    }
-  }, [dispatch, supplierId, productId, successAddToCart, history]);
+  }, [dispatch, supplierId, productId, history]);
 
   React.useEffect(() => {
     return () => {
@@ -63,6 +60,12 @@ const Product = () => {
       rating: index + 1,
       reviewersNumber: voterNumber,
     }));
+  };
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isNaN(parseFloat(e.target.value))) {
+      setQuantity(Number(e.target.value));
+    }
   };
 
   return (
@@ -146,10 +149,11 @@ const Product = () => {
                   />
                   <TextField
                     value={quantity}
-                    type="text"
+                    type="number"
                     rounded
                     textCenter
                     variant="tertiary"
+                    onChange={handleQuantityChange}
                   />
                   <Button
                     className="px-4"
@@ -255,17 +259,7 @@ const Product = () => {
           )}
         </div>
       </div>
-      <div className="max-w-screen-xl mx-auto py-8 my-12 px-8 w-full overflow-x-auto flex flex-row gap-4">
-        {/* {[...Array(10)].map((_, i) => (
-          <ProductCard
-            key={i}
-            name="Biji Kopi Arabika"
-            description="Vintage Typewriter to post awesome stories about UI design and webdev."
-            price={3.725}
-            image="biji-kopi.jpg"
-          />
-        ))} */}
-      </div>
+      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };
