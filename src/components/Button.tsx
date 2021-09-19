@@ -24,12 +24,15 @@ const Button = ({
   size,
   pathName,
   className,
+  disabled,
   ...rest
 }: ButtonProps) => {
   const getButtonConfiguration = (): string => {
     switch (variant) {
       case "primary":
-        return "text-white bg-blue-primary border-blue-primary hover:bg-opacity-90";
+        return `text-white bg-blue-primary border-blue-primary ${
+          disabled ? "" : "hover:bg-opacity-90"
+        }`;
       case "secondary":
         return "text-blue-primary bg-transparent border-blue-primary hover:bg-blue-primary hover:text-white";
       case "tertiary":
@@ -39,7 +42,9 @@ const Button = ({
       case "plain-blue":
         return "text-blue-primary bg-transparent font-medium";
       case "danger":
-        return "text-white bg-red-500 border-red-500 hover:bg-opacity-90";
+        return `text-white bg-red-500 border-red-500 ${
+          disabled ? "" : "hover:bg-opacity-90"
+        }`;
       default:
         return "";
     }
@@ -62,7 +67,7 @@ const Button = ({
 
   if (pathName) {
     return (
-      <div className='flex'>
+      <div className="flex">
         <Link
           to={`/${pathName}`}
           className={`flex flex-row justify-center items-center transition ${
@@ -78,9 +83,14 @@ const Button = ({
 
   return (
     <button
+      disabled={disabled}
       className={`flex flex-row justify-center items-center transition ${
         variant.includes("plain") ? "py-0" : "py-2 border-2"
-      } ${getButtonConfiguration()} ${getButtonSize()} ${className}`}
+      } ${getButtonConfiguration()} ${getButtonSize()} ${className} ${
+        disabled
+          ? "bg-opacity-50 cursor-not-allowed border-none hover:bg-opacity-50"
+          : ""
+      }`}
       {...rest}
     >
       {icon && <span className="mr-2">{icon}</span>}

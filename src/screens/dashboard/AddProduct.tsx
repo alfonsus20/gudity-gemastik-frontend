@@ -113,6 +113,7 @@ const AddProduct = () => {
             placeholder="Masukkan gambar produk"
             type="file"
             required
+            accept="image/*"
             onChange={(e) => setImage(e.target.files![0])}
           />
         </div>

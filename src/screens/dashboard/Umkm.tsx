@@ -173,6 +173,7 @@ const Umkm = () => {
                 variant="tertiary"
                 placeholder="Masukkan gambar produk"
                 type="file"
+                required
                 accept="image/*"
                 onChange={(e) => setStoreImage(e.target.files![0])}
               />

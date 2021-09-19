@@ -32,7 +32,7 @@ const Supplier = () => {
             <div className="font-semibold">
               <h1 className="text-5xl my-1 leading-snug">
                 Cari dan Temukan <br />
-                Komoditas Terbaik Kami
+                Pemasok Terbaik Kami
               </h1>
             </div>
           </div>
@@ -42,7 +42,7 @@ const Supplier = () => {
         <div className="max-w-screen-xl mx-auto px-8">
           <div className="mb-8">
             <h2 className="text-center text-4xl font-semibold mb-4">
-              Kumpulan Supplier
+              Kumpulan Pemasok
             </h2>
             <Underline backgroundColor="#110828" center />
           </div>

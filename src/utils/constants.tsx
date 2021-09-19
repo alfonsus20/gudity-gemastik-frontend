@@ -38,7 +38,7 @@ export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
     path: "umkm",
   },
   {
-    title: "SARAN SUPPLIER",
+    title: "SARAN PEMASOK",
     image: "komoditas",
     colspan: 2,
     path: "suppliers",

@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import QuickAccess from "./quick-access/QuickAccess";
 import { ROUTES_WITHOUT_NAVBAR } from "../utils/constants";
 import LogoutModal from "./modal/LogoutModal";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import {
-  BookmarkIcon,
   ShoppingBagIcon,
   PresentationChartLineIcon,
   LogoutIcon,
@@ -130,11 +129,11 @@ const Navbar = () => {
               </dd>
               <dd>
                 <Link
-                  to="/bookmark"
+                  to="/keranjang"
                   className="flex flex-row py-2 items-center"
                   onClick={() => showDropdown(false)}
                 >
-                  <BookmarkIcon className="w-5 h-5 mr-2" /> Tersimpan
+                  <ShoppingCartIcon className="w-5 h-5 mr-2" /> Keranjang
                 </Link>
               </dd>
               <dd>

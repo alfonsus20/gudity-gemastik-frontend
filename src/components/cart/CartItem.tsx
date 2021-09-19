@@ -43,7 +43,7 @@ const CartItem = ({
   };
 
   return (
-    <label htmlFor={cart_id.toString()} className="flex flex-row mb-6">
+    <div className="flex flex-row mb-6">
       <div className="mr-3 md:mr-6 flex-shrink-0 flex items-start">
         <div className="flex flex-row items-center">
           <div className="mr-4 flex items-center flex-initial">
@@ -82,7 +82,7 @@ const CartItem = ({
           </div>
         </div>
       </div>
-    </label>
+    </div>
   );
 };
 

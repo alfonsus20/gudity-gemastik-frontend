@@ -19,7 +19,8 @@ const SuccessRatePrediction = () => {
       tag: "input",
       type: "text",
       name: "businessType",
-      "cf-questions": "Menu gold medal:\n• makan nasi goreng\n• makan red velvet",
+      "cf-questions":
+        "Menu gold medal:\n• makan nasi goreng\n• makan red velvet",
     },
     {
       tag: "fieldset",
