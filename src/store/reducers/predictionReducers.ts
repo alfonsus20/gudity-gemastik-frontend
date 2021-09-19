@@ -1,5 +1,10 @@
 import { LocationChangeAction, LOCATION_CHANGE } from "connected-react-router";
 import {
+  ChatbotPredictionDispatchTypes,
+  CHATBOT_PREDICTION_FAILED,
+  CHATBOT_PREDICTION_LOADING,
+  CHATBOT_PREDICTION_RESET,
+  CHATBOT_PREDICTION_SUCCESS,
   FutureAnalysisDispatchTypes,
   FUTURE_ANALYSIS_FAILED,
   FUTURE_ANALYSIS_LOADING,
@@ -14,6 +19,12 @@ type FutureAnalysisStates = {
   success?: boolean;
   error?: string;
   predictions: PredictionState[];
+};
+
+type ChatbotAnalysisState = {
+  loading: boolean;
+  error?: string;
+  result: string;
 };
 
 export const futureAnalysisReducer = (
@@ -34,6 +45,28 @@ export const futureAnalysisReducer = (
       };
     case LOCATION_CHANGE || FUTURE_ANALYSIS_RESET:
       return { loading: false, predictions: [] };
+    default:
+      return state;
+  }
+};
+
+export const chatbotPredictionReducer = (
+  state: ChatbotAnalysisState = { loading: false, result: "" },
+  action: ChatbotPredictionDispatchTypes
+): ChatbotAnalysisState => {
+  switch (action.type) {
+    case CHATBOT_PREDICTION_LOADING:
+      return { ...state, loading: true };
+    case CHATBOT_PREDICTION_SUCCESS:
+      return { loading: false, result: action.payload };
+    case CHATBOT_PREDICTION_FAILED:
+      return {
+        loading: false,
+        error: action.payload,
+        result: "",
+      };
+    case CHATBOT_PREDICTION_RESET:
+      return { loading: false, result: "" };
     default:
       return state;
   }

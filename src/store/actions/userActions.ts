@@ -24,12 +24,16 @@ import {
   FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS,
   UpdateStoreDispatchTypes,
   UpdateSupplierDispatchTypes,
+  UpdateUserProfileDispatchTypes,
   UPDATE_STORE_INFO_FAILED,
   UPDATE_STORE_INFO_LOADING,
   UPDATE_STORE_INFO_SUCCESS,
   UPDATE_SUPPLIER_INFO_FAILED,
   UPDATE_SUPPLIER_INFO_LOADING,
   UPDATE_SUPPLIER_INFO_SUCCESS,
+  UPDATE_USER_PROFILE_FAILED,
+  UPDATE_USER_PROFILE_LOADING,
+  UPDATE_USER_PROFILE_SUCCESS,
   USER_INFO_FAILED,
   USER_INFO_LOADING,
   USER_INFO_SUCCESS,
@@ -421,6 +425,56 @@ export const editUserSupplierProduct =
       if (error instanceof Error) {
         dispatch({
           type: EDIT_USER_PRODUCT_FAILED,
+          payload: error.message,
+        });
+      }
+    }
+  };
+
+export const updateUserProfile =
+  (body: any) =>
+  async (
+    dispatch: Dispatch<UpdateUserProfileDispatchTypes>,
+    getState: () => RootState
+  ) => {
+    try {
+      dispatch({ type: UPDATE_USER_PROFILE_LOADING });
+
+      const { userInfo } = getState().auth;
+
+      const fileName = uuidv4() + path.extname(body.thumbnail);
+
+      await supabase.storage.from("images").upload(fileName, body.thumbnail, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+
+      await supabase
+        .from("users")
+        .update({
+          name: body.name,
+          address: body.address,
+          phone: body.phone,
+          birthday: body.birthday,
+          thumbnail: IMAGE_BASE_URL + fileName,
+        })
+        .match({ id: userInfo.id });
+
+      dispatch({
+        type: UPDATE_USER_PROFILE_SUCCESS,
+      });
+
+      // @ts-ignore
+      toast.success("Profil Berhasil Diperbarui");
+
+      // @ts-ignore
+      dispatch(fetchUserInfo());
+    } catch (error) {
+      // @ts-ignore
+      console.log(error.response.data.message);
+      if (error instanceof Error) {
+        dispatch({
+          type: UPDATE_USER_PROFILE_FAILED,
           payload: error.message,
         });
       }

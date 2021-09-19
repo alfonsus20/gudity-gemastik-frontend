@@ -17,10 +17,9 @@ const SuccessRatePrediction = () => {
     },
     {
       tag: "input",
-      type: "text",
-      name: "businessType",
-      "cf-questions":
-        "Menu gold medal:\n• makan nasi goreng\n• makan red velvet",
+      type: "number",
+      name: "year_of_founding",
+      "cf-questions": "Sejak tahun berapa bisnis Anda berdiri?",
     },
     {
       tag: "fieldset",
@@ -44,79 +43,45 @@ const SuccessRatePrediction = () => {
       ],
     },
     {
-      tag: "input",
-      type: "number",
-      name: "survivalTime",
-      "cf-questions": "Sudah berapa tahun bisnis atau usaha anda berdiri?  ",
-    },
-    {
       tag: "fieldset",
-      "cf-questions":
-        "Bagaimana posisi kompetitif dari bisnis atau usaha anda?",
+      "cf-questions": "Bagaimana status kepemilikan usaha Anda?",
       children: [
         {
           tag: "input",
           type: "radio",
-          name: "competitor",
+          name: "is_subscription",
           "cf-label": "Kepemilikan",
-          value: "kepemilikan",
+          value: 1,
         },
         {
           tag: "input",
           type: "radio",
-          name: "competitor",
+          name: "is_subscription",
           "cf-label": "Paten",
-          value: "paten",
-        },
-      ],
-    },
-    {
-      tag: "fieldset",
-      "cf-questions": "Bagaimana basis atau usaha anda dijalankan?",
-      children: [
-        {
-          tag: "input",
-          type: "radio",
-          name: "basis",
-          "cf-label": "Online",
-          value: "online",
-        },
-        {
-          tag: "input",
-          type: "radio",
-          name: "basis",
-          "cf-label": "Offline",
-          value: "offline",
+          value: 0,
         },
       ],
     },
     {
       tag: "input",
       type: "number",
-      name: "workerAmount",
+      name: "employee_count",
       "cf-questions":
         "Berapa jumlah karyawan yang anda miliki dalam bisnis atau usaha ini?",
     },
     {
       tag: "input",
       type: "number",
-      name: "partnerAmount",
-      "cf-questions":
-        "Berapa jumlah mitra usaha yang anda miliki dalam bisnis atau usaha ini?",
+      name: "number_of_direct_competitor",
+      "cf-questions": "Berapa jumlah kompetitor usaha Anda?",
     },
     {
       tag: "input",
       type: "number",
-      name: "income",
+      name: "employee_count",
+      "cf-input-placeholder": "Skala 1 - 100",
       "cf-questions":
-        "Berapa jumlah Pemasukkan bisnis atau usaha anda tiap tahunnya?",
-    },
-    {
-      tag: "input",
-      type: "number",
-      name: "expenses",
-      "cf-questions":
-        "Berapa jumlah Pengeluaran bisnis atau usaha anda tiap tahunnya?",
+        "Berapa tingkat kepuasan customer terhadap pelayanan Anda?",
     },
   ];
 

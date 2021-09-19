@@ -1,7 +1,10 @@
 import { combineReducers } from "redux";
 import { pastAnalysisReducer } from "./analysisReducers";
 import { getAllNewsReducer, newsModalReducer } from "./newsReducer";
-import { futureAnalysisReducer } from "./predictionReducers";
+import {
+  chatbotPredictionReducer,
+  futureAnalysisReducer,
+} from "./predictionReducers";
 import { classifyCommodityWithImageReducer } from "./searchCommodityReducers";
 import { authReducer } from "./userReducers";
 import { connectRouter } from "connected-react-router";
@@ -35,6 +38,7 @@ const createRootReducer = (history: any) =>
     orderList: orderListReducer,
     orderDetail: orderDetailReducer,
     paymentDetail: paymentReducer,
+    chatbot: chatbotPredictionReducer,
   });
 
 export default createRootReducer;

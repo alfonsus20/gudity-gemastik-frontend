@@ -218,3 +218,25 @@ export type EditUserProductDispatchTypes =
   | EditUserProductFailed
   | EditUserProductLoading
   | EditUserProductSuccess;
+
+export const UPDATE_USER_PROFILE_LOADING = "UPDATE_USER_PROFILE_LOADING";
+export const UPDATE_USER_PROFILE_SUCCESS = "UPDATE_USER_PROFILE_SUCCESS";
+export const UPDATE_USER_PROFILE_FAILED = "UPDATE_USER_PROFILE_FAILED";
+
+export type UpdateUserProfileLoading = {
+  type: typeof UPDATE_USER_PROFILE_LOADING;
+};
+
+export type UpdateUserProfileSuccess = {
+  type: typeof UPDATE_USER_PROFILE_SUCCESS;
+};
+
+export type UpdateUserProfileFailed = {
+  type: typeof UPDATE_USER_PROFILE_FAILED;
+  payload: string;
+};
+
+export type UpdateUserProfileDispatchTypes =
+  | UpdateUserProfileFailed
+  | UpdateUserProfileLoading
+  | UpdateUserProfileSuccess;
