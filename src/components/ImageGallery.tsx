@@ -24,7 +24,7 @@ const ImageGallery = ({ images, className }: ImageGalleryProps) => {
       <div className="mb-4">
         <img
           src={highlightedImage ? highlightedImage.thumbnail : "/assets/pictures/nopicture.jpg"}
-          alt={highlightedImage ? highlightedImage.thumbnail : "nopicture"}
+          alt="gallery"
           className="rounded-md w-full h-80 xs:h-88 sm:w-112 sm:h-72 object-cover"
         />
       </div>

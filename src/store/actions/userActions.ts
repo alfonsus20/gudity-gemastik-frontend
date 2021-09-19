@@ -449,16 +449,18 @@ export const updateUserProfile =
         upsert: false,
       });
 
-      await supabase
-        .from("users")
-        .update({
-          name: body.name,
-          address: body.address,
-          phone: body.phone,
-          birthday: body.birthday,
-          thumbnail: IMAGE_BASE_URL + fileName,
-        })
-        .match({ id: userInfo.id });
+      let data: any = {
+        name: body.name,
+        address: body.address,
+        phone: body.phone,
+        birthday: body.birthday,
+      };
+
+      if (body.thumbnail) {
+        data.thumbnail = IMAGE_BASE_URL + fileName;
+      }
+
+      await supabase.from("users").update(data).match({ id: userInfo.id });
 
       dispatch({
         type: UPDATE_USER_PROFILE_SUCCESS,
@@ -469,6 +471,13 @@ export const updateUserProfile =
 
       // @ts-ignore
       dispatch(fetchUserInfo());
+
+      let destination = localStorage.getItem("destination_path");
+
+      if (destination) {
+        // @ts-ignore
+        dispatch(push(destination));
+      }
     } catch (error) {
       // @ts-ignore
       console.log(error.response.data.message);

@@ -23,7 +23,7 @@ const Login = () => {
     return () => {
       dispatch({ type: AUTH_CLEAR_ERROR });
     };
-  },[dispatch]);
+  }, [dispatch]);
 
   return (
     <div

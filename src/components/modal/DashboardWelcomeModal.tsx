@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import Button from "../Button";
 import CloseButton from "./CloseButton";
 import ModalWrapper from "./ModalWrapper";
@@ -9,6 +10,8 @@ const DashboardWelcomeModal = ({
   shown,
   onClose,
 }: DashboardWelcomeModalProps) => {
+  const history = useHistory();
+
   return (
     <ModalWrapper shown={shown} onClose={onClose}>
       <div className="bg-white px-6 py-12 rounded w-auto sm:w-128 space-y-6">
@@ -32,7 +35,12 @@ const DashboardWelcomeModal = ({
             size="full"
             onClick={onClose}
           />
-          <Button text="SEKARANG" variant="secondary" size="full" />
+          <Button
+            text="SEKARANG"
+            variant="secondary"
+            size="full"
+            onClick={() => history.push("/dashboard/profil")}
+          />
         </div>
       </div>
       <CloseButton color="gray" onClick={onClose} />

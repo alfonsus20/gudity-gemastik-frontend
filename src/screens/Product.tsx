@@ -14,7 +14,7 @@ import RatingCollection from "../components/product/RatingCollection";
 import Review from "../components/Review";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetail } from "../store/actions/productActions";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import { RootState } from "../store";
 import { getSupplierDetail } from "../store/actions/supplierActions";
 import { addToCart } from "../store/actions/cartActions";
@@ -26,7 +26,7 @@ const Product = () => {
   const [quantity, setQuantity] = React.useState<number>(1);
   const { supplierId, productId } =
     useParams<{ supplierId: string; productId: string }>();
-
+  const { pathname } = useLocation();
   const history = useHistory();
 
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
@@ -42,6 +42,7 @@ const Product = () => {
   }, [dispatch, supplierId, productId, history]);
 
   React.useEffect(() => {
+    localStorage.removeItem("destination_path");
     return () => {
       dispatch({ type: ADD_TO_CART_RESET });
     };
@@ -181,6 +182,7 @@ const Product = () => {
                 variant="primary"
                 onClick={() => {
                   if (!isAuthenticated) {
+                    localStorage.setItem("destination_path", pathname);
                     history.push("/login");
                   } else {
                     dispatch(addToCart(Number(productId), quantity));

@@ -1,12 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Button from "../../components/Button";
 import DashboardBanner from "../../components/DashboardBanner";
 import DashboardWelcomeModal from "../../components/modal/DashboardWelcomeModal";
 import { DASHBOARD_FEATURES } from "../../utils/constants";
 
+interface LocationState {
+  from: string;
+}
+
 const Home = () => {
   const [welcomeModalShown, showWelcomeModal] = React.useState<boolean>(false);
+  const { state } = useLocation<LocationState>();
+
+  useEffect(() => {
+    if (state && state.from === "/daftar") {
+      showWelcomeModal(true);
+    }
+  }, []);
+
   return (
     <div className="space-y-6">
       <DashboardWelcomeModal
@@ -37,7 +49,12 @@ const Home = () => {
           yang maksimal dalam perencanaan usaha anda kedepan
         </p>
         <div className="flex-shrink-0 w-56 flex justify-center">
-          <Button variant="secondary" text="Mulai Sekarang" size="md" pathName='dashboard/analisis' />
+          <Button
+            variant="secondary"
+            text="Mulai Sekarang"
+            size="md"
+            pathName="dashboard/analisis"
+          />
         </div>
       </div>
     </div>
