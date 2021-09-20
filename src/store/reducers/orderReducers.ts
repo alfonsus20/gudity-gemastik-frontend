@@ -1,4 +1,3 @@
-import { LocationChangeAction, LOCATION_CHANGE } from "connected-react-router";
 import { ReviewProductState } from "../../components/card/ReviewCard";
 import {
   FetchOrderDetailDispatchTypes,
@@ -17,7 +16,7 @@ import {
   UPDATE_ORDER_STATUS_FAILED,
   UPDATE_ORDER_STATUS_LOADING,
 } from "../constants/orderConstants";
-import { PaymentProductState, PaymentState } from "./paymentReducers";
+import { PaymentState } from "./paymentReducers";
 
 export type PurchasedProductState = {
   product_id: number;
@@ -52,10 +51,7 @@ export const orderListReducer = (
     loading: false,
     orderList: [],
   },
-  action:
-    | FetchOrderListDispatchTypes
-    | LocationChangeAction
-    | UpdateOrderStatusDispatchTypes
+  action: FetchOrderListDispatchTypes | UpdateOrderStatusDispatchTypes
 ): OrderListState => {
   switch (action.type) {
     case FETCH_ORDER_LIST_LOADING:
@@ -79,11 +75,6 @@ export const orderListReducer = (
         loading: false,
         error: action.payload,
       };
-    case LOCATION_CHANGE:
-      return {
-        loading: false,
-        orderList: [],
-      };
     default:
       return state;
   }
@@ -94,10 +85,7 @@ export const orderDetailReducer = (
     loading: false,
     order: {} as OrderState,
   },
-  action:
-    | FetchOrderDetailDispatchTypes
-    | LocationChangeAction
-    | FetchOrderReviewDispatchTypes
+  action: FetchOrderDetailDispatchTypes | FetchOrderReviewDispatchTypes
 ): OrderDetailState => {
   switch (action.type) {
     case FETCH_ORDER_DETAIL_LOADING:
@@ -122,11 +110,6 @@ export const orderDetailReducer = (
       return {
         ...state,
         error: action.payload,
-      };
-    case LOCATION_CHANGE:
-      return {
-        loading: false,
-        order: {} as OrderState,
       };
     default:
       return state;

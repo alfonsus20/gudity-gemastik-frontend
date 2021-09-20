@@ -9,18 +9,25 @@ const CommodityMap = () => {
   const [locations, setLocations] = React.useState<
     Array<{ lat: number; lng: number }>
   >([]);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTimeout(() => {
-      setLocations([
-        { lat: -7.266245670653063, lng: 112.66284432595177 },
-        { lat: -7.325754909862289, lng: 112.6822495981488 },
-        { lat: -7.290066019760505, lng: 112.80296020658977 },
-        { lat: -7.331623538481095, lng: 112.80440359178007 },
-        { lat: -7.23022044347666, lng: 112.76458036439315 },
-      ]);
-    }, 3000);
+    setLoading(true);
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          setLocations([
+            { lat: -7.266245670653063, lng: 112.66284432595177 },
+            { lat: -7.325754909862289, lng: 112.6822495981488 },
+            { lat: -7.290066019760505, lng: 112.80296020658977 },
+            { lat: -7.331623538481095, lng: 112.80440359178007 },
+            { lat: -7.23022044347666, lng: 112.76458036439315 },
+          ])
+        );
+      }, 3000);
+    });
+    setLoading(false);
   };
 
   return (
@@ -37,7 +44,13 @@ const CommodityMap = () => {
             onChange={(e) => setCommodity(e.target.value)}
           />
         </div>
-        <Button variant="primary" type="submit" text="Cari" className="w-40 " />
+        <Button
+          variant="primary"
+          type="submit"
+          text={loading ? "Loading..." : "Cari"}
+          className="w-40 "
+          disabled={loading}
+        />
       </form>
 
       <div className="h-full">
@@ -46,7 +59,7 @@ const CommodityMap = () => {
           zoom={12}
           scrollWheelZoom={false}
           style={{ minHeight: 400 }}
-          className='h-full'
+          className="h-full z-10"
         >
           <TileLayer
             accessToken="pk.eyJ1IjoiYWxmb25zdXMtMjAiLCJhIjoiY2t0b2ZubW9iMGNiMjMwbGdkNjdpdjg5dCJ9.HQ_Omlv_5yqCrX4NOYwMaQ"

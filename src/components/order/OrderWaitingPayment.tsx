@@ -1,7 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { getOrderList } from "../../store/actions/orderActions";
 import OrderCard from "../OrderCard";
 
 export type OrderWaitingPaymentState = {
@@ -9,7 +8,6 @@ export type OrderWaitingPaymentState = {
 };
 
 const OrderWaitingPayment = ({ variant }: OrderWaitingPaymentState) => {
-  const dispatch = useDispatch();
   const { orderList } = useSelector((state: RootState) => state.orderList);
 
   const shownOrders = orderList.filter(

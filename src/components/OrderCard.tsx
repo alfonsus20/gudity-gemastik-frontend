@@ -47,7 +47,7 @@ const OrderCard = ({
   };
 
   return (
-    <div className="shadow rounded-md max-w-screen-xl mx-auto p-8 mb-8">
+    <div className="shadow rounded-md max-w-screen-xl mx-auto py-4 md:p-8 mb-8">
       <div className="relative flex flex-col mb-4 md:mb-0">
         <h3 className="text-xl font-semibold text-center mb-4">
           {getProductCondition()}

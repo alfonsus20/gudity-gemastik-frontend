@@ -3,6 +3,7 @@ import { ConversationalForm } from "conversational-form";
 import "../../styles/myForm.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import mlApi from "../../api/mlApi";
 
 const SuccessRatePrediction = () => {
   const formRef = React.useRef<HTMLDivElement>(null);
@@ -207,24 +208,40 @@ const SuccessRatePrediction = () => {
   ];
 
   React.useEffect(() => {
-    const submitCallback = () => {
+    const submitCallback = async () => {
       var formDataSerialized = conversationalForm.getFormData(true);
       console.log("Formdata, obj:", formDataSerialized);
+      const structuredData = {
+        year_of_founding: parseInt(formDataSerialized.year_of_founding[0]),
+        employee_count: parseInt(formDataSerialized.employee_count[0]),
+        number_of_investor: parseInt(formDataSerialized.number_of_investor),
+        is_subscription: Boolean(formDataSerialized.is_subscription),
+        experience_in_selling_product: parseInt(
+          formDataSerialized.experience[0]
+        ),
+        client_reputation: parseInt(formDataSerialized.client_reputation[0]),
+        number_of_direct_competitor: parseInt(
+          formDataSerialized.number_of_direct_competitor
+        ),
+        percent_skill_marketing: parseInt(
+          formDataSerialized.percent_skill_marketing[0]
+        ),
+        percent_skill_product_management: parseInt(
+          formDataSerialized.percent_skill_product_management[0]
+        ),
+        percent_skill_finance: parseInt(
+          formDataSerialized.percent_skill_finance[0]
+        ),
+      };
       conversationalForm.addRobotChatResponse(
         "Kami sedang memproses data Anda..."
       );
-      setTimeout(() => {
-        conversationalForm.addRobotChatResponse(
-          "Terima kasih karena sudah menggunakan aplikasi kami dan sampai pada  fitur ini."
-        );
-        conversationalForm.addRobotChatResponse(
-          "Anda luar biasa karena sudah berhasil menjawab seluruh pertanyaan yang ada. Adapun hasil yang didapat dalam proses prediksi dengan mengacu pada data - data yang anda isikan, bahwa usaha anda sudah cukup mapan. "
-        );
-        conversationalForm.addRobotChatResponse(
-          "Tetap semangat dalam meningkatkan usaha anda dan semoga usaha yang anda jalankan dapat terus berkembang ke arah yang positif terlebih bisa menjadi berkat bagi sekeliling maupun Indonesia."
-        );
-      }, 5000);
+
+      const { data } = await mlApi.post("/bot/career/predict", structuredData);
+
+      conversationalForm.addRobotChatResponse(data.data.message);
     };
+
     const conversationalForm = ConversationalForm.startTheConversation({
       options: {
         theme: "blue",

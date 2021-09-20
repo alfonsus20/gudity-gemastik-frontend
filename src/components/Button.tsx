@@ -70,7 +70,7 @@ const Button = ({
       <div className="flex">
         <Link
           to={`/${pathName}`}
-          className={`flex flex-row justify-center items-center transition ${
+          className={`flex flex-row justify-center items-center transition text-center ${
             variant.includes("plain") ? "py-0" : "py-2 border-2"
           } ${getButtonConfiguration()} ${getButtonSize()} ${className}`}
         >
@@ -84,7 +84,7 @@ const Button = ({
   return (
     <button
       disabled={disabled}
-      className={`flex flex-row justify-center items-center transition ${
+      className={`flex flex-row justify-center items-center transition text-center ${
         variant.includes("plain") ? "py-0" : "py-2 border-2"
       } ${getButtonConfiguration()} ${getButtonSize()} ${className} ${
         disabled
