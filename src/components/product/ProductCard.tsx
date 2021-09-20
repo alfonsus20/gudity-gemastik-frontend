@@ -1,6 +1,4 @@
 import React from "react";
-import { HeartIcon as HeartOutline } from "@heroicons/react/outline";
-/* eslint-disable */
 import Button from "../Button";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
@@ -26,13 +24,12 @@ const ProductCard = ({
   price,
   className,
   withOrderButton,
-  supplierId,
   productId,
   reviews,
 }: ProductCardProps) => {
   return (
     <Link
-      to={`/suppliers/${supplierId}/produk/${productId}`}
+      to={`/produk/${productId}`}
       className={`p-3 xs:px-4 xs:py-6 shadow-md xs:shadow flex-shrink-0 w-64 ${className}`}
     >
       <div className="mb-2 relative">
@@ -43,11 +40,8 @@ const ProductCard = ({
               : image
           }
           alt={name}
-          className="w-32 h-44 mx-auto object-cover"
+          className="w-full h-44 mx-auto object-cover"
         />
-        <button className="absolute top-0 right-0">
-          <HeartOutline className="text-pink-400 w-5 h-5" />
-        </button>
       </div>
       <h3 className="text-blue-marker font-semibold">{name}</h3>
 

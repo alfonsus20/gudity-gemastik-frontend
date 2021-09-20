@@ -171,7 +171,7 @@ const Home = () => {
                 title="Belanja dari Produk Komoditas"
                 description="Lihat berbagai macam kumpulan UMKM yang tersedia dari berbagai macam jenis produk olahan pilihan yang tersebar di berbagaimacam wilayah."
                 buttonName="Belanja sekarang"
-                buttonPathname="komoditas"
+                buttonPathname="suppliers"
                 image="buy-commodity.png"
               />
             </div>

@@ -95,7 +95,6 @@ const SupplierDetail = () => {
                 price={product.price}
                 reviews={product.reviews}
                 image={product.thumbnail}
-                supplierId={id}
                 productId={product.id}
               />
             ))

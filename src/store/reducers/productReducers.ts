@@ -38,6 +38,7 @@ export interface ProductState extends SupplierProductState {
   quality: string;
   location: string;
   product_images: ProductImage[];
+  address : string;
 }
 
 type SupplierProductsState = {

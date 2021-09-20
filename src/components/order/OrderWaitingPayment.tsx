@@ -26,6 +26,7 @@ const OrderWaitingPayment = ({ variant }: OrderWaitingPaymentState) => {
             paymentMethod={orderItem.bankName}
             paymentTotal={orderItem.totalPrice}
             products={orderItem.products}
+            orderId = {orderItem.id}
           />
         ))
       ) : (

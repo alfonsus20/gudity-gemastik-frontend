@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetail } from "../store/actions/productActions";
 import { useHistory, useParams, useLocation } from "react-router-dom";
 import { RootState } from "../store";
-import { getSupplierDetail } from "../store/actions/supplierActions";
 import { addToCart } from "../store/actions/cartActions";
 import { countRatingAverage } from "../utils/helpers";
 import { ADD_TO_CART_RESET } from "../store/constants/cartConstants";
@@ -19,8 +18,7 @@ import { ToastContainer } from "react-toastify";
 
 const Product = () => {
   const [quantity, setQuantity] = React.useState<number>(1);
-  const { supplierId, productId } =
-    useParams<{ supplierId: string; productId: string }>();
+  const { productId } = useParams<{ productId: string }>();
   const { pathname } = useLocation();
   const history = useHistory();
 
@@ -28,13 +26,11 @@ const Product = () => {
   const { product, loading } = useSelector(
     (state: RootState) => state.productDetail
   );
-  const { supplier } = useSelector((state: RootState) => state.supplierDetail);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getProductDetail(supplierId, productId));
-    dispatch(getSupplierDetail(supplierId));
-  }, [dispatch, supplierId, productId, history]);
+    dispatch(getProductDetail(productId));
+  }, [dispatch, productId, history]);
 
   React.useEffect(() => {
     localStorage.removeItem("destination_path");
@@ -183,7 +179,7 @@ const Product = () => {
                 </tr>
                 <tr>
                   <td className="pr-4 pb-2 text-gray-500">Dikirim dari</td>
-                  <td className="pb-2">{supplier.address}</td>
+                  <td className="pb-2">{product.address}</td>
                 </tr>
               </tbody>
             </table>

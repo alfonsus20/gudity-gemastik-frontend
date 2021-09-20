@@ -106,7 +106,7 @@ const Navbar = () => {
                     ? userInfo.thumbnail
                     : "/assets/icons/user.png"
                 }
-                className="w-12 h-12 rounded-full mr-1"
+                className="w-12 h-12 rounded-full mr-1 object-cover"
                 alt="user"
               />
             </div>

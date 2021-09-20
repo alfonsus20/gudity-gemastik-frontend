@@ -36,7 +36,7 @@ const ReviewInput = ({ product }: { product: ReviewProductState }) => {
           <img
             src={product.thumbnail}
             className="w-32 h-24 rounded-md object-cover"
-            alt=""
+            alt="thumbnail"
           />
         </div>
         <div className="flex flex-col sm:flex-row justify-between flex-auto ">

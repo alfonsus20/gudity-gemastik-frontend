@@ -32,7 +32,7 @@ const LandingPageRoutes = () => {
           <Route path="/suppliers" component={Commodity} exact />
           <Route path="/suppliers/:id" component={CommodityDetail} exact />
           <Route
-            path="/suppliers/:supplierId/produk/:productId"
+            path="/produk/:productId"
             component={Product}
             exact
           />

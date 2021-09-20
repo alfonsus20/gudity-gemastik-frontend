@@ -49,13 +49,13 @@ export const getSupplierProducts =
   };
 
 export const getProductDetail =
-  (supplierId: string, productId: string) =>
+  (productId: string) =>
   async (dispatch: Dispatch<FetchProductDetailDispatchTypes>) => {
     try {
       dispatch({ type: FETCH_PRODUCT_DETAIL_LOADING });
 
       const { data } = await onlyGetReq.get(
-        `/products?id=eq.${productId}&select=id,name,price,quality,description,thumbnail,invoice_products(invoice_product_reviews(id,star,review),invoices(id,users(name)))`
+        `/products?id=eq.${productId}&select=id,name,price,quality,description,thumbnail,invoice_products(invoice_product_reviews(id,star,review),invoices(id,users(name))),suppliers(address)`
       );
 
       if (data.data.length > 0) {
@@ -77,6 +77,7 @@ export const getProductDetail =
         });
         let productStructured = {
           ...product,
+          address: product.suppliers.address,
           reviews: reviewsStructured,
         };
 
