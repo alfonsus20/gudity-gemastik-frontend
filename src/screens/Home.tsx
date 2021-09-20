@@ -122,7 +122,7 @@ const Home = () => {
               Ingin Lebih Dalam Mengenal Aplikasi GUDITY?
             </h2>
             <p className="mb-6">
-              Membantu usaha UMKM makanan dan minuman anda dalam proses
+              Membantu usaha UMKM makanan dan minuman Anda dalam proses
               pemerataan bahan baku serta mengantisipasi fluktuasi harga
               komoditas yang ditunjang dengan penggunaan teknologi terkini.
             </p>
@@ -135,7 +135,7 @@ const Home = () => {
                   Percepat Bisnis Anda
                 </h3>
                 <p>
-                  Rencanakan dan persiapkan usaha UMKM anda mulai dari sekarang
+                  Rencanakan dan persiapkan usaha UMKM Anda mulai dari sekarang
                   bersama dengan Gudity.
                 </p>
               </div>

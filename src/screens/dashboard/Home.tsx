@@ -43,12 +43,12 @@ const Home = () => {
           </Link>
         ))}
       </div>
-      <div className="flex flex-col sm:flex-row shadow-lg px-8 py-12 rounded-md items-center mx-auto">
+      <div className="flex flex-col sm:flex-row shadow-lg px-8 py-12 rounded-md items-center mx-auto justify-center">
         <p className="text-center font-medium mb-4 sm:mb-0">
           Lakukan Analisis dan Prediksi sebanyak mungkin untuk memberikan hasil
           yang maksimal dalam perencanaan usaha anda kedepan
         </p>
-        <div className="flex-shrink-0 w-56 flex justify-center">
+        <div className="w-56 flex justify-center">
           <Button
             variant="secondary"
             text="Mulai Sekarang"

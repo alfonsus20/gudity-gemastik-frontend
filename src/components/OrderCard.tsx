@@ -52,7 +52,10 @@ const OrderCard = ({
     <div>
       <ConfirmProductAcceptedModal
         onClose={() => setModalShown(false)}
-        onAccept={() => dispatch(updateOrderStatus(paymentCode, "accepted"))}
+        onAccept={() => {
+          dispatch(updateOrderStatus(paymentCode, "accepted"));
+          setModalShown(true);
+        }}
         shown={modalShown}
       />
       <div className="shadow rounded-md max-w-screen-xl mx-auto py-4 md:p-8 mb-8">
