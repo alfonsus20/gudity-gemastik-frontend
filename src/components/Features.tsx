@@ -14,13 +14,13 @@ const Features = () => {
       picture: "prediksi.png",
       title: "PREDIKSI",
       description:
-        "Ketahui prospek kedepan terkait harga bahan baku, minat dan kelayakan usaha anda di kemudian hari.",
+        "Ketahui prospek kedepan terkait harga bahan baku, minat dan kelayakan usaha Anda di kemudian hari.",
     },
     {
       picture: "saran.png",
       title: "SARAN",
       description:
-        "Dapatkan informasi dan pengetahuan sekitar usaha anda, serta tentukan langkah anda selanjutnya.",
+        "Dapatkan informasi dan pengetahuan sekitar usaha Anda, serta tentukan langkah Anda selanjutnya.",
     },
   ];
 

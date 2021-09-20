@@ -1,9 +1,4 @@
-import {
-  QuestionMarkCircleIcon,
-  BellIcon,
-  CogIcon,
-  ChevronDownIcon,
-} from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 import {
   HomeIcon,
   LogoutIcon,
@@ -23,14 +18,16 @@ const NavbarDashboard = ({
 }) => {
   const [dropdownShown, showDropdown] = React.useState<boolean>(false);
 
-  const { userInfo, loading, isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { userInfo, loading, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (isAuthenticated && Object.keys(userInfo).length === 0) {
       dispatch(fetchUserInfo());
     }
-  }, [dispatch, userInfo,isAuthenticated]);
+  }, [dispatch, userInfo, isAuthenticated]);
 
   return (
     <div className="w-full mb-4">
@@ -39,21 +36,11 @@ const NavbarDashboard = ({
           <MenuIcon className="text-blue w-8 h-8" />
         </button>
         <div className="flex flex-row items-center space-x-4">
-          <Link to="/dashboard">
-            <QuestionMarkCircleIcon className="h-6 w-6" />
-          </Link>
-          <Link to="/dashboard">
-            <CogIcon className="h-6 w-6" />
-          </Link>
-          <Link to="/dashboard">
-            <BellIcon className="h-6 w-6" />
-          </Link>
           <div
             className="flex flex-row items-center gap-x-1 relative px-2 cursor-pointer"
-            onMouseEnter={() => showDropdown(true)}
-            onMouseLeave={() => showDropdown(false)}
+            onClick={() => showDropdown(!dropdownShown)}
           >
-            <div className='flex-shrink-0'>
+            <div className="flex-shrink-0">
               <img
                 src={
                   !loading && userInfo.thumbnail
@@ -64,7 +51,9 @@ const NavbarDashboard = ({
                 alt="user"
               />
             </div>
-            <p className="flex-auto text-sm md:text-md">Hi, {loading ? "Loading..." : userInfo.name}</p>
+            <p className="flex-auto text-sm md:text-md">
+              Hi, {loading ? "Loading..." : userInfo.name}
+            </p>
             <ChevronDownIcon className="w-5 h-5 flex-shrink-0" />
             <dl
               className={`${

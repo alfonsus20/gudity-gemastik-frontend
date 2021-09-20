@@ -35,7 +35,7 @@ const Tab = ({ tabs, className, openTabIndex }: TabProps) => {
               tab.title === currentTab.title
                 ? "border-b-4 border-blue-primary text-blue-primary font-medium"
                 : "border-b-4 border-gray border-opacity-20"
-            } py-2`}
+            } p-2 text-sm sm:text-md md:text-lg`}
           >
             {tab.title}
           </button>

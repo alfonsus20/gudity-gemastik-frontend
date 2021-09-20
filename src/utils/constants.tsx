@@ -68,7 +68,7 @@ export const FEATURES: FeatureCardProps[] = [
     image: "cari-komoditas",
     title: "Cari Komoditas",
     description:
-      "Cari komoditas yang sesuai untuk mengoptimalkan usaha UMKM anda.",
+      "Cari komoditas yang sesuai untuk mengoptimalkan usaha UMKM Anda.",
   },
   {
     image: "peta",

@@ -40,7 +40,7 @@ const CommodityProducts = () => {
               />
               <div className="text-center">
                 <h3 className="text-blue-marker font-semibold">
-                  Ingin Bergabung menjadi bagian dari Komoditas Kami?
+                  Ingin Bergabung menjadi bagian dari Pemasok Kami?
                 </h3>
                 <p className="text-blue-marker text-sm">
                   Dapatkan manfaat dan keuntungan bagi usaha anda

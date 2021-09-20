@@ -97,8 +97,7 @@ const Navbar = () => {
         {isAuthenticated ? (
           <div
             className="flex flex-row items-center gap-x-1 text-white relative px-2 cursor-pointer"
-            onMouseEnter={() => showDropdown(true)}
-            onMouseLeave={() => showDropdown(false)}
+            onClick={() => showDropdown(!dropdownShown)}
           >
             <div>
               <img

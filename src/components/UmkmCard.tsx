@@ -23,9 +23,9 @@ const UmkmCard = ({
   thumbnail,
 }: UmkmCardProps) => {
   return (
-    <div>
+    <div >
       <div className="p-4 shadow">
-        <div className="mb-2">
+        <div className="mb-2 flex">
           <img
             src={
               !thumbnail || thumbnail === "http://image.com"
@@ -33,7 +33,7 @@ const UmkmCard = ({
                 : thumbnail
             }
             alt=""
-            className="rounded-md"
+            className="rounded-md mx-auto w-full h-64 object-cover"
           />
         </div>
         <h3 className="text-lg font-medium mb-1">{title}</h3>

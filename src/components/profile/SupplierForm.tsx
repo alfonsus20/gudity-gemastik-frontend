@@ -64,11 +64,11 @@ const SupplierForm = () => {
       />
       <div className="grid md:grid-cols-2 gap-x-10 mb-8">
         <div className="col-span-1 space-y-4">
-          <div className="flex flex-row items-center space-x-10">
-            <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-10">
+            <label htmlFor="" className="font-medium w-32 flex-shrink-0">
               Nama Pemilik <span className="text-red-600">*</span>
             </label>
-            <span>:</span>
+            <span className='hidden lg:block'>:</span>
             <TextField
               variant="dashboard"
               className="flex-auto"
@@ -76,11 +76,11 @@ const SupplierForm = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="flex flex-row items-center space-x-10">
-            <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-10">
+            <label htmlFor="" className="font-medium w-32 flex-shrink-0">
               Alamat <span className="text-red-600">*</span>
             </label>
-            <span>:</span>
+            <span className='hidden lg:block'>:</span>
             <TextField
               variant="dashboard"
               className="flex-auto"
@@ -88,11 +88,11 @@ const SupplierForm = () => {
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>{" "}
-          <div className="flex flex-row items-center space-x-10">
-            <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-10">
+            <label htmlFor="" className="font-medium w-32 flex-shrink-0">
               No Telepon <span className="text-red-600">*</span>
             </label>
-            <span>:</span>
+            <span className='hidden lg:block'>:</span>
             <TextField
               variant="dashboard"
               className="flex-auto"
@@ -101,12 +101,12 @@ const SupplierForm = () => {
             />
           </div>
         </div>
-        <div className="col-span-1 space-y-4">
-          <div className="flex flex-row items-center space-x-10">
-            <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+        <div className="col-span-1 space-y-4 mt-4 md:mt-0">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-10">
+            <label htmlFor="" className="font-medium w-32 flex-shrink-0">
               Deskripsi <span className="text-red-600">*</span>
             </label>
-            <span>:</span>
+            <span className='hidden lg:block'>:</span>
             <TextField
               variant="dashboard"
               className="flex-auto"
@@ -114,14 +114,15 @@ const SupplierForm = () => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <div className="flex flex-row items-center space-x-10">
-            <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-10">
+            <label htmlFor="" className="font-medium w-32 flex-shrink-0">
               Foto Profil <span className="text-red-600">*</span>
             </label>
-            <span>:</span>
+            <span className='hidden lg:block'>:</span>
             <TextField
               variant="dashboard"
               type="file"
+              required
               className="flex-auto"
               onChange={(e) => setImage(e.target.files![0])}
             />

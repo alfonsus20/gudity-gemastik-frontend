@@ -36,7 +36,7 @@ const DashboardRoutes = () => {
         initial="hidden"
         animate={sidebarShown ? "visible" : "hidden"}
         transition={{ stiffness: 0 }}
-        className="flex-shrink-0 w-72 bg-blue-admin h-screen overflow-y-auto flex flex-col items-center fixed md:sticky top-0 -left-full md:left-0 z-30"
+        className="flex-shrink-0 w-72 bg-blue-admin h-screen overflow-y-auto flex flex-col items-center fixed md:sticky top-0 -left-full md:left-0 z-30 pb-5"
       >
         <CloseButton onClick={() => showSidebar(false)} className="md:hidden" />
         <div className="text-white text-2xl font-semibold mt-12 mb-8 px-4">

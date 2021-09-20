@@ -162,7 +162,7 @@ const Home = () => {
       </div>
       <div className="max-w-screen-xl mx-auto px-8 py-20 md:py-28 flex flex-col md:flex-row items-center md:space-x-6 lg:space-x-12">
         <h2 className="text-4xl font-medium mb-8 md:w-5/12">
-          Nikmati fitur pelengkap kami untuk memperlancar usaha anda
+          Nikmati fitur pelengkap kami untuk memperlancar usaha Anda
         </h2>
         <div className=" md:w-7/12 gap-y-6 md:gap-6 flex flex-col md:flex-row">
           <Rotate bottom left>

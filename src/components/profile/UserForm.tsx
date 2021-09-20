@@ -44,13 +44,13 @@ const UserForm = () => {
   return (
     <div>
       <form className="mt-8" onSubmit={handleSubmitUserProfile}>
-        <div className="grid md:grid-cols-2 gap-x-10 mb-8">
+        <div className="mb-8 grid xl:grid-cols-2 gap-x-10">
           <div className="col-span-1 space-y-4">
-            <div className="flex flex-row items-center space-x-10">
-              <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
+              <label htmlFor="" className="font-medium w-32 flex-shrink-0">
                 Nama Lengkap
               </label>
-              <span>:</span>
+              <span className='hidden md:block'>:</span>
               <TextField
                 variant="dashboard"
                 className="flex-auto"
@@ -61,11 +61,11 @@ const UserForm = () => {
                 disabled={!enabled}
               />
             </div>
-            <div className="flex flex-row items-center space-x-10">
-              <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
+              <label htmlFor="" className="font-medium w-32 flex-shrink-0">
                 Email
               </label>
-              <span>:</span>
+              <span className='hidden md:block'>:</span>
               <TextField
                 variant="dashboard"
                 type="email"
@@ -77,11 +77,11 @@ const UserForm = () => {
                 disabled={!enabled}
               />
             </div>
-            <div className="flex flex-row items-center space-x-10">
-              <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
+              <label htmlFor="" className="font-medium w-32 flex-shrink-0">
                 Alamat
               </label>
-              <span>:</span>
+              <span className='hidden md:block'>:</span>
               <TextField
                 variant="dashboard"
                 className="flex-auto"
@@ -91,12 +91,12 @@ const UserForm = () => {
               />
             </div>
           </div>
-          <div className="col-span-1 space-y-4">
-            <div className="flex flex-row items-center space-x-10">
-              <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+          <div className="col-span-1 space-y-4 mt-4 xl:mt-0">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
+              <label htmlFor="" className="font-medium w-32 flex-shrink-0">
                 Tanggal Lahir
               </label>
-              <span>:</span>
+              <span className='hidden md:block'>:</span>
               <TextField
                 variant="dashboard"
                 type="date"
@@ -106,11 +106,11 @@ const UserForm = () => {
                 disabled={!enabled}
               />
             </div>
-            <div className="flex flex-row items-center space-x-10">
-              <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
+              <label htmlFor="" className="font-medium w-32 flex-shrink-0">
                 No Telepon
               </label>
-              <span>:</span>
+              <span className='hidden md:block'>:</span>
               <TextField
                 variant="dashboard"
                 type="tel"
@@ -120,11 +120,11 @@ const UserForm = () => {
                 disabled={!enabled}
               />
             </div>
-            <div className="flex flex-row items-center space-x-10">
-              <label htmlFor="" className="font-medium w-40 flex-shrink-0">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
+              <label htmlFor="" className="font-medium w-32 flex-shrink-0">
                 Foto Profil <span className="text-red-600">*</span>
               </label>
-              <span>:</span>
+              <span className='hidden md:block'>:</span>
               <TextField
                 variant="dashboard"
                 type="file"

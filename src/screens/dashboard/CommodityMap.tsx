@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  MapContainer,
-  Popup,
-  TileLayer,
-  CircleMarker,
-} from "react-leaflet";
+import { MapContainer, Popup, TileLayer, CircleMarker } from "react-leaflet";
 import Button from "../../components/Button";
 import DashboardBanner from "../../components/DashboardBanner";
 import TextField from "../../components/TextField";
@@ -50,7 +45,8 @@ const CommodityMap = () => {
           center={[-7.264794797261607, 112.7376809162472]}
           zoom={12}
           scrollWheelZoom={false}
-          className="h-full"
+          style={{ minHeight: 400 }}
+          className='h-full'
         >
           <TileLayer
             accessToken="pk.eyJ1IjoiYWxmb25zdXMtMjAiLCJhIjoiY2t0b2ZubW9iMGNiMjMwbGdkNjdpdjg5dCJ9.HQ_Omlv_5yqCrX4NOYwMaQ"

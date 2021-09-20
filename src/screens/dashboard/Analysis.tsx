@@ -91,7 +91,7 @@ const Analysis = () => {
         </div>
       </form>
       <div className="px-4 md:px-12 py-6 shadow mb-8">
-        <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
+        <h3 className="font-semibold text-xl">Tren Harga Masa Lampau</h3>
         <div className="w-full h-60 overflow-hidden relative">
           {loading ? (
             <PropagateLoader css={override} color="#2E53DA" />

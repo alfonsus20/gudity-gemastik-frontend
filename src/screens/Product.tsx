@@ -1,12 +1,7 @@
 import React from "react";
 import Button from "../components/Button";
 import ImageGallery from "../components/ImageGallery";
-import {
-  HeartIcon as HeartOutline,
-  SwitchVerticalIcon,
-  FilterIcon,
-} from "@heroicons/react/outline";
-import { ShareIcon } from "@heroicons/react/solid";
+import { SwitchVerticalIcon, FilterIcon } from "@heroicons/react/outline";
 import Dropdown from "../components/Dropdown";
 import TextField from "../components/TextField";
 import Rating from "../components/product/Rating";
@@ -100,10 +95,6 @@ const Product = () => {
                   </>
                 )}
               </div>
-              <div className="flex flex-row">
-                <ShareIcon className="w-8 h-8 mr-2" />
-                <HeartOutline className="w-8 h-8" />
-              </div>
             </div>
             <div className="mb-2">
               <div className="flex flex-row mb-3">
@@ -114,21 +105,6 @@ const Product = () => {
                       <img src="/assets/icons/delivery-black.svg" alt="" />
                     </div>
                     <span className="flex-auto">Gratis Biaya Kirim</span>
-                  </div>
-                  <div className="flex flex-row">
-                    <div className="mr-4">
-                      <img src="/assets/icons/delivery-blue.svg" alt="" />
-                    </div>
-                    <div className="flex flex-col flex-auto">
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center">
-                        <span className="w-36">Pengiriman ke</span>
-                        <Dropdown options={[]} className="w-40 text-sm" />
-                      </div>
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center">
-                        <span className="w-36">Biaya Kirim</span>
-                        <Dropdown options={[]} className="w-40 text-sm" />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

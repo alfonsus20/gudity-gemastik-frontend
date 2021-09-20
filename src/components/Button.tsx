@@ -36,7 +36,7 @@ const Button = ({
       case "secondary":
         return "text-blue-primary bg-transparent border-blue-primary hover:bg-blue-primary hover:text-white";
       case "tertiary":
-        return "text-black bg-transparent border-black";
+        return "text-black bg-transparent border-black hover:bg-black hover:text-white";
       case "quaternary":
         return "text-white bg-transparent border-blue-primary hover:bg-blue-primary ";
       case "plain-blue":
