@@ -11,6 +11,7 @@ import { getPaymentDetail } from "../store/actions/paymentActions";
 import { toast, ToastContainer } from "react-toastify";
 import { updateOrderStatus } from "../store/actions/orderActions";
 import { FETCH_PAYMENT_DETAIL_RESET } from "../store/constants/paymentConstants";
+import { longFormatDate } from "../utils/helpers";
 
 const Payment = () => {
   const { paymentCode } = useParams<{ paymentCode: string }>();
@@ -58,7 +59,7 @@ const Payment = () => {
         </h3>
         <p className="text-center">
           Transaksi akan diproses apabila Anda telah melakukan pembayaran dengan
-          batas waktu sebelum 28 Juli 2021 pukul 23:00 WIB.
+          batas waktu sebelum {longFormatDate(payment.date, 1)}.
         </p>
         <div className="flex flex-col justify-center items-center space-y-1">
           <p>
@@ -156,7 +157,10 @@ const Payment = () => {
               </div>
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">Estimasi Pengiriman</div>
-                <div>28 Juli 2021 - 2 Agustus 2021</div>
+                <div>
+                  {longFormatDate(payment.date, 0, false)} - {" "}
+                  {longFormatDate(payment.date, 4, false)}
+                </div>
               </div>
             </div>
             <div>

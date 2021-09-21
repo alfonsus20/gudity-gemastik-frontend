@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPaymentDetail } from "../../store/actions/paymentActions";
 import { ToastContainer } from "react-toastify";
 import { FETCH_PAYMENT_DETAIL_RESET } from "../../store/constants/paymentConstants";
+import { longFormatDate } from "../../utils/helpers";
 
 const OrderDetail = () => {
   const { paymentCode } = useParams<{ paymentCode: string }>();
@@ -41,7 +42,7 @@ const OrderDetail = () => {
             </div>
             <div className="col-span-1">
               <p>Tanggal Transaksi</p>
-              <p className="font-semibold">27 Juli 2021, 02:18</p>
+              <p className="font-semibold">{longFormatDate(payment.date)}</p>
             </div>
             <div className="col-span-1">
               <p>Metode Pembayaran</p>

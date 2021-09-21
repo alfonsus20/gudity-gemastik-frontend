@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { updateOrderStatus } from "../store/actions/orderActions";
 import { PaymentProductState } from "../store/reducers/paymentReducers";
+import { longFormatDate } from "../utils/helpers";
 import Button from "./Button";
 import ConfirmProductAcceptedModal from "./modal/ConfirmProductAcceptedModal";
 import OrderBadge from "./order/OrderBadge";
@@ -110,7 +111,7 @@ const OrderCard = ({
         <div className="grid md:grid-cols-3 gap-4 mb-6">
           <div className="col-span-1">
             <p>Tanggal Transaksi</p>
-            <p className="font-semibold">{orderDate}</p>
+            <p className="font-semibold">{longFormatDate(orderDate)}</p>
           </div>
           <div className="col-span-1">
             <p>Metode Pembayaran</p>

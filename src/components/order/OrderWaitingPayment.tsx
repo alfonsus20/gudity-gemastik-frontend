@@ -22,11 +22,11 @@ const OrderWaitingPayment = ({ variant }: OrderWaitingPaymentState) => {
             variant={variant}
             supplierName={orderItem.supplierName}
             paymentCode={orderItem.code}
-            orderDate="27 Juli 2021, 2:18"
+            orderDate={orderItem.date}
             paymentMethod={orderItem.bankName}
             paymentTotal={orderItem.totalPrice}
             products={orderItem.products}
-            orderId = {orderItem.id}
+            orderId={orderItem.id}
           />
         ))
       ) : (

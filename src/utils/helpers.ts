@@ -12,13 +12,27 @@ export const countRatingAverage = (reviews: any) => {
   return rounded;
 };
 
-export const longFormatDate = (date: string) => {
-  let d = new Date(date),
+export const longFormatDate = (
+  date: string,
+  addedDays?: number,
+  withHour: boolean = true
+) => {
+  let x: any = "";
+
+  if (addedDays) {
+    x = new Date().setDate(new Date(date).getDate() + addedDays);
+  }
+
+  let d = new Date(addedDays ? x : date),
     month = d.getMonth(),
     day = "" + d.getDate(),
-    year = d.getFullYear();
+    year = d.getFullYear(),
+    hour = "" + d.getHours(),
+    minute = "" + d.getMinutes();
 
   if (day.length < 2) day = "0" + day;
+  if (hour.length < 2) hour = "0" + hour;
+  if (minute.length < 2) minute = "0" + minute;
 
   const months = [
     "Januari",
@@ -35,5 +49,11 @@ export const longFormatDate = (date: string) => {
     "Desember",
   ];
 
-  return [day, months[month], year].join(" ");
+  let formatted = [day, months[month], year].join(" ");
+
+  if (withHour) {
+    formatted += ", " + hour + ":" + minute;
+  }
+
+  return formatted;
 };
