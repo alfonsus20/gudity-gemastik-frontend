@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { ToastContainer } from "react-toastify";
 import Button from "../../components/Button";
 import { RootState } from "../../store";
 import {
@@ -120,7 +119,6 @@ const CommodityProducts = () => {
           )}
         </>
       )}
-      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };

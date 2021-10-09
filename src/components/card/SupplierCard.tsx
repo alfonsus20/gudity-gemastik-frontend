@@ -4,8 +4,8 @@ import {
   PhoneIcon,
   ArchiveIcon,
 } from "@heroicons/react/outline";
-import Underline from "./Underline";
-import Button from "./Button";
+import Underline from "../Underline";
+import Button from "../Button";
 
 type SupplierCardProps = {
   image: string;

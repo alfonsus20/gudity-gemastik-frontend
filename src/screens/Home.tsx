@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Button from "../components/Button";
-import FeatureCard from "../components/FeatureCard";
+import FeatureCard from "../components/card/FeatureCard";
 import Features from "../components/Features";
-import NewsCard from "../components/NewsCard";
+import NewsCard from "../components/card/NewsCard";
 import NewsModal from "../components/modal/NewsModal";
 import { FEATURES } from "../utils/constants";
 import ComplementaryCard from "../components/card/ComplementaryCard";
@@ -67,6 +67,7 @@ const Home = () => {
                 className="hidden md:block"
                 text="Lihat Lebih Banyak"
                 size="md"
+                pathName='berita'
                 variant="tertiary"
               />
             </div>

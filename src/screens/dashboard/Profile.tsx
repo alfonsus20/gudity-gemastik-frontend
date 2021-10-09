@@ -41,7 +41,7 @@ const Profile = () => {
                 ? userInfo.thumbnail
                 : "/assets/icons/user.png"
             }
-            className="w-36 h-36 rounded-md"
+            className="w-36 h-36 rounded-md object-cover"
             alt=""
           />
         </div>
@@ -55,7 +55,7 @@ const Profile = () => {
                 userInfo.is_supplier ? "bg-green-500" : "bg-gray-300"
               } text-white text-center rounded-full w-auto text-sm`}
             >
-              Supplier
+              Pemasok
             </div>
           </div>
         </div>

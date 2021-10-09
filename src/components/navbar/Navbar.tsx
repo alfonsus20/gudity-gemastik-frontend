@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import QuickAccess from "./quick-access/QuickAccess";
-import { ROUTES_WITHOUT_NAVBAR } from "../utils/constants";
-import LogoutModal from "./modal/LogoutModal";
+import QuickAccess from "../quick-access/QuickAccess";
+import { ROUTES_WITHOUT_NAVBAR } from "../../utils/constants";
+import LogoutModal from "../modal/LogoutModal";
 import { ChevronDownIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import {
   ShoppingBagIcon,
@@ -11,8 +11,8 @@ import {
   LogoutIcon,
 } from "@heroicons/react/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/index";
-import { fetchUserInfo, logout } from "../store/actions/userActions";
+import { RootState } from "../../store/index";
+import { fetchUserInfo, logout } from "../../store/actions/userActions";
 
 const Navbar = () => {
   const [isBackgroundBlack, setIsBackgroundBlack] =
@@ -88,7 +88,7 @@ const Navbar = () => {
             <br /> Cepat
           </span>
           <img
-            src="/assets/icons/akses-cepat.svg"
+            src="/assets/pictures/akses-cepat.svg"
             alt="Akses Cepat"
             className="w-7 h-7"
           />
@@ -104,7 +104,7 @@ const Navbar = () => {
                 src={
                   !loading && userInfo.thumbnail
                     ? userInfo.thumbnail
-                    : "/assets/icons/user.png"
+                    : "/assets/pictures/user.png"
                 }
                 className="w-12 h-12 rounded-full mr-1 object-cover"
                 alt="user"

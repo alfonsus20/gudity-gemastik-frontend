@@ -7,7 +7,7 @@ import {
   COMMODITY_IMAGE_CLASSIFICATION_SUCCESS,
 } from "../constants/searchCommodityConstants";
 
-type ImageClassificationState = {
+export type ImageClassificationState = {
   loading: boolean;
   success?: boolean;
   error?: string;
@@ -30,7 +30,8 @@ export const classifyCommodityWithImageReducer = (
       return { loading: false, success: true, ...action.payload };
     case COMMODITY_IMAGE_CLASSIFICATION_FAILED:
       return { loading: false, success: false, error: action.payload };
-    case LOCATION_CHANGE || COMMODITY_IMAGE_CLASSIFICATION_RESET:
+    case LOCATION_CHANGE:
+    case COMMODITY_IMAGE_CLASSIFICATION_RESET:
       return { loading: false, commodity_name: "", deskripsi: "" };
     default:
       return state;

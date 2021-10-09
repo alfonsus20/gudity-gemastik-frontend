@@ -47,11 +47,11 @@ const Features = () => {
         </div>
         <div className="w-full md:w-1/2 md:pl-8 overflow-hidden">
           {features.map((feature, index) => (
-            <Slide duration={(index + 1) * 500} right>
+            <Slide duration={(index + 1) * 500} right key={index}>
               <div className="flex flex-row items-center mb-6">
                 <div style={{ flex: "0 0 6rem" }} className="px-1">
                   <img
-                    src={`/assets/icons/fitur/${feature.picture}`}
+                    src={`/assets/pictures/fitur/${feature.picture}`}
                     alt=""
                     className="w-full"
                   />

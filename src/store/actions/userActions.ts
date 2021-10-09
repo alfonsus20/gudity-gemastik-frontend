@@ -214,16 +214,6 @@ export const updateSupplierInfo =
     }
   };
 
-// interface StoreState {
-//   store_name: string;
-//   store_description: string;
-//   store_address: string;
-//   store_phone: string;
-//   store_start_at: string;
-//   store_finish_at: string;
-//   store_profile_image: File;
-// }
-
 export const updateStoreInfo =
   (storeData: any, thumbnail?: File) =>
   async (dispatch: Dispatch<AuthDispatchTypes | UpdateStoreDispatchTypes>) => {
@@ -411,13 +401,14 @@ export const editUserSupplierProduct =
       });
 
       const { supplier_info } = getState().auth.userInfo;
+
+      toast.success("Produk Berhasil Diubah");
+      
       // @ts-ignore
       dispatch(getUserSupplierProducts(supplier_info?.id));
 
       // @ts-ignore
       dispatch(push("/dashboard/produk"));
-
-      toast.success("Produk Berhasil Diubah");
     } catch (error) {
       // @ts-ignore
       console.log(error.response.data.message);

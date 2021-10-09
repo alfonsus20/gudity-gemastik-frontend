@@ -1,5 +1,5 @@
 import React from "react";
-import Underline from "./Underline";
+import Underline from "../Underline";
 
 export type FeatureCardProps = {
   image: string;

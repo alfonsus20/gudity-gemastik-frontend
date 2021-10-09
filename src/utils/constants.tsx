@@ -1,4 +1,4 @@
-import { FeatureCardProps } from "../components/FeatureCard";
+import { FeatureCardProps } from "../components/card/FeatureCard";
 import {
   ViewGridIcon,
   ShoppingBagIcon,
@@ -23,7 +23,7 @@ export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
     title: "PREDIKSI KEDEPAN UMKM ANDA",
     image: "prediksi",
     colspan: 3,
-    path: "dashboard",
+    path: "dashboard/prediksi",
   },
   {
     title: "KUMPULAN DAFTAR UMKM",
@@ -35,7 +35,7 @@ export const QUICK_ACCESS_FEATURES: QuickAccessFeature[] = [
     title: "ANALISIS UMKM",
     image: "analisis",
     colspan: 2,
-    path: "umkm",
+    path: "dashboard/analisis",
   },
   {
     title: "SARAN PEMASOK",

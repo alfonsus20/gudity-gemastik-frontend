@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import OrderCard from "../OrderCard";
+import OrderCard from "./OrderCard";
 
 export type OrderWaitingPaymentState = {
   variant: "dikemas" | "diantar" | "diterima";

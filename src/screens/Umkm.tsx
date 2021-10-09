@@ -1,7 +1,7 @@
 import React from "react";
 import Underline from "../components/Underline";
 import TextField from "../components/TextField";
-import UmkmCard from "../components/UmkmCard";
+import UmkmCard from "../components/card/UmkmCard";
 import Features from "../components/Features";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUmkmList } from "../store/actions/umkmActions";
@@ -79,7 +79,7 @@ const Umkm = () => {
                 UMKM tidak ditemukan
               </h2>
             ) : (
-              umkmList.map((umkm) => (
+              filteredStores.map((umkm) => (
                 <UmkmCard
                   key={umkm.id}
                   thumbnail={umkm.thumbnail}

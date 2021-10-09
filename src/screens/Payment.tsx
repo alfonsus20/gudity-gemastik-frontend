@@ -45,7 +45,6 @@ const Payment = () => {
 
   const handlePayment = () => {
     dispatch(updateOrderStatus(payment.code, "shipped"));
-    toast.success("Pembayaran Berhasil Dilakukan");
     history.replace("/orders");
   };
 
@@ -53,7 +52,7 @@ const Payment = () => {
     <div className="mt-20">
       <Header title="Pembayaran" />
       <div className="flex flex-col justify-center items-center space-y-4 max-w-3xl mx-auto pt-8 pb-20 px-8">
-        <img src="/assets/icons/payment.png" alt="" className="w-80 h-80" />
+        <img src="/assets/pictures/payment.png" alt="" className="w-80 h-80" />
         <h3 className="font-semibold text-xl text-center">
           Terima kasih telah membeli produk saran komoditas kami.
         </h3>

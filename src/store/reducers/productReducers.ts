@@ -37,7 +37,7 @@ export interface ProductState extends SupplierProductState {
   quality: string;
   location: string;
   product_images: ProductImage[];
-  address : string;
+  address: string;
 }
 
 type SupplierProductsState = {
@@ -91,7 +91,8 @@ export const productDetailReducer = (
         success: false,
         error: action.payload,
       };
-    case LOCATION_CHANGE || FETCH_PRODUCT_DETAIL_RESET:
+    case LOCATION_CHANGE:
+    case FETCH_PRODUCT_DETAIL_RESET:
       return { loading: false, product: {} as ProductState };
     default:
       return state;

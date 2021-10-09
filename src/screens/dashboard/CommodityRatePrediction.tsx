@@ -8,6 +8,7 @@ import { getFutureAnalysis } from "../../store/actions/predictionActions";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { css } from "@emotion/react";
 import Skeleton from "react-loading-skeleton";
+import { toast } from "react-toastify";
 
 const CommodityRatePrediction = () => {
   const [commodity, setCommodity] = React.useState<string>("");
@@ -52,6 +53,10 @@ const CommodityRatePrediction = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    if (commodity !== "coffee" && commodity !== "sugar") {
+      toast.error("Komoditas yang disupport hanya 'coffee' dan 'sugar'");
+      return;
+    }
     dispatch(getFutureAnalysis(commodity, day));
   };
 
@@ -72,6 +77,7 @@ const CommodityRatePrediction = () => {
             variant="tertiary"
             className="w-full"
             placeholder="Jangka Waktu (hari)"
+            type="number"
             onChange={(e) => setDay(e.target.value)}
           />
         </div>

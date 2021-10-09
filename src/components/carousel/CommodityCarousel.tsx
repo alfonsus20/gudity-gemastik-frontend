@@ -55,7 +55,7 @@ const CommodityCarousel = () => {
                   berbagai macam kopi dengan kualitas premium dan harga yang
                   terjangkau.
                 </p>
-                <Button variant="secondary" text="Selengkapnya" size="sm" />
+                <Button variant="secondary" text="Selengkapnya" size="sm" pathName='suppliers' />
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@ const CommodityCarousel = () => {
                   gula kualitas super yang dapat dipesan dengan berbagai macam
                   jumlah.
                 </p>
-                <Button variant="secondary" text="Selengkapnya" size="sm" />
+                <Button variant="secondary" text="Selengkapnya" size="sm" pathName='suppliers' />
               </div>
             </div>
           </div>

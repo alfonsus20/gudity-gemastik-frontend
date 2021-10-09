@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import Cart from "../screens/Cart";
 import Checkout from "../screens/Checkout";
 import Commodity from "../screens/Supplier";
@@ -19,6 +19,7 @@ import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "../components/NotFound";
 import Review from "../screens/Review";
+import { ToastContainer } from "react-toastify";
 
 const LandingPageRoutes = () => {
   return (
@@ -31,11 +32,7 @@ const LandingPageRoutes = () => {
           <Route path="/umkm" component={Umkm} exact />
           <Route path="/suppliers" component={Commodity} exact />
           <Route path="/suppliers/:id" component={CommodityDetail} exact />
-          <Route
-            path="/produk/:productId"
-            component={Product}
-            exact
-          />
+          <Route path="/produk/:productId" component={Product} exact />
           <PrivateRoute path="/keranjang" component={Cart} exact />
           <PrivateRoute path="/checkout" component={Checkout} exact />
           <PrivateRoute
@@ -59,6 +56,8 @@ const LandingPageRoutes = () => {
           <Route path="*" component={NotFound} />
         </Switch>
       </main>
+
+      <ToastContainer autoClose={2000} position="bottom-right" />
       <Footer />
     </>
   );

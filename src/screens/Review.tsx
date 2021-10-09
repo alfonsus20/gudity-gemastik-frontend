@@ -1,7 +1,6 @@
 import ReviewCard from "../components/card/ReviewCard";
 import Header from "../components/Header";
 import { useParams } from "react-router";
-import { ToastContainer } from "react-toastify";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
@@ -32,7 +31,6 @@ const Review = () => {
           />
         )}
       </div>
-      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };

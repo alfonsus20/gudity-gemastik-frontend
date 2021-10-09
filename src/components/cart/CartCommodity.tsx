@@ -4,7 +4,6 @@ import { ShoppingBagIcon } from "@heroicons/react/outline";
 import { ChatAltIcon } from "@heroicons/react/solid";
 import { ProductCartState } from "../../store/reducers/cartReducers";
 import { useDispatch } from "react-redux";
-
 import {
   ADD_CHECKOUT_ITEM,
   REMOVE_CHECKOUT_ITEM,
@@ -69,7 +68,7 @@ const CartCommodity = ({ name, items, id }: CartCommodityProps) => {
         </label>
       </div>
       <div>
-        {items.map((item, i) => (
+        {items.map((item) => (
           <CartItem
             product={item}
             key={item.cart_id}

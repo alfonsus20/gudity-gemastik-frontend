@@ -125,7 +125,14 @@ export const updateOrderStatus =
 
       dispatch({ type: UPDATE_ORDER_STATUS_SUCCESS });
 
+      if (status === "shipped") {
+        toast.success("Pembayaran Berhasil Dilakukan");
+      } else {
+        toast.success("Pesanan Berhasil Diterima");
+      }
+
       const { userInfo } = getState().auth;
+
       // @ts-ignore
       dispatch(getOrderList(userInfo.id));
     } catch (error) {

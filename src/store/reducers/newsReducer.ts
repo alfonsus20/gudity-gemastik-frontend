@@ -34,7 +34,7 @@ export type NewsState = {
   body: string;
 };
 
-type AllNewsState = {
+export type AllNewsState = {
   isFetchingAllNews: boolean;
   newsList: NewsState[];
   error: string;

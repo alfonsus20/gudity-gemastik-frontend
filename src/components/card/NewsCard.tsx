@@ -1,11 +1,11 @@
 import React from "react";
 import { Dispatch } from "redux";
-import Underline from "../components/Underline";
+import Underline from "../Underline";
 import { useDispatch } from "react-redux";
 import {
   NewsModalDispatchTypes,
   SHOW_NEWS_MODAL,
-} from "../store/constants/newsConstants";
+} from "../../store/constants/newsConstants";
 
 type NewsProps = {
   title: string;

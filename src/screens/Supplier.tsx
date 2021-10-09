@@ -2,7 +2,7 @@ import React from "react";
 import Underline from "../components/Underline";
 import TextField from "../components/TextField";
 import Features from "../components/Features";
-import SupplierCard from "../components/SupplierCard";
+import SupplierCard from "../components/card/SupplierCard";
 import { SearchIcon } from "@heroicons/react/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { getSupplierList } from "../store/actions/supplierActions";

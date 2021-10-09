@@ -2,13 +2,13 @@ import { ShoppingBagIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { updateOrderStatus } from "../store/actions/orderActions";
-import { PaymentProductState } from "../store/reducers/paymentReducers";
-import { longFormatDate } from "../utils/helpers";
-import Button from "./Button";
-import ConfirmProductAcceptedModal from "./modal/ConfirmProductAcceptedModal";
-import OrderBadge from "./order/OrderBadge";
-import { OrderWaitingPaymentState } from "./order/OrderWaitingPayment";
+import { updateOrderStatus } from "../../store/actions/orderActions";
+import { PaymentProductState } from "../../store/reducers/paymentReducers";
+import { longFormatDate } from "../../utils/helpers";
+import Button from "../Button";
+import ConfirmProductAcceptedModal from "../modal/ConfirmProductAcceptedModal";
+import OrderBadge from "./OrderBadge";
+import { OrderWaitingPaymentState } from "./OrderWaitingPayment";
 
 type TransactionInfo = {
   paymentCode: string;

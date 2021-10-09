@@ -8,8 +8,8 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserInfo, logout } from "../store/actions/userActions";
-import { RootState } from "../store";
+import { fetchUserInfo, logout } from "../../store/actions/userActions";
+import { RootState } from "../../store";
 
 const NavbarDashboard = ({
   showSidebar,
@@ -45,7 +45,7 @@ const NavbarDashboard = ({
                 src={
                   !loading && userInfo.thumbnail
                     ? userInfo.thumbnail
-                    : "/assets/icons/user.png"
+                    : "/assets/pictures/user.png"
                 }
                 className="w-12 h-12 rounded-full mr-1 object-cover"
                 alt="user"

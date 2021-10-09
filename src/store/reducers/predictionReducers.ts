@@ -43,7 +43,8 @@ export const futureAnalysisReducer = (
         error: action.payload,
         predictions: [],
       };
-    case LOCATION_CHANGE || FUTURE_ANALYSIS_RESET:
+    case LOCATION_CHANGE:
+    case FUTURE_ANALYSIS_RESET:
       return { loading: false, predictions: [] };
     default:
       return state;

@@ -6,7 +6,6 @@ import {
   ArchiveIcon,
   PhoneIcon,
 } from "@heroicons/react/outline";
-import Dropdown from "../components/Dropdown";
 import ProductCard from "../components/product/ProductCard";
 import Features from "../components/Features";
 import { useParams, useHistory } from "react-router-dom";
@@ -78,11 +77,6 @@ const SupplierDetail = () => {
       </div>
       <div className="max-w-screen-xl mx-auto py-20 px-8">
         <h2 className="text-4xl font-semibold mb-4">Produk</h2>
-        <Dropdown
-          options={[]}
-          className="w-60 mb-6 border-2 border-violet rounded-md px-2"
-          placeholder="Saring Menurut"
-        />
         <div className="flex flex-row gap-x-4 gap-y-6 mb-10 overflow-auto w-full ">
           {loading ? (
             "Loading..."
@@ -99,11 +93,8 @@ const SupplierDetail = () => {
               />
             ))
           ) : (
-            <h2 className="text-center w-full">Belum ada produk</h2>
+            <h2 className="text-center w-full py-20">Belum ada produk</h2>
           )}
-        </div>
-        <div className="flex justify-center">
-          <Button variant="tertiary" text="Lihat Lebih Banyak" size="lg" />
         </div>
       </div>
       <Features />

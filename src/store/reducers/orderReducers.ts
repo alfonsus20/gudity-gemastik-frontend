@@ -27,7 +27,7 @@ export type PurchasedProductState = {
   product_name: string;
 };
 
-type OrderListState = {
+export type OrderListState = {
   error?: string;
   success?: boolean;
   loading: boolean;

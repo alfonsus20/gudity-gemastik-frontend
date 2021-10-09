@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Underline from "../components/Underline";
-import NewsCard from "../components/NewsCard";
+import NewsCard from "../components/card/NewsCard";
 import TextField from "../components/TextField";
 import NewsModal from "../components/modal/NewsModal";
 import Features from "../components/Features";

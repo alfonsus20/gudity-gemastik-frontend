@@ -5,7 +5,6 @@ import OrderWaitingPayment from "../../components/order/OrderWaitingPayment";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { getOrderList } from "../../store/actions/orderActions";
-import { ToastContainer } from "react-toastify";
 
 const OrderList = () => {
   const dispatch = useDispatch();
@@ -55,7 +54,6 @@ const OrderList = () => {
           ]}
         />
       </div>
-      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };

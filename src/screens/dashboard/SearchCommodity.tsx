@@ -45,7 +45,7 @@ const SearchCommodity = () => {
             ) : (
               <>
                 <div>
-                  <img src="/assets/icons/upload.png" alt="" />
+                  <img src="/assets/pictures/upload.png" alt="" />
                 </div>
                 <p className="text-blue-marker font-medium mb-5">
                   {acceptedFiles.length !== 0

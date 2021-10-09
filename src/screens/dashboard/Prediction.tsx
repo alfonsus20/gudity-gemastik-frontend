@@ -5,8 +5,8 @@ import DashboardBanner from "../../components/DashboardBanner";
 const Prediction = () => {
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-5">Komoditas Anda</h2>
-      <DashboardBanner description="Prediksi harga komoditas di masadepan dan kesuksesan bisnismu agar dapat membantu anda dalam usaha di masa mendatang." />
+      <h2 className="text-2xl font-semibold mb-5">Fitur Prediksi</h2>
+      <DashboardBanner description="Prediksi harga komoditas di masa depan dan kesuksesan bisnismu agar dapat membantu Anda dalam usaha di masa mendatang." />
       <div className="flex flex-col md:flex-row justify-center items-center md:justify-around max-w-4xl mx-auto gap-4">
         <Link
           to="/dashboard/prediksi/prediksi-kesuksesan"
@@ -14,7 +14,7 @@ const Prediction = () => {
         >
           <div>
             <img
-              src="/assets/icons/prediksi-kesuksesan.png"
+              src="/assets/pictures/prediksi-kesuksesan.png"
               className="w-full"
               alt="Prediksi Kesukesan"
             />
@@ -29,7 +29,7 @@ const Prediction = () => {
         >
           <div>
             <img
-              src="/assets/icons/prediksi-harga.png"
+              src="/assets/pictures/prediksi-harga.png"
               className="w-full"
               alt="Prediksi Kesukesan"
             />

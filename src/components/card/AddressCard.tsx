@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "./Button";
-import Underline from "./Underline";
+import Button from "../Button";
+import Underline from "../Underline";
 
 type AddressCardProps = {
   name: string;

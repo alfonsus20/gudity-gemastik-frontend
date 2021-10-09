@@ -28,7 +28,8 @@ const Home = () => {
       />
       <h2 className="text-2xl font-semibold mb-5">Halaman Utama</h2>
       <DashboardBanner
-        description="“Hal terburuk tentang bisnis adalah keraguan.” - Napoleon. Hilangkan
+        description="“Hal terburuk tentang bisnis adalah keraguan.” - Napoleon.
+        Hilangkan
     keraguanmu dengan analisis dan prediksi sesering mungkin. Have a
     nice day!"
         image="visualization.png"

@@ -12,7 +12,7 @@ import {
 } from "../constants/supplierConstants";
 import { UserSupplierProduct } from "../constants/userConstants";
 
-type SupplierListState = {
+export type SupplierListState = {
   loading: boolean;
   error?: string;
   success?: boolean;
@@ -58,7 +58,7 @@ export const supplierListReducer = (
   }
 };
 
-type SupplierDetailState = {
+export type SupplierDetailState = {
   loading: boolean;
   error?: string;
   success?: boolean;

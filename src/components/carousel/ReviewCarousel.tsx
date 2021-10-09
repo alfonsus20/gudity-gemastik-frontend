@@ -51,7 +51,7 @@ const ReviewCarousel = () => {
               <img
                 src="/assets/pictures/user-random.jpg"
                 className="w-28 h-28 rounded-full"
-                alt=""
+                alt="user"
               />
             </div>
             <div>
@@ -71,7 +71,7 @@ const ReviewCarousel = () => {
               <img
                 src="/assets/pictures/user-random-2.jpg"
                 className="w-28 h-28 rounded-full"
-                alt=""
+                alt="user"
               />
             </div>
             <div>

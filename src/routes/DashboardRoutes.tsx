@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Route, Switch } from "react-router-dom";
-import NavbarDashboard from "../components/NavbarDashboard";
+import NavbarDashboard from "../components/navbar/NavbarDashboard";
 import AddProduct from "../screens/dashboard/AddProduct";
 import Analysis from "../screens/dashboard/Analysis";
 import CommodityProducts from "../screens/dashboard/CommodityProducts";
@@ -16,6 +16,7 @@ import Umkm from "../screens/dashboard/Umkm";
 import { motion } from "framer-motion";
 import CloseButton from "../components/modal/CloseButton";
 import EditProduct from "../screens/dashboard/EditProduct";
+import { ToastContainer } from "react-toastify";
 
 const DashboardRoutes = () => {
   const [sidebarShown, showSidebar] = React.useState<boolean>(false);
@@ -114,6 +115,7 @@ const DashboardRoutes = () => {
           />
         </Switch>
       </div>
+      <ToastContainer autoClose={2000} position="bottom-right" />
     </div>
   );
 };

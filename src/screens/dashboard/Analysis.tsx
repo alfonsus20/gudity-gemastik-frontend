@@ -8,6 +8,7 @@ import { getPastAnalysis } from "../../store/actions/analysisActions";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { css } from "@emotion/react";
 import Skeleton from "react-loading-skeleton";
+import { toast } from "react-toastify";
 
 const Analysis = () => {
   const [commodity, setCommodity] = React.useState<string>("");
@@ -51,6 +52,10 @@ const Analysis = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    if (commodity !== "coffee" && commodity !== "sugar") {
+      toast.error("Komoditas yang disupport hanya 'coffee' dan 'sugar'");
+      return;
+    }
     dispatch(getPastAnalysis(commodity, day));
   };
 
@@ -77,6 +82,7 @@ const Analysis = () => {
             className="w-full"
             placeholder="Jangka Waktu (hari)"
             value={day}
+            type="number"
             onChange={(e) => setDay(e.target.value)}
           />
         </div>

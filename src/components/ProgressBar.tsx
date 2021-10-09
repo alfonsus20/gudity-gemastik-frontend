@@ -35,7 +35,7 @@ const ProgressBar = ({ status }: ProgressBarState) => {
                 key={i}
               >
                 <img
-                  src={`/assets/icons/progress/${
+                  src={`/assets/pictures/progress/${
                     phase.id <= convertStatusToNumber()
                       ? phase.finishedImage
                       : phase.unfinishedImage

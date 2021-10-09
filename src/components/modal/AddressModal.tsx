@@ -1,5 +1,5 @@
 import React from "react";
-import AddressCard from "../AddressCard";
+import AddressCard from "../card/AddressCard";
 import Button from "../Button";
 import CloseButton from "./CloseButton";
 import ModalWrapper from "./ModalWrapper";
