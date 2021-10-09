@@ -39,7 +39,7 @@ const Profile = () => {
             src={
               !loading && userInfo.thumbnail
                 ? userInfo.thumbnail
-                : "/assets/icons/user.png"
+                : "/assets/pictures/user.png"
             }
             className="w-36 h-36 rounded-md object-cover"
             alt=""

@@ -64,7 +64,7 @@ const Product = () => {
     <div>
       <div className="shadow-none sm:shadow max-w-screen-xl mx-auto px-8 py-12 mt-20 sm:mt-32 sm:mb-8">
         <div className="flex flex-col sm:flex-row mb-8">
-          {product.thumbnail && (
+          {!loading && (
             <ImageGallery
               className="flex-shrink-0"
               images={[{ id: 1, thumbnail: product.thumbnail }]}
