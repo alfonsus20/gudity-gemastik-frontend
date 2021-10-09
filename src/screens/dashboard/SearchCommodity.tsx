@@ -26,10 +26,7 @@ const SearchCommodity = () => {
 
   return (
     <div>
-      <DashboardBanner
-        description="Analisis harga komoditas di masa lampau agar dapat membantu anda dalam
-          usaha di masa mendatang"
-      />
+      <DashboardBanner description="Cari komoditasmu dan dapatkan informasi, serta tumbuhkan peluang ide baru untuk produkmu" />
       <div className="grid md:grid-cols-2 gap-x-4 gap-y-8">
         <div className="col-span-1">
           <div
@@ -42,7 +39,7 @@ const SearchCommodity = () => {
             {image ? (
               <img
                 src={URL.createObjectURL(image)}
-                className="w-72 h-72"
+                className="w-72 h-72 object-cover"
                 alt={image.name}
               />
             ) : (
@@ -69,12 +66,14 @@ const SearchCommodity = () => {
             )}
           </div>
           <div className="flex flew-row gap-4 justify-center">
-            <Button
-              text="Ulang"
-              variant="secondary"
-              className="w-28"
-              onClick={open}
-            />
+            {commodity_name && (
+              <Button
+                text="Ulang"
+                variant="secondary"
+                className="w-28"
+                onClick={open}
+              />
+            )}
             <Button
               text="Cari"
               variant="primary"
@@ -91,11 +90,6 @@ const SearchCommodity = () => {
           <div className="mb-5 " style={{ minHeight: 240 }}>
             {loading ? <Skeleton count={4} /> : deskripsi}
           </div>
-          <Button
-            text="Temukan Peta Komoditas"
-            variant="primary"
-            className="ml-auto"
-          />
         </div>
       </div>
     </div>

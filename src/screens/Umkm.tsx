@@ -1,10 +1,8 @@
 import React from "react";
 import Underline from "../components/Underline";
-import Button from "../components/Button";
 import TextField from "../components/TextField";
 import UmkmCard from "../components/UmkmCard";
 import Features from "../components/Features";
-import Dropdown from "../components/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUmkmList } from "../store/actions/umkmActions";
 import { RootState } from "../store";
@@ -12,10 +10,15 @@ import { RootState } from "../store";
 const Umkm = () => {
   const dispatch = useDispatch();
   const { umkmList } = useSelector((state: RootState) => state.umkmList);
+  const [keyword, setKeyword] = React.useState<string>("");
 
   React.useEffect(() => {
     dispatch(fetchUmkmList());
   }, [dispatch]);
+
+  const filteredStores = umkmList.filter((umkm) =>
+    umkm.name.toLowerCase().includes(keyword.toLowerCase())
+  );
 
   return (
     <div>
@@ -46,19 +49,10 @@ const Umkm = () => {
             <Underline backgroundColor="#110828" center />
           </div>
           <div className="flex flex-col-reverse md:flex-row justify-center items-center  md:space-x-4 mb-4">
-            <Dropdown
-              options={[
-                { value: "1", label: "1" },
-                { value: "2", label: "2" },
-              ]}
-              className="border-2 border-blue-marker w-60 px-2"
-              placeholder="Jenis Komoditas"
-              rounded
-            />
             <TextField
               type="text"
-              onChange={() => console.log("object")}
-              value=""
+              onChange={(e) => setKeyword(e.target.value)}
+              value={keyword}
               variant="secondary"
               placeholder="Cari UMKM"
               icon={
@@ -80,26 +74,27 @@ const Umkm = () => {
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-screen-xl mx-auto gap-x-6 gap-y-11 mb-12">
-            {umkmList.length === 0
-              ? "Belum ada umkm"
-              : umkmList.map((umkm) => (
-                  <UmkmCard
-                    key={umkm.id}
-                    thumbnail={umkm.thumbnail}
-                    title={umkm.name}
-                    description={umkm.description}
-                    location={umkm.address}
-                    telephone={umkm.phone}
-                    weekdayOpenHours={
-                      umkm.time_opened.slice(0, 5) +
-                      " - " +
-                      umkm.time_closed.slice(0, 5)
-                    }
-                  />
-                ))}
-          </div>
-          <div className="flex justify-center">
-            <Button variant="tertiary" text="Lihat Lebih Banyak" />
+            {filteredStores.length === 0 ? (
+              <h2 className="text-lg text-center py-20 col-span-12">
+                UMKM tidak ditemukan
+              </h2>
+            ) : (
+              umkmList.map((umkm) => (
+                <UmkmCard
+                  key={umkm.id}
+                  thumbnail={umkm.thumbnail}
+                  title={umkm.name}
+                  description={umkm.description}
+                  location={umkm.address}
+                  telephone={umkm.phone}
+                  weekdayOpenHours={
+                    umkm.time_opened.slice(0, 5) +
+                    " - " +
+                    umkm.time_closed.slice(0, 5)
+                  }
+                />
+              ))
+            )}
           </div>
         </div>
       </div>

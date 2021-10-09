@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import Button from "../../components/Button";
 import ProgressBar from "../../components/ProgressBar";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { getPaymentDetail } from "../../store/actions/paymentActions";
@@ -13,9 +13,7 @@ import { longFormatDate } from "../../utils/helpers";
 
 const OrderDetail = () => {
   const { paymentCode } = useParams<{ paymentCode: string }>();
-  const { payment, loading } = useSelector(
-    (state: RootState) => state.paymentDetail
-  );
+  const { payment } = useSelector((state: RootState) => state.paymentDetail);
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
@@ -27,6 +25,7 @@ const OrderDetail = () => {
     return () => {
       dispatch({ type: FETCH_PAYMENT_DETAIL_RESET });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

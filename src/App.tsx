@@ -1,11 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import NotFound from "./components/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import DashboardRoutes from "./routes/DashboardRoutes";
 import LandingPageRoutes from "./routes/LandingPageRoutes";
 import PrivateRoute from "./routes/PrivateRoute";
-import CommodityMap from "./screens/dashboard/CommodityMap";
 
 const App = () => {
   return (
@@ -14,7 +12,6 @@ const App = () => {
       <Switch>
         <PrivateRoute path="/dashboard" component={DashboardRoutes} />
         <Route path="/" component={LandingPageRoutes} />
-
       </Switch>
     </>
   );

@@ -1,10 +1,8 @@
-import { SearchIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { ToastContainer } from "react-toastify";
 import Button from "../../components/Button";
-import TextField from "../../components/TextField";
 import { RootState } from "../../store";
 import {
   deleteUserSupplierProduct,
@@ -24,7 +22,7 @@ const CommodityProducts = () => {
     ) {
       dispatch(getUserSupplierProducts(userInfo.supplier_info.id));
     }
-  }, [userInfo]);
+  }, [userInfo, dispatch]);
 
   return (
     <div className="flex flex-col flex-auto">
@@ -58,22 +56,13 @@ const CommodityProducts = () => {
       )}
       {userInfo && userInfo.is_supplier && (
         <>
-          <div className="flex flex-row justify-between items-center mb-4">
-            <TextField
-              icon={<SearchIcon className="w-6 h-6" />}
+          <div className="flex flex-row justify-end items-center mb-4">
+            <Button
+              text="Tambah Produk"
               variant="secondary"
-              placeholder="Cari Produk Anda"
-              rounded
+              pathName="dashboard/produk/tambah"
             />
-            <div>
-              <Button
-                text="Tambah Produk"
-                variant="secondary"
-                pathName="dashboard/produk/tambah"
-              />
-            </div>
           </div>
-
           {userInfo.supplier_info &&
           userInfo.supplier_info.products &&
           userInfo.supplier_info.products.length > 0 ? (
@@ -137,33 +126,3 @@ const CommodityProducts = () => {
 };
 
 export default CommodityProducts;
-
-// const Commodity = () => {
-//   return (
-//     <div className='flex flex-col flex-auto'>
-//       <h2 className="text-2xl font-semibold mb-5">Komoditas Anda</h2>
-//       <div className="flex-auto flex flex-col">
-//         <div className="flex justify-center items-center flex-auto">
-//           <div className="flex flex-col items-center space-y-4 flex-auto">
-//             <img
-//               src="/assets/icons/shopping.png"
-//               className="w-80"
-//               alt="Daftar Komoditas"
-//             />
-//             <div className="text-center">
-//               <h3 className="text-blue-marker font-semibold">
-//                 Ingin Bergabung menjadi bagian dari Komoditas Kami?
-//               </h3>
-//               <p className="text-blue-marker text-sm">
-//                 Dapatkan manfaat dan keuntungan bagi usaha anda
-//               </p>
-//             </div>
-//             <Button text="Daftar" variant="primary" className="w-32" />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Commodity;

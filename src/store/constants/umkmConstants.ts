@@ -1,4 +1,4 @@
-import { UmkmListState, UmkmState } from "../reducers/umkmReducers";
+import { UmkmState } from "../reducers/umkmReducers";
 
 export const FETCH_UMKM_LIST_LOADING = "FETCH_UMKM_LIST_LOADING";
 export const FETCH_UMKM_LIST_SUCCESS = "FETCH_UMKM_LIST_SUCCESS";

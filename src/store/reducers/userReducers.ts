@@ -1,4 +1,3 @@
-import { LocationChangeAction } from "connected-react-router";
 import {
   AUTH_LOADING,
   AUTH_SUCCESS,
@@ -23,7 +22,6 @@ import {
   FETCH_USER_SUPPLIER_PRODUCTS_SUCCESS,
   FetchUserSupplierProductsDispatchTypes,
   DeleteUserProductDispatchTypes,
-  DELETE_USER_PRODUCT_LOADING,
 } from "../constants/userConstants";
 import { SupplierState } from "./supplierReducers";
 import { UmkmState } from "./umkmReducers";
@@ -64,7 +62,6 @@ export const authReducer = (
     | AuthDispatchTypes
     | UpdateSupplierDispatchTypes
     | UpdateStoreDispatchTypes
-    | LocationChangeAction
     | FetchUserSupplierProductsDispatchTypes
     | DeleteUserProductDispatchTypes
 ): AuthState => {

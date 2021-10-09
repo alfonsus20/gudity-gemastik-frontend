@@ -58,7 +58,7 @@ const EditProduct = () => {
         dispatch(getUserSupplierProducts(userInfo.supplier_info.id));
       }
     }
-  }, [userInfo]);
+  }, [userInfo, dispatch, productId]);
 
   return (
     <div>

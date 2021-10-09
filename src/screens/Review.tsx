@@ -19,7 +19,7 @@ const Review = () => {
     if (userInfo.id) {
       dispatch(getOrderDetail(orderId, userInfo.id));
     }
-  }, [userInfo]);
+  }, [userInfo, dispatch, orderId]);
 
   return (
     <div className="mt-20">

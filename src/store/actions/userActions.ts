@@ -3,7 +3,6 @@ import baseApi from "../../api/baseApi";
 import {
   AddUserProductDispatchTypes,
   ADD_USER_PRODUCT_FAILED,
-  ADD_USER_PRODUCT_LOADING,
   ADD_USER_PRODUCT_SUCCESS,
   AuthDispatchTypes,
   AUTH_FAILED,

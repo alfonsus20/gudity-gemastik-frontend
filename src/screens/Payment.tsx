@@ -30,13 +30,13 @@ const Payment = () => {
     if (payment.paymentStatus && payment.paymentStatus !== "dikemas") {
       history.goBack();
     }
-  }, [payment]);
+  }, [payment, history]);
 
   React.useEffect(() => {
     return () => {
       dispatch({ type: FETCH_PAYMENT_DETAIL_RESET });
     };
-  }, []);
+  }, [dispatch]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(payment.code);
@@ -158,7 +158,7 @@ const Payment = () => {
               <div className="text-sm flex flex-row">
                 <div className="w-40 flex-shrink-0">Estimasi Pengiriman</div>
                 <div>
-                  {longFormatDate(payment.date, 0, false)} - {" "}
+                  {longFormatDate(payment.date, 0, false)} -{" "}
                   {longFormatDate(payment.date, 4, false)}
                 </div>
               </div>

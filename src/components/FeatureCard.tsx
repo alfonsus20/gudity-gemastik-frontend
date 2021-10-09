@@ -1,6 +1,5 @@
 import React from "react";
 import Underline from "./Underline";
-import { Fade } from "react-reveal";
 
 export type FeatureCardProps = {
   image: string;

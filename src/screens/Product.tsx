@@ -37,7 +37,7 @@ const Product = () => {
     return () => {
       dispatch({ type: ADD_TO_CART_RESET });
     };
-  }, []);
+  }, [dispatch]);
 
   const countReviewStar = () => {
     const starVoters = [0, 0, 0, 0, 0];

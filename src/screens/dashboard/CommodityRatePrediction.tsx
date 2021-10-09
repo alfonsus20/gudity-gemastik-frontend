@@ -77,7 +77,7 @@ const CommodityRatePrediction = () => {
         </div>
         <div className="md:col-span-2 flex items-center">
           <Button
-            text={loading ? "Loading..." : "Analisis"}
+            text={loading ? "Loading..." : "Prediksi"}
             variant="primary"
             size="full"
             type="submit"
@@ -86,7 +86,7 @@ const CommodityRatePrediction = () => {
         </div>
       </form>
       <div className="px-4 md:px-12 py-6 shadow mb-8">
-        <h3 className="font-semibold text-xl">Analisis Kesuksesan</h3>
+        <h3 className="font-semibold text-xl">Prediksi Harga Masa Depan</h3>
         <div className="w-full h-60 overflow-hidden relative">
           {loading ? (
             <PropagateLoader css={override} color="#2E53DA" />

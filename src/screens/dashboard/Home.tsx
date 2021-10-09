@@ -17,6 +17,7 @@ const Home = () => {
     if (state && state.from === "/daftar") {
       showWelcomeModal(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

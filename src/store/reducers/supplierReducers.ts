@@ -1,4 +1,3 @@
-import { LocationChangeAction, LOCATION_CHANGE } from "connected-react-router";
 import {
   FetchSupplierDetailDispatchTypes,
   FetchSupplierListDispatchTypes,
@@ -33,7 +32,7 @@ export type SupplierState = {
 
 export const supplierListReducer = (
   state: SupplierListState = { loading: false, suppliers: [] },
-  action: FetchSupplierListDispatchTypes | LocationChangeAction
+  action: FetchSupplierListDispatchTypes
 ): SupplierListState => {
   switch (action.type) {
     case FETCH_SUPPLIER_LIST_LOADING:
@@ -71,7 +70,7 @@ export const supplierDetailReducer = (
     loading: false,
     supplier: {} as SupplierState,
   },
-  action: FetchSupplierDetailDispatchTypes | LocationChangeAction
+  action: FetchSupplierDetailDispatchTypes
 ): SupplierDetailState => {
   switch (action.type) {
     case FETCH_SUPPLIER_DETAIL_LOADING:

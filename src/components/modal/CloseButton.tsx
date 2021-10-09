@@ -12,7 +12,7 @@ const CloseButton = ({ color, onClick , className}: CloseButtonProps) => {
     <button
       className={`absolute top-2 right-2 ${className}`}
       type='button'
-      onClick={() => onClick()}
+      onClick={onClick}
     >
       <XIcon
         className={`w-6 h-6 ${

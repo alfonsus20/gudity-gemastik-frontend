@@ -38,7 +38,7 @@ const SupplierDetail = () => {
         dispatch({ type: FETCH_SUPPLIER_DETAIL_RESET });
       };
     }
-  }, [error]);
+  }, [error, dispatch, history]);
 
   return (
     <div>

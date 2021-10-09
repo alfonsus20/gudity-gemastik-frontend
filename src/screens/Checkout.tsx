@@ -3,7 +3,7 @@ import { LocationMarkerIcon } from "@heroicons/react/solid";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Wrapper from "../components/Wrapper";
-import { ChatAltIcon, ShoppingBagIcon } from "@heroicons/react/outline";
+import { ShoppingBagIcon } from "@heroicons/react/outline";
 import Dropdown from "../components/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
@@ -12,7 +12,6 @@ import { useHistory } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 const Checkout = () => {
-  // const [addressModalShown, showAddressModal] = React.useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const { productsCheckout, bankList, paymentCode } = useSelector(
@@ -28,6 +27,7 @@ const Checkout = () => {
       history.goBack();
     }
     dispatch(getBankList());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, paymentCode, history]);
 
   const handleClick = () => {
