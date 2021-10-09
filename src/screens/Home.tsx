@@ -129,7 +129,7 @@ const Home = () => {
             </p>
             <div className="flex flex-row space-x-6 mb-10">
               <div className="">
-                <img src="/assets/icons/book.svg" alt="book" />
+                <img src="/assets/pictures/book.svg" alt="book" />
               </div>
               <div>
                 <h3 className="text-2xl font-medium mb-2">
