@@ -98,7 +98,7 @@ const Product = () => {
                 <div className="flex-auto">
                   <div className="flex flex-row mb-4 items-center">
                     <div className="mr-4">
-                      <img src="/assets/icons/delivery-black.svg" alt="" />
+                      <img src="/assets/pictures/delivery-black.svg" alt="" />
                     </div>
                     <span className="flex-auto">Gratis Biaya Kirim</span>
                   </div>
