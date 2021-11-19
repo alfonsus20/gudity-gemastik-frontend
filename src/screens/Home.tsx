@@ -74,7 +74,7 @@ const Home = () => {
 
             <div className="grid md:grid-cols-2 gap-x-4 gap-y-8 w-full md:w-1/2">
               {newsList.length === 0 ? (
-                <h2 className="col-span-2">Belum ada berita</h2>
+                <h2 className="col-span-2 text-center">Belum ada berita</h2>
               ) : (
                 newsList.slice(0, 4).map((news, index) => (
                   <Fade bottom duration={(index + 1) * 500} key={news.id}>
