@@ -22,7 +22,7 @@ yarn
 - Supabase
 - Jupiter Notebook
 
-*Backend repo is coming soon*
+*You can access the backend repo [here](https://github.com/huf0813/gemastik_backend_api)*
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
